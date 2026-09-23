@@ -102,8 +102,8 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         scrolled
-          ? "bg-[#030712]/92 backdrop-blur-xl border-b border-white/[0.08] py-3 shadow-2xl"
-          : "bg-transparent border-b border-transparent py-5"
+          ? "bg-[#030712]/90 backdrop-blur-md border-b border-white/[0.06] py-3 shadow-xl"
+          : "bg-transparent border-b border-transparent py-4 sm:py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,7 +117,7 @@ export default function Navbar() {
           >
             <BrandLogo
               variant="dark"
-              size="md"
+              size="sm"
               showWordmark={true}
               showDescriptor={false}
               symbolOnlyOnMobile={false}

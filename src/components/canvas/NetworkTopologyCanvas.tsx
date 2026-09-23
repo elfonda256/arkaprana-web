@@ -46,43 +46,42 @@ export default function NetworkTopologyCanvas() {
     window.addEventListener("resize", handleResize);
 
     const tiers: ("infra" | "network" | "data" | "ai")[] = ["infra", "network", "data", "ai"];
-    // Moderate node count: 32 on mobile, up to 48 on desktop
-    const nodeCount = isMobile ? 24 : Math.min(Math.floor((width * height) / 24000), 48);
+    // Sparser, calmer node count: 12 on mobile, 22 on desktop for breathable whitespace
+    const nodeCount = isMobile ? 12 : Math.min(Math.floor((width * height) / 45000), 22);
     const nodes: Node[] = [];
 
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        // Extremely calm, slow drift (Section 02)
-        vx: (Math.random() - 0.5) * 0.09,
-        vy: (Math.random() - 0.5) * 0.09,
-        radius: Math.random() > 0.8 ? 1.8 : 1.2,
-        baseAlpha: Math.random() * 0.25 + 0.1,
+        // Extremely calm, minimal drift
+        vx: (Math.random() - 0.5) * 0.05,
+        vy: (Math.random() - 0.5) * 0.05,
+        radius: Math.random() > 0.85 ? 1.5 : 1.0,
+        baseAlpha: Math.random() * 0.15 + 0.06,
         tier: tiers[i % tiers.length]
       });
     }
 
     const pulses: Pulse[] = [];
-    const connectionDistance = 160;
+    const connectionDistance = 135;
 
     let mouseX = -1000;
     let mouseY = -1000;
     let targetMouseX = -1000;
     let targetMouseY = -1000;
 
-    // Mouse parallax tracking (Section 03): max 6-8px movement
+    // Subtle desktop parallax (max 3-4px)
     const handleMouseMove = (e: MouseEvent) => {
       if (isMobile || prefersReducedMotion) return;
       const rect = canvas.getBoundingClientRect();
       targetMouseX = e.clientX - rect.left;
       targetMouseY = e.clientY - rect.top;
 
-      // Parallax shift calculation (bounded to -7px to +7px)
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
-      const shiftX = ((e.clientX - centerX) / centerX) * 6;
-      const shiftY = ((e.clientY - centerY) / centerY) * 6;
+      const shiftX = ((e.clientX - centerX) / centerX) * 3.5;
+      const shiftY = ((e.clientY - centerY) / centerY) * 3;
       setParallaxOffset({ x: shiftX, y: shiftY });
     };
 
@@ -133,8 +132,8 @@ export default function NetworkTopologyCanvas() {
       mouseX += (targetMouseX - mouseX) * 0.06;
       mouseY += (targetMouseY - mouseY) * 0.06;
 
-      // Spawn pulses along lines at organic, spaced intervals
-      if (time - lastSpawn > 800 && pulses.length < 8 && nodes.length > 2) {
+      // Spawn pulses along lines rarely and softly (Item 14: 1-2 data pulses max)
+      if (time - lastSpawn > 3200 && pulses.length < 3 && nodes.length > 2) {
         const from = Math.floor(Math.random() * nodes.length);
         for (let to = 0; to < nodes.length; to++) {
           if (to === from) continue;
@@ -146,7 +145,7 @@ export default function NetworkTopologyCanvas() {
               fromNode: from,
               toNode: to,
               progress: 0,
-              speed: 0.004 + Math.random() * 0.005
+              speed: 0.003 + Math.random() * 0.003
             });
             break;
           }
@@ -164,10 +163,10 @@ export default function NetworkTopologyCanvas() {
           const mdx = n.x - mouseX;
           const mdy = n.y - mouseY;
           const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (mdist < 120 && mdist > 0) {
-            const force = (120 - mdist) / 120;
-            n.x += (mdx / mdist) * force * 0.4;
-            n.y += (mdy / mdist) * force * 0.4;
+          if (mdist < 100 && mdist > 0) {
+            const force = (100 - mdist) / 100;
+            n.x += (mdx / mdist) * force * 0.25;
+            n.y += (mdy / mdist) * force * 0.25;
           }
         }
 
@@ -180,7 +179,7 @@ export default function NetworkTopologyCanvas() {
         if (n.y > height) n.y = 0;
       }
 
-      // Draw thin connection lines (very low atmospheric opacity)
+      // Draw thin connection lines (quiet, breathable 0.08 max opacity)
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -188,12 +187,12 @@ export default function NetworkTopologyCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDistance) {
-            const alpha = (1 - dist / connectionDistance) * 0.12;
+            const alpha = (1 - dist / connectionDistance) * 0.08;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
             ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
-            ctx.lineWidth = 0.65;
+            ctx.lineWidth = 0.55;
             ctx.stroke();
           }
         }
