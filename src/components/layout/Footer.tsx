@@ -14,20 +14,14 @@ export default function Footer() {
           
           {/* Brand Column (Span 2) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-flex items-center space-x-3 group">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden border border-white/[0.12] bg-[#030712] shadow-sm group-hover:border-cyan-400/50 transition-colors shrink-0">
-                <Image
-                  src="/images/logo-icon.png"
-                  alt="ARKAPRANA Emblem"
-                  width={32}
-                  height={32}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <span className="text-base font-semibold tracking-wider text-white font-sans">
-                ARKAPRANA
-                <span className="inline-block w-1 h-1 rounded-full bg-cyan-400 ml-1.5" />
-              </span>
+            <Link href="/" className="inline-flex items-center group transition-opacity hover:opacity-95">
+              <Image
+                src="/images/logo-horizontal.png"
+                alt="PT ARKAPRANA TEKNOLOGI NUSANTARA"
+                width={239}
+                height={40}
+                className="h-8.5 w-auto object-contain max-w-[240px]"
+              />
             </Link>
 
             <p className="text-[10px] uppercase font-mono tracking-[0.2em] text-cyan-400">

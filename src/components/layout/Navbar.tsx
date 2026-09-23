@@ -45,26 +45,17 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo Wordmark with Official Emblem */}
-          <Link href="/" className="group flex items-center space-x-3">
-            <div className="relative flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden border border-white/[0.15] bg-[#030712] shadow-sm group-hover:border-cyan-400/60 transition-colors shrink-0">
+          {/* Official Brand Logo */}
+          <Link href="/" className="group flex items-center transition-opacity hover:opacity-95">
+            <div className="relative h-8 sm:h-9.5 w-auto flex items-center">
               <Image
-                src="/images/logo-icon.png"
-                alt="ARKAPRANA Emblem"
-                width={32}
-                height={32}
+                src="/images/logo-horizontal.png"
+                alt="PT ARKAPRANA TEKNOLOGI NUSANTARA"
+                width={239}
+                height={40}
                 priority
-                className="w-full h-full object-cover"
+                className="h-7.5 sm:h-8.5 w-auto object-contain max-w-[210px] sm:max-w-[240px]"
               />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-base font-semibold tracking-wider text-white font-sans flex items-center">
-                ARKAPRANA
-                <span className="inline-block w-1 h-1 rounded-full bg-cyan-400 ml-1.5" />
-              </span>
-              <span className="text-[9px] uppercase tracking-[0.22em] text-neutral-400 -mt-0.5 font-mono">
-                Technology & Intelligence
-              </span>
             </div>
           </Link>
 
