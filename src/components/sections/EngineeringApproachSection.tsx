@@ -56,11 +56,22 @@ export default function EngineeringApproachSection() {
           </p>
         </div>
 
-        {/* Interactive Timeline Navigation (Horizontal on Desktop / Vertical on Mobile) */}
-        <div className="mb-10">
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+        {/* Interactive Timeline Navigation with Progressive Connector Line */}
+        <div className="mb-10 relative">
+          {/* Background Track & Progressive Indicator */}
+          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-white/[0.08] -translate-y-1/2 pointer-events-none z-0">
+            <div
+              className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-500 ease-out"
+              style={{
+                width: `${((activeStepIndex + 1) / PROJECT_JOURNEY_STEPS.length) * 100}%`
+              }}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 relative z-10">
             {PROJECT_JOURNEY_STEPS.map((s, idx) => {
               const isSelected = activeStepIndex === idx;
+              const isPassed = idx <= activeStepIndex;
               return (
                 <button
                   key={s.name}
@@ -68,12 +79,14 @@ export default function EngineeringApproachSection() {
                   onClick={() => setActiveStepIndex(idx)}
                   className={`text-left p-3.5 rounded-xl border transition-all duration-200 cursor-pointer ${
                     isSelected
-                      ? "bg-white/[0.1] border-cyan-400 shadow-lg shadow-cyan-500/10 ring-1 ring-cyan-400/50"
+                      ? "bg-[#060b18] border-cyan-400 shadow-lg shadow-cyan-500/20 ring-1 ring-cyan-400/50 -translate-y-1"
+                      : isPassed
+                      ? "bg-[#040814] border-cyan-500/30 hover:border-cyan-400/50"
                       : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.15]"
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[10px] font-mono font-bold text-cyan-400">
+                    <span className={`text-[10px] font-mono font-bold ${isPassed ? "text-cyan-400" : "text-neutral-500"}`}>
                       STEP {s.step}
                     </span>
                     {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />}
@@ -137,10 +150,10 @@ export default function EngineeringApproachSection() {
           </span>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 hover:text-white transition-colors btn-secondary-interaction group"
           >
             <span>Request Infrastructure Assessment</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 cta-arrow" />
           </Link>
         </div>
 

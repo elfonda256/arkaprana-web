@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronRight, CheckCircle2 } from "lucide-react";
 import { INDUSTRIES } from "@/lib/data";
+import IndustryTopologyVisual from "@/components/shared/IndustryTopologyVisual";
 
 export default function IndustriesSection() {
   const [selectedIndustry, setSelectedIndustry] = useState<string>(INDUSTRIES[0].name);
@@ -35,10 +36,10 @@ export default function IndustriesSection() {
             <button
               key={ind.name}
               onClick={() => setSelectedIndustry(ind.name)}
-              className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide transition-all cursor-pointer ${
                 selectedIndustry === ind.name
-                  ? "bg-neutral-900 text-white shadow-sm"
-                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200/80 hover:text-neutral-900"
+                  ? "bg-neutral-900 text-white shadow-md -translate-y-0.5"
+                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900"
               }`}
             >
               {ind.name}
@@ -47,7 +48,12 @@ export default function IndustriesSection() {
         </div>
 
         {/* Active Industry Deep-Dive Showcase */}
-        <div className="bg-[#F8FAFC] rounded-3xl border border-neutral-200/90 p-8 sm:p-12 mb-14 shadow-sm">
+        <div className="bg-[#F8FAFC] rounded-3xl border border-neutral-200/90 p-8 sm:p-12 mb-14 shadow-sm transition-all duration-300">
+          {/* Abstract Industry Technical Signature Topology */}
+          <div className="mb-8 p-5 rounded-2xl bg-[#040814] border border-white/[0.08] shadow-inner">
+            <IndustryTopologyVisual slug={activeIndustry.slug} className="max-h-24 sm:max-h-28" />
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             
             {/* Left Column: Challenge & Environment (Span 6) */}
@@ -155,10 +161,10 @@ export default function IndustriesSection() {
 
           <Link
             href={`/contact?industry=${encodeURIComponent(selectedIndustry)}`}
-            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all shrink-0 shadow-lg hover:shadow-cyan-500/20 active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group shrink-0"
           >
             <span>Discuss Your Requirement</span>
-            <ArrowRight className="w-3.5 h-3.5 text-black" />
+            <ArrowRight className="w-3.5 h-3.5 text-black cta-arrow" />
           </Link>
         </div>
 

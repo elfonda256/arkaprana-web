@@ -69,19 +69,19 @@ export default function CapabilitiesPage() {
               <div
                 key={cap.id}
                 id={cap.slug}
-                className="rounded-3xl bg-[#070b16] border border-white/[0.1] p-8 sm:p-12 shadow-2xl relative overflow-hidden hover:border-white/[0.18] transition-all group"
+                className="rounded-3xl bg-[#070b16] border border-white/[0.1] p-8 sm:p-12 shadow-2xl relative overflow-hidden hover:border-cyan-400/40 solution-card-interaction flex flex-col justify-between group"
               >
                 {/* Header Strip */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-white/[0.08] gap-4">
                   <div className="flex items-center space-x-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 card-icon shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
                       <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase block">
                         CAPABILITY 0{cap.number} // {cap.category}
                       </span>
-                      <h2 className="text-xl sm:text-3xl font-bold text-white font-sans">
+                      <h2 className="text-xl sm:text-3xl font-bold text-white font-sans group-hover:text-cyan-200 transition-colors">
                         {cap.title}
                       </h2>
                     </div>
@@ -127,9 +127,10 @@ export default function CapabilitiesPage() {
 
                       <Link
                         href={cap.ctaHref}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-white text-black hover:bg-neutral-200 transition-colors shrink-0 shadow-sm"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-white text-black hover:bg-neutral-100 btn-primary-interaction group shrink-0 shadow-sm"
                       >
                         <span>{cap.ctaText}</span>
+                        <ArrowRight className="w-3 h-3 text-black cta-arrow" />
                       </Link>
                     </div>
                   </div>

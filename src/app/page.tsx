@@ -12,6 +12,8 @@ import EngagementModelsSection from "@/components/sections/EngagementModelsSecti
 import MeetAiSection from "@/components/sections/MeetAiSection";
 import InsightsSection from "@/components/sections/InsightsSection";
 import FinalCtaSection from "@/components/sections/FinalCtaSection";
+import FinalSignatureSection from "@/components/sections/FinalSignatureSection";
+import ScrollReveal from "@/components/shared/ScrollReveal";
 
 export const metadata = {
   title: "ARKAPRANA | Technology & Intelligent Solutions",
@@ -37,40 +39,67 @@ export default function HomePage() {
       <HeroSection />
 
       {/* 02. [LIGHT] BUSINESS PROBLEM: "Technology becomes complicated when everything is disconnected." (Section 05) */}
-      <BusinessProblemSection />
+      <ScrollReveal delayMs={50}>
+        <BusinessProblemSection />
+      </ScrollReveal>
 
       {/* 03. [DARK] ECOSYSTEM: Interactive Architecture Explorer (Section 01 & 30) */}
-      <TechnologyEcosystemSection />
+      <ScrollReveal delayMs={50}>
+        <TechnologyEcosystemSection />
+      </ScrollReveal>
 
       {/* 04. [LIGHT] SOLUTION DISCOVERY: "WHAT ARE YOU TRYING TO BUILD?" (Section 06) */}
-      <SolutionDiscoverySection />
+      <ScrollReveal delayMs={50}>
+        <SolutionDiscoverySection />
+      </ScrollReveal>
 
       {/* 05. [LIGHT] SOLUTIONS AS PRODUCTS: 01 to 07 Enterprise Solutions (Section 07 & 08) */}
-      <SolutionsSection />
+      <ScrollReveal delayMs={50}>
+        <SolutionsSection />
+      </ScrollReveal>
 
       {/* 06. [DARK] BUSINESS SOLUTION BUILDER: "BUILD YOUR TECHNOLOGY ENVIRONMENT" (Section 12) */}
-      <EnvironmentBuilderSection />
+      <ScrollReveal delayMs={50}>
+        <EnvironmentBuilderSection />
+      </ScrollReveal>
 
       {/* 07. [LIGHT] BUSINESS VALUE: "Technology should create business value." 5 Themes (Section 15) */}
-      <BusinessValueSection />
+      <ScrollReveal delayMs={50}>
+        <BusinessValueSection />
+      </ScrollReveal>
 
       {/* 08. [LIGHT] INDUSTRIES: Sector Specializations & Real-World Constraints (Section 10 & 11) */}
-      <IndustriesSection />
+      <ScrollReveal delayMs={50}>
+        <IndustriesSection />
+      </ScrollReveal>
 
       {/* 09. [DARK] PROJECT JOURNEY: "HOW WE WORK" 8-Step Timeline (Section 13) */}
-      <EngineeringApproachSection />
+      <ScrollReveal delayMs={50}>
+        <EngineeringApproachSection />
+      </ScrollReveal>
 
       {/* 10. [DARK] ENGAGEMENT MODELS: "HOW WE CAN WORK TOGETHER" 5 Models (Section 14) */}
-      <EngagementModelsSection />
+      <ScrollReveal delayMs={50}>
+        <EngagementModelsSection />
+      </ScrollReveal>
 
       {/* 11. [DARK] FLAGSHIP AI: "Your data. Your infrastructure. Your intelligence." & AI Questionnaire (Section 16 & 17) */}
-      <MeetAiSection />
+      <ScrollReveal delayMs={50}>
+        <MeetAiSection />
+      </ScrollReveal>
 
       {/* 12. [LIGHT] INSIGHTS: Authority Building & Architecture Essays (Section 31 & 32) */}
-      <InsightsSection />
+      <ScrollReveal delayMs={50}>
+        <InsightsSection />
+      </ScrollReveal>
 
       {/* 13. [DARK] LEAD CONVERSION: Enterprise Inquiry Form & Lead Qualification (Section 25 & 26) */}
-      <FinalCtaSection />
+      <ScrollReveal delayMs={50}>
+        <FinalCtaSection />
+      </ScrollReveal>
+
+      {/* 14. [DARK] FINAL SIGNATURE ANIMATION: BUILD THE FOUNDATION. CONNECT THE SYSTEMS. ENABLE THE INTELLIGENCE. (Section 25) */}
+      <FinalSignatureSection />
     </main>
   );
 }

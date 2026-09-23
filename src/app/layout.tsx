@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloatingCta from "@/components/layout/WhatsAppFloatingCta";
 import MobileStickyCta from "@/components/layout/MobileStickyCta";
+import PageTransition from "@/components/shared/PageTransition";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -94,7 +95,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#030712] selection:bg-cyan-500/30 selection:text-white pb-16 sm:pb-0">
         <Navbar />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
         <WhatsAppFloatingCta />
         <MobileStickyCta />

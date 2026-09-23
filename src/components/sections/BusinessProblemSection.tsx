@@ -61,17 +61,17 @@ export default function BusinessProblemSection() {
               <div
                 key={prob.id}
                 onClick={() => setActiveProblem(prob.id)}
-                className={`p-6 rounded-2xl border transition-all cursor-pointer text-left ${
+                className={`p-6 rounded-2xl border transition-all duration-300 cursor-pointer text-left solution-card-interaction ${
                   isSelected
-                    ? "bg-white border-cyan-500 shadow-md ring-1 ring-cyan-500/20"
-                    : "bg-white/80 hover:bg-white border-neutral-200/90 shadow-sm hover:border-neutral-300"
+                    ? "bg-white border-cyan-500 shadow-md ring-1 ring-cyan-500/20 -translate-y-1"
+                    : "bg-white/80 hover:bg-white border-neutral-200/90 shadow-sm hover:border-cyan-500/30 hover:-translate-y-1"
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">
                     PROBLEM 0{idx + 1}
                   </span>
-                  <AlertTriangle className={`w-4 h-4 ${isSelected ? "text-amber-500" : "text-neutral-400"}`} />
+                  <AlertTriangle className={`w-4 h-4 card-icon ${isSelected ? "text-amber-500" : "text-neutral-400"}`} />
                 </div>
                 <h3 className="text-base font-bold text-neutral-900 mb-2 font-sans">
                   {prob.title}
@@ -136,16 +136,17 @@ export default function BusinessProblemSection() {
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/solutions"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all shadow-md active:scale-[0.98]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group shadow-md"
               >
                 <span>Explore Solutions Ecosystem</span>
-                <ArrowRight className="w-3.5 h-3.5 text-black" />
+                <ArrowRight className="w-3.5 h-3.5 text-black cta-arrow" />
               </Link>
               <Link
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs font-medium tracking-wide text-neutral-300 hover:text-white bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.15] transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs font-medium tracking-wide text-neutral-300 hover:text-white bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.15] btn-secondary-interaction group"
               >
                 <span>Discuss Your Project</span>
+                <ArrowRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white cta-arrow" />
               </Link>
             </div>
           </div>

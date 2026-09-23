@@ -35,17 +35,17 @@ export default function BrandLogo({
 
   return (
     <div
-      className={`inline-flex items-center gap-2.5 sm:gap-3 select-none ${heightClasses[size]} ${className}`}
+      className={`inline-flex items-center gap-2.5 sm:gap-3 select-none animate-logo-reveal ${heightClasses[size]} ${className}`}
       aria-label="PT ARKAPRANA TEKNOLOGI NUSANTARA"
     >
       {/* Geometric "A" Emblem Vector */}
-      <div className="relative flex-shrink-0 flex items-center justify-center">
+      <div className="relative flex-shrink-0 flex items-center justify-center transition-opacity duration-500">
         <Image
           src={isLight ? "/brand/arkaprana-symbol-light.svg" : "/brand/arkaprana-symbol-dark.svg"}
           alt="ARKAPRANA Symbol"
           width={symbolSizes[size].w}
           height={symbolSizes[size].h}
-          className="w-auto h-full max-h-7 sm:max-h-8 object-contain"
+          className="w-auto h-full max-h-7 sm:max-h-8 object-contain transition-transform duration-500 ease-out"
           priority
         />
       </div>

@@ -100,9 +100,9 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         scrolled
-          ? "bg-[#030712]/90 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-2xl"
+          ? "bg-[#030712]/92 backdrop-blur-xl border-b border-white/[0.08] py-3 shadow-2xl"
           : "bg-transparent border-b border-transparent py-5"
       }`}
     >
@@ -235,10 +235,10 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-sm hover:shadow-cyan-500/20 active:scale-[0.98]"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium text-black bg-white hover:bg-neutral-100 btn-primary-interaction group"
             >
               <span>Discuss Project</span>
-              <ArrowRight className="w-3 h-3 text-black" />
+              <ArrowRight className="w-3 h-3 text-black cta-arrow" />
             </Link>
           </div>
 

@@ -60,14 +60,17 @@ export default function SolutionsSection() {
             return (
               <div
                 key={prod.id}
-                className="group relative rounded-2xl bg-[#F8FAFC] border border-neutral-200/80 p-8 sm:p-10 transition-all duration-300 hover:border-cyan-600/30 hover:shadow-xl flex flex-col justify-between"
+                className="group relative rounded-2xl bg-gradient-to-b from-[#F8FAFC] to-[#F1F5F9] border border-neutral-200/80 p-8 sm:p-10 solution-card-interaction hover:border-cyan-600/40 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between pb-6 mb-6 border-b border-neutral-200/60">
                     <span className="text-[10px] font-mono tracking-widest text-cyan-700 font-semibold uppercase">
                       {prod.badge}
                     </span>
-                    <Icon className="w-5 h-5 text-neutral-500 group-hover:text-cyan-600 transition-colors" />
+                    <div className="flex items-center gap-2">
+                      <ArrowRight className="w-4 h-4 text-cyan-600 card-hover-arrow" />
+                      <Icon className="w-5 h-5 text-neutral-500 group-hover:text-cyan-600 card-icon transition-colors" />
+                    </div>
                   </div>
 
                   <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-2 font-sans">
@@ -118,14 +121,17 @@ export default function SolutionsSection() {
             return (
               <div
                 key={prod.id}
-                className="group relative rounded-xl bg-[#F8FAFC] border border-neutral-200/70 p-6 sm:p-7 transition-all duration-200 hover:border-cyan-600/30 hover:shadow-lg flex flex-col justify-between"
+                className="group relative rounded-xl bg-gradient-to-b from-[#F8FAFC] to-[#F1F5F9] border border-neutral-200/70 p-6 sm:p-7 solution-card-interaction hover:border-cyan-600/40 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between pb-4 mb-4 border-b border-neutral-200/50">
                     <span className="text-[9px] font-mono tracking-widest text-neutral-500 font-semibold uppercase">
                       {prod.badge}
                     </span>
-                    <Icon className="w-4 h-4 text-neutral-500 group-hover:text-cyan-600 transition-colors" />
+                    <div className="flex items-center gap-1.5">
+                      <ArrowRight className="w-3.5 h-3.5 text-cyan-600 card-hover-arrow" />
+                      <Icon className="w-4 h-4 text-neutral-500 group-hover:text-cyan-600 card-icon transition-colors" />
+                    </div>
                   </div>
 
                   <h3 className="text-lg font-bold tracking-tight text-neutral-900 mb-1">

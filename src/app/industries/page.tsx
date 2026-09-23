@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { INDUSTRIES } from "@/lib/data";
+import IndustryTopologyVisual from "@/components/shared/IndustryTopologyVisual";
 import {
   Factory,
   Ship,
@@ -70,12 +71,17 @@ export default function IndustriesPage() {
               <div
                 key={ind.name}
                 id={ind.slug}
-                className="p-8 sm:p-10 rounded-3xl bg-[#070b16] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 flex flex-col justify-between group shadow-xl"
+                className="p-8 sm:p-10 rounded-3xl bg-[#070b16] border border-white/10 hover:border-cyan-500/40 solution-card-interaction flex flex-col justify-between group shadow-xl"
               >
                 <div className="space-y-6">
+                  {/* Abstract Industry Technical Signature Topology */}
+                  <div className="p-4 rounded-2xl bg-[#030610] border border-white/[0.06]">
+                    <IndustryTopologyVisual slug={ind.slug} className="max-h-20" />
+                  </div>
+
                   {/* Header Strip */}
                   <div className="flex items-center space-x-3.5 pb-5 border-b border-white/[0.08]">
-                    <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 card-icon shrink-0">
                       <Icon className="w-6 h-6" />
                     </div>
                     <div>
@@ -155,10 +161,10 @@ export default function IndustriesPage() {
 
                   <Link
                     href={`/contact?industry=${encodeURIComponent(ind.name)}`}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-semibold text-black bg-white hover:bg-neutral-200 transition-all shadow-md active:scale-[0.98] shrink-0"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-semibold text-black bg-white hover:bg-neutral-100 btn-primary-interaction group shrink-0"
                   >
                     <span>{ctaLabel}</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-black" />
+                    <ArrowRight className="w-3.5 h-3.5 text-black cta-arrow" />
                   </Link>
                 </div>
               </div>

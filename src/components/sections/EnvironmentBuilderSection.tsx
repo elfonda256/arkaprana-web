@@ -213,23 +213,50 @@ export default function EnvironmentBuilderSection() {
               </div>
             </div>
 
-            {/* Visual Node Matrix Topology */}
-            <div className="py-6 px-4 rounded-2xl bg-[#030610] border border-white/[0.06] relative">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 block mb-4 text-center">
-                Interconnected Fabric Topology
-              </span>
+            {/* Visual Node Matrix Topology with Animated Connection Vector */}
+            <div className="py-6 px-4 rounded-2xl bg-[#030610] border border-white/[0.08] relative overflow-hidden">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">
+                  Interconnected Fabric Topology
+                </span>
+                <span className="text-[10px] font-mono text-cyan-400 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  Live Dynamic Mesh
+                </span>
+              </div>
 
-              {/* Grid of active nodes */}
+              {/* Sequential Flow Progression Bar */}
+              <div className="mb-4 p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] overflow-x-auto">
+                <div className="flex items-center gap-2 min-w-max text-[11px] font-mono">
+                  {selectedModules.map((mod, idx) => (
+                    <React.Fragment key={mod.id}>
+                      <span className="px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300">
+                        {mod.name}
+                      </span>
+                      {idx < selectedModules.length - 1 && (
+                        <div className="flex items-center text-cyan-400 font-bold">
+                          <span className="inline-block animate-pulse">→</span>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+
+              {/* Grid of active nodes with fade + scale transition */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {selectedModules.map((mod) => {
+                {selectedModules.map((mod, idx) => {
                   const Icon = iconMap[mod.id] || Server;
                   return (
                     <div
                       key={mod.id}
-                      className="p-3.5 rounded-xl bg-white/[0.03] border border-cyan-400/30 flex flex-col justify-between space-y-2 group hover:border-cyan-400 transition-colors"
+                      className="p-3.5 rounded-xl bg-gradient-to-b from-white/[0.05] to-white/[0.02] border border-cyan-400/40 flex flex-col justify-between space-y-2 group hover:border-cyan-400 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-cyan-500/10"
+                      style={{
+                        animation: `logoReveal 350ms cubic-bezier(0.16, 1, 0.3, 1) ${idx * 40}ms forwards`
+                      }}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono text-cyan-400">
+                        <span className="text-[10px] font-mono text-cyan-400 font-semibold">
                           {mod.badge}
                         </span>
                         <Icon className="w-4 h-4 text-neutral-300 group-hover:text-cyan-400 transition-colors" />
@@ -247,10 +274,13 @@ export default function EnvironmentBuilderSection() {
                 })}
               </div>
 
-              {/* Interconnect summary */}
+              {/* Interconnect summary with animated signal */}
               <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-neutral-400">
                 <span>Fabric: Spine-Leaf / Zero-Trust Mesh</span>
-                <span className="text-emerald-400">Status: Validated Architecture</span>
+                <span className="text-emerald-400 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  Validated Dynamic Architecture
+                </span>
               </div>
             </div>
 
@@ -285,9 +315,10 @@ export default function EnvironmentBuilderSection() {
 
               <Link
                 href={`/contact?blueprint=${contactQueryParam}`}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all shadow-lg hover:shadow-cyan-500/20 active:scale-[0.98] shrink-0"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group shrink-0"
               >
-                <span>TALK TO AN ENGINEER →</span>
+                <span>TALK TO AN ENGINEER</span>
+                <ArrowRight className="w-3.5 h-3.5 text-black cta-arrow" />
               </Link>
             </div>
 

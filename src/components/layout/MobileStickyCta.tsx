@@ -26,7 +26,7 @@ export default function MobileStickyCta() {
           href="/contact"
           className="flex-1 flex items-center justify-center gap-2 h-12 rounded-xl bg-white hover:bg-neutral-200 text-neutral-900 font-semibold text-xs tracking-wide shadow-md active:scale-95 transition-all"
         >
-          <span>Discuss Project</span>
+          <span>DISCUSS YOUR PROJECT</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>

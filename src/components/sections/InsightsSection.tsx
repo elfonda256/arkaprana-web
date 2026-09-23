@@ -75,10 +75,10 @@ export default function InsightsSection() {
               </span>
               <Link
                 href={`/insights/${featuredArticle.slug}`}
-                className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-cyan-700 transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-cyan-700 transition-colors group btn-secondary-interaction"
               >
                 <span>Read Full Essay</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 cta-arrow" />
               </Link>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function InsightsSection() {
               <Link
                 key={article.title}
                 href={`/insights/${article.slug}`}
-                className="p-5 rounded-2xl bg-[#F8FAFC] border border-neutral-200/70 hover:border-neutral-300 hover:bg-neutral-100/50 transition-all duration-200 block group"
+                className="p-5 rounded-2xl bg-[#F8FAFC] border border-neutral-200/70 hover:border-cyan-600/30 hover:bg-white hover:shadow-md hover:-translate-y-1 transition-all duration-300 block group"
               >
                 <div className="flex items-center justify-between text-[10px] font-mono mb-1.5">
                   <span className="text-neutral-500 uppercase tracking-wider">
@@ -110,7 +110,7 @@ export default function InsightsSection() {
 
                 <div className="mt-2.5 flex items-center text-[11px] font-semibold text-neutral-800 group-hover:text-cyan-700 transition-colors">
                   <span>Explore Technical Analysis</span>
-                  <ArrowUpRight className="w-3 h-3 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight className="w-3 h-3 ml-1 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </Link>
             ))}

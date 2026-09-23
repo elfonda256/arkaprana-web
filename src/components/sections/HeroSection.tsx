@@ -69,18 +69,18 @@ export default function HeroSection() {
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Link
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-sm hover:shadow-cyan-500/20 active:scale-[0.98] group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group"
               >
                 <span>DISCUSS YOUR PROJECT</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-black" />
+                <ArrowRight className="w-3.5 h-3.5 text-black cta-arrow" />
               </Link>
 
               <Link
                 href="/solutions"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-medium tracking-wide text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.12] hover:border-white/[0.25] transition-all duration-200"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-medium tracking-wide text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.12] hover:border-white/[0.25] btn-secondary-interaction group"
               >
                 <span>EXPLORE SOLUTIONS</span>
-                <ChevronRight className="w-3.5 h-3.5 text-neutral-400" />
+                <ChevronRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white cta-arrow" />
               </Link>
             </div>
 

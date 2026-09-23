@@ -344,14 +344,14 @@ export default function ContactPage() {
                   />
                 </div>
 
-                {/* Section 25 CTA: SUBMIT PROJECT INQUIRY → */}
+                {/* Section 25 CTA: DISCUSS YOUR PROJECT / SUBMIT PROJECT INQUIRY */}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-xl hover:shadow-cyan-500/20 active:scale-[0.99] disabled:opacity-50 cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group shadow-xl active:scale-[0.99] disabled:opacity-50 cursor-pointer"
                 >
-                  <span>{loading ? "Processing..." : "SUBMIT PROJECT INQUIRY →"}</span>
-                  <ArrowRight className="w-4 h-4 text-black" />
+                  <span>{loading ? "Processing..." : "DISCUSS YOUR PROJECT"}</span>
+                  <ArrowRight className="w-4 h-4 text-black cta-arrow" />
                 </button>
               </form>
             )}

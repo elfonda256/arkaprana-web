@@ -29,27 +29,6 @@ interface EcosystemTier {
 
 const TIERS: EcosystemTier[] = [
   {
-    id: "network",
-    name: "NETWORK",
-    category: "Connectivity & Routing Layer",
-    tagline: "High-speed transmission, carrier-neutral transit & unified mesh.",
-    items: [
-      "Enterprise Connectivity",
-      "Fiber Infrastructure",
-      "Enterprise Wi-Fi",
-      "Network Monitoring",
-      "Structured Cabling"
-    ],
-    specs: [
-      { label: "Core Transit", value: "Optical Single-Mode" },
-      { label: "Routing Latency", value: "< 1ms Core Jitter" },
-      { label: "Protocols", value: "BGP4, MPLS, OSPF" },
-      { label: "Redundancy", value: "Sub-50ms Fast Reroute" }
-    ],
-    route: "/solutions/network",
-    icon: Network
-  },
-  {
     id: "infra",
     name: "INFRASTRUCTURE",
     category: "Physical Foundation Layer",
@@ -69,6 +48,27 @@ const TIERS: EcosystemTier[] = [
     ],
     route: "/solutions/infrastructure",
     icon: Server
+  },
+  {
+    id: "network",
+    name: "NETWORK",
+    category: "Connectivity & Routing Layer",
+    tagline: "High-speed transmission, carrier-neutral transit & unified mesh.",
+    items: [
+      "Enterprise Connectivity",
+      "Fiber Infrastructure",
+      "Enterprise Wi-Fi",
+      "Network Monitoring",
+      "Structured Cabling"
+    ],
+    specs: [
+      { label: "Core Transit", value: "Optical Single-Mode" },
+      { label: "Routing Latency", value: "< 1ms Core Jitter" },
+      { label: "Protocols", value: "BGP4, MPLS, OSPF" },
+      { label: "Redundancy", value: "Sub-50ms Fast Reroute" }
+    ],
+    route: "/solutions/network",
+    icon: Network
   },
   {
     id: "cloud",
@@ -157,7 +157,7 @@ const TIERS: EcosystemTier[] = [
 ];
 
 export default function TechnologyEcosystemSection() {
-  const [selectedTierId, setSelectedTierId] = useState<string>("network");
+  const [selectedTierId, setSelectedTierId] = useState<string>("infra");
   const activeTier = TIERS.find((t) => t.id === selectedTierId) || TIERS[0];
 
   return (
@@ -200,47 +200,87 @@ export default function TechnologyEcosystemSection() {
               </div>
             </div>
 
-            {/* 6 Interactive Layers (2 Columns) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {TIERS.map((tier) => {
-                const isSelected = tier.id === selectedTierId;
-                const Icon = tier.icon;
-                return (
-                  <button
-                    key={tier.id}
-                    onClick={() => setSelectedTierId(tier.id)}
-                    className={`text-left p-4 sm:p-5 rounded-xl border transition-all duration-200 flex flex-col justify-between ${
-                      isSelected
-                        ? "bg-white/[0.08] border-cyan-400/70 shadow-lg shadow-cyan-500/10 scale-[1.01]"
-                        : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.15]"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-3 w-full">
-                      <div className="flex items-center space-x-2.5">
-                        <div
-                          className={`w-7 h-7 rounded-lg flex items-center justify-center ${
-                            isSelected ? "bg-cyan-400 text-black" : "bg-white/5 text-neutral-400"
-                          }`}
-                        >
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <span className="text-sm font-bold text-white tracking-wide">
-                          {tier.name}
-                        </span>
-                      </div>
-                      <ChevronRight
-                        className={`w-4 h-4 transition-transform ${
-                          isSelected ? "text-cyan-400 translate-x-0.5" : "text-neutral-600"
-                        }`}
-                      />
-                    </div>
+            {/* Signature Technical Bus Architecture (Section 08):
+                INFRASTRUCTURE ↓ NETWORK ↓ CLOUD ↓ SECURITY ↓ DATA ↓ AI */}
+            <div className="p-4 rounded-2xl bg-[#040814]/90 border border-white/[0.08] relative overflow-hidden">
+              <div className="flex items-center justify-between mb-3 text-[10px] font-mono uppercase tracking-widest text-neutral-400">
+                <span>Unified System Bus</span>
+                <span className="text-cyan-400 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                  Active Telemetry Stream
+                </span>
+              </div>
 
-                    <p className="text-[11px] text-neutral-400 line-clamp-1">
-                      {tier.tagline}
-                    </p>
-                  </button>
-                );
-              })}
+              {/* Vertical Stack with Animated Connector Lines */}
+              <div className="relative space-y-2">
+                {TIERS.map((tier, idx) => {
+                  const isSelected = tier.id === selectedTierId;
+                  const Icon = tier.icon;
+                  const isLast = idx === TIERS.length - 1;
+
+                  return (
+                    <div key={tier.id} className="relative">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedTierId(tier.id)}
+                        className={`w-full text-left p-3 rounded-xl border transition-all duration-300 flex items-center justify-between cursor-pointer ${
+                          isSelected
+                            ? "bg-cyan-950/40 border-cyan-400/80 shadow-md shadow-cyan-500/20 translate-x-1"
+                            : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.15]"
+                        }`}
+                      >
+                        <div className="flex items-center space-x-3">
+                          <div
+                            className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                              isSelected ? "bg-cyan-400 text-black shadow-sm" : "bg-white/[0.05] text-neutral-400"
+                            }`}
+                          >
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs font-mono text-cyan-400 font-semibold">
+                                L0{idx + 1}
+                              </span>
+                              <span className="text-xs sm:text-sm font-bold text-white font-sans tracking-wide">
+                                {tier.name}
+                              </span>
+                            </div>
+                            <span className="text-[10px] font-mono text-neutral-400 line-clamp-1">
+                              {tier.category}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <span className={`text-[10px] font-mono transition-opacity ${isSelected ? "text-cyan-300 opacity-100" : "opacity-0"}`}>
+                            ACTIVE LAYER
+                          </span>
+                          <ChevronRight
+                            className={`w-4 h-4 transition-transform duration-200 ${
+                              isSelected ? "text-cyan-400 translate-x-0.5" : "text-neutral-600"
+                            }`}
+                          />
+                        </div>
+                      </button>
+
+                      {/* Animated Data Bus Connection Vector Between Layers */}
+                      {!isLast && (
+                        <div className="h-2.5 flex items-center justify-center relative overflow-hidden">
+                          <div className="w-0.5 h-full bg-white/[0.12] relative">
+                            <div
+                              className="absolute inset-0 bg-cyan-400"
+                              style={{
+                                animation: `dataPulse 2.4s ease-in-out infinite ${idx * 0.35}s`
+                              }}
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
