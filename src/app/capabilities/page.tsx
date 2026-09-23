@@ -48,7 +48,7 @@ export default function CapabilitiesPage() {
             <span>Enterprise Engineering Disciplines</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight font-sans">
+          <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-white leading-tight font-display">
             Company Capabilities.
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-neutral-200 via-cyan-200 to-cyan-400">
               Architectural blueprints for critical scale.
@@ -81,7 +81,7 @@ export default function CapabilitiesPage() {
                       <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase block">
                         CAPABILITY 0{cap.number} // {cap.category}
                       </span>
-                      <h2 className="text-xl sm:text-3xl font-bold text-white font-sans group-hover:text-cyan-200 transition-colors">
+                      <h2 className="text-xl sm:text-3xl font-semibold text-white font-display group-hover:text-cyan-200 transition-colors">
                         {cap.title}
                       </h2>
                     </div>
@@ -192,7 +192,7 @@ export default function CapabilitiesPage() {
           <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block">
             Custom Architecture Requirements
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold text-white font-sans tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-semibold text-white font-display tracking-tight">
             Need a hybrid multi-disciplinary architecture?
           </h2>
           <p className="text-sm sm:text-base text-neutral-300 max-w-2xl mx-auto leading-relaxed">

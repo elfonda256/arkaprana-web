@@ -33,7 +33,7 @@ export default function BusinessValueSection() {
             <span>Operational Impact</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.08] font-sans">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-neutral-900 leading-[1.12] font-display">
             Technology should create business value.
           </h2>
 
@@ -90,8 +90,8 @@ export default function BusinessValueSection() {
               <span className="text-[11px] font-mono text-cyan-400 uppercase tracking-widest block mb-4">
                 Strategic Journey
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white font-sans tracking-tight mb-3">
-                BUILD → MANAGE → SECURE → OPTIMIZE → INTELLIGENCE
+              <h3 className="text-xl sm:text-2xl font-semibold text-white font-display tracking-tight mb-3">
+                Build → Manage → Secure → Optimize → Intelligence
               </h3>
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-6">
                 Pendekatan evolusioner yang memungkinkan organisasi mematangkan infrastruktur dasarnya terlebih dahulu sebelum menggelar otomasi dan kecerdasan buatan tingkat lanjut.

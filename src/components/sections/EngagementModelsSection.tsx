@@ -37,8 +37,8 @@ export default function EngagementModelsSection() {
             <span>Collaboration Framework</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight font-sans">
-            HOW WE CAN WORK TOGETHER
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-tight font-display">
+            How we can work together.
           </h2>
 
           <p className="text-neutral-300 text-base sm:text-lg leading-relaxed pt-1 font-normal">
@@ -132,7 +132,7 @@ export default function EngagementModelsSection() {
                 href="/contact"
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all shadow-lg active:scale-[0.98]"
               >
-                <span>DISCUSS YOUR REQUIREMENT →</span>
+                <span>Discuss Your Requirements</span>
               </Link>
             </div>
           </div>

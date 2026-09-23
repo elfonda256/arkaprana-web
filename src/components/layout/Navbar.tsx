@@ -21,49 +21,49 @@ import BrandLogo from "@/components/brand/BrandLogo";
 
 const MEGA_SOLUTIONS = [
   {
-    name: "NETWORK",
+    name: "Network",
     href: "/solutions/network",
     description: "Enterprise connectivity, fiber infrastructure, Wi-Fi & SD-WAN mesh.",
     icon: Network,
     badge: "01"
   },
   {
-    name: "INFRASTRUCTURE",
+    name: "Infrastructure",
     href: "/solutions/infrastructure",
     description: "Tier-3+ modular data center, high-density compute & flash storage.",
     icon: Server,
     badge: "02"
   },
   {
-    name: "CLOUD",
+    name: "Cloud",
     href: "/solutions/cloud",
     description: "Sovereign on-premise private cloud & resilient hybrid architectures.",
     icon: Cloud,
     badge: "03"
   },
   {
-    name: "SECURITY",
+    name: "Security",
     href: "/solutions/security",
     description: "Defense-in-depth zero-trust architecture, HSM vaults & 24/7 SOC.",
     icon: ShieldCheck,
     badge: "04"
   },
   {
-    name: "MANAGED IT",
+    name: "Managed IT",
     href: "/solutions/managed-it",
     description: "24/7 dedicated enterprise NOC monitoring, SLA uptime & preventive care.",
     icon: Cpu,
     badge: "05"
   },
   {
-    name: "AI",
+    name: "Artificial Intelligence",
     href: "/solutions/ai",
     description: "Private on-premise LLMs, enterprise RAG & cognitive workflow agents.",
     icon: BrainCircuit,
     badge: "06"
   },
   {
-    name: "INTEGRATION",
+    name: "System Integration",
     href: "/solutions/integration",
     description: "Turnkey hardware procurement, multi-vendor harmonisation & certified commissioning.",
     icon: Workflow,
@@ -237,7 +237,7 @@ export default function Navbar() {
               href="/contact"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium text-black bg-white hover:bg-neutral-100 btn-primary-interaction group"
             >
-              <span>Discuss Project</span>
+              <span>Discuss Your Project</span>
               <ArrowRight className="w-3 h-3 text-black cta-arrow" />
             </Link>
           </div>
@@ -275,7 +275,7 @@ export default function Navbar() {
               href="/contact"
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-medium text-black bg-white hover:bg-neutral-200 transition-colors"
             >
-              <span>Discuss Project</span>
+              <span>Discuss Your Project</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <div className="px-3 text-[11px] text-neutral-500 flex justify-between">

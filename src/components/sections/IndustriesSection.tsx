@@ -67,7 +67,7 @@ export default function IndustriesSection() {
             <span>Mission-Critical Environments</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.08] font-sans">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-neutral-900 leading-[1.12] font-display">
             Technology for Critical Environments.
           </h2>
 

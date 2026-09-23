@@ -73,17 +73,16 @@ export default function MeetAiSection() {
             <span>Future AI Flagship</span>
           </div>
 
-          {/* Headline (Section 11 & 16 verbatim) */}
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05] font-sans">
-            YOUR DATA.
-            <span className="block text-white/90">YOUR INFRASTRUCTURE.</span>
+          {/* Headline (Editorial, Confident, Human) */}
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.14]">
+            Your data. Your infrastructure.
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-400">
-              YOUR INTELLIGENCE.
+              Your intelligence.
             </span>
           </h2>
 
-          <p className="text-neutral-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed pt-2 font-normal">
-            Private AI and intelligent automation designed around your organization.
+          <p className="text-neutral-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed pt-2 font-normal">
+            Turn your internal knowledge, operational logs, and business documentation into practical intelligence your teams can actually use — without sensitive data ever leaving your control.
           </p>
 
           {/* Capabilities with Honest Status Labels (Section 16 verbatim) */}
@@ -211,7 +210,7 @@ export default function MeetAiSection() {
               href={`/contact?aiFocus=${encodeURIComponent(currentArea.label)}`}
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group shrink-0"
             >
-              <span>DISCUSS AI REQUIREMENTS</span>
+              <span>Discuss AI Requirements</span>
               <ArrowRight className="w-3.5 h-3.5 text-black cta-arrow" />
             </Link>
           </div>

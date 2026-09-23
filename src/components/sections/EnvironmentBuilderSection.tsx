@@ -88,8 +88,8 @@ export default function EnvironmentBuilderSection() {
             <span>Interactive Architecture Tool</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight font-sans">
-            BUILD YOUR TECHNOLOGY ENVIRONMENT
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-tight font-display">
+            Build your technology environment.
           </h2>
 
           <p className="text-neutral-300 text-base sm:text-xl leading-relaxed pt-1 font-normal">
@@ -317,7 +317,7 @@ export default function EnvironmentBuilderSection() {
                 href={`/contact?blueprint=${contactQueryParam}`}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group shrink-0"
               >
-                <span>TALK TO AN ENGINEER</span>
+                <span>Talk to an Engineer</span>
                 <ArrowRight className="w-3.5 h-3.5 text-black cta-arrow" />
               </Link>
             </div>

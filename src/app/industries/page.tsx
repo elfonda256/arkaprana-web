@@ -50,7 +50,7 @@ export default function IndustriesPage() {
             <span>INDUSTRY SALES SYSTEM</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight font-sans">
+          <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-white leading-tight font-display">
             Technology for Critical Environments.
           </h1>
 
@@ -65,7 +65,7 @@ export default function IndustriesPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {INDUSTRIES.map((ind) => {
             const Icon = iconMap[ind.slug] || Building;
-            const ctaLabel = `DISCUSS ${ind.slug.toUpperCase()} REQUIREMENTS →`;
+            const ctaLabel = `Discuss ${ind.name} Requirements`;
 
             return (
               <div

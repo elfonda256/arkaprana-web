@@ -20,7 +20,7 @@ export default function InsightsSection() {
             <span>ARKAPRANA INSIGHTS</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.08] font-sans">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-neutral-900 leading-[1.12] font-display">
             Engineering Perspectives.
             <span className="block text-neutral-500 font-normal mt-1">
               Architecture for the decade ahead.

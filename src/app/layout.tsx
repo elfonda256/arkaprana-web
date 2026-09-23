@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Inter, IBM_Plex_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloatingCta from "@/components/layout/WhatsAppFloatingCta";
@@ -7,14 +7,25 @@ import MobileStickyCta from "@/components/layout/MobileStickyCta";
 import PageTransition from "@/components/shared/PageTransition";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -85,7 +96,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-[#030712] text-slate-100`}
+      className={`${manrope.variable} ${inter.variable} ${ibmPlexMono.variable} h-full antialiased bg-[#030712] text-slate-100`}
     >
       <head>
         <script

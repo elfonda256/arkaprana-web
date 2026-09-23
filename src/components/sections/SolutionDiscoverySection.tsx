@@ -49,8 +49,8 @@ export default function SolutionDiscoverySection() {
             <span>Solution Discovery</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.08] font-sans">
-            WHAT ARE YOU TRYING TO BUILD?
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-neutral-900 leading-[1.08] font-display">
+            What are you looking to build?
           </h2>
 
           <p className="text-base sm:text-lg text-neutral-600 leading-relaxed font-normal pt-1">

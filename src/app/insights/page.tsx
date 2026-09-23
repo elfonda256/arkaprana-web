@@ -20,7 +20,7 @@ export default function InsightsPage() {
             <span>ENGINEERING PAPERS & EDITORIAL</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-white tracking-tight leading-tight font-display">
             Perspectives on Modern Infrastructure & AI.
           </h1>
 
@@ -55,7 +55,7 @@ export default function InsightsPage() {
                   </div>
                 </div>
 
-                <h2 className="text-lg font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors leading-snug">
+                <h2 className="text-lg font-semibold text-white mb-3 group-hover:text-cyan-300 transition-colors leading-snug font-display">
                   <Link href={`/insights/${post.id}`}>
                     {post.title}
                   </Link>
@@ -69,7 +69,7 @@ export default function InsightsPage() {
               <div className="pt-6 mt-6 border-t border-white/5">
                 <Link
                   href={`/insights/${post.id}`}
-                  className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-cyan-400 hover:text-cyan-300 transition-colors group/link"
+                  className="inline-flex items-center text-xs font-medium text-cyan-400 hover:text-cyan-300 transition-colors group/link"
                 >
                   <span>Read Technical Article</span>
                   <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover/link:translate-x-1 transition-transform" />

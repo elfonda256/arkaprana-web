@@ -72,7 +72,7 @@ export default function AboutPage() {
             <span>COMPANY PROFILE // PT ARKAPRANA TEKNOLOGI NUSANTARA</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight font-sans">
+          <h1 className="text-4xl sm:text-6xl font-semibold text-white tracking-tight leading-tight font-display">
             Technology built for what comes next.
           </h1>
 
@@ -83,7 +83,7 @@ export default function AboutPage() {
           <div className="pt-4 flex flex-wrap items-center gap-4">
             <CompanyProfileModal
               triggerClassName="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all shadow-lg active:scale-[0.98] cursor-pointer"
-              triggerText="DOWNLOAD COMPANY PROFILE →"
+              triggerText="Download Company Profile"
             />
             <Link
               href="/contact"
@@ -427,7 +427,7 @@ export default function AboutPage() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-medium text-neutral-300 hover:text-white bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.15] transition-all"
             >
-              <span>DISCUSS YOUR PROJECT →</span>
+              <span>Discuss Your Project</span>
             </Link>
           </div>
         </div>

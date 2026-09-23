@@ -41,7 +41,7 @@ export default function SolutionsSection() {
             <span>Productized Architecture</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight leading-tight font-display">
             Engineered as products.
             <span className="block text-neutral-500 font-normal mt-1">
               Integrated as one ecosystem.

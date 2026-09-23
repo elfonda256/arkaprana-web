@@ -47,39 +47,39 @@ export default function FinalSignatureSection() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-12">
         
-        {/* Three Sequential Sentences (Section 25 verbatim) */}
-        <div className="space-y-4">
+        {/* Three Sequential Sentences (Human, Editorial, Confident) */}
+        <div className="space-y-3 sm:space-y-4">
           <div
-            className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-neutral-300 font-sans transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-neutral-300 font-display transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: inView ? 1 : 0,
-              transform: inView ? "translate3d(0, 0, 0)" : "translate3d(0, 20px, 0)",
+              transform: inView ? "translate3d(0, 0, 0)" : "translate3d(0, 16px, 0)",
               transitionDelay: "100ms"
             }}
           >
-            BUILD THE FOUNDATION.
+            Build the foundation.
           </div>
 
           <div
-            className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white font-sans transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white font-display transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: inView ? 1 : 0,
-              transform: inView ? "translate3d(0, 0, 0)" : "translate3d(0, 20px, 0)",
+              transform: inView ? "translate3d(0, 0, 0)" : "translate3d(0, 16px, 0)",
               transitionDelay: "450ms"
             }}
           >
-            CONNECT THE SYSTEMS.
+            Connect the systems.
           </div>
 
           <div
-            className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-400 font-sans transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-400 font-display transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: inView ? 1 : 0,
-              transform: inView ? "translate3d(0, 0, 0)" : "translate3d(0, 20px, 0)",
+              transform: inView ? "translate3d(0, 0, 0)" : "translate3d(0, 16px, 0)",
               transitionDelay: "800ms"
             }}
           >
-            ENABLE THE INTELLIGENCE.
+            Enable the intelligence.
           </div>
         </div>
 

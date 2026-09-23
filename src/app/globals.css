@@ -12,16 +12,43 @@
   --accent-cyan: #00f0ff;
   --text-muted: #94a3b8;
   --text-faint: #475569;
+
+  /* Human & Engineering Typography System */
+  --font-display: var(--font-manrope), var(--font-inter), sans-serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-tech: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.625;
   overflow-x: hidden;
   selection-background-color: rgba(0, 112, 243, 0.25);
   selection-color: #ffffff;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings use Display Font (Manrope) with human weights and editorial negative letter-spacing */
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+.font-sans {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-tech);
 }
 
 /* Subtle, Calm Engineering Grid - Quiet & Non-distracting */
@@ -268,10 +295,10 @@ body {
 
 /* Technical Labels & Architectural Typography */
 .tech-label {
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-tech);
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   color: #94a3b8;
 }
 

@@ -40,7 +40,7 @@ export default function SolutionsPage() {
             <span>ENTERPRISE SOLUTIONS PORTFOLIO</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-white tracking-tight leading-tight font-display">
             Integrated Architecture from Foundation to Intelligence.
           </h1>
 
@@ -73,7 +73,7 @@ export default function SolutionsPage() {
                     <span className="text-xs font-mono uppercase text-cyan-400 tracking-wider">
                       {sol.badge} • {sol.category}
                     </span>
-                    <h2 className="text-2xl font-bold text-white tracking-tight">
+                    <h2 className="text-2xl font-semibold text-white tracking-tight font-display">
                       {sol.name}
                     </h2>
                   </div>

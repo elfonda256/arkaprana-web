@@ -47,12 +47,12 @@ export default function EngineeringApproachSection() {
             <span>Project Delivery Lifecycle</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight font-sans">
-            HOW WE WORK
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-tight font-display">
+            How we work.
           </h2>
 
-          <p className="text-neutral-300 text-base sm:text-lg leading-relaxed pt-1 font-normal">
-            Metodologi rekayasa 8 tahap yang teruji untuk memastikan setiap proyek teknologi berjalan dari asesmen kebutuhan presisi hingga evolusi jangka panjang.
+          <p className="text-neutral-300 text-base sm:text-lg leading-relaxed pt-1 font-normal max-w-2xl">
+            We build things properly — and stay involved long after deployment. Our 8-stage engineering process ensures every system is grounded in real operational constraints, built to specification, and supported continuously.
           </p>
         </div>
 

@@ -175,12 +175,12 @@ export default function TechnologyEcosystemSection() {
             <span>Integrated Architecture Explorer</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight font-sans">
-            The ARKAPRANA Technology Ecosystem.
+          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white leading-tight font-display">
+            Technology should work as one system.
           </h2>
 
-          <p className="text-neutral-400 text-sm sm:text-base leading-relaxed pt-1 max-w-2xl font-normal">
-            Pusat kendali arsitektural yang menghubungkan 6 lapisan teknologi organisasi. Pilih setiap layer untuk memeriksa modul kemampuan dan spesifikasi teknisnya.
+          <p className="text-neutral-300 text-base sm:text-lg leading-relaxed pt-1 max-w-2xl font-normal">
+            Connect the systems your organization depends on — from physical datacenter compute and optical networking to sovereign cloud, cybersecurity, and practical AI.
           </p>
         </div>
 

@@ -1005,7 +1005,7 @@ export interface SolutionDiscoveryOption {
 export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
   {
     id: "network",
-    label: "A NETWORK",
+    label: "Enterprise Network",
     visitorNeed: "I need a new enterprise network.",
     matchedSolution: "ARKAPRANA NETWORK",
     solutionSlug: "network",
@@ -1019,12 +1019,12 @@ export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
       "Routing & Switching",
       "Network Monitoring"
     ],
-    ctaText: "DISCUSS THIS PROJECT →",
+    ctaText: "Discuss This Project",
     ctaHref: "/contact?solution=ARKAPRANA%20NETWORK&intent=network"
   },
   {
     id: "infra",
-    label: "A SERVER & INFRASTRUCTURE ENVIRONMENT",
+    label: "Server & Infrastructure",
     visitorNeed: "I need reliable computing infrastructure for my organization.",
     matchedSolution: "ARKAPRANA INFRA",
     solutionSlug: "infrastructure",
@@ -1038,12 +1038,12 @@ export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
       "Data Center Fit-Out",
       "High Availability Architecture"
     ],
-    ctaText: "DISCUSS THIS PROJECT →",
+    ctaText: "Discuss This Project",
     ctaHref: "/contact?solution=ARKAPRANA%20INFRA&intent=infra"
   },
   {
     id: "cloud",
-    label: "A CLOUD ENVIRONMENT",
+    label: "Sovereign Cloud",
     visitorNeed: "I need an agile cloud environment with sovereign data control.",
     matchedSolution: "ARKAPRANA CLOUD",
     solutionSlug: "cloud",
@@ -1057,12 +1057,12 @@ export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
       "Automated DR Failover",
       "Zero Egress Cost Architecture"
     ],
-    ctaText: "DISCUSS THIS PROJECT →",
+    ctaText: "Discuss This Project",
     ctaHref: "/contact?solution=ARKAPRANA%20CLOUD&intent=cloud"
   },
   {
     id: "security",
-    label: "A SECURE IT ENVIRONMENT",
+    label: "Cybersecurity & Zero-Trust",
     visitorNeed: "I need to secure our operations against cyber threats and leaks.",
     matchedSolution: "ARKAPRANA SECURE",
     solutionSlug: "security",
@@ -1076,12 +1076,12 @@ export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
       "Ransomware-Proof Backup",
       "24/7 Security Governance"
     ],
-    ctaText: "DISCUSS THIS PROJECT →",
+    ctaText: "Discuss This Project",
     ctaHref: "/contact?solution=ARKAPRANA%20SECURE&intent=security"
   },
   {
     id: "managed",
-    label: "A MANAGED IT OPERATION",
+    label: "Managed IT Operations",
     visitorNeed: "I need 24/7 operational monitoring and dedicated engineering support.",
     matchedSolution: "ARKAPRANA MANAGED",
     solutionSlug: "managed-it",
@@ -1095,12 +1095,12 @@ export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
       "Patch & Firmware Management",
       "Executive Health Audits"
     ],
-    ctaText: "DISCUSS THIS PROJECT →",
+    ctaText: "Discuss This Project",
     ctaHref: "/contact?solution=ARKAPRANA%20MANAGED&intent=managed"
   },
   {
     id: "ai",
-    label: "AN AI SYSTEM",
+    label: "Private AI System",
     visitorNeed: "I need private AI intelligence built on our organization's knowledge.",
     matchedSolution: "ARKAPRANA AI",
     solutionSlug: "ai",
@@ -1114,12 +1114,12 @@ export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
       "Role-Based Access Guardrails",
       "Air-Gapped Privacy Guarantee"
     ],
-    ctaText: "DISCUSS THIS PROJECT →",
+    ctaText: "Discuss This Project",
     ctaHref: "/contact?solution=ARKAPRANA%20AI&intent=ai"
   },
   {
     id: "automation",
-    label: "AN AUTOMATED WORKFLOW",
+    label: "Automated Workflows",
     visitorNeed: "I need to eliminate manual processes and connect systems automatically.",
     matchedSolution: "ARKAPRANA AUTOMATION",
     solutionSlug: "ai",
@@ -1133,12 +1133,12 @@ export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
       "Anomaly Trigger Routing",
       "Operational Runbooks"
     ],
-    ctaText: "DISCUSS THIS PROJECT →",
+    ctaText: "Discuss This Project",
     ctaHref: "/contact?solution=ARKAPRANA%20AUTOMATION&intent=automation"
   },
   {
     id: "integration",
-    label: "AN INTEGRATED TECHNOLOGY ENVIRONMENT",
+    label: "System Integration",
     visitorNeed: "I need multiple complex systems harmonized under one engineering partner.",
     matchedSolution: "ARKAPRANA INTEGRATION",
     solutionSlug: "integration",
@@ -1152,7 +1152,7 @@ export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
       "As-Built Engineering Drawings",
       "Official Distributor Warranties"
     ],
-    ctaText: "DISCUSS THIS PROJECT →",
+    ctaText: "Discuss This Project",
     ctaHref: "/contact?solution=ARKAPRANA%20INTEGRATION&intent=integration"
   }
 ];

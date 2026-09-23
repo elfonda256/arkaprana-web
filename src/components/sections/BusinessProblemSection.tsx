@@ -45,7 +45,7 @@ export default function BusinessProblemSection() {
 
         {/* Section Headline (Section 05 verbatim) */}
         <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.08] font-sans">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-neutral-900 leading-[1.12] font-display">
             Technology becomes complicated when everything is disconnected.
           </h2>
           <p className="max-w-2xl mx-auto text-base sm:text-lg text-neutral-600 leading-relaxed font-normal pt-2">
@@ -94,7 +94,7 @@ export default function BusinessProblemSection() {
               Integrated Architectural Paradigm
             </span>
 
-            <h3 className="text-3xl sm:text-5xl font-black tracking-tight text-white font-sans">
+            <h3 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white font-display">
               ARKAPRANA connects the pieces.
             </h3>
 

@@ -51,48 +51,48 @@ export default function HeroSection() {
               <span>BUILD. CONNECT. INTELLIGENCE.</span>
             </div>
 
-            {/* Large Display Headline (Item 4 & 5: confident, precise, quiet, expensive) */}
+            {/* Large Display Headline (Human, Confident, Editorial Weight 600) */}
             <h1
-              className="text-3xl sm:text-5xl lg:text-[54px] font-bold tracking-tight text-white leading-[1.12] font-sans"
+              className="text-3xl sm:text-5xl lg:text-[52px] font-semibold tracking-tight text-white leading-[1.16] font-display"
               style={{ animation: "heroEntranceSlide 600ms cubic-bezier(0.16, 1, 0.3, 1) 500ms backwards" }}
             >
               Technology infrastructure and intelligent solutions for organizations building what comes next.
             </h1>
 
-            {/* Supporting Paragraph (Item 4 & 5) */}
+            {/* Supporting Paragraph (Grounded, Conversational, Human-First) */}
             <p
-              className="text-sm sm:text-base text-neutral-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal"
+              className="text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto lg:mx-0 leading-[1.65] font-normal"
               style={{ animation: "heroEntranceSlide 600ms cubic-bezier(0.16, 1, 0.3, 1) 700ms backwards" }}
             >
-              PT ARKAPRANA TEKNOLOGI NUSANTARA engineers resilient digital foundations — integrating mission-critical networks, sovereign data centers, zero-trust cybersecurity, and private AI automation.
+              From network infrastructure and private cloud to cybersecurity, managed IT and AI — ARKAPRANA helps organizations build technology environments that are reliable, secure and ready to grow.
             </p>
 
             {/* Microcopy Credibility */}
             <p
-              className="text-xs text-cyan-300/80 font-mono tracking-wider max-w-2xl mx-auto lg:mx-0"
+              className="text-xs text-neutral-400 font-mono tracking-wide max-w-2xl mx-auto lg:mx-0"
               style={{ animation: "heroEntranceSlide 500ms cubic-bezier(0.16, 1, 0.3, 1) 850ms backwards" }}
             >
-              From physical fiber and compute to on-premise neural automation.
+              Engineered and maintained by senior systems practitioners in Indonesia.
             </p>
 
-            {/* Dual CTAs (Item 4 & 5) */}
+            {/* Dual CTAs (Title Case, Medium Weight, Confident Language) */}
             <div
               className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
               style={{ animation: "heroEntranceSlide 500ms cubic-bezier(0.16, 1, 0.3, 1) 950ms backwards" }}
             >
               <Link
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full text-xs font-medium tracking-normal text-black bg-white hover:bg-neutral-100 btn-primary-interaction group"
               >
-                <span>DISCUSS YOUR PROJECT</span>
+                <span>Discuss Your Project</span>
                 <ArrowRight className="w-3.5 h-3.5 text-black cta-arrow" />
               </Link>
 
               <Link
                 href="/solutions"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full text-xs font-medium tracking-wide text-neutral-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.1] hover:border-white/[0.2] btn-secondary-interaction group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full text-xs font-medium tracking-normal text-neutral-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.1] hover:border-white/[0.2] btn-secondary-interaction group"
               >
-                <span>EXPLORE SOLUTIONS</span>
+                <span>Explore Solutions</span>
                 <ChevronRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white cta-arrow" />
               </Link>
             </div>
@@ -103,19 +103,19 @@ export default function HeroSection() {
               style={{ animation: "heroEntranceFade 600ms ease-out 1100ms backwards" }}
             >
               <div>
-                <div className="tech-label">01 / INFRA</div>
-                <div className="text-sm font-semibold text-white mt-1">Mission Critical</div>
-                <div className="text-[11px] text-neutral-400">Datacenter &amp; Optical</div>
+                <div className="tech-label">01 / INFRASTRUCTURE</div>
+                <div className="text-sm font-medium text-white mt-1">Mission Critical</div>
+                <div className="text-xs text-neutral-400">Datacenter &amp; Optical</div>
               </div>
               <div>
-                <div className="tech-label">02 / SEC</div>
-                <div className="text-sm font-semibold text-white mt-1">Zero-Trust</div>
-                <div className="text-[11px] text-neutral-400">End-to-End Defense</div>
+                <div className="tech-label">02 / SECURITY</div>
+                <div className="text-sm font-medium text-white mt-1">Zero-Trust</div>
+                <div className="text-xs text-neutral-400">End-to-End Defense</div>
               </div>
               <div>
-                <div className="tech-label">03 / AI</div>
-                <div className="text-sm font-semibold text-white mt-1">Private AI</div>
-                <div className="text-[11px] text-neutral-400">On-Premise &amp; RAG</div>
+                <div className="tech-label">03 / INTELLIGENCE</div>
+                <div className="text-sm font-medium text-white mt-1">Private AI</div>
+                <div className="text-xs text-neutral-400">On-Premise &amp; RAG</div>
               </div>
             </div>
           </div>

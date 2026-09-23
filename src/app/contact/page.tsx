@@ -103,7 +103,7 @@ export default function ContactPage() {
             <span>ENTERPRISE INQUIRY DESK</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight font-sans">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-tight font-display">
             Let's Build What's Next.
           </h1>
 
@@ -350,7 +350,7 @@ export default function ContactPage() {
                   disabled={loading}
                   className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group shadow-xl active:scale-[0.99] disabled:opacity-50 cursor-pointer"
                 >
-                  <span>{loading ? "Processing..." : "DISCUSS YOUR PROJECT"}</span>
+                  <span>{loading ? "Processing..." : "Discuss Your Project"}</span>
                   <ArrowRight className="w-4 h-4 text-black cta-arrow" />
                 </button>
               </form>
@@ -438,7 +438,7 @@ export default function ContactPage() {
               </p>
               <CompanyProfileModal
                 triggerClassName="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-semibold text-white border border-white/[0.1] transition-all cursor-pointer"
-                triggerText="DOWNLOAD COMPANY PROFILE →"
+                triggerText="Download Company Profile"
               />
             </div>
 
