@@ -1,37 +1,48 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { COMPANY_PROFILE } from "@/lib/data";
-import { Mail, Phone, MapPin, CheckCircle2, ShieldCheck, ArrowRight, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle2, ShieldCheck, ArrowRight, MessageSquare, FileText } from "lucide-react";
+import CompanyProfileModal from "@/components/shared/CompanyProfileModal";
 
 const PROJECT_TYPES = [
-  "Network",
-  "Infrastructure",
-  "Cloud",
-  "Cybersecurity",
-  "Managed IT",
-  "AI",
-  "Automation",
-  "System Integration",
+  "Network Infrastructure",
+  "Server & Data Center",
+  "Cloud Environment",
+  "Cybersecurity Defense",
+  "Managed IT Operations",
+  "Private AI & RAG",
+  "Automation & Robotics",
+  "Turnkey System Integration",
+  "Technology Consulting",
   "Other"
 ];
 
 const TIMELINE_OPTIONS = [
-  "Exploring",
-  "0–3 Months",
+  "Exploring / Feasibility",
+  "Immediate (< 3 Months)",
   "3–6 Months",
   "6–12 Months",
-  "Long Term"
+  "Long Term / Next Fiscal"
+];
+
+const BUDGET_OPTIONS = [
+  "Not decided",
+  "Under discussion",
+  "Budget available",
+  "Prefer to discuss"
 ];
 
 const INDUSTRIES = [
-  "Konstruksi & Proyek",
-  "Manufaktur & Pabrik",
+  "Konstruksi & Proyek Fisik",
+  "Manufaktur & Pabrik Industri",
   "Pelabuhan & Maritim",
   "Logistik & Pergudangan",
-  "Properti & Komersial",
+  "Properti & Kawasan Komersial",
   "Perhotelan & Hospitality",
-  "Pemerintahan & BUMN",
+  "Pemerintahan & Institusi Publik",
+  "Badan Usaha Milik Negara (BUMN)",
   "Perbankan & Finansial",
   "Korporasi & Enterprise",
   "Lainnya"
@@ -41,12 +52,13 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     company: "",
-    role: "",
+    position: "",
     email: "",
     phone: "",
     industry: INDUSTRIES[0],
     projectType: PROJECT_TYPES[0],
     timeline: TIMELINE_OPTIONS[1],
+    budgetRange: BUDGET_OPTIONS[0],
     description: ""
   });
 
@@ -59,7 +71,23 @@ export default function ContactPage() {
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 700);
+    }, 600);
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setFormData({
+      name: "",
+      company: "",
+      position: "",
+      email: "",
+      phone: "",
+      industry: INDUSTRIES[0],
+      projectType: PROJECT_TYPES[0],
+      timeline: TIMELINE_OPTIONS[1],
+      budgetRange: BUDGET_OPTIONS[0],
+      description: ""
+    });
   };
 
   return (
@@ -68,11 +96,11 @@ export default function ContactPage() {
       <div className="absolute inset-0 bg-tech-grid opacity-15 pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-950/20 rounded-full blur-[160px] pointer-events-none" />
 
-      {/* Header Section (Section 23 verbatim) */}
+      {/* Header Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.1] text-cyan-400 text-xs font-mono">
-            <span>DIRECT ENGAGEMENT DESK</span>
+            <span>ENTERPRISE INQUIRY DESK</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight font-sans">
@@ -84,7 +112,7 @@ export default function ContactPage() {
           </p>
 
           <p className="text-sm text-neutral-400 leading-relaxed max-w-2xl">
-            Sampaikan parameter teknis, lokasi, dan target arsitektur organisasi Anda. Tim Principal Engineer ARKAPRANA siap melakukan kajian mendalam.
+            Sampaikan parameter teknis, lokasi, dan target arsitektur organisasi Anda. Tim Principal Engineer ARKAPRANA siap melakukan kajian mendalam tanpa komitmen awal.
           </p>
         </div>
       </section>
@@ -96,55 +124,57 @@ export default function ContactPage() {
           {/* Left Column: Contact Form (Span 7) */}
           <div className="lg:col-span-7 p-8 sm:p-10 rounded-3xl bg-[#070b16] border border-white/[0.12] shadow-2xl relative">
             {submitted ? (
-              <div className="py-16 text-center space-y-5 animate-in fade-in zoom-in-95 duration-200">
+              /* Section 26: Qualified Lead Success Screen */
+              <div className="py-12 text-center space-y-5 animate-in fade-in zoom-in-95 duration-200">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-white tracking-tight">
-                  Thank you. Your project information has been received.
-                </h3>
-                <p className="text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">
-                  Informasi proyek Anda telah dicatat. Tim Principal Engineer ARKAPRANA akan mempelajari spesifikasi organisasi Anda dan menghubungi dalam waktu 1x24 jam kerja.
+
+                <div className="space-y-2">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white font-sans">
+                    Thank you for reaching out to ARKAPRANA.
+                  </h3>
+                  <div className="text-base text-cyan-300 font-medium">
+                    Your project information has been received.
+                  </div>
+                  <div className="text-sm font-serif italic text-neutral-300">
+                    &ldquo;Let's explore what we can build together.&rdquo;
+                  </div>
+                </div>
+
+                <p className="text-xs sm:text-sm text-neutral-400 max-w-md mx-auto leading-relaxed pt-2">
+                  Tim Principal Systems Engineer ARKAPRANA akan menelaah spesifikasi kebutuhan Anda dan menghubungi kembali melalui email atau nomor telepon resmi dalam waktu 1x24 jam kerja.
                 </p>
-                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+
+                <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a
-                    href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20${encodeURIComponent(formData.name)}%20(${encodeURIComponent(formData.role)})%20dari%20${encodeURIComponent(formData.company)}%20telah%20mengirimkan%20inquiry%20proyek%20${encodeURIComponent(formData.projectType)}`}
+                    href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20${encodeURIComponent(formData.name)}%20(${encodeURIComponent(formData.position || "Representative")})%20dari%20${encodeURIComponent(formData.company)}%20telah%20mengirimkan%20inquiry%20proyek%20${encodeURIComponent(formData.projectType)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors shadow-md"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Lanjutkan via WhatsApp Langsung</span>
+                    <span>Lanjutkan via WhatsApp Instan</span>
                   </a>
-                  <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({
-                        name: "",
-                        company: "",
-                        role: "",
-                        email: "",
-                        phone: "",
-                        industry: INDUSTRIES[0],
-                        projectType: PROJECT_TYPES[0],
-                        timeline: TIMELINE_OPTIONS[1],
-                        description: ""
-                      });
-                    }}
-                    className="px-6 py-3 rounded-full text-xs font-medium text-neutral-400 hover:text-white bg-white/[0.04] border border-white/[0.08]"
+
+                  {/* Section 26 CTA: Back to ARKAPRANA */}
+                  <Link
+                    href="/"
+                    onClick={handleReset}
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-full text-xs font-medium text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] transition-all"
                   >
-                    Kirim Form Baru
-                  </button>
+                    Back to ARKAPRANA
+                  </Link>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 
-                {/* Name, Company, Role */}
+                {/* Name, Company, Position (Section 25 verbatim) */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Nama Lengkap *
+                      Name *
                     </label>
                     <input
                       type="text"
@@ -158,7 +188,7 @@ export default function ContactPage() {
 
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Perusahaan / Organisasi *
+                      Company *
                     </label>
                     <input
                       type="text"
@@ -172,24 +202,23 @@ export default function ContactPage() {
 
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Jabatan / Role *
+                      Position
                     </label>
                     <input
                       type="text"
-                      required
                       placeholder="e.g. IT Director / CTO"
-                      value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                      value={formData.position}
+                      onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
                     />
                   </div>
                 </div>
 
-                {/* Email, Phone */}
+                {/* Email, Phone (Section 25 verbatim) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Email Korporat *
+                      Email *
                     </label>
                     <input
                       type="email"
@@ -203,11 +232,10 @@ export default function ContactPage() {
 
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Telepon / WhatsApp *
+                      Phone
                     </label>
                     <input
                       type="tel"
-                      required
                       placeholder="081X-XXXX-XXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -216,11 +244,11 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Industry, Project Type, Timeline */}
+                {/* Industry, Project Type, Estimated Timeline (Section 25 verbatim) */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Sektor Industri
+                      Industry *
                     </label>
                     <select
                       value={formData.industry}
@@ -254,7 +282,7 @@ export default function ContactPage() {
 
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Timeline *
+                      Estimated Timeline
                     </label>
                     <select
                       value={formData.timeline}
@@ -270,47 +298,81 @@ export default function ContactPage() {
                   </div>
                 </div>
 
+                {/* Optional Budget Range (Section 25 verbatim) */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300">
+                      Budget Range (Optional)
+                    </label>
+                    <span className="text-[10px] text-neutral-500 font-mono">
+                      Tidak mengikat / opsional
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {BUDGET_OPTIONS.map((opt) => {
+                      const isSelected = formData.budgetRange === opt;
+                      return (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, budgetRange: opt })}
+                          className={`p-2.5 rounded-xl border text-center text-xs transition-all cursor-pointer ${
+                            isSelected
+                              ? "bg-white/[0.1] border-cyan-400 text-cyan-300"
+                              : "bg-white/[0.02] border-white/[0.06] text-neutral-400 hover:text-white hover:border-white/[0.15]"
+                          }`}
+                        >
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Project Description * (Section 25 verbatim) */}
                 <div>
                   <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                    Project Description
+                    Project Description *
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Uraikan tantangan infrastruktur, lokasi fasilitas, perkiraan skala node, atau target implementasi..."
+                    required
+                    placeholder="Uraikan gambaran fasilitas, tantangan arsitektur, lokasi, atau target implementasi yang ingin dicapai..."
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors resize-none"
                   />
                 </div>
 
+                {/* Section 25 CTA: SUBMIT PROJECT INQUIRY → */}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-xl hover:shadow-cyan-500/20 active:scale-[0.99] disabled:opacity-50"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-xl hover:shadow-cyan-500/20 active:scale-[0.99] disabled:opacity-50 cursor-pointer"
                 >
-                  <span>{loading ? "Processing..." : "Start a Conversation"}</span>
+                  <span>{loading ? "Processing..." : "SUBMIT PROJECT INQUIRY →"}</span>
                   <ArrowRight className="w-4 h-4 text-black" />
                 </button>
               </form>
             )}
           </div>
 
-          {/* Right Column: Contact Channels & Guarantees (Span 5) */}
+          {/* Right Column: Direct Engineering Channels & Trust Guarantee (Span 5) */}
           <div className="lg:col-span-5 space-y-6">
             
             {/* Direct Connect Box */}
-            <div className="p-8 rounded-3xl bg-[#070b16] border border-white/[0.1] space-y-6">
+            <div className="bg-[#070b16] rounded-3xl border border-white/[0.1] p-6 sm:p-8 space-y-6">
               <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block">
                 Direct Engineering Dispatch
               </span>
-              <h3 className="text-xl font-bold text-white">
+              <h3 className="text-xl font-bold text-white font-sans">
                 Butuh respons cepat untuk proyek mendesak?
               </h3>
               <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                Hubungi saluran komunikasi terenkripsi atau kirimkan ringkasan kebutuhan Anda langsung kepada tim prinsipal kami.
+                Hubungi saluran WhatsApp terenkripsi atau kirimkan ringkasan kebutuhan Anda langsung kepada prinsipal arsitek kami.
               </p>
 
-              <div className="space-y-4 pt-1">
+              <div className="space-y-3.5 pt-1">
                 <a
                   href={COMPANY_PROFILE.contact.whatsappUrl}
                   target="_blank"
@@ -342,7 +404,7 @@ export default function ContactPage() {
                       {COMPANY_PROFILE.contact.email}
                     </div>
                     <div className="text-[10px] font-mono text-neutral-400">
-                      Official Desk • Response &lt; 24h
+                      Official Desk • SLA &lt; 24h
                     </div>
                   </div>
                 </a>
@@ -363,14 +425,31 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Non-Disclosure Agreement Guarantee */}
-            <div className="p-6 rounded-2xl bg-[#070b16] border border-white/[0.08] space-y-2 text-xs text-neutral-400">
+            {/* Corporate Resources Box */}
+            <div className="bg-[#070b16] rounded-3xl border border-white/[0.08] p-6 space-y-3">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block">
+                Corporate Resources
+              </span>
+              <div className="text-sm font-semibold text-white">
+                Download Company Profile &amp; Statements
+              </div>
+              <p className="text-xs text-neutral-400 leading-relaxed pb-2">
+                Dapatkan dokumen overview resmi seputar rekayasa jaringan, infrastruktur data center, dan kedaulatan private AI ARKAPRANA.
+              </p>
+              <CompanyProfileModal
+                triggerClassName="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-semibold text-white border border-white/[0.1] transition-all cursor-pointer"
+                triggerText="DOWNLOAD COMPANY PROFILE →"
+              />
+            </div>
+
+            {/* Strict Non-Disclosure & Security Assurance */}
+            <div className="bg-[#070b16] rounded-2xl border border-white/[0.08] p-6 text-xs text-neutral-400 space-y-2">
               <div className="flex items-center gap-2 text-white font-medium">
-                <ShieldCheck className="w-4 h-4 text-cyan-400" />
-                <span>Strict Non-Disclosure &amp; Confidentiality Guarantee</span>
+                <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                <span>Strict Non-Disclosure &amp; Security Assurance</span>
               </div>
               <p className="text-[11px] text-neutral-400 leading-relaxed">
-                Seluruh data teknis, denah fasilitas, dan spesifikasi arsitektur yang Anda bagikan dilindungi dengan standar kerahasiaan ketat (NDA) sebelum kajian teknis dimulai.
+                Seluruh data teknis, denah fasilitas, dan informasi bisnis yang dibagikan terikat perjanjian kerahasiaan ketat (NDA) demi melindungi privasi aset Anda.
               </p>
             </div>
 

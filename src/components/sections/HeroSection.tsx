@@ -55,26 +55,31 @@ export default function HeroSection() {
               </h1>
             </div>
 
-            {/* Subheadline (Section 05 verbatim) */}
+            {/* Subheadline (Section 04 verbatim) */}
             <p className="text-base sm:text-xl text-neutral-300/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
               Technology infrastructure and intelligent solutions for organizations building what comes next.
             </p>
 
-            {/* Dual CTAs (Section 05 & 20) */}
+            {/* Microcopy (Section 04 verbatim) */}
+            <p className="text-xs sm:text-sm text-cyan-300/90 font-mono tracking-wide max-w-2xl mx-auto lg:mx-0">
+              From infrastructure and connectivity to AI and intelligent automation.
+            </p>
+
+            {/* Dual CTAs (Section 04 verbatim) */}
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Link
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-sm hover:shadow-cyan-500/20 active:scale-[0.98] group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-sm hover:shadow-cyan-500/20 active:scale-[0.98] group"
               >
-                <span>Discuss Your Project</span>
+                <span>DISCUSS YOUR PROJECT</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-black" />
               </Link>
 
               <Link
                 href="/solutions"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-xs font-medium tracking-wide text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.12] hover:border-white/[0.25] transition-all duration-200"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-medium tracking-wide text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.12] hover:border-white/[0.25] transition-all duration-200"
               >
-                <span>Explore Solutions</span>
+                <span>EXPLORE SOLUTIONS</span>
                 <ChevronRight className="w-3.5 h-3.5 text-neutral-400" />
               </Link>
             </div>

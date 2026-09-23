@@ -508,13 +508,19 @@ export function getSolutionBySlug(slug: string): SolutionItem | undefined {
   );
 }
 
-// 8 Architecture Capability Blueprints for /capabilities (No fake case studies)
+// 8 Architecture Capability Blueprints for /capabilities (Section 18)
 export interface CapabilityBlueprint {
   id: string;
   slug: string;
   number: string;
   title: string;
   category: string;
+  whatWeDo: string;
+  typicalRequirements: string[];
+  potentialSolution: string;
+  engagementModel: string;
+  ctaText: string;
+  ctaHref: string;
   challenge: string;
   approach: string;
   architecture: string;
@@ -526,10 +532,21 @@ export interface CapabilityBlueprint {
 export const CAPABILITIES_DATA: CapabilityBlueprint[] = [
   {
     id: "cap-network",
-    slug: "enterprise-network-architecture",
+    slug: "network-engineering",
     number: "01",
-    title: "Enterprise Network Architecture",
-    category: "Connectivity & Routing",
+    title: "NETWORK ENGINEERING",
+    category: "Enterprise Connectivity & Routing",
+    whatWeDo: "Merancang, menggelar, dan mengoptimalkan infrastruktur jaringan korporat skala besar, backbone serat optik, interkoneksi SD-WAN multi-site, dan enterprise Wi-Fi densitas tinggi.",
+    typicalRequirements: [
+      "Interkoneksi kantor pusat, pabrik, gudang, dan cabang terdistribusi",
+      "Kebutuhan throughput tinggi dengan latensi konsisten sub-25ms",
+      "Eliminasi single-point-of-failure dengan dual uplink BGP redundan",
+      "Cakupan Wi-Fi 7 densitas tinggi tanpa dead-zone untuk ribuan perangkat"
+    ],
+    potentialSolution: "ARKAPRANA NETWORK — Carrier-grade spine-leaf switching fabric, dual BGP routing, hardware-accelerated SD-WAN mesh, dan pemantauan telemetri waktu nyata 24/7.",
+    engagementModel: "Project Delivery (Turnkey Rollout) atau Managed Network SLA",
+    ctaText: "Discuss Network Engineering →",
+    ctaHref: "/contact?solution=NETWORK%20ENGINEERING",
     challenge: "Organisasi dengan operasional terdistribusi kerap menghadapi fragmentasi jaringan, downtime tak terprediksi akibat routing statis, bottleneck throughput pada interkoneksi cabang, serta minimnya visibilitas telemetri waktu nyata.",
     approach: "Membangun arsitektur jaringan berbasis hierarki Spine-Leaf dengan tulang punggung serat optik, perangkat switching carrier-grade, SD-WAN dinamis, dan pemantauan telemetri proaktif 24/7.",
     architecture: "Spine-leaf switching fabric, dual carrier-neutral BGP uplinks, sub-millisecond core routing, hardware-accelerated IPSec tunnels, and automated QoS packet prioritization.",
@@ -539,10 +556,21 @@ export const CAPABILITIES_DATA: CapabilityBlueprint[] = [
   },
   {
     id: "cap-datacenter",
-    slug: "data-center-infrastructure",
+    slug: "infrastructure-engineering",
     number: "02",
-    title: "Data Center Infrastructure",
-    category: "Physical & Facility Engineering",
+    title: "INFRASTRUCTURE ENGINEERING",
+    category: "Compute & Data Center Engineering",
+    whatWeDo: "Membangun fasilitas ruang server dan data center Tier-3+, kluster server berkepadatan tinggi, penyimpanan flash NVMe latensi rendah, serta sistem daya dan pendinginan presisi.",
+    typicalRequirements: [
+      "Modernisasi ruang server atau pembangunan fasilitas data center baru",
+      "Konsolidasi puluhan server fisik menjadi kluster virtualisasi terpadu",
+      "Jaminan ketersediaan daya 2N+1 tanpa gangguan saat pemeliharaan",
+      "Sistem pendingin presisi in-row dengan efisiensi energi PUE optimal"
+    ],
+    potentialSolution: "ARKAPRANA INFRA — Tier-3+ modular compute facilities, dual-feed UPS path, clean agent fire suppression, dan hyperconverged high-density compute nodes.",
+    engagementModel: "Project Delivery (Facility Fit-Out) & Infrastructure Consulting",
+    ctaText: "Discuss Infrastructure Engineering →",
+    ctaHref: "/contact?solution=INFRASTRUCTURE%20ENGINEERING",
     challenge: "Kebutuhan komputasi yang terus bertambah memerlukan ruang server berstandar tinggi dengan kendali suhu presisi, keandalan daya tanpa henti, dan keamanan fisik berlapis.",
     approach: "Merancang fasilitas komputasi berstandar Tier-3+, modular server cluster berkepadatan tinggi, penyimpanan flash berlatensi sub-milidetik, dan proteksi lingkungan komprehensif.",
     architecture: "Dual 2N+1 UPS power paths, Hot/Cold Aisle containment, In-row precision CRAC cooling, clean agent Novec 1230 fire suppression, and biometric interlocking security.",
@@ -551,50 +579,22 @@ export const CAPABILITIES_DATA: CapabilityBlueprint[] = [
     deliverables: ["Tier-3 Architectural Blueprint", "CFD Thermal Simulation", "Power Distribution Schedule", "Integrated System Test (IST) Certificate"]
   },
   {
-    id: "cap-ai",
-    slug: "private-ai-environment",
-    number: "03",
-    title: "Private AI Environment",
-    category: "Cognitive Systems & LLM",
-    challenge: "Kekhawatiran kebocoran data rahasia ke cloud AI publik menghambat adopsi otomasi cerdas di perusahaan dengan regulasi ketat seperti perbankan, manufaktur, dan institusi negara.",
-    approach: "Menggelar kluster komputasi AI mandiri di server privat Anda dengan model open-weights berdaulat, arsitektur RAG anti-halusinasi, dan isolasi jaringan total.",
-    architecture: "Air-gapped GPU compute nodes, high-density vector database (Milvus/Chroma), vLLM high-throughput local inference, and fine-grained Role-Based Document Access (RBAC).",
-    potentialOutcome: "Kemampuan pencarian semantik dan otomasi pengetahuan organisasi secara instan dengan jaminan 0% kebocoran data ke luar jaringan internal perusahaan.",
-    keyProtocols: ["Local OpenAI API Compatible", "gRPC Stream", "TensorRT-LLM", "Vector Embeddings RPC"],
-    deliverables: ["Private RAG Blueprint", "Isolated Vector Catalog", "Citation Verification Engine", "Enterprise Knowledge Base Interface"]
-  },
-  {
-    id: "cap-security",
-    slug: "cybersecurity-architecture",
-    number: "04",
-    title: "Cybersecurity Architecture",
-    category: "Perimeter & Zero-Trust Defense",
-    challenge: "Serangan ransomware modern, ancaman insider, dan eksploitasi celah identitas memerlukan pertahanan proaktif melampaui firewall tradisional.",
-    approach: "Menerapkan kerangka kerja Zero-Trust komprehensif: verifikasi berkelanjutan atas identitas, perangkat, dan lalu lintas data di setiap titik akses sistem.",
-    architecture: "Next-Gen Firewall with deep packet inspection, micro-segmented VLANs, continuous identity verification (ZTNA), Hardware Security Module (HSM), and immutable backup vaults.",
-    potentialOutcome: "Ketahanan siber berlapis yang membatasi pergerakan lateral penyerang, perlindungan data pribadi sesuai UU PDP, dan kesiapan audit sertifikasi ISO 27001.",
-    keyProtocols: ["TLS 1.3", "IPSec IKEv2", "SAML 2.0 / OIDC", "FIPS 140-2 Level 3", "OpenTelemetry Security"],
-    deliverables: ["Threat & Vulnerability Assessment", "Zero-Trust Architecture Matrix", "Immutable Backup Setup", "Incident Response Playbook"]
-  },
-  {
-    id: "cap-managed",
-    slug: "managed-it-infrastructure",
-    number: "05",
-    title: "Managed IT Infrastructure",
-    category: "Operations & Telemetry",
-    challenge: "Tingginya beban kerja operasional harian membebani tim IT internal dan meningkatkan risiko kelalaian deteksi anomali perangkat keras.",
-    approach: "Menyediakan layanan Network & Security Operations Center (NOC/SOC) 24/7 dengan pemantauan telemetri waktu nyata dan alur eskalasi insiden berstandar ITIL.",
-    architecture: "Distributed telemetry collectors, centralized multi-tenant monitoring platform, automated alert triage, and encrypted out-of-band management access.",
-    potentialOutcome: "Stabilitas operasional berkelanjutan dengan SLA uptime 99.99%, penurunan MTTR (Mean Time to Resolution), dan efisiensi alokasi sumber daya manusia internal.",
-    keyProtocols: ["SNMPv3", "NetFlow / IPFIX", "OpenTelemetry", "Syslog-ng TLS", "REST Webhooks"],
-    deliverables: ["24/7 NOC Service Agreement", "Telemetry Portal Credentials", "Monthly Health Audit Report", "Hardware Replacement Logistics Plan"]
-  },
-  {
     id: "cap-cloud",
-    slug: "cloud-infrastructure",
-    number: "06",
-    title: "Cloud Infrastructure",
-    category: "Virtualization & Cloud-Native",
+    slug: "cloud",
+    number: "03",
+    title: "CLOUD",
+    category: "Sovereign Private Cloud & Kubernetes",
+    whatWeDo: "Membangun arsitektur private cloud berdaulat dan hybrid cluster di atas infrastruktur server mandiri, memberikan kelincahan cloud dengan kedaulatan data 100% lokal.",
+    typicalRequirements: [
+      "Kepatuhan kedaulatan data (UU PDP / regulasi perbankan & pemerintah)",
+      "Pencegahan lonjakan biaya egress dan biaya langganan cloud publik",
+      "Orkestrasi kontainer Kubernetes skala besar dengan storage S3 lokal",
+      "Mekanisme disaster recovery otomatis lintas zona terpisah"
+    ],
+    potentialSolution: "ARKAPRANA CLOUD — Sovereign private cloud platform dengan orkestrasi Kubernetes enterprise, Ceph software-defined storage, dan zero-data egress fees.",
+    engagementModel: "Architecture Implementation & Hybrid Cloud Consulting",
+    ctaText: "Discuss Cloud Architecture →",
+    ctaHref: "/contact?solution=CLOUD",
     challenge: "Kebutuhan elastisitas komputasi modern sering kali berbenturan dengan lonjakan biaya bandwidth dan keharusan kepatuhan kedaulatan data di dalam negeri.",
     approach: "Membangun private cloud berdaulat berbasis teknologi open-source enterprise dan orkestrasi Kubernetes di atas infrastruktur server milik organisasi.",
     architecture: "Multi-node hypervisor cluster, software-defined storage (Ceph S3 compatible), automated container scheduling, and multi-zone disaster recovery failover.",
@@ -603,11 +603,46 @@ export const CAPABILITIES_DATA: CapabilityBlueprint[] = [
     deliverables: ["Private Cloud Blueprint", "Kubernetes Management Portal", "S3 Storage Cluster Setup", "Disaster Recovery Automation Script"]
   },
   {
+    id: "cap-security",
+    slug: "cybersecurity",
+    number: "04",
+    title: "CYBERSECURITY",
+    category: "Perimeter & Zero-Trust Defense",
+    whatWeDo: "Menerapkan kerangka kerja pertahanan siber Zero-Trust berlapis, pengerasan firewall, proteksi brankas kriptografi hardware HSM, dan sistem cadangan data tak terhapus.",
+    typicalRequirements: [
+      "Perlindungan aset digital dari ancaman ransomware dan exfiltration",
+      "Kepatuhan audit standar keamanan informasi ISO 27001 dan UU PDP",
+      "Segmentasi mikro untuk mencegah pergerakan lateral penyerang",
+      "Brankas cadangan data immutable yang tidak bisa dienkripsi peretas"
+    ],
+    potentialSolution: "ARKAPRANA SECURE — Zero-Trust Network Architecture (ZTNA), Next-Gen Firewall dengan deep packet inspection, hardware HSM vaults, dan immutable backup vaults.",
+    engagementModel: "Security Implementation, Vulnerability Assessment & SOC SLA",
+    ctaText: "Discuss Cybersecurity Defense →",
+    ctaHref: "/contact?solution=CYBERSECURITY",
+    challenge: "Serangan ransomware modern, ancaman insider, dan eksploitasi celah identitas memerlukan pertahanan proaktif melampaui firewall tradisional.",
+    approach: "Menerapkan kerangka kerja Zero-Trust komprehensif: verifikasi berkelanjutan atas identitas, perangkat, dan lalu lintas data di setiap titik akses sistem.",
+    architecture: "Next-Gen Firewall with deep packet inspection, micro-segmented VLANs, continuous identity verification (ZTNA), Hardware Security Module (HSM), and immutable backup vaults.",
+    potentialOutcome: "Ketahanan siber berlapis yang membatasi pergerakan lateral penyerang, perlindungan data pribadi sesuai UU PDP, dan kesiapan audit sertifikasi ISO 27001.",
+    keyProtocols: ["TLS 1.3", "IPSec IKEv2", "SAML 2.0 / OIDC", "FIPS 140-2 Level 3", "OpenTelemetry Security"],
+    deliverables: ["Threat & Vulnerability Assessment", "Zero-Trust Architecture Matrix", "Immutable Backup Setup", "Incident Response Playbook"]
+  },
+  {
     id: "cap-integration",
     slug: "system-integration",
-    number: "07",
-    title: "System Integration",
-    category: "Procurement & Systems Harmonisation",
+    number: "05",
+    title: "SYSTEM INTEGRATION",
+    category: "Multi-Vendor Systems Harmonisation",
+    whatWeDo: "Mengharmonisasikan pengadaan perangkat bergaransi resmi, integrasi antar-vendor yang beragam, standarisasi protokol, dan komisioning sistem tanpa celah incompatibilitas.",
+    typicalRequirements: [
+      "Penggabungan sistem heterogen (Cisco, Aruba, Mikrotik, Fortinet, Dell, HP)",
+      "Kebutuhan single point of accountability untuk proyek IT skala besar",
+      "Interoperabilitas antar sistem kontrol industri (SCADA/PLC) dan aplikasi ERP",
+      "Pengujian UAT berstandar internasional dan dokumentasi gambar as-built lengkap"
+    ],
+    potentialSolution: "ARKAPRANA INTEGRATION — Turnkey multi-vendor engineering, integration middleware bus, certified acceptance testing, dan garansi resmi distributor.",
+    engagementModel: "Turnkey System Integration Contract & Project Delivery",
+    ctaText: "Discuss System Integration →",
+    ctaHref: "/contact?solution=SYSTEM%20INTEGRATION",
     challenge: "Kompleksitas penggabungan berbagai perangkat dari beragam produsen sering memicu ketidakcocokan protokol, keterlambatan implementasi, dan kegagalan fungsi.",
     approach: "Bertindak sebagai Single Point of Accountability untuk pengadaan perangkat bergaransi resmi, harmonisasi sistem multi-vendor, dan uji komisioning menyeluruh.",
     architecture: "Unified Integration Bus with standardized API adapters, hardware sandbox testing environment, and end-to-end cryptographic handshakes.",
@@ -616,18 +651,557 @@ export const CAPABILITIES_DATA: CapabilityBlueprint[] = [
     deliverables: ["Turnkey Procurement Schedule", "Official Distributor Warranty Ledger", "As-Built System CAD Drawings", "User Acceptance Test (UAT) Sign-Off"]
   },
   {
-    id: "cap-automation",
-    slug: "automation-architecture",
+    id: "cap-managed",
+    slug: "managed-it",
+    number: "06",
+    title: "MANAGED IT",
+    category: "24/7 Operations & NOC Telemetry",
+    whatWeDo: "Mengambil alih beban pemantauan operasional, mitigasi insiden jaringan, pemeliharaan preventif perangkat keras, dan pelaporan kesehatan sistem berbasis SLA terjamin.",
+    typicalRequirements: [
+      "Pengawasan operasional 24/7 tanpa perlu merekrut tim shift malam internal",
+      "Jaminan Service Level Agreement (SLA) waktu aktif (uptime) hingga 99.99%",
+      "Eskalasi darurat cepat dengan Mean Time to Resolution (MTTR) rendah",
+      "Audit berkala atas kesehatan perangkat keras, lisensi, dan patch firmware"
+    ],
+    potentialSolution: "ARKAPRANA MANAGED — 24/7 Enterprise Network & Security Operations Center (NOC/SOC), automated telemetry alerting, dan dedicated Tier-3 engineers.",
+    engagementModel: "Ongoing Managed Services SLA Contract (Annual / Multi-Year)",
+    ctaText: "Discuss Managed IT Operations →",
+    ctaHref: "/contact?solution=MANAGED%20IT",
+    challenge: "Tingginya beban kerja operasional harian membebani tim IT internal dan meningkatkan risiko kelalaian deteksi anomali perangkat keras.",
+    approach: "Menyediakan layanan Network & Security Operations Center (NOC/SOC) 24/7 dengan pemantauan telemetri waktu nyata dan alur eskalasi insiden berstandar ITIL.",
+    architecture: "Distributed telemetry collectors, centralized multi-tenant monitoring platform, automated alert triage, and encrypted out-of-band management access.",
+    potentialOutcome: "Stabilitas operasional berkelanjutan dengan SLA uptime 99.99%, penurunan MTTR (Mean Time to Resolution), dan efisiensi alokasi sumber daya manusia internal.",
+    keyProtocols: ["SNMPv3", "NetFlow / IPFIX", "OpenTelemetry", "Syslog-ng TLS", "REST Webhooks"],
+    deliverables: ["24/7 NOC Service Agreement", "Telemetry Portal Credentials", "Monthly Health Audit Report", "Hardware Replacement Logistics Plan"]
+  },
+  {
+    id: "cap-ai",
+    slug: "ai-automation",
+    number: "07",
+    title: "AI & AUTOMATION",
+    category: "Private AI, RAG & Workflow Robotics",
+    whatWeDo: "Merancang dan menggelar sistem kecerdasan buatan privat on-premise, model RAG berbasis dokumen korporat rahasia, serta otomatisasi alur kerja tanpa risiko kebocoran data.",
+    typicalRequirements: [
+      "Pencarian semantik cerdas atas ribuan dokumen SOP, kontrak, dan data teknis",
+      "Otomasi ekstraksi data dari file PDF/laporan kerja lapangan tanpa manual input",
+      "Kepastian 100% data rahasia tidak pernah dikirim ke server AI publik luar negeri",
+      "Otomatisasi alur kerja antar-sistem berbasis kejadian (event-driven)"
+    ],
+    potentialSolution: "ARKAPRANA AI — Air-gapped on-premise LLM cluster, enterprise vector database RAG, citation verification engine, dan automated workflow bots.",
+    engagementModel: "AI Architecture Assessment, PoC Implementation & Turnkey Rollout",
+    ctaText: "Discuss AI & Automation →",
+    ctaHref: "/contact?solution=AI%20%26%20AUTOMATION",
+    challenge: "Kekhawatiran kebocoran data rahasia ke cloud AI publik dan lambatnya alur kerja manual menghambat adopsi otomasi cerdas di perusahaan.",
+    approach: "Menggelar kluster komputasi AI mandiri di server privat dengan model open-weights berdaulat, arsitektur RAG anti-halusinasi, dan isolasi jaringan total.",
+    architecture: "Air-gapped GPU compute nodes, high-density vector database (Milvus/Chroma), vLLM high-throughput local inference, and fine-grained Role-Based Document Access (RBAC).",
+    potentialOutcome: "Kemampuan pencarian semantik dan otomasi pengetahuan organisasi secara instan dengan jaminan 0% kebocoran data ke luar jaringan internal perusahaan.",
+    keyProtocols: ["Local OpenAI API Compatible", "gRPC Stream", "TensorRT-LLM", "Vector Embeddings RPC"],
+    deliverables: ["Private RAG Blueprint", "Isolated Vector Catalog", "Citation Verification Engine", "Enterprise Knowledge Base Interface"]
+  },
+  {
+    id: "cap-consulting",
+    slug: "technology-consulting",
     number: "08",
-    title: "Automation Architecture",
-    category: "Workflow & Operational Robotics",
-    challenge: "Proses operasional manual yang repetitif memperlambat waktu respons, meningkatkan risiko human error, dan menguras waktu kerja staf ahli.",
-    approach: "Membangun pipeline otomasi berbasis kejadian (event-driven) yang mengintegrasikan sensor IoT, telemetri jaringan, dan sistem enterprise tanpa intervensi manual.",
-    architecture: "Event-driven orchestration engine, asynchronous task queues, industrial edge gateways, and automated webhook triggers.",
-    potentialOutcome: "Akselerasi siklus kerja operasional, penghapusan kesalahan manual pada pencatatan data, dan respons otomatis terhadap kondisi abnormal di lapangan.",
-    keyProtocols: ["MQTT v5", "Webhooks", "AMQP / Kafka", "Modbus-TCP", "OPC-UA"],
-    deliverables: ["Workflow Automation Map", "Integration API Connectors", "Event-Driven Rule Engine", "Operational Runbook Automation"]
+    title: "TECHNOLOGY CONSULTING",
+    category: "Architecture & Transformation Planning",
+    whatWeDo: "Memberikan bimbingan strategis arsitektur tingkat prinsipal, audit kepatuhan regulasi data, perencanaan kapasitas masa depan, dan penyusunan peta jalan transformasi digital.",
+    typicalRequirements: [
+      "Perencanaan arsitektur teknologi jangka panjang sebelum investasi modal besar",
+      "Audit kepatuhan arsitektur terhadap regulasi kedaulatan data dan UU PDP",
+      "Evaluasi teknis independen terhadap proposal vendor pihak ketiga",
+      "Penyusunan blueprint modernisasi infrastruktur yang aman dan terukur"
+    ],
+    potentialSolution: "ARKAPRANA CONSULTING — Strategic architecture blueprinting, technical feasibility study, vendor-neutral evaluation, dan regulatory compliance mapping.",
+    engagementModel: "Retainer Advisory, Architectural Audit, atau Strategic Project Scope",
+    ctaText: "Discuss Technology Consulting →",
+    ctaHref: "/contact?solution=TECHNOLOGY%20CONSULTING",
+    challenge: "Banyak inisiatif teknologi gagal atau membengkak karena perencanaan arsitektur yang tidak matang, salah perhitungan kapasitas, atau benturan regulasi.",
+    approach: "Menganalisis kebutuhan bisnis secara mendalam, memetakan risiko teknis dan regulasi, serta menyusun cetak biru arsitektur terukur sebelum eksekusi pengadaan.",
+    architecture: "Vendor-agnostic architecture framework, compliance matrices (UU PDP, ISO 27001), total cost of ownership (TCO) models, and lifecycle evolution roadmaps.",
+    potentialOutcome: "Kepastian investasi teknologi yang tepat sasaran, efisiensi anggaran pengadaan hingga 30%, dan mitigasi risiko kegagalan integrasi di kemudian hari.",
+    keyProtocols: ["TOGAF Framework", "ISO/IEC 27001", "NIST Cybersecurity Framework", "BSI Baseline"],
+    deliverables: ["Comprehensive Architecture Blueprint", "Regulatory Compliance Audit Matrix", "TCO & Capacity Projection Model", "Vendor Evaluation Matrix"]
   }
+];
+
+// V5 Project Journey (Section 13: HOW WE WORK 01 to 08)
+export interface ProjectJourneyStep {
+  step: string;
+  name: string;
+  tagline: string;
+  description: string;
+  deliverable: string;
+  iconName: string;
+}
+
+export const PROJECT_JOURNEY_STEPS: ProjectJourneyStep[] = [
+  {
+    step: "01",
+    name: "DISCOVER",
+    tagline: "Understand the business and technical requirements.",
+    description: "Memahami model bisnis, sasaran operasional, batasan regulasi kedaulatan data, serta ekspektasi performa jangka panjang organisasi Anda.",
+    deliverable: "Executive Discovery & Scope Document",
+    iconName: "Search"
+  },
+  {
+    step: "02",
+    name: "ASSESS",
+    tagline: "Analyze the existing environment.",
+    description: "Audit menyeluruh terhadap infrastruktur fisik, topologi jaringan, beban komputasi server, postur keamanan siber, dan jalur transmisi eksisting.",
+    deliverable: "Infrastructure Assessment & Gap Analysis Report",
+    iconName: "BarChart3"
+  },
+  {
+    step: "03",
+    name: "DESIGN",
+    tagline: "Develop architecture and solution design.",
+    description: "Menyusun arsitektur sistem komprehensif, skema redundansi multi-tier, spesifikasi perangkat keras, dan simulasi kapasitas daya/pendinginan.",
+    deliverable: "Engineering Blueprint & Sizing Matrix",
+    iconName: "PenTool"
+  },
+  {
+    step: "04",
+    name: "BUILD",
+    tagline: "Implement the technology environment.",
+    description: "Penggelaran fisik, terminasi serat optik berstandar TIA-942, instalasi rack server, sistem daya UPS terisolasi, dan konfigurasi perangkat keras.",
+    deliverable: "Physical Implementation & Fluke Networks Certification",
+    iconName: "Hammer"
+  },
+  {
+    step: "05",
+    name: "INTEGRATE",
+    tagline: "Connect systems and workflows.",
+    description: "Mengharmonisasikan perangkat lintas vendor, mengorkestrasi API middleware, konfigurasi perutean dinamis BGP/SD-WAN, dan penyelarasan data flow.",
+    deliverable: "Multi-Vendor Integration Acceptance Sign-Off",
+    iconName: "Workflow"
+  },
+  {
+    step: "06",
+    name: "SECURE",
+    tagline: "Protect the environment.",
+    description: "Penerapan kebijakan Zero-Trust, segmentasi mikro jaringan, pengerasan firewall, proteksi brankas kriptografi hardware, dan backup tak terhapus.",
+    deliverable: "Zero-Trust Enforcement & Penetration Test Ledger",
+    iconName: "ShieldCheck"
+  },
+  {
+    step: "07",
+    name: "MANAGE",
+    tagline: "Provide ongoing support.",
+    description: "Pemantauan telemetri proaktif 24/7 oleh Network & Security Operations Center (NOC/SOC) dengan jaminan SLA ketersediaan 99.99%.",
+    deliverable: "Live NOC Telemetry Access & Monthly SLA Reports",
+    iconName: "Cpu"
+  },
+  {
+    step: "08",
+    name: "EVOLVE",
+    tagline: "Improve the environment as requirements change.",
+    description: "Evaluasi berkala, perencanaan kapasitas masa depan, penerapan model AI privat baru, dan adaptasi berkelanjutan seiring pertumbuhan skala organisasi.",
+    deliverable: "Quarterly Technology Evolution Roadmap",
+    iconName: "TrendingUp"
+  }
+];
+
+// V5 Project Engagement Models (Section 14: HOW WE CAN WORK TOGETHER)
+export interface EngagementModel {
+  modelNumber: string;
+  name: string;
+  tagline: string;
+  description: string;
+  bestFor: string;
+  deliverables: string[];
+}
+
+export const ENGAGEMENT_MODELS: EngagementModel[] = [
+  {
+    modelNumber: "MODEL 01",
+    name: "PROJECT DELIVERY",
+    tagline: "For specific technology projects.",
+    description: "Pengadaan, perancangan, dan implementasi menyeluruh untuk proyek infrastruktur, jaringan, atau data center dengan ruang lingkup dan timeline terdefinisi jelas.",
+    bestFor: "Pembangunan fasilitas baru, ekspansi cabang, upgrade infrastruktur server, atau renovasi data center.",
+    deliverables: ["Turnkey Project Execution", "Certified Engineering Testing", "Full As-Built Documentation", "Commissioning Handover"]
+  },
+  {
+    modelNumber: "MODEL 02",
+    name: "SYSTEM INTEGRATION",
+    tagline: "For multi-system environments.",
+    description: "Harmonisasi perangkat keras dan sistem perangkat lunak dari berbagai vendor ke dalam satu arsitektur terpadu tanpa hambatan komunikasi.",
+    bestFor: "Organisasi dengan warisan sistem beragam (heterogeneous) yang memerlukan single point of accountability.",
+    deliverables: ["Unified Architecture Design", "Protocol & API Harmonisation", "Sandbox Compatibility Testing", "Interoperability Assurance"]
+  },
+  {
+    modelNumber: "MODEL 03",
+    name: "MANAGED IT",
+    tagline: "For ongoing technology operations.",
+    description: "Dukungan operasional proaktif 24/7/365, pemantauan telemetri, mitigasi insiden berstandar SLA tinggi, dan pemeliharaan preventif berkelanjutan.",
+    bestFor: "Perusahaan yang ingin tim IT internalnya fokus pada inovasi bisnis inti tanpa terbebani rutinitas troubleshooting.",
+    deliverables: ["Dedicated 24/7 NOC Monitoring", "99.99% Uptime SLA Guarantee", "Preventive Firmware Updates", "Incident Response < 15 Min"]
+  },
+  {
+    modelNumber: "MODEL 04",
+    name: "TECHNOLOGY CONSULTING",
+    tagline: "For architecture and transformation planning.",
+    description: "Pendampingan strategis dari Principal Architect untuk audit kepatuhan kedaulatan data (UU PDP), kajian kelayakan investasi teknologi, dan cetak biru transformasi.",
+    bestFor: "Direksi, C-Level, dan pengambil keputusan yang merencanakan modernisasi infrastruktur jangka menengah-panjang.",
+    deliverables: ["Strategic Architecture Blueprint", "Regulatory Compliance Audit", "TCO & Capacity Planning", "Technology Vendor Evaluation"]
+  },
+  {
+    modelNumber: "MODEL 05",
+    name: "AI & AUTOMATION",
+    tagline: "For intelligent workflows and organizational knowledge.",
+    description: "Perancangan dan penggelaran sistem kecerdasan buatan privat on-premise, model RAG berbasis dokumen korporat rahasia, serta otomasi alur kerja tanpa risiko kebocoran data.",
+    bestFor: "Organisasi dengan basis pengetahuan besar, kebutuhan pencarian semantik dokumen, atau otomasi tugas repetitif.",
+    deliverables: ["Private On-Premise LLM Setup", "Enterprise RAG Architecture", "Document Intelligence Pipeline", "Workflow Robotics Integration"]
+  }
+];
+
+// V5 Business Value Themes (Section 15: 5 Themes)
+export const BUSINESS_VALUE_THEMES = [
+  {
+    id: "reliability",
+    theme: "RELIABILITY",
+    headline: "Technology that supports continuous operations.",
+    description: "Infrastruktur komputasi dan jaringan dirancang tanpa celah single-point-of-failure. Redundansi daya 2N+1 dan failover sub-detik menjaga layanan organisasi tetap aktif tanpa henti.",
+    metricTag: "Zero Planned Downtime"
+  },
+  {
+    id: "security",
+    theme: "SECURITY",
+    headline: "Technology environments designed with security in mind.",
+    description: "Keamanan bukan tambahan di akhir, melainkan fondasi awal di setiap lapisan arsitektur. Kerangka kerja Zero-Trust, enkripsi HSM, dan backup tak terhapus melindungi kedaulatan data Anda.",
+    metricTag: "Defense-in-Depth"
+  },
+  {
+    id: "visibility",
+    theme: "VISIBILITY",
+    headline: "Better visibility across systems and operations.",
+    description: "Telemetri real-time komprehensif atas lalu lintas jaringan, kesehatan server, dan integritas data. Manajemen mendapatkan data akurat untuk pengambilan keputusan cepat dan tepat.",
+    metricTag: "Real-Time Telemetry"
+  },
+  {
+    id: "efficiency",
+    theme: "EFFICIENCY",
+    headline: "Reduce repetitive and fragmented processes.",
+    description: "Menghubungkan sistem yang terisolasi dan mengotomasi alur kerja manual. Staf ahli tidak lagi terbebani rutinitas troubleshooting dan dapat fokus pada pertumbuhan bisnis.",
+    metricTag: "Automated Workflows"
+  },
+  {
+    id: "scalability",
+    theme: "SCALABILITY",
+    headline: "Build technology that can evolve.",
+    description: "Arsitektur modular yang adaptif memungkinkan penambahan cabang, beban komputasi server, atau integrasi AI cerdas kapan pun dibutuhkan tanpa perlu merombak ulang dari nol.",
+    metricTag: "Modular Expansion"
+  }
+];
+
+// V5 Business Solution Builder Modules (Section 12: BUILD YOUR TECHNOLOGY ENVIRONMENT)
+export interface EnvModule {
+  id: string;
+  name: string;
+  category: string;
+  role: string;
+  spec: string;
+  benefit: string;
+  badge: string;
+}
+
+export const ENVIRONMENT_BUILDER_MODULES: EnvModule[] = [
+  {
+    id: "network",
+    name: "NETWORK",
+    category: "Connectivity",
+    role: "High-Speed Backbone & SD-WAN Mesh",
+    spec: "Carrier-Neutral 100G Fiber, Multi-site SD-WAN, Wi-Fi 7",
+    benefit: "Menjamin interkoneksi bebas hambatan dengan failover otomatis sub-50ms.",
+    badge: "01"
+  },
+  {
+    id: "server",
+    name: "SERVER",
+    category: "Compute",
+    role: "High-Density Enterprise Compute",
+    spec: "Dual-Socket Multi-Core Cluster, Hardware Virtualization",
+    benefit: "Kapasitas komputasi tangguh untuk beban kerja misi kritis 24/7.",
+    badge: "02"
+  },
+  {
+    id: "storage",
+    name: "STORAGE",
+    category: "Data Storage",
+    role: "Sub-Millisecond Flash Storage Matrix",
+    spec: "All-Flash NVMe SAN/NAS, Software-Defined Storage",
+    benefit: "Throughput I/O maksimal untuk database transaksi dan lakehouse data.",
+    badge: "03"
+  },
+  {
+    id: "cloud",
+    name: "CLOUD",
+    category: "Private Cloud",
+    role: "Sovereign On-Premise Cloud Infrastructure",
+    spec: "Enterprise Kubernetes, S3 Object Cluster, Multi-Tenant",
+    benefit: "Elastisitas cloud publik dengan kedaulatan data 100% di tangan Anda.",
+    badge: "04"
+  },
+  {
+    id: "security",
+    name: "SECURITY",
+    category: "Defense",
+    role: "Zero-Trust Perimeter & Microsegmentation",
+    spec: "Next-Gen Firewall, HSM Vault, ZTNA Identity Controller",
+    benefit: "Mengisolasi pergerakan lateral ancaman siber dan mematuhi UU PDP.",
+    badge: "05"
+  },
+  {
+    id: "backup",
+    name: "BACKUP",
+    category: "Resilience",
+    role: "Immutable Air-Gapped Disaster Recovery",
+    spec: "WORM Storage, Automated Offsite Replication, Instant RPO/RTO",
+    benefit: "Perlindungan mutlak terhadap ransomware dengan pemulihan kilat.",
+    badge: "06"
+  },
+  {
+    id: "monitoring",
+    name: "MONITORING",
+    category: "Observability",
+    role: "24/7 NOC Telemetry & Observability",
+    spec: "Full-Stack Metrics Collector, Syslog-ng, Instant Escalation",
+    benefit: "Visibilitas menyeluruh dan pencegahan anomali sebelum berdampak ke bisnis.",
+    badge: "07"
+  },
+  {
+    id: "ai",
+    name: "AI",
+    category: "Intelligence",
+    role: "Private Sovereign LLM & Enterprise RAG",
+    spec: "Air-Gapped GPU Cluster, Local Vector Store, Citation Engine",
+    benefit: "Pencarian dan inferensi cerdas internal tanpa risiko kebocoran data.",
+    badge: "08"
+  },
+  {
+    id: "automation",
+    name: "AUTOMATION",
+    category: "Workflow",
+    role: "Event-Driven Autonomous Workflows",
+    spec: "API Orchestration Bus, Industrial IoT Gateway, Task Queues",
+    benefit: "Menghapus pekerjaan manual berulang dan mempercepat siklus operasional.",
+    badge: "09"
+  }
+];
+
+// V5 Solution Discovery (Section 06: WHAT ARE YOU TRYING TO BUILD?)
+export interface SolutionDiscoveryOption {
+  id: string;
+  label: string;
+  visitorNeed: string;
+  matchedSolution: string;
+  solutionSlug: string;
+  headline: string;
+  summary: string;
+  capabilities: string[];
+  ctaText: string;
+  ctaHref: string;
+}
+
+export const SOLUTION_DISCOVERY_OPTIONS: SolutionDiscoveryOption[] = [
+  {
+    id: "network",
+    label: "A NETWORK",
+    visitorNeed: "I need a new enterprise network.",
+    matchedSolution: "ARKAPRANA NETWORK",
+    solutionSlug: "network",
+    headline: "Enterprise connectivity designed for reliability, visibility and scale.",
+    summary: "Menghubungkan fasilitas, kantor pusat, dan cabang terdistribusi dengan jaringan serat optik berkecepatan tinggi, SD-WAN dinamis, dan pemantauan telemetri waktu nyata.",
+    capabilities: [
+      "Network Architecture",
+      "Structured Cabling",
+      "Fiber Optic",
+      "Enterprise Wi-Fi",
+      "Routing & Switching",
+      "Network Monitoring"
+    ],
+    ctaText: "DISCUSS THIS PROJECT →",
+    ctaHref: "/contact?solution=ARKAPRANA%20NETWORK&intent=network"
+  },
+  {
+    id: "infra",
+    label: "A SERVER & INFRASTRUCTURE ENVIRONMENT",
+    visitorNeed: "I need reliable computing infrastructure for my organization.",
+    matchedSolution: "ARKAPRANA INFRA",
+    solutionSlug: "infrastructure",
+    headline: "Mission-critical compute and resilient data center foundations.",
+    summary: "Membangun ruang server dan fasilitas komputasi berstandar tinggi dengan redundansi daya, pendinginan presisi, dan server cluster berkepadatan tinggi.",
+    capabilities: [
+      "Server Clusters",
+      "High-Performance Storage",
+      "Virtualization",
+      "Immutable Backup",
+      "Data Center Fit-Out",
+      "High Availability Architecture"
+    ],
+    ctaText: "DISCUSS THIS PROJECT →",
+    ctaHref: "/contact?solution=ARKAPRANA%20INFRA&intent=infra"
+  },
+  {
+    id: "cloud",
+    label: "A CLOUD ENVIRONMENT",
+    visitorNeed: "I need an agile cloud environment with sovereign data control.",
+    matchedSolution: "ARKAPRANA CLOUD",
+    solutionSlug: "cloud",
+    headline: "Sovereign on-premise cloud and resilient hybrid clusters.",
+    summary: "Menghadirkan fleksibilitas orkestrasi cloud publik di atas infrastruktur server mandiri Anda, tanpa biaya tersembunyi dan 100% kepatuhan data lokal.",
+    capabilities: [
+      "Private Cloud Orchestration",
+      "Enterprise Kubernetes",
+      "Software-Defined Storage (S3)",
+      "Hybrid Multi-Zone Sync",
+      "Automated DR Failover",
+      "Zero Egress Cost Architecture"
+    ],
+    ctaText: "DISCUSS THIS PROJECT →",
+    ctaHref: "/contact?solution=ARKAPRANA%20CLOUD&intent=cloud"
+  },
+  {
+    id: "security",
+    label: "A SECURE IT ENVIRONMENT",
+    visitorNeed: "I need to secure our operations against cyber threats and leaks.",
+    matchedSolution: "ARKAPRANA SECURE",
+    solutionSlug: "security",
+    headline: "Defense-in-depth security engineered from the architectural core.",
+    summary: "Menerapkan prinsip Zero-Trust menyeluruh: verifikasi berkelanjutan atas identitas, perangkat, microsegmentation jaringan, dan brankas hardware HSM.",
+    capabilities: [
+      "Zero-Trust Architecture",
+      "Next-Gen Firewall (NGFW)",
+      "Microsegmentation",
+      "Hardware Security Module (HSM)",
+      "Ransomware-Proof Backup",
+      "24/7 Security Governance"
+    ],
+    ctaText: "DISCUSS THIS PROJECT →",
+    ctaHref: "/contact?solution=ARKAPRANA%20SECURE&intent=security"
+  },
+  {
+    id: "managed",
+    label: "A MANAGED IT OPERATION",
+    visitorNeed: "I need 24/7 operational monitoring and dedicated engineering support.",
+    matchedSolution: "ARKAPRANA MANAGED",
+    solutionSlug: "managed-it",
+    headline: "Proactive operations, NOC telemetry and SLA-backed engineering.",
+    summary: "Mengalihkan beban pemantauan harian dan penanganan insiden infrastruktur ke tim insinyur bersertifikasi dengan jaminan SLA ketersediaan 99.99%.",
+    capabilities: [
+      "24/7 Dedicated NOC",
+      "Real-Time Telemetry",
+      "Incident Mitigation SLA",
+      "Preventive Maintenance",
+      "Patch & Firmware Management",
+      "Executive Health Audits"
+    ],
+    ctaText: "DISCUSS THIS PROJECT →",
+    ctaHref: "/contact?solution=ARKAPRANA%20MANAGED&intent=managed"
+  },
+  {
+    id: "ai",
+    label: "AN AI SYSTEM",
+    visitorNeed: "I need private AI intelligence built on our organization's knowledge.",
+    matchedSolution: "ARKAPRANA AI",
+    solutionSlug: "ai",
+    headline: "Your data. Your infrastructure. Your intelligence.",
+    summary: "Menggelar sistem AI privat on-premise dengan model bahasa berdaulat dan arsitektur RAG yang mengindeks seluruh dokumen korporat secara aman tanpa risiko kebocoran.",
+    capabilities: [
+      "Private On-Premise LLM",
+      "Enterprise RAG Architecture",
+      "Document Intelligence",
+      "Organizational Knowledge Assistant",
+      "Role-Based Access Guardrails",
+      "Air-Gapped Privacy Guarantee"
+    ],
+    ctaText: "DISCUSS THIS PROJECT →",
+    ctaHref: "/contact?solution=ARKAPRANA%20AI&intent=ai"
+  },
+  {
+    id: "automation",
+    label: "AN AUTOMATED WORKFLOW",
+    visitorNeed: "I need to eliminate manual processes and connect systems automatically.",
+    matchedSolution: "ARKAPRANA AUTOMATION",
+    solutionSlug: "ai",
+    headline: "Intelligent workflow robotics and event-driven automation.",
+    summary: "Mengintegrasikan pipeline otomatisasi antar perangkat, sensor telemetri, dan database enterprise untuk mempercepat siklus kerja tanpa kesalahan manual.",
+    capabilities: [
+      "Event-Driven Workflows",
+      "API Orchestration Bus",
+      "Industrial IoT Automation",
+      "Automated Document Processing",
+      "Anomaly Trigger Routing",
+      "Operational Runbooks"
+    ],
+    ctaText: "DISCUSS THIS PROJECT →",
+    ctaHref: "/contact?solution=ARKAPRANA%20AUTOMATION&intent=automation"
+  },
+  {
+    id: "integration",
+    label: "AN INTEGRATED TECHNOLOGY ENVIRONMENT",
+    visitorNeed: "I need multiple complex systems harmonized under one engineering partner.",
+    matchedSolution: "ARKAPRANA INTEGRATION",
+    solutionSlug: "integration",
+    headline: "Turnkey multi-vendor engineering and single-point accountability.",
+    summary: "Mengharmonisasikan pengadaan perangkat bergaransi resmi, integrasi jaringan, komputasi, dan software menjadi satu kesatuan operasional yang teruji.",
+    capabilities: [
+      "Single Point Accountability",
+      "Turnkey Hardware Procurement",
+      "Multi-Vendor Protocol Sync",
+      "Certified Commissioning & UAT",
+      "As-Built Engineering Drawings",
+      "Official Distributor Warranties"
+    ],
+    ctaText: "DISCUSS THIS PROJECT →",
+    ctaHref: "/contact?solution=ARKAPRANA%20INTEGRATION&intent=integration"
+  }
+];
+
+// V5 Business Problem Section (Section 05)
+export const DISCONNECT_PROBLEMS = [
+  { id: "fragmented", title: "Fragmented infrastructure", desc: "Perangkat keras terpisah antar departemen tanpa standar sentral." },
+  { id: "disconnected", title: "Disconnected systems", desc: "Aplikasi dan database tidak saling bertukar data secara mulus." },
+  { id: "visibility", title: "Limited visibility", desc: "Manajemen buta terhadap performa dan status kesehatan jaringan real-time." },
+  { id: "security", title: "Security gaps", desc: "Celah keamanan terbuka di antara pertemuan sistem multi-vendor." },
+  { id: "manual", title: "Manual processes", desc: "Staf menghabiskan waktu berharga untuk input dan verifikasi data manual." },
+  { id: "complexity", title: "Growing IT complexity", desc: "Biaya perawatan membengkak seiring bertambahnya tumpukan lisensi." },
+  { id: "unstructured", title: "Unstructured organizational knowledge", desc: "Dokumen SOP, kontrak, dan pengetahuan teknis tercecer tanpa pencarian cerdas." }
+];
+
+// V5 AI Opportunity Assessment (Section 17)
+export const AI_OPPORTUNITY_AREAS = [
+  { id: "documents", label: "DOCUMENTS", detail: "Contract analysis, technical PDF parsing & automated extraction" },
+  { id: "knowledge", label: "KNOWLEDGE", detail: "Centralized internal Q&A, organizational SOPs & policy retrieval" },
+  { id: "customer_service", label: "CUSTOMER SERVICE", detail: "24/7 intelligent tier-1 assistant & verified knowledge agent" },
+  { id: "operations", label: "OPERATIONS", detail: "Incident report synthesis, asset tracking & shift summaries" },
+  { id: "reporting", label: "REPORTING", detail: "Autonomous executive summaries & periodic performance digest" },
+  { id: "analysis", label: "ANALYSIS", detail: "Unstructured telemetry correlation & data anomaly discovery" },
+  { id: "automation", label: "AUTOMATION", detail: "Cross-system document handoffs & validation workflows" },
+  { id: "internal_search", label: "INTERNAL SEARCH", detail: "Sub-second semantic search across private enterprise repositories" }
+];
+
+// V5 Technology Ecosystem Categories (Section 30)
+export const TECHNOLOGY_PARTNER_CATEGORIES = [
+  { category: "NETWORKING", focus: "Spine-Leaf Fabric, SD-WAN, Industrial Switches & Wi-Fi 7", tier: "Carrier-Grade Architecture" },
+  { category: "SERVER & STORAGE", focus: "High-Density Rack Servers, NVMe SAN/NAS & HCI", tier: "Mission-Critical Compute" },
+  { category: "CLOUD", focus: "Kubernetes Orchestration, S3 Storage & Sovereign Private Cloud", tier: "Cloud-Native Infrastructure" },
+  { category: "CYBERSECURITY", focus: "Next-Gen Firewall, HSM Vaults, ZTNA & SIEM/SOC", tier: "Zero-Trust Perimeter" },
+  { category: "AI", focus: "GPU Compute Clusters, Vector Databases & Local Inference RAG", tier: "Private Intelligence" },
+  { category: "SOFTWARE", focus: "Integration Middleware, API Gateways & Workflow Engines", tier: "Enterprise Interoperability" },
+  { category: "INFRASTRUCTURE", focus: "Precision Cooling, 2N+1 UPS, Clean Agent Fire & Data Centers", tier: "Tier-3+ Facilities" }
+];
+
+// V5 Corporate Documents System (Section 28 & 29)
+export const CORPORATE_DOCUMENTS = [
+  { id: "company-profile", title: "Company Profile", filename: "arkaprana-company-profile.pdf", size: "3.2 MB", available: true },
+  { id: "capability-statement", title: "Capability Statement", filename: "arkaprana-capability-statement.pdf", size: "2.8 MB", available: false },
+  { id: "network-capability", title: "Network Capability", filename: "arkaprana-network-capability.pdf", size: "2.1 MB", available: false },
+  { id: "infra-capability", title: "Infrastructure Capability", filename: "arkaprana-infrastructure-capability.pdf", size: "2.4 MB", available: false },
+  { id: "cybersecurity-capability", title: "Cybersecurity Capability", filename: "arkaprana-cybersecurity-capability.pdf", size: "2.0 MB", available: false },
+  { id: "ai-capability", title: "AI Capability", filename: "arkaprana-ai-capability.pdf", size: "2.6 MB", available: false },
+  { id: "managed-it-capability", title: "Managed IT Capability", filename: "arkaprana-managed-it-capability.pdf", size: "1.9 MB", available: false },
+  { id: "maritime-capability", title: "Maritime Capability", filename: "arkaprana-maritime-capability.pdf", size: "2.3 MB", available: false },
+  { id: "corporate-presentation", title: "Corporate Presentation", filename: "arkaprana-corporate-presentation.pdf", size: "4.5 MB", available: false }
 ];
 
 export const INDUSTRIES = [
@@ -819,17 +1393,37 @@ export const COMPANY_PROFILE = {
   descriptor: "Technology & Intelligent Solutions",
   tagline: "BUILD. CONNECT. INTELLIGENCE.",
   taglineAlt: "Engineering the Digital Future. Membangun Fondasi Digital, Menghadirkan Kecerdasan.",
-  positioning: "ARKAPRANA membantu organisasi membangun fondasi teknologi, mengintegrasikan sistem, mengamankan operasional, dan mengembangkan intelligent solutions.",
+  positioning: "ARKAPRANA adalah perusahaan teknologi yang membantu organisasi membangun infrastruktur digital, mengintegrasikan sistem, mengamankan operasional, mengelola lingkungan IT, dan mengembangkan intelligent solutions.",
   brandPhilosophy: "BUILD THE FOUNDATION. CONNECT THE SYSTEMS. ENABLE THE INTELLIGENCE.",
-  summary: "ARKAPRANA adalah perusahaan teknologi Indonesia yang menghadirkan solusi terintegrasi mulai dari infrastruktur IT, jaringan, cloud, cybersecurity, managed services hingga artificial intelligence berdaulat.",
-  vision: "Menjadi perusahaan teknologi Indonesia terdepan yang menghadirkan infrastruktur digital, layanan IT, keamanan siber, cloud, dan kecerdasan buatan yang berdaulat, terintegrasi, dan adaptif bagi organisasi di Indonesia dan pasar global.",
+  summary: "ARKAPRANA adalah perusahaan teknologi yang membantu organisasi membangun infrastruktur digital, mengintegrasikan sistem, mengamankan operasional, mengelola lingkungan IT, dan mengembangkan intelligent solutions.",
+  vision: "Menjadi perusahaan teknologi Indonesia yang menghadirkan infrastruktur digital, layanan IT, keamanan siber, cloud, integrasi sistem, dan kecerdasan buatan yang terintegrasi, aman, dan adaptif bagi organisasi di Indonesia dan pasar global.",
   missions: [
-    "Membangun infrastruktur digital yang reliable, scalable, dan mission-critical.",
-    "Menyediakan layanan rekayasa teknologi yang responsif dengan SLA terjamin.",
-    "Meningkatkan ketahanan dan keamanan siber melalui arsitektur zero-trust.",
-    "Mengintegrasikan ekosistem cloud privat berdaulat dan otomasi cerdas.",
-    "Mengembangkan solusi AI privat yang aman, praktis, dan relevan bagi industri.",
-    "Menjadi mitra teknologi strategis jangka panjang bagi transformasi digital organisasi."
+    "Membangun infrastruktur digital yang andal dan scalable.",
+    "Menghadirkan layanan teknologi yang responsif dan berkelanjutan.",
+    "Meningkatkan keamanan dan ketahanan digital organisasi.",
+    "Mengintegrasikan cloud, automation, dan modern IT infrastructure.",
+    "Mengembangkan solusi AI yang praktis untuk kebutuhan enterprise.",
+    "Membangun talenta teknologi Indonesia.",
+    "Menjadi technology partner jangka panjang bagi organisasi."
+  ],
+  strategicJourney: [
+    "INFRASTRUCTURE",
+    "NETWORK",
+    "CLOUD",
+    "SECURITY",
+    "DATA",
+    "AI"
+  ],
+  ecosystem: [
+    "NETWORK",
+    "INFRASTRUCTURE",
+    "CLOUD",
+    "CYBERSECURITY",
+    "MANAGED IT",
+    "SYSTEM INTEGRATION",
+    "DATA",
+    "ARTIFICIAL INTELLIGENCE",
+    "AUTOMATION"
   ],
   contact: {
     email: "elfano2156@gmail.com",

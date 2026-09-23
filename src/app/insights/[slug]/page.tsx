@@ -97,17 +97,34 @@ export default async function InsightDetailPage({ params }: Props) {
         </div>
 
         {/* Post Footer CTA */}
-        <footer className="pt-8 border-t border-white/10 mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <span className="text-xs text-neutral-400">
-            Ingin mendiskusikan arsitektur ini untuk organisasi Anda?
-          </span>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold bg-white text-black hover:bg-neutral-200 transition-colors shrink-0"
-          >
-            <span>Talk to an Engineer</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+        {/* Post Footer CTA (Section 32 verbatim) */}
+        <footer className="pt-8 border-t border-white/10 mt-12 p-8 rounded-3xl bg-[#070b16] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="space-y-1">
+            <h4 className="text-base font-bold text-white font-sans">
+              Planning a similar technology initiative?
+            </h4>
+            <p className="text-xs text-neutral-400">
+              Talk to an ARKAPRANA engineer. Diskusikan kelayakan teknis dan arsitektur untuk organisasi Anda.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+            <Link
+              href="/contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold bg-white text-black hover:bg-neutral-200 transition-colors shadow-md active:scale-[0.98]"
+            >
+              <span>DISCUSS YOUR REQUIREMENT →</span>
+            </Link>
+
+            <a
+              href="https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20tertarik%20berdiskusi%20dengan%20engineer%20mengenai%20inisiatif%20teknologi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs font-medium text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] transition-all"
+            >
+              <span>Talk to an Engineer</span>
+            </a>
+          </div>
         </footer>
       </article>
     </main>

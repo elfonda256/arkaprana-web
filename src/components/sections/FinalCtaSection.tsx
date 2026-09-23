@@ -9,38 +9,49 @@ import {
   MapPin,
   CheckCircle2,
   Sparkles,
-  MessageSquare
+  MessageSquare,
+  FileText
 } from "lucide-react";
 import { COMPANY_PROFILE } from "@/lib/data";
+import CompanyProfileModal from "@/components/shared/CompanyProfileModal";
 
 const PROJECT_TYPES = [
-  "Network",
-  "Infrastructure",
-  "Cloud",
-  "Cybersecurity",
-  "Managed IT",
-  "AI",
-  "Automation",
-  "System Integration",
+  "Network Infrastructure",
+  "Server & Data Center",
+  "Cloud Environment",
+  "Cybersecurity Defense",
+  "Managed IT Operations",
+  "Private AI & RAG",
+  "Automation & Robotics",
+  "Turnkey System Integration",
+  "Technology Consulting",
   "Other"
 ];
 
 const TIMELINE_OPTIONS = [
-  "Exploring",
-  "0–3 Months",
+  "Exploring / Feasibility",
+  "Immediate (< 3 Months)",
   "3–6 Months",
   "6–12 Months",
-  "Long Term"
+  "Long Term / Next Fiscal"
+];
+
+const BUDGET_OPTIONS = [
+  "Not decided",
+  "Under discussion",
+  "Budget available",
+  "Prefer to discuss"
 ];
 
 const INDUSTRIES = [
-  "Konstruksi & Proyek",
-  "Manufaktur & Pabrik",
+  "Konstruksi & Proyek Fisik",
+  "Manufaktur & Pabrik Industri",
   "Pelabuhan & Maritim",
   "Logistik & Pergudangan",
-  "Properti & Komersial",
+  "Properti & Kawasan Komersial",
   "Perhotelan & Hospitality",
-  "Pemerintahan & BUMN",
+  "Pemerintahan & Institusi Publik",
+  "Badan Usaha Milik Negara (BUMN)",
   "Perbankan & Finansial",
   "Korporasi & Enterprise",
   "Lainnya"
@@ -50,12 +61,13 @@ export default function FinalCtaSection() {
   const [formData, setFormData] = useState({
     name: "",
     company: "",
-    role: "",
+    position: "",
     email: "",
     phone: "",
     industry: INDUSTRIES[0],
     projectType: PROJECT_TYPES[0],
     timeline: TIMELINE_OPTIONS[1],
+    budgetRange: BUDGET_OPTIONS[0],
     description: ""
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
@@ -65,7 +77,25 @@ export default function FinalCtaSection() {
     setStatus("submitting");
     setTimeout(() => {
       setStatus("success");
-    }, 700);
+    }, 600);
+  };
+
+  const handleBackToHome = () => {
+    setStatus("idle");
+    setFormData({
+      name: "",
+      company: "",
+      position: "",
+      email: "",
+      phone: "",
+      industry: INDUSTRIES[0],
+      projectType: PROJECT_TYPES[0],
+      timeline: TIMELINE_OPTIONS[1],
+      budgetRange: BUDGET_OPTIONS[0],
+      description: ""
+    });
+    const el = document.getElementById("contact");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -76,69 +106,84 @@ export default function FinalCtaSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Narrative Section Header (Section 23 verbatim) */}
+        {/* Narrative Section Header */}
         <div className="max-w-3xl mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-400">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-            <span>Initiate Collaboration</span>
+            <span>Enterprise Inquiry Desk</span>
           </div>
 
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05] font-sans">
             Let's Build What's Next.
           </h2>
 
-          <p className="text-neutral-300 text-base sm:text-xl leading-relaxed pt-2 max-w-2xl font-normal">
+          <p className="text-neutral-300 text-base sm:text-xl leading-relaxed pt-1 max-w-2xl font-normal">
             Tell us what you're building, and let's design the technology behind it.
           </p>
 
           <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-xl font-normal">
-            Kaji kebutuhan infrastruktur, jaringan, cloud, keamanan siber, atau kecerdasan buatan organisasi Anda langsung bersama tim arsitek teknologi ARKAPRANA.
+            Kaji kebutuhan infrastruktur, jaringan, cloud, keamanan siber, atau kecerdasan buatan organisasi Anda langsung bersama tim Principal Engineer ARKAPRANA.
           </p>
         </div>
 
         {/* Form and Contact Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Interactive Project Inquiry Form (Span 7) */}
+          {/* Left Column: Interactive Enterprise Inquiry Form (Span 7) */}
           <div className="lg:col-span-7 bg-[#070b16] rounded-3xl border border-white/[0.12] p-8 sm:p-10 shadow-2xl relative overflow-hidden">
             
+            {/* Section 26: Qualified Lead Success Screen */}
             {status === "success" ? (
               <div className="text-center py-12 space-y-5 animate-in fade-in zoom-in-95 duration-200">
                 <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 mx-auto flex items-center justify-center">
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">
-                  Thank you. Your project information has been received.
-                </h3>
-                <p className="text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">
-                  Informasi proyek Anda telah dicatat. Tim Principal Engineering ARKAPRANA akan menelaah spesifikasi kebutuhan Anda dan menghubungi kembali dalam waktu kurang dari 24 jam kerja.
+
+                <div className="space-y-2">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white font-sans">
+                    Thank you for reaching out to ARKAPRANA.
+                  </h3>
+                  <div className="text-base text-cyan-300 font-medium">
+                    Your project information has been received.
+                  </div>
+                  <div className="text-sm font-serif italic text-neutral-300">
+                    &ldquo;Let's explore what we can build together.&rdquo;
+                  </div>
+                </div>
+
+                <p className="text-xs sm:text-sm text-neutral-400 max-w-md mx-auto leading-relaxed pt-2">
+                  Tim Principal Systems Engineer ARKAPRANA akan menelaah spesifikasi kebutuhan Anda dan menghubungi kembali melalui email atau telepon resmi dalam waktu 1x24 jam kerja.
                 </p>
-                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+
+                <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a
-                    href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20${encodeURIComponent(formData.name)}%20(${encodeURIComponent(formData.role)})%20dari%20${encodeURIComponent(formData.company)}%20telah%20mengirimkan%20inquiry%20proyek%20${encodeURIComponent(formData.projectType)}%20dengan%20timeline%20${encodeURIComponent(formData.timeline)}`}
+                    href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20${encodeURIComponent(formData.name)}%20(${encodeURIComponent(formData.position || "Representative")})%20dari%20${encodeURIComponent(formData.company)}%20telah%20mengirimkan%20inquiry%20proyek%20${encodeURIComponent(formData.projectType)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors shadow-md"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Lanjutkan via WhatsApp Langsung</span>
+                    <span>Lanjutkan via WhatsApp Instan</span>
                   </a>
+
+                  {/* Section 26 CTA: Back to ARKAPRANA */}
                   <button
-                    onClick={() => setStatus("idle")}
-                    className="px-6 py-3 rounded-full text-xs font-medium text-neutral-400 hover:text-white bg-white/[0.04] border border-white/[0.08]"
+                    type="button"
+                    onClick={handleBackToHome}
+                    className="w-full sm:w-auto px-6 py-3.5 rounded-full text-xs font-medium text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] transition-all cursor-pointer"
                   >
-                    Kirim Form Baru
+                    Back to ARKAPRANA
                   </button>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 
-                {/* Name, Company, Role */}
+                {/* Name, Company, Position (Section 25 verbatim) */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Nama Lengkap *
+                      Name *
                     </label>
                     <input
                       type="text"
@@ -152,7 +197,7 @@ export default function FinalCtaSection() {
 
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Perusahaan *
+                      Company *
                     </label>
                     <input
                       type="text"
@@ -166,24 +211,23 @@ export default function FinalCtaSection() {
 
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Jabatan / Role *
+                      Position
                     </label>
                     <input
                       type="text"
-                      required
                       placeholder="e.g. IT Director / CTO"
-                      value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                      value={formData.position}
+                      onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
                     />
                   </div>
                 </div>
 
-                {/* Email, Phone */}
+                {/* Email, Phone (Section 25 verbatim) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Email Korporat *
+                      Email *
                     </label>
                     <input
                       type="email"
@@ -197,11 +241,10 @@ export default function FinalCtaSection() {
 
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Telepon / WhatsApp *
+                      Phone
                     </label>
                     <input
                       type="tel"
-                      required
                       placeholder="081X-XXXX-XXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -210,11 +253,11 @@ export default function FinalCtaSection() {
                   </div>
                 </div>
 
-                {/* Industry, Project Type, Timeline */}
+                {/* Industry, Project Type, Estimated Timeline (Section 25 verbatim) */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Sektor Industri
+                      Industry *
                     </label>
                     <select
                       value={formData.industry}
@@ -248,7 +291,7 @@ export default function FinalCtaSection() {
 
                   <div>
                     <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Timeline *
+                      Estimated Timeline
                     </label>
                     <select
                       value={formData.timeline}
@@ -264,12 +307,45 @@ export default function FinalCtaSection() {
                   </div>
                 </div>
 
+                {/* Optional Budget Range (Section 25 verbatim) */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300">
+                      Budget Range (Optional)
+                    </label>
+                    <span className="text-[10px] text-neutral-500 font-mono">
+                      Tidak mengikat / opsional
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {BUDGET_OPTIONS.map((opt) => {
+                      const isSelected = formData.budgetRange === opt;
+                      return (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, budgetRange: opt })}
+                          className={`p-2.5 rounded-xl border text-center text-xs transition-all cursor-pointer ${
+                            isSelected
+                              ? "bg-white/[0.1] border-cyan-400 text-cyan-300"
+                              : "bg-white/[0.02] border-white/[0.06] text-neutral-400 hover:text-white hover:border-white/[0.15]"
+                          }`}
+                        >
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Project Description * (Section 25 verbatim) */}
                 <div>
                   <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                    Project Description
+                    Project Description *
                   </label>
                   <textarea
                     rows={4}
+                    required
                     placeholder="Uraikan gambaran fasilitas, tantangan arsitektur, lokasi, atau target implementasi yang ingin dicapai..."
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -277,12 +353,13 @@ export default function FinalCtaSection() {
                   />
                 </div>
 
+                {/* Section 25 CTA: SUBMIT PROJECT INQUIRY → */}
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-xl hover:shadow-cyan-500/20 active:scale-[0.99] disabled:opacity-50"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-xl hover:shadow-cyan-500/20 active:scale-[0.99] disabled:opacity-50 cursor-pointer"
                 >
-                  <span>{status === "submitting" ? "Processing..." : "Start a Conversation"}</span>
+                  <span>{status === "submitting" ? "Processing..." : "SUBMIT PROJECT INQUIRY →"}</span>
                   <ArrowRight className="w-4 h-4 text-black" />
                 </button>
               </form>
@@ -298,11 +375,11 @@ export default function FinalCtaSection() {
               <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block">
                 Direct Engineering Dispatch
               </span>
-              <h3 className="text-xl font-bold text-white">
+              <h3 className="text-xl font-bold text-white font-sans">
                 Butuh respons cepat untuk proyek mendesak?
               </h3>
               <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                Hubungi saluran WhatsApp terenkripsi atau kirimkan ringkasan kebutuhan Anda langsung kepada prinsipal kami.
+                Hubungi saluran WhatsApp terenkripsi atau kirimkan ringkasan kebutuhan Anda langsung kepada prinsipal arsitek kami.
               </p>
 
               <div className="space-y-3.5 pt-1">
@@ -356,6 +433,23 @@ export default function FinalCtaSection() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Corporate Document Center Trigger (Section 28) */}
+            <div className="bg-[#070b16] rounded-3xl border border-white/[0.08] p-6 space-y-3">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block">
+                Corporate Resources
+              </span>
+              <div className="text-sm font-semibold text-white">
+                Download Company Profile &amp; Statements
+              </div>
+              <p className="text-xs text-neutral-400 leading-relaxed pb-2">
+                Dapatkan dokumen overview resmi seputar rekayasa jaringan, infrastruktur data center, dan kedaulatan private AI ARKAPRANA.
+              </p>
+              <CompanyProfileModal
+                triggerClassName="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-semibold text-white border border-white/[0.1] transition-all cursor-pointer"
+                triggerText="DOWNLOAD COMPANY PROFILE →"
+              />
             </div>
 
             {/* Non-Disclosure Agreement Guarantee */}
