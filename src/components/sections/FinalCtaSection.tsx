@@ -1,0 +1,333 @@
+"use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Mail,
+  Phone,
+  MapPin,
+  CheckCircle2,
+  Sparkles,
+  MessageSquare
+} from "lucide-react";
+import { COMPANY_PROFILE } from "@/lib/data";
+
+const PROJECT_TYPES = [
+  "Network",
+  "Infrastructure",
+  "Cloud",
+  "Cybersecurity",
+  "Managed IT",
+  "AI",
+  "Automation",
+  "System Integration",
+  "Other"
+];
+
+const INDUSTRIES = [
+  "Konstruksi & Proyek",
+  "Manufaktur & Pabrik",
+  "Pelabuhan & Maritim",
+  "Logistik & Pergudangan",
+  "Pemerintahan & BUMN",
+  "Perbankan & Finansial",
+  "Korporasi & Enterprise",
+  "Lainnya"
+];
+
+export default function FinalCtaSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    industry: INDUSTRIES[0],
+    projectType: PROJECT_TYPES[0],
+    description: ""
+  });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("submitting");
+    setTimeout(() => {
+      setStatus("success");
+    }, 800);
+  };
+
+  return (
+    <section id="contact-experience" className="py-28 md:py-36 bg-[#030712] text-white relative overflow-hidden border-t border-white/[0.08]">
+      {/* Ambient background atmosphere */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-cyan-950/20 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute inset-0 bg-tech-grid opacity-15 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Narrative Section Header (Section 19 verbatim) */}
+        <div className="max-w-3xl mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <span>Initiate Collaboration</span>
+          </div>
+
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05] font-sans">
+            Let's Build What's Next.
+          </h2>
+
+          <p className="text-neutral-300 text-base sm:text-xl leading-relaxed pt-2 max-w-2xl font-normal">
+            Tell us what you're building, and let's design the technology behind it.
+          </p>
+
+          <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-xl font-normal">
+            Diskusikan kebutuhan infrastruktur, jaringan, cloud, keamanan siber, atau kecerdasan buatan organisasi Anda langsung bersama tim arsitek teknologi ARKAPRANA.
+          </p>
+        </div>
+
+        {/* Form and Contact Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Column: Interactive Project Inquiry Form (Span 7) */}
+          <div className="lg:col-span-7 bg-[#070b16] rounded-2xl border border-white/[0.12] p-8 sm:p-10 shadow-2xl relative overflow-hidden">
+            
+            {status === "success" ? (
+              <div className="text-center py-12 space-y-5 animate-in fade-in zoom-in-95 duration-200">
+                <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 mx-auto flex items-center justify-center">
+                  <CheckCircle2 className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">
+                  Permintaan Konsultasi Diterima
+                </h3>
+                <p className="text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">
+                  Terima kasih, <span className="text-white font-semibold">{formData.name}</span>. Tim Principal Engineer ARKAPRANA akan menelaah spesifikasi kebutuhan Anda dan menghubungi kembali dalam waktu kurang dari 24 jam kerja.
+                </p>
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20${encodeURIComponent(formData.name)}%20dari%20${encodeURIComponent(formData.company)}%20telah%20mengirimkan%20inquiry%20proyek%20${encodeURIComponent(formData.projectType)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    <span>Lanjutkan via WhatsApp Langsung</span>
+                  </a>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="px-6 py-3 rounded-full text-xs font-medium text-neutral-400 hover:text-white bg-white/[0.04] border border-white/[0.08]"
+                  >
+                    Kirim Form Baru
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Nama Lengkap *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Ir. Budi Santoso"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Perusahaan / Organisasi *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. PT Nusantara Maritime"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Alamat Email *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="name@company.co.id"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Nomor Telepon / WhatsApp *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="081X-XXXX-XXXX"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Sektor Industri
+                    </label>
+                    <select
+                      value={formData.industry}
+                      onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#0a1020] border border-white/[0.1] text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400 transition-colors"
+                    >
+                      {INDUSTRIES.map((ind) => (
+                        <option key={ind} value={ind} className="bg-[#0a1020] text-white">
+                          {ind}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Tipe Proyek (Project Type) *
+                    </label>
+                    <select
+                      value={formData.projectType}
+                      onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#0a1020] border border-white/[0.1] text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400 transition-colors"
+                    >
+                      {PROJECT_TYPES.map((pt) => (
+                        <option key={pt} value={pt} className="bg-[#0a1020] text-white">
+                          {pt}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    Deskripsi Kebutuhan Proyek (Project Description)
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="Uraikan gambaran fasilitas, tantangan konektivitas/arsitektur, perkiraan lokasi, atau target implementasi yang ingin dicapai..."
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors resize-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all duration-200 shadow-xl hover:shadow-cyan-500/20 active:scale-[0.99] disabled:opacity-50"
+                >
+                  <span>{status === "submitting" ? "Processing..." : "Start a Conversation"}</span>
+                  <ArrowRight className="w-4 h-4 text-black" />
+                </button>
+              </form>
+            )}
+
+          </div>
+
+          {/* Right Column: Direct Channels & Sovereign Guarantee (Span 5) */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Direct Connect Box */}
+            <div className="bg-[#070b16] rounded-2xl border border-white/[0.1] p-6 sm:p-8 space-y-6">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block">
+                Direct Engineering Line
+              </span>
+              <h3 className="text-xl font-bold text-white">
+                Butuh respons segera untuk proyek kritis?
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                Hubungi saluran komunikasi terenkripsi atau kirimkan ringkasan kebutuhan Anda secara langsung kepada tim prinsipal kami.
+              </p>
+
+              <div className="space-y-4 pt-2">
+                <a
+                  href={COMPANY_PROFILE.contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-emerald-500/40 hover:bg-emerald-950/20 transition-all group"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-semibold text-white group-hover:text-emerald-300 transition-colors">
+                      {COMPANY_PROFILE.contact.phone} (WhatsApp)
+                    </div>
+                    <div className="text-[10px] font-mono text-neutral-400">
+                      Direct WhatsApp Dispatch • Immediate Response
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href={`mailto:${COMPANY_PROFILE.contact.email}`}
+                  className="flex items-center space-x-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-cyan-500/40 hover:bg-cyan-950/20 transition-all group"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-semibold text-white group-hover:text-cyan-300 transition-colors">
+                      {COMPANY_PROFILE.contact.email}
+                    </div>
+                    <div className="text-[10px] font-mono text-neutral-400">
+                      Official Project Desk • Response &lt; 24h
+                    </div>
+                  </div>
+                </a>
+
+                <div className="flex items-center space-x-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+                  <div className="w-9 h-9 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-neutral-300 shrink-0">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-semibold text-white">
+                      {COMPANY_PROFILE.contact.address}
+                    </div>
+                    <div className="text-[10px] font-mono text-neutral-400">
+                      Nationwide Implementation Capabilities
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Credibility & Sovereign Compliance Badge */}
+            <div className="bg-[#070b16] rounded-2xl border border-white/[0.08] p-6 text-xs text-neutral-400 space-y-2">
+              <div className="flex items-center gap-2 text-white font-medium">
+                <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                <span>Non-Disclosure &amp; Confidentiality Guarantee</span>
+              </div>
+              <p className="text-[11.5px] text-neutral-400 leading-relaxed">
+                Setiap data teknis, denah fasilitas, dan spesifikasi arsitektur yang Anda bagikan dilindungi dengan standar kerahasiaan ketat (NDA) sebelum kajian teknis dimulai.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}

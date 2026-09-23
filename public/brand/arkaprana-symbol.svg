@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <!-- Left Leg Silver Gradient -->
+    <linearGradient id="ark-left-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="40%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+
+    <!-- Right Leg Cyan/Blue Gradient -->
+    <linearGradient id="ark-right-grad" x1="20%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0F2FE" />
+      <stop offset="35%" stop-color="#38BDF8" />
+      <stop offset="80%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#0369A1" />
+    </linearGradient>
+
+    <!-- Wave Gradient -->
+    <linearGradient id="ark-wave-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="30%" stop-color="#BAE6FD" />
+      <stop offset="70%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Left Main Leg -->
+  <path
+    d="M 43 14 L 50 14 L 50 36 L 24 86 L 8 86 L 43 14 Z"
+    fill="url(#ark-left-grad)"
+  />
+
+  <!-- Right Main Leg -->
+  <path
+    d="M 50 14 L 57 14 L 92 86 L 76 86 L 50 36 Z"
+    fill="url(#ark-right-grad)"
+  />
+
+  <!-- Fluid Aerodynamic Crosswave -->
+  <path
+    d="M 33 60 C 42 53 50 51 60 56 C 68 60 74 72 88 84 C 84 86 78 86 72 85 C 64 76 58 66 50 63 C 42 60 37 62 33 60 Z"
+    fill="url(#ark-wave-grad)"
+  />
+</svg>

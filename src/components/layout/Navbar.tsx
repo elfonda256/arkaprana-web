@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import { SOLUTIONS } from "@/lib/data";
+import BrandLogo from "@/components/brand/BrandLogo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,48 +26,46 @@ export default function Navbar() {
     setSolutionsDropdown(false);
   }, [pathname]);
 
+  // Menu items strictly matching Section 07 specifications:
+  // Solutions | Industries | Capabilities | Insights | About
   const navLinks = [
     { label: "Solutions", href: "/solutions", hasDropdown: true },
     { label: "Industries", href: "/industries" },
-    { label: "Projects", href: "/projects" },
+    { label: "Capabilities", href: "/#architecture" },
     { label: "Insights", href: "/insights" },
     { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" }
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#030712]/80 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-2xl"
+          ? "bg-[#030712]/85 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-2xl"
           : "bg-transparent border-b border-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Official Brand Logo */}
-          <Link href="/" className="group flex items-center transition-opacity hover:opacity-95">
-            <div className="relative h-8 sm:h-9.5 w-auto flex items-center">
-              <Image
-                src="/images/logo-horizontal.png"
-                alt="PT ARKAPRANA TEKNOLOGI NUSANTARA"
-                width={239}
-                height={40}
-                priority
-                className="h-7.5 sm:h-8.5 w-auto object-contain max-w-[210px] sm:max-w-[240px]"
-              />
-            </div>
+          {/* Official Brand Logo - strictly [SYMBOL] ARKAPRANA (no legal name in header) */}
+          <Link
+            href="/"
+            className="group flex items-center transition-opacity hover:opacity-90"
+            aria-label="ARKAPRANA Homepage"
+          >
+            <BrandLogo variant="dark" size="md" showWordmark={true} showDescriptor={false} />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+              const isActive =
+                pathname === link.href ||
+                (link.href.startsWith("/solutions") && pathname.startsWith("/solutions"));
 
               if (link.hasDropdown) {
                 return (
                   <div
-                    key={link.href}
+                    key={link.label}
                     className="relative"
                     onMouseEnter={() => setSolutionsDropdown(true)}
                     onMouseLeave={() => setSolutionsDropdown(false)}
@@ -143,7 +141,7 @@ export default function Navbar() {
 
               return (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
                   className={`px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-md transition-colors ${
                     isActive
@@ -157,7 +155,7 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Header Action Button (Clean Pill) */}
+          {/* Header Action Button (Clean Pill: Discuss Project) */}
           <div className="hidden md:flex items-center space-x-3">
             <Link
               href="/contact"
@@ -181,30 +179,33 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#030712]/98 backdrop-blur-2xl border-b border-white/[0.08] px-4 pt-3 pb-6 space-y-1.5 animate-in fade-in slide-in-from-top-4 duration-200">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`block px-3.5 py-2.5 rounded-lg text-xs font-medium transition-colors ${
-                pathname === link.href
-                  ? "text-white bg-white/[0.08] border-l-2 border-cyan-400"
-                  : "text-neutral-400 hover:text-white hover:bg-white/[0.04]"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="pt-3 px-1">
+        <div className="md:hidden bg-[#030712]/98 backdrop-blur-2xl border-b border-white/[0.08] px-4 pt-3 pb-6 animate-in slide-in-from-top duration-200">
+          <div className="space-y-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-neutral-300 hover:text-white hover:bg-white/5 transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="pt-4 mt-3 border-t border-white/[0.08] space-y-3">
             <Link
               href="/contact"
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-medium text-black bg-white hover:bg-neutral-200 transition-colors shadow-sm"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-medium text-black bg-white hover:bg-neutral-200 transition-colors"
             >
               <span>Discuss Project</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
+            <div className="px-3 text-[11px] text-neutral-500 flex justify-between">
+              <span>Jakarta, Indonesia</span>
+              <span>elfano2156@gmail.com</span>
+            </div>
           </div>
         </div>
       )}

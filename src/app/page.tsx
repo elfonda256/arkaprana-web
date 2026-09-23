@@ -2,17 +2,16 @@ import React from "react";
 import HeroSection from "@/components/sections/HeroSection";
 import StatementSection from "@/components/sections/StatementSection";
 import SolutionsSection from "@/components/sections/SolutionsSection";
-import MeetAiSection from "@/components/sections/MeetAiSection";
 import ArchitectureSection from "@/components/sections/ArchitectureSection";
 import IndustriesSection from "@/components/sections/IndustriesSection";
-import LifecycleSection from "@/components/sections/LifecycleSection";
-import EngagementSection from "@/components/sections/EngagementSection";
-import FutureVisionSection from "@/components/sections/FutureVisionSection";
+import MeetAiSection from "@/components/sections/MeetAiSection";
+import InsightsSection from "@/components/sections/InsightsSection";
+import FinalCtaSection from "@/components/sections/FinalCtaSection";
 
 export const metadata = {
   title: "ARKAPRANA | Technology & Intelligent Solutions",
   description:
-    "ARKAPRANA adalah perusahaan teknologi Indonesia yang menghadirkan solusi IT Infrastructure, Network, Cloud, Cybersecurity, Managed IT, System Integration dan Artificial Intelligence berdaulat.",
+    "ARKAPRANA adalah perusahaan teknologi Indonesia yang menghadirkan solusi infrastructure, network, cloud, cybersecurity, managed IT, system integration, automation dan artificial intelligence.",
   keywords: [
     "IT Infrastructure Indonesia",
     "Network Infrastructure Indonesia",
@@ -23,39 +22,36 @@ export const metadata = {
     "Artificial Intelligence Indonesia",
     "Private AI Indonesia",
     "Enterprise AI Indonesia",
-    "Data Center Indonesia"
-  ]
+    "Data Center Indonesia",
+  ],
 };
 
 export default function HomePage() {
   return (
     <main className="flex-1">
-      {/* 01. Hook & Monumental Brand Statement */}
+      {/* 01. [DARK] Monumental Brand Hero: BUILD. CONNECT. INTELLIGENCE. */}
       <HeroSection />
 
-      {/* 02. The Arkaprana Thesis (Large Typographic Transition) */}
+      {/* 02. [LIGHT] Arkaprana Thesis Transition: "Technology shouldn't be fragmented." */}
       <StatementSection />
 
-      {/* 03. Solutions Presented as High-Value Products */}
+      {/* 03. [LIGHT] Productized Architecture & Solutions as Products */}
       <SolutionsSection />
 
-      {/* 04. Dedicated Apple/Vercel-Grade Launch Section for ARKAPRANA AI */}
-      <MeetAiSection />
-
-      {/* 05. The ARKAPRANA Stack: Full-Stack Vertical Interactive Inspector */}
+      {/* 04. [DARK] ARKAPRANA Technology Stack: 6-Tier Interactive Inspector */}
       <ArchitectureSection />
 
-      {/* 06. Built for Critical Environments (Strategic Industry Clusters) */}
+      {/* 05. [LIGHT] Editorial Industry Storytelling: Technology for Critical Environments */}
       <IndustriesSection />
 
-      {/* 07. Methodology & Governance (Phase Gates) */}
-      <LifecycleSection />
+      {/* 06. [DARK] ARKAPRANA AI Launch & Enterprise Knowledge Assistant Mock */}
+      <MeetAiSection />
 
-      {/* 08. Engagement Architecture (How We Partner) */}
-      <EngagementSection />
+      {/* 07. [LIGHT] Editorial Technology Magazine: ARKAPRANA Insights */}
+      <InsightsSection />
 
-      {/* 09. Authoritative Closing Vision & CTAs */}
-      <FutureVisionSection />
+      {/* 08. [DARK] Final Storytelling CTA & Interactive Contact Desk */}
+      <FinalCtaSection />
     </main>
   );
 }

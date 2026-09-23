@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" fill="none">
+  <defs>
+    <linearGradient id="nav-sym-left-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="50%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+    <linearGradient id="nav-sym-right-light" x1="20%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="50%" stop-color="#0369A1" />
+      <stop offset="100%" stop-color="#0C4A6E" />
+    </linearGradient>
+    <linearGradient id="nav-sym-wave-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#0369A1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Emblem Group -->
+  <g transform="translate(6, 6) scale(0.48)">
+    <path d="M 43 14 L 50 14 L 50 36 L 24 86 L 8 86 L 43 14 Z" fill="url(#nav-sym-left-light)" />
+    <path d="M 50 14 L 57 14 L 92 86 L 76 86 L 50 36 Z" fill="url(#nav-sym-right-light)" />
+    <path d="M 33 60 C 42 53 50 51 60 56 C 68 60 74 72 88 84 C 84 86 78 86 72 85 C 64 76 58 66 50 63 C 42 60 37 62 33 60 Z" fill="url(#nav-sym-wave-light)" />
+  </g>
+
+  <!-- Wordmark: ARKAPRANA (Modern Deep Carbon Navy for Light Theme) -->
+  <text
+    x="68"
+    y="39"
+    fill="#090D16"
+    font-family="system-ui, -apple-system, 'Inter', 'Geist', 'Space Grotesk', sans-serif"
+    font-size="27"
+    font-weight="700"
+    letter-spacing="0.14em"
+  >ARKAPRANA</text>
+</svg>

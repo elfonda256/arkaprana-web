@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ARKAPRANA | Technology & Intelligent Solutions",
   description:
-    "ARKAPRANA adalah perusahaan teknologi Indonesia yang menghadirkan solusi IT Infrastructure, Network, Cloud, Cybersecurity, Managed IT, System Integration dan Artificial Intelligence.",
+    "ARKAPRANA adalah perusahaan teknologi Indonesia yang menghadirkan solusi infrastructure, network, cloud, cybersecurity, managed IT, system integration, automation dan artificial intelligence.",
   keywords: [
     "IT Infrastructure Indonesia",
     "Network Infrastructure Indonesia",
@@ -29,20 +29,28 @@ export const metadata: Metadata = {
     "Private AI Indonesia",
     "Enterprise AI Indonesia",
     "AI Automation Indonesia",
-    "Data Center Indonesia"
+    "Data Center Indonesia",
   ],
+  icons: {
+    icon: [
+      { url: "/brand/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+    apple: "/brand/favicon.svg",
+  },
   authors: [{ name: "PT ARKAPRANA TEKNOLOGI NUSANTARA" }],
   creator: "ARKAPRANA",
   publisher: "PT ARKAPRANA TEKNOLOGI NUSANTARA",
   metadataBase: new URL("https://arkaprana.com"),
   openGraph: {
     title: "ARKAPRANA | Technology & Intelligent Solutions",
-    description: "Build. Connect. Intelligence. Solusi infrastruktur teknologi dan kecerdasan buatan enterprise.",
+    description:
+      "ARKAPRANA adalah perusahaan teknologi Indonesia yang menghadirkan solusi infrastructure, network, cloud, cybersecurity, managed IT, system integration, automation dan artificial intelligence.",
     url: "https://arkaprana.com",
     siteName: "ARKAPRANA",
     locale: "id_ID",
-    type: "website"
-  }
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -56,18 +64,19 @@ export default function RootLayout({
     name: "PT ARKAPRANA TEKNOLOGI NUSANTARA",
     alternateName: "ARKAPRANA",
     url: "https://arkaprana.com",
-    description: "Technology & Intelligent Solutions Company di Indonesia.",
+    description:
+      "ARKAPRANA adalah perusahaan teknologi Indonesia yang menghadirkan solusi infrastructure, network, cloud, cybersecurity, managed IT, system integration, automation dan artificial intelligence.",
     slogan: "BUILD. CONNECT. INTELLIGENCE.",
     address: {
       "@type": "PostalAddress",
-      addressCountry: "ID"
+      addressCountry: "ID",
     },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "Customer Support & Enterprise Inquiries",
       email: "elfano2156@gmail.com",
-      telephone: "+62-816-997-963"
-    }
+      telephone: "+62-816-997-963",
+    },
   };
 
   return (
