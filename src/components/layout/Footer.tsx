@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, MapPin, ArrowUpRight, MessageSquare } from "lucide-react";
 import { SOLUTIONS, INDUSTRIES, COMPANY_PROFILE } from "@/lib/data";
 
 export default function Footer() {
@@ -13,9 +14,15 @@ export default function Footer() {
           
           {/* Brand Column (Span 2) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-flex items-center space-x-2.5 group">
-              <div className="flex items-center justify-center w-7 h-7 rounded-md bg-white/[0.05] border border-white/[0.1]">
-                <span className="font-mono text-white font-bold text-xs">A</span>
+            <Link href="/" className="inline-flex items-center space-x-3 group">
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden border border-white/[0.12] bg-[#030712] shadow-sm group-hover:border-cyan-400/50 transition-colors shrink-0">
+                <Image
+                  src="/images/logo-icon.png"
+                  alt="ARKAPRANA Emblem"
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="text-base font-semibold tracking-wider text-white font-sans">
                 ARKAPRANA
@@ -127,7 +134,14 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                <span>{COMPANY_PROFILE.contact.phone}</span>
+                <a
+                  href={COMPANY_PROFILE.contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  {COMPANY_PROFILE.contact.phone} (WhatsApp)
+                </a>
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { COMPANY_PROFILE } from "@/lib/data";
-import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, Clock, ArrowRight } from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -264,9 +264,28 @@ export default function ContactPage() {
                 <div className="flex items-start space-x-3 text-slate-300">
                   <Phone className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold text-white">Corporate Telephony</div>
-                    <p className="text-slate-400 mt-0.5">{COMPANY_PROFILE.contact.phone}</p>
+                    <div className="font-semibold text-white">Direct Line / WhatsApp</div>
+                    <a
+                      href={COMPANY_PROFILE.contact.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-cyan-400 hover:underline block mt-0.5"
+                    >
+                      {COMPANY_PROFILE.contact.phone}
+                    </a>
                   </div>
+                </div>
+
+                <div className="pt-2">
+                  <a
+                    href={COMPANY_PROFILE.contact.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all shadow-sm"
+                  >
+                    <span>Chat via WhatsApp ({COMPANY_PROFILE.contact.phone})</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
 

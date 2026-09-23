@@ -65,7 +65,8 @@ export default function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "Customer Support & Enterprise Inquiries",
-      email: "hello@arkaprana.com"
+      email: "elfano2156@gmail.com",
+      telephone: "+62-816-997-963"
     }
   };
 

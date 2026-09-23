@@ -522,9 +522,11 @@ export const COMPANY_PROFILE = {
     "Menjadi technology partner jangka panjang bagi organisasi."
   ],
   contact: {
-    email: "hello@arkaprana.com",
-    phone: "+62 21 8060 8899",
-    address: "ARKAPRANA Technology Tower, Jakarta Digital Corridor, Indonesia",
+    email: "elfano2156@gmail.com",
+    phone: "0816-997-963",
+    whatsapp: "0816-997-963",
+    whatsappUrl: "https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20ingin%20berkonsultasi%20mengenai%20solusi%20teknologi",
+    address: "Noble House Lantai 28, Mega Kuningan, Jakarta Selatan 12950",
     country: "Indonesia"
   }
 };
