@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { INDUSTRIES } from "@/lib/data";
 import {
@@ -16,7 +16,10 @@ import {
   BadgeDollarSign,
   GraduationCap,
   HeartPulse,
-  ArrowRight
+  ArrowRight,
+  ShieldCheck,
+  Zap,
+  Activity
 } from "lucide-react";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -34,72 +37,145 @@ const iconMap: Record<string, React.ElementType> = {
   HeartPulse
 };
 
+// Strategic Cluster Definitions
+const CLUSTERS = [
+  { id: "all", label: "All Critical Sectors" },
+  { id: "heavy", label: "Heavy Industry & Maritime" },
+  { id: "enterprise", label: "Governance & Finance" },
+  { id: "infrastructure", label: "Critical Facilities & Healthcare" }
+];
+
+const industryClusters: Record<string, "heavy" | "enterprise" | "infrastructure"> = {
+  "Manufaktur & Pabrik": "heavy",
+  "Pelabuhan & Maritim": "heavy",
+  "Pertambangan & Energi": "heavy",
+  "Logistik & Pergudangan": "heavy",
+  "Konstruksi & Proyek": "heavy",
+  "Pemerintahan & BUMN": "enterprise",
+  "Perbankan & Fintech": "enterprise",
+  "Korporasi & Perkantoran": "enterprise",
+  "Pendidikan & Kampus": "enterprise",
+  "Kawasan Komersial": "infrastructure",
+  "Perhotelan & Hospitality": "infrastructure",
+  "Rumah Sakit & Kesehatan": "infrastructure"
+};
+
 export default function IndustriesSection() {
+  const [activeCluster, setActiveCluster] = useState<string>("all");
+
+  const filteredIndustries = INDUSTRIES.filter((ind) => {
+    if (activeCluster === "all") return true;
+    return industryClusters[ind.name] === activeCluster;
+  });
+
   return (
-    <section id="industries" className="py-24 bg-[#040915] border-t border-b border-white/5 relative overflow-hidden">
+    <section id="industries" className="py-28 md:py-36 bg-[#040814] border-t border-b border-white/[0.06] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
-            <span>SECTOR SPECIALIZATION</span>
+        
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <span>Built For Critical Environments</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Technology for Every Critical Environment.
+          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+            Engineered where failure
+            <span className="block text-neutral-400 font-normal">
+              is not an acceptable option.
+            </span>
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Setiap sektor industri menghadapi tantangan keandalan dan regulasi yang unik. Kami merekayasa solusi spesifik yang teruji untuk beban operasional kritis.
+          <p className="text-neutral-400 text-sm sm:text-base leading-relaxed pt-1">
+            Dari anjungan lepas pantai maritim hingga pusat data lembaga keuangan terpusat, ARKAPRANA merekayasa sistem yang sanggup bertahan di lingkungan paling menuntut.
           </p>
         </div>
 
-        {/* 12 Industry Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {INDUSTRIES.map((ind) => {
+        {/* Cluster Selector Filter Pills */}
+        <div className="flex flex-wrap gap-2 mb-12">
+          {CLUSTERS.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => setActiveCluster(c.id)}
+              className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide transition-all ${
+                activeCluster === c.id
+                  ? "bg-white text-black font-semibold shadow-sm"
+                  : "bg-white/[0.04] text-neutral-400 hover:text-white border border-white/[0.08]"
+              }`}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Editorial Sector Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredIndustries.map((ind) => {
             const Icon = iconMap[ind.icon] || Building;
 
             return (
               <div
                 key={ind.name}
-                className="p-6 rounded-2xl bg-gradient-to-b from-[#081329] to-[#040817] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col justify-between"
+                className="p-7 rounded-2xl bg-[#060a15] border border-white/[0.08] hover:border-white/[0.2] transition-all duration-300 group flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-105 group-hover:border-cyan-400 transition-all">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-cyan-400 group-hover:scale-105 group-hover:border-cyan-400/40 transition-all">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">
-                      {ind.name}
-                    </h3>
-                  </div>
-
-                  <div className="mb-3">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 block mb-1">
-                      Solutions for:
+                    <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">
+                      Mission Critical
                     </span>
-                    <p className="text-xs font-medium text-slate-200">
-                      {ind.solutions}
-                    </p>
                   </div>
 
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-2">
+                    {ind.name}
+                  </h3>
+
+                  <p className="text-xs text-neutral-400 leading-relaxed mb-6">
                     {ind.description}
                   </p>
+
+                  <div className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.04] mb-6">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block mb-1">
+                      Targeted Ecosystem Architecture:
+                    </span>
+                    <span className="text-xs font-medium text-neutral-200 block">
+                      {ind.solutions}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/5">
+                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
                   <Link
                     href={`/contact?industry=${encodeURIComponent(ind.name)}`}
-                    className="text-[11px] font-semibold text-slate-400 hover:text-cyan-400 flex items-center group/item transition-colors"
+                    className="text-xs font-medium text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors"
                   >
-                    <span>Consult Industry Needs</span>
-                    <ArrowRight className="w-3 h-3 ml-1 group-hover/item:translate-x-1 transition-transform" />
+                    <span>Consult Industry Architecture</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
                   </Link>
                 </div>
               </div>
             );
           })}
         </div>
+
+        {/* Bottom Strategic Banner */}
+        <div className="mt-16 p-8 rounded-2xl bg-[#060a14] border border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="space-y-1 text-center sm:text-left">
+            <h4 className="text-base font-bold text-white">Have Highly Regulated or Remote Deployment Needs?</h4>
+            <p className="text-xs text-neutral-400 max-w-xl">
+              Spesialis arsitek industri ARKAPRANA siap melakukan site survey mendalam dan menyusun kajian teknis kelayakan untuk fasilitas Anda.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="shrink-0 px-5 py-2.5 rounded-full text-xs font-semibold text-black bg-white hover:bg-neutral-200 transition-all shadow-sm"
+          >
+            Schedule Technical Assessment
+          </Link>
+        </div>
+
       </div>
     </section>
   );

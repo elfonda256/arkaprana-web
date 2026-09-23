@@ -3,26 +3,31 @@
 import React from "react";
 import Link from "next/link";
 import { BUSINESS_ENGAGEMENT_MODELS } from "@/lib/data";
-import { ArrowRight, CheckCircle, Briefcase, RefreshCw, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Briefcase, RefreshCw, Sparkles } from "lucide-react";
 
 const icons = [Briefcase, RefreshCw, Sparkles];
 
 export default function EngagementSection() {
   return (
-    <section className="py-24 bg-[#040817] border-t border-b border-white/5 relative overflow-hidden">
+    <section className="py-28 md:py-36 bg-[#030712] border-t border-white/[0.06] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
-            <span>ENGAGEMENT ARCHITECTURE</span>
+        
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <span>Engagement Models</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            How We Partner
+          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+            How we partner.
+            <span className="block text-neutral-400 font-normal">
+              Structured for long-term operational velocity.
+            </span>
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Dari inisiatif proyek awal hingga kontrak layanan terkelola berkesinambungan (managed services), ARKAPRANA mendampingi evolusi teknologi organisasi Anda di setiap fase.
+          <p className="text-neutral-400 text-sm sm:text-base leading-relaxed pt-1">
+            Dari inisiatif proyek khusus hingga kontrak kemitraan teknologi jangka panjang terkelola (managed engineering).
           </p>
         </div>
 
@@ -35,36 +40,41 @@ export default function EngagementSection() {
             return (
               <div
                 key={model.id}
-                className={`flex flex-col justify-between p-8 rounded-2xl border transition-all duration-300 ${
+                className={`flex flex-col justify-between p-8 sm:p-9 rounded-2xl border transition-all duration-300 ${
                   isHighlight
-                    ? "bg-gradient-to-b from-[#0a1738] to-[#050c20] border-cyan-500/40 shadow-2xl shadow-cyan-950/40"
-                    : "bg-[#060e22]/70 border-white/10 hover:border-cyan-500/30"
+                    ? "bg-[#070d1e] border-cyan-400/40 shadow-xl shadow-cyan-950/30"
+                    : "bg-[#060a14] border-white/[0.08] hover:border-white/[0.2]"
                 }`}
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6">
-                    <Icon className="w-6 h-6" />
+                  <div className="flex items-center justify-between pb-5 mb-5 border-b border-white/[0.06]">
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-cyan-400">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">
+                      Model 0{idx + 1}
+                    </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-1">
+                  <h3 className="text-xl font-bold text-white mb-1.5">
                     {model.name}
                   </h3>
 
-                  <p className="text-xs font-mono text-cyan-400/90 uppercase tracking-wider mb-4">
+                  <p className="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-4">
                     {model.tagline}
                   </p>
 
-                  <p className="text-xs text-slate-300 leading-relaxed mb-6">
+                  <p className="text-xs text-neutral-400 leading-relaxed mb-6">
                     {model.description}
                   </p>
 
-                  <div className="space-y-2.5 pt-4 border-t border-white/10 mb-8">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
+                  <div className="space-y-2.5 pt-5 border-t border-white/[0.06] mb-8">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block mb-2">
                       Engagement Scope:
                     </span>
                     {model.deliverables.map((item) => (
-                      <div key={item} className="flex items-start text-xs text-slate-300 space-x-2">
-                        <CheckCircle className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                      <div key={item} className="flex items-start text-xs text-neutral-300 space-x-2.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -74,7 +84,11 @@ export default function EngagementSection() {
                 <div>
                   <Link
                     href={`/contact?engagement=${encodeURIComponent(model.id)}`}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-semibold uppercase tracking-wider text-white bg-white/5 hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-400 transition-colors"
+                    className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full text-xs font-medium tracking-wide transition-all ${
+                      isHighlight
+                        ? "bg-white text-black hover:bg-neutral-200 shadow-sm"
+                        : "bg-white/[0.04] text-neutral-300 hover:text-white hover:bg-white/[0.08] border border-white/[0.1]"
+                    }`}
                   >
                     <span>Discuss {model.name}</span>
                     <ArrowRight className="w-3.5 h-3.5" />

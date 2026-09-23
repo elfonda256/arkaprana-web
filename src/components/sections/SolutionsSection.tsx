@@ -11,7 +11,10 @@ import {
   BrainCircuit,
   Workflow,
   ArrowRight,
-  CheckCircle2
+  Terminal,
+  Activity,
+  Layers,
+  ChevronRight
 } from "lucide-react";
 import { SOLUTIONS } from "@/lib/data";
 
@@ -25,116 +28,190 @@ const iconMap: Record<string, React.ElementType> = {
   Workflow
 };
 
+const solutionTaglines: Record<string, { tagline: string; specs: string[] }> = {
+  network: {
+    tagline: "Connect everything. Instantly. Securely.",
+    specs: ["Sub-millisecond core routing", "SD-WAN & MPLS integration", "Carrier-neutral optical backbone", "Zero-Trust Network Access (ZTNA)"]
+  },
+  infra: {
+    tagline: "Compute where it matters. Resilient & scalable.",
+    specs: ["Tier-3+ modular datacenter topology", "Enterprise compute & NVMe storage", "Automated multi-region failover", "Direct optical interconnects"]
+  },
+  cloud: {
+    tagline: "Sovereign on-premise cloud & agile hybrid clusters.",
+    specs: ["Strict data residency control", "Distributed object storage vaults", "High-performance virtualization", "Automated multi-cloud failover"]
+  },
+  secure: {
+    tagline: "Absolute perimeter defense & zero-trust resilience.",
+    specs: ["Zero-Trust continuous verification", "Automated SOC & threat hunting", "Hardware Security Module (HSM)", "ISO 27001 & BSSN alignment"]
+  },
+  managed: {
+    tagline: "Autonomous reliability and 24/7 dedicated engineering.",
+    specs: ["99.99% guaranteed SLA uptime", "Proactive telemetry & observability", "Rapid incident response matrix", "Lifecycle capacity optimization"]
+  },
+  ai: {
+    tagline: "Private intelligence built for critical enterprise workflows.",
+    specs: ["On-premise LLM & RAG pipelines", "Air-gapped deployment option", "Role-based contextual synthesis", "Zero data leakage guarantee"]
+  },
+  integration: {
+    tagline: "Turnkey architecture, procurement, & seamless systems delivery.",
+    specs: ["Turnkey enterprise IT blueprints", "Vendor-agnostic hardware procurement", "Full commissioning & acceptance tests", "Executive & admin knowledge transfer"]
+  }
+};
+
 export default function SolutionsSection() {
+  const flagshipSolutions = SOLUTIONS.filter((s) => s.id === "network" || s.id === "infra");
+  const secondarySolutions = SOLUTIONS.filter((s) => s.id !== "network" && s.id !== "infra");
+
   return (
-    <section id="solutions" className="py-24 bg-[#030712] relative overflow-hidden">
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
+    <section id="solutions" className="py-28 md:py-36 bg-[#030712] relative overflow-hidden">
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 bg-tech-grid opacity-15 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/50 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
-            <span>COMPREHENSIVE TECHNOLOGY ECOSYSTEM</span>
+        <div className="max-w-3xl mb-20 space-y-4">
+          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <span>Productized Architecture</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Our Solutions
+          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+            Engineered as products.
+            <span className="block text-neutral-400 font-normal">
+              Integrated as one sovereign platform.
+            </span>
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Tujuh pilar solusi rekayasa teknologi komprehensif—menjembatani kebutuhan komputasi fisik, transmisi data berkecepatan tinggi, hingga otomasi kecerdasan buatan berdaulat.
+          <p className="text-neutral-400 text-sm sm:text-base leading-relaxed pt-2">
+            Setiap kemampuan ARKAPRANA dibangun dengan standar arsitektur industri tingkat tinggi—menghilangkan kompleksitas vendor yang terfragmentasi.
           </p>
         </div>
 
-        {/* 7 Solutions Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {SOLUTIONS.map((sol) => {
-            const Icon = iconMap[sol.iconName] || Server;
-            const isFeatured = sol.id === "ai" || sol.id === "network";
+        {/* Flagship Solutions (Wide 2-Column Showcase) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+          {flagshipSolutions.map((sol, index) => {
+            const Icon = iconMap[sol.iconName] || Network;
+            const meta = solutionTaglines[sol.id] || { tagline: sol.tagline, specs: sol.capabilities };
 
             return (
               <div
                 key={sol.id}
-                className={`relative flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-glass-card border transition-all duration-300 group hover:-translate-y-1.5 ${
-                  isFeatured
-                    ? "border-cyan-500/40 shadow-xl shadow-cyan-950/30"
-                    : "border-white/10 hover:border-cyan-500/30"
-                }`}
+                className="relative rounded-2xl bg-[#060a14] border border-white/[0.1] hover:border-white/[0.22] p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 group"
               >
-                {/* Ambient Card Corner Glow */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-cyan-500/10 transition-colors" />
-
                 <div>
-                  {/* Card Header (Icon & Badge) */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 group-hover:scale-105 transition-all shadow-lg shadow-cyan-950/50">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-400/90 px-2.5 py-1 rounded bg-white/5 border border-white/5">
-                      {sol.badge}
+                  {/* Top Metadata Bar */}
+                  <div className="flex items-center justify-between pb-6 mb-6 border-b border-white/[0.08]">
+                    <span className="text-2xl font-mono font-semibold text-neutral-400 group-hover:text-cyan-400 transition-colors">
+                      0{index + 1}
+                    </span>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08]">
+                      {sol.category}
                     </span>
                   </div>
 
-                  {/* Title & Category */}
-                  <div className="mb-3">
-                    <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors font-sans">
-                      {sol.name}
-                    </h3>
-                    <p className="text-xs font-mono uppercase text-slate-400 tracking-wider">
-                      {sol.category}
-                    </p>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-xs text-slate-300 leading-relaxed mb-5">
+                  {/* Product Title & Tagline */}
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">
+                    {sol.name}
+                  </h3>
+                  <p className="text-base text-cyan-300 font-medium mb-4">
+                    “{meta.tagline}”
+                  </p>
+                  <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed mb-8">
                     {sol.description}
                   </p>
 
-                  {/* Capabilities List */}
-                  <div className="space-y-2 pt-4 border-t border-white/5 mb-6">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-2">
-                      Key Deliverables:
+                  {/* Engineering Specifications */}
+                  <div className="space-y-2.5 pt-6 border-t border-white/[0.06] mb-8">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block mb-3">
+                      Architectural Specs:
                     </span>
-                    {sol.capabilities.slice(0, 4).map((cap) => (
-                      <div key={cap} className="flex items-start text-xs text-slate-300 space-x-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                        <span className="line-clamp-1">{cap}</span>
-                      </div>
-                    ))}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                      {meta.specs.map((spec) => (
+                        <div key={spec} className="flex items-center space-x-2 text-neutral-300">
+                          <span className="w-1 h-1 rounded-full bg-cyan-400 shrink-0" />
+                          <span className="text-xs leading-snug">{spec}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Footer Action */}
-                <div className="pt-2">
+                {/* Bottom Action Link */}
+                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
                   <Link
                     href={`/solutions/${sol.slug}`}
-                    className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-cyan-400 hover:text-cyan-300 group/link transition-colors"
+                    className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-white hover:text-cyan-300 group-hover:translate-x-1 transition-all gap-1.5"
                   >
-                    <span>Explore Solution</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover/link:translate-x-1 transition-transform" />
+                    <span>Explore Architecture</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
                   </Link>
+                  <span className="text-[10px] font-mono text-neutral-400">{sol.badge}</span>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom Banner Note */}
-        <div className="mt-14 p-6 rounded-xl bg-gradient-to-r from-cyan-950/30 via-slate-900/50 to-blue-950/30 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="space-y-1 text-center sm:text-left">
-            <h4 className="text-sm font-semibold text-white">Need a Custom Integrated Blueprint?</h4>
-            <p className="text-xs text-slate-400">
-              Konsultasikan arsitektur infrastruktur dan deployment AI Anda bersama tim Principal Engineer ARKAPRANA.
-            </p>
-          </div>
-          <Link
-            href="/contact"
-            className="shrink-0 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-black bg-cyan-400 hover:bg-cyan-300 transition-all shadow-md shadow-cyan-500/20"
-          >
-            Request Consultation
-          </Link>
+        {/* Secondary Solutions Matrix (3 Columns, Clean Modern Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {secondarySolutions.map((sol, index) => {
+            const Icon = iconMap[sol.iconName] || Server;
+            const meta = solutionTaglines[sol.id] || { tagline: sol.tagline, specs: sol.capabilities };
+
+            return (
+              <div
+                key={sol.id}
+                className="relative rounded-xl bg-[#060a14] border border-white/[0.08] hover:border-white/[0.2] p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 group"
+              >
+                <div>
+                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.06]">
+                    <span className="text-lg font-mono font-medium text-neutral-400 group-hover:text-cyan-400 transition-colors">
+                      0{index + 3}
+                    </span>
+                    <div className="w-8 h-8 rounded-md bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-neutral-300 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-all">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-white tracking-tight mb-1.5 group-hover:text-cyan-200 transition-colors">
+                    {sol.name}
+                  </h3>
+                  <p className="text-xs text-neutral-400 font-medium mb-3">
+                    {meta.tagline}
+                  </p>
+                  <p className="text-xs text-neutral-400 line-clamp-3 leading-relaxed mb-5">
+                    {sol.description}
+                  </p>
+
+                  <div className="space-y-1.5 pt-4 border-t border-white/[0.04] mb-6">
+                    {meta.specs.slice(0, 3).map((spec) => (
+                      <div key={spec} className="flex items-start text-[11.5px] text-neutral-400 space-x-2">
+                        <span className="w-1 h-1 rounded-full bg-neutral-600 mt-1.5 shrink-0" />
+                        <span className="line-clamp-1">{spec}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between">
+                  <Link
+                    href={`/solutions/${sol.slug}`}
+                    className="inline-flex items-center text-xs font-medium text-neutral-300 hover:text-white transition-colors gap-1"
+                  >
+                    <span>View Technical Details</span>
+                    <ArrowRight className="w-3 h-3 text-cyan-400" />
+                  </Link>
+                  <span className="text-[10px] font-mono text-neutral-400">
+                    {sol.badge.split(" ")[0]}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
+
       </div>
     </section>
   );
