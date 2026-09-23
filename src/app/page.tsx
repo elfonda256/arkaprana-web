@@ -1,9 +1,11 @@
 import React from "react";
 import HeroSection from "@/components/sections/HeroSection";
-import StatementSection from "@/components/sections/StatementSection";
+import ValuePropositionSection from "@/components/sections/ValuePropositionSection";
+import TechnologyEcosystemSection from "@/components/sections/TechnologyEcosystemSection";
 import SolutionsSection from "@/components/sections/SolutionsSection";
-import ArchitectureSection from "@/components/sections/ArchitectureSection";
+import FindYourSolutionSection from "@/components/sections/FindYourSolutionSection";
 import IndustriesSection from "@/components/sections/IndustriesSection";
+import EngineeringApproachSection from "@/components/sections/EngineeringApproachSection";
 import MeetAiSection from "@/components/sections/MeetAiSection";
 import InsightsSection from "@/components/sections/InsightsSection";
 import FinalCtaSection from "@/components/sections/FinalCtaSection";
@@ -29,28 +31,34 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="flex-1">
-      {/* 01. [DARK] Monumental Brand Hero: BUILD. CONNECT. INTELLIGENCE. */}
+      {/* 01. [DARK] HERO: BUILD. CONNECT. INTELLIGENCE. */}
       <HeroSection />
 
-      {/* 02. [LIGHT] Arkaprana Thesis Transition: "Technology shouldn't be fragmented." */}
-      <StatementSection />
+      {/* 02 & 03. [LIGHT] POSITIONING & PROBLEM: "Technology shouldn't be fragmented. ARKAPRANA connects them." */}
+      <ValuePropositionSection />
 
-      {/* 03. [LIGHT] Productized Architecture & Solutions as Products */}
+      {/* 04. [DARK] ECOSYSTEM: Interactive Architecture Explorer (Center: ARKAPRANA) */}
+      <TechnologyEcosystemSection />
+
+      {/* 05. [LIGHT] SOLUTIONS: What ARKAPRANA can build (01 to 07 Product Storytelling) */}
       <SolutionsSection />
 
-      {/* 04. [DARK] ARKAPRANA Technology Stack: 6-Tier Interactive Inspector */}
-      <ArchitectureSection />
+      {/* 06. [LIGHT] "FIND YOUR SOLUTION" INTERACTIVE TOOL: "Not sure where to start?" */}
+      <FindYourSolutionSection />
 
-      {/* 05. [LIGHT] Editorial Industry Storytelling: Technology for Critical Environments */}
+      {/* 07. [LIGHT] INDUSTRIES: Where ARKAPRANA can help (9 Critical Environments) */}
       <IndustriesSection />
 
-      {/* 06. [DARK] ARKAPRANA AI Launch & Enterprise Knowledge Assistant Mock */}
+      {/* 08. [DARK] ENGINEERING: How ARKAPRANA works (7-Step Timeline DISCOVER -> OPTIMIZE) */}
+      <EngineeringApproachSection />
+
+      {/* 09. [DARK] AI: Where technology is going ("From Data to Intelligence" + "ARKAPRANA Knowledge" Demo) */}
       <MeetAiSection />
 
-      {/* 07. [LIGHT] Editorial Technology Magazine: ARKAPRANA Insights */}
+      {/* 10. [LIGHT] INSIGHTS: What ARKAPRANA thinks about (Editorial Technology Magazine) */}
       <InsightsSection />
 
-      {/* 08. [DARK] Final Storytelling CTA & Interactive Contact Desk */}
+      {/* 11. [DARK] CTA: Let's build what's next (Smart Lead-Gen Contact Desk) */}
       <FinalCtaSection />
     </main>
   );

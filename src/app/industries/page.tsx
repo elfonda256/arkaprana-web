@@ -10,68 +10,67 @@ import {
   Truck,
   Building,
   Hotel,
-  Wrench,
-  BadgeDollarSign,
-  GraduationCap,
-  HeartPulse,
-  ArrowRight
+  ArrowRight,
+  CheckCircle2
 } from "lucide-react";
 
-const iconMap: Record<string, React.ElementType> = {
-  Factory,
-  Ship,
-  HardHat,
-  Landmark,
-  Building2,
-  Truck,
-  Building,
-  Hotel,
-  Wrench,
-  BadgeDollarSign,
-  GraduationCap,
-  HeartPulse
+export const metadata = {
+  title: "Industries & Critical Environments | ARKAPRANA",
+  description:
+    "Mission-critical engineering and technology solutions tailored for Construction, Manufacturing, Maritime, Logistics, Enterprise, Government, and BUMN sectors in Indonesia.",
 };
 
-export const metadata = {
-  title: "Industries | ARKAPRANA Technology & Intelligent Solutions",
-  description:
-    "Solusi rekayasa teknologi dan infrastruktur digital untuk 12 sektor industri krusial: Manufaktur, Maritim, Konstruksi, Pemerintahan, BUMN, Finansial, dan lainnya."
+const iconMap: Record<string, React.ElementType> = {
+  construction: HardHat,
+  manufacturing: Factory,
+  maritime: Ship,
+  logistics: Truck,
+  property: Building2,
+  hospitality: Hotel,
+  enterprise: Building,
+  government: Landmark,
+  bumn: Landmark
 };
 
 export default function IndustriesPage() {
   return (
-    <main className="flex-1 pt-28 pb-20 bg-[#030712]">
-      {/* Header */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+    <main className="flex-1 pt-28 pb-20 bg-[#030712] text-white min-h-screen relative overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute inset-0 bg-tech-grid opacity-15 pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-950/20 rounded-full blur-[160px] pointer-events-none" />
+
+      {/* Header Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10 relative z-10">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
-            <span>CRITICAL ENVIRONMENTS</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.1] text-cyan-400 text-xs font-mono">
+            <span>SECTOR SPECIALIZATIONS</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Engineered for High-Stakes Operations.
+          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight font-sans">
+            Technology for Critical Environments.
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-            Kami memahami bahwa lingkungan operasional pelabuhan kapal berbeda drastis dengan ruang kendali data center perbankan. ARKAPRANA menghadirkan arsitektur yang disesuaikan dengan regulasi dan reliabilitas industri Anda.
+          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed font-normal">
+            Kami memahami bahwa lingkungan maritim lepas pantai membutuhkan pendekatan rekayasa yang sangat berbeda dari pusat data perbankan atau fasilitas manufaktur. ARKAPRANA menghadirkan solusi teknologi yang dirancang sesuai regulasi, keandalan, dan kondisi fisik lingkungan industri Anda.
           </p>
         </div>
       </section>
 
-      {/* Grid of 12 Industries */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {/* Grid of Industries */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {INDUSTRIES.map((ind) => {
-            const Icon = iconMap[ind.icon] || Building;
+            const Icon = iconMap[ind.slug] || Building;
 
             return (
               <div
                 key={ind.name}
-                className="p-8 rounded-2xl bg-gradient-to-b from-[#081329] to-[#040817] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 flex flex-col justify-between group shadow-xl"
+                id={ind.slug}
+                className="p-8 rounded-3xl bg-[#070b16] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 flex flex-col justify-between group shadow-xl"
               >
                 <div>
-                  <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                  <div className="flex items-center space-x-3.5 mb-5 pb-5 border-b border-white/[0.08]">
+                    <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform shrink-0">
                       <Icon className="w-6 h-6" />
                     </div>
                     <div>
@@ -79,37 +78,50 @@ export default function IndustriesPage() {
                         {ind.name}
                       </h2>
                       <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-wider">
-                        MISSION-CRITICAL
+                        MISSION-CRITICAL SECTOR
                       </span>
                     </div>
                   </div>
 
-                  <h3 className="text-xs font-bold text-slate-200 mb-2 font-mono">
-                    {ind.headline}
-                  </h3>
+                  <div className="text-base font-serif italic text-neutral-200 mb-4">
+                    &ldquo;{ind.headlineQuote}&rdquo;
+                  </div>
 
-                  <div className="p-3 rounded-lg bg-white/5 border border-white/5 mb-4">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 block mb-1">
-                      Solutions for:
+                  {/* Challenge */}
+                  <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] mb-4">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block mb-1">
+                      Operational Challenge:
                     </span>
-                    <p className="text-xs font-semibold text-slate-300">
-                      {ind.solutions}
+                    <p className="text-xs text-neutral-300 leading-relaxed">
+                      {ind.challenge}
                     </p>
                   </div>
 
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    {ind.description}
-                  </p>
+                  {/* Solutions for */}
+                  <div className="space-y-1.5 mb-6">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block mb-2">
+                      Targeted Architecture Solutions:
+                    </span>
+                    {ind.solutions.map((sol) => (
+                      <div key={sol} className="flex items-center gap-2 text-xs text-neutral-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                        <span>{sol}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-white/5">
+                <div className="pt-5 border-t border-white/[0.08] flex items-center justify-between">
                   <Link
                     href={`/contact?industry=${encodeURIComponent(ind.name)}`}
-                    className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-cyan-400 hover:text-cyan-300 transition-colors group/link"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-white group-hover:text-cyan-400 transition-colors"
                   >
-                    <span>Discuss {ind.name} Blueprint</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover/link:translate-x-1 transition-transform" />
+                    <span>Discuss Requirements</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </Link>
+                  <span className="text-[10px] font-mono text-neutral-500">
+                    SLA Tier
+                  </span>
                 </div>
               </div>
             );

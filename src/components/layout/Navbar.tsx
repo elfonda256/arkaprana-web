@@ -3,9 +3,73 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, ChevronDown, Sparkles } from "lucide-react";
-import { SOLUTIONS } from "@/lib/data";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  ChevronDown,
+  Sparkles,
+  Network,
+  Server,
+  Cloud,
+  ShieldCheck,
+  Cpu,
+  BrainCircuit,
+  Workflow
+} from "lucide-react";
 import BrandLogo from "@/components/brand/BrandLogo";
+
+const MEGA_SOLUTIONS = [
+  {
+    name: "NETWORK",
+    href: "/solutions/network",
+    description: "Enterprise connectivity, fiber infrastructure, Wi-Fi & SD-WAN mesh.",
+    icon: Network,
+    badge: "01"
+  },
+  {
+    name: "INFRASTRUCTURE",
+    href: "/solutions/infrastructure",
+    description: "Tier-3+ modular data center, high-density compute & flash storage.",
+    icon: Server,
+    badge: "02"
+  },
+  {
+    name: "CLOUD",
+    href: "/solutions/cloud",
+    description: "Sovereign on-premise private cloud & resilient hybrid architectures.",
+    icon: Cloud,
+    badge: "03"
+  },
+  {
+    name: "SECURITY",
+    href: "/solutions/security",
+    description: "Defense-in-depth zero-trust architecture, HSM vaults & 24/7 SOC.",
+    icon: ShieldCheck,
+    badge: "04"
+  },
+  {
+    name: "MANAGED IT",
+    href: "/solutions/managed-it",
+    description: "24/7 dedicated enterprise NOC monitoring, SLA uptime & preventive care.",
+    icon: Cpu,
+    badge: "05"
+  },
+  {
+    name: "AI",
+    href: "/solutions/ai",
+    description: "Private on-premise LLMs, enterprise RAG & cognitive workflow agents.",
+    icon: BrainCircuit,
+    badge: "06"
+  },
+  {
+    name: "INTEGRATION",
+    href: "/solutions/integration",
+    description: "Turnkey hardware procurement, multi-vendor harmonisation & certified commissioning.",
+    icon: Workflow,
+    badge: "07"
+  }
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,12 +90,10 @@ export default function Navbar() {
     setSolutionsDropdown(false);
   }, [pathname]);
 
-  // Menu items strictly matching Section 07 specifications:
-  // Solutions | Industries | Capabilities | Insights | About
   const navLinks = [
     { label: "Solutions", href: "/solutions", hasDropdown: true },
     { label: "Industries", href: "/industries" },
-    { label: "Capabilities", href: "/#architecture" },
+    { label: "Capabilities", href: "/capabilities" },
     { label: "Insights", href: "/insights" },
     { label: "About", href: "/about" },
   ];
@@ -40,22 +102,29 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#030712]/85 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-2xl"
+          ? "bg-[#030712]/90 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-2xl"
           : "bg-transparent border-b border-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Official Brand Logo - strictly [SYMBOL] ARKAPRANA (no legal name in header) */}
+          
+          {/* Logo strictly [SYMBOL] ARKAPRANA (no legal name in header) */}
           <Link
             href="/"
             className="group flex items-center transition-opacity hover:opacity-90"
             aria-label="ARKAPRANA Homepage"
           >
-            <BrandLogo variant="dark" size="md" showWordmark={true} showDescriptor={false} />
+            <BrandLogo
+              variant="dark"
+              size="md"
+              showWordmark={true}
+              showDescriptor={false}
+              symbolOnlyOnMobile={false}
+            />
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navLinks.map((link) => {
               const isActive =
@@ -86,48 +155,55 @@ export default function Navbar() {
                       />
                     </Link>
 
-                    {/* Solutions Dropdown Mega Menu */}
+                    {/* V4 Solutions Mega Menu */}
                     {solutionsDropdown && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[520px] pt-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                        <div className="bg-[#050914]/95 backdrop-blur-2xl border border-white/[0.12] rounded-xl p-3 shadow-2xl">
-                          <div className="flex items-center justify-between px-3 py-1.5 border-b border-white/[0.06] mb-2">
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[640px] pt-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                        <div className="bg-[#050914]/98 backdrop-blur-2xl border border-white/[0.12] rounded-2xl p-4 shadow-2xl">
+                          
+                          <div className="flex items-center justify-between px-3 py-1.5 border-b border-white/[0.06] mb-3">
                             <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400">
-                              Core Technology Pillars
+                              Technology Pillars // Architecture
                             </span>
                             <span className="text-[10px] font-mono text-cyan-400 flex items-center gap-1">
-                              <Sparkles className="w-2.5 h-2.5" /> 7 Capabilities
+                              <Sparkles className="w-2.5 h-2.5" /> 7 Core Solutions
                             </span>
                           </div>
 
-                          <div className="grid grid-cols-2 gap-1.5">
-                            {SOLUTIONS.map((sol, idx) => (
-                              <Link
-                                key={sol.id}
-                                href={`/solutions/${sol.slug}`}
-                                className="flex flex-col p-2.5 rounded-lg hover:bg-white/[0.05] transition-colors group"
-                              >
-                                <div className="flex items-center justify-between mb-0.5">
-                                  <span className="text-xs font-medium text-neutral-200 group-hover:text-white transition-colors">
-                                    {sol.name}
-                                  </span>
-                                  <span className="text-[9px] font-mono text-neutral-500 group-hover:text-cyan-400">
-                                    0{idx + 1}
-                                  </span>
-                                </div>
-                                <span className="text-[10.5px] text-neutral-400 line-clamp-1 leading-snug">
-                                  {sol.tagline}
-                                </span>
-                              </Link>
-                            ))}
+                          <div className="grid grid-cols-2 gap-2">
+                            {MEGA_SOLUTIONS.map((sol) => {
+                              const Icon = sol.icon;
+                              return (
+                                <Link
+                                  key={sol.name}
+                                  href={sol.href}
+                                  className="flex items-start p-3 rounded-xl hover:bg-white/[0.05] border border-transparent hover:border-white/[0.08] transition-all group"
+                                >
+                                  <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-neutral-300 group-hover:text-cyan-400 group-hover:border-cyan-500/40 transition-colors shrink-0 mr-3 mt-0.5">
+                                    <Icon className="w-4 h-4" />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center justify-between mb-0.5">
+                                      <span className="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors">
+                                        {sol.name}
+                                      </span>
+                                      <ArrowRight className="w-3 h-3 text-neutral-600 group-hover:text-cyan-400 group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100" />
+                                    </div>
+                                    <p className="text-[11px] text-neutral-400 line-clamp-2 leading-relaxed">
+                                      {sol.description}
+                                    </p>
+                                  </div>
+                                </Link>
+                              );
+                            })}
                           </div>
 
-                          <div className="pt-2 mt-2 border-t border-white/[0.06] flex items-center justify-between px-3">
-                            <span className="text-[11px] text-neutral-400">
-                              Looking for custom architecture?
+                          <div className="pt-3 mt-3 border-t border-white/[0.06] flex items-center justify-between px-3 text-[11px]">
+                            <span className="text-neutral-400">
+                              Building a custom multi-system environment?
                             </span>
                             <Link
                               href="/solutions"
-                              className="text-[11px] text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center gap-1"
+                              className="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center gap-1"
                             >
                               Explore all solutions <ArrowRight className="w-3 h-3" />
                             </Link>
@@ -155,7 +231,7 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Header Action Button (Clean Pill: Discuss Project) */}
+          {/* Header Action Button: Discuss Project → */}
           <div className="hidden md:flex items-center space-x-3">
             <Link
               href="/contact"
@@ -203,7 +279,7 @@ export default function Navbar() {
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
             <div className="px-3 text-[11px] text-neutral-500 flex justify-between">
-              <span>Jakarta, Indonesia</span>
+              <span>Indonesia</span>
               <span>elfano2156@gmail.com</span>
             </div>
           </div>

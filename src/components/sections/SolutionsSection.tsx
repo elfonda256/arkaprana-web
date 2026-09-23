@@ -11,147 +11,24 @@ import {
   BrainCircuit,
   Workflow,
   ArrowRight,
-  ChevronRight,
-  CheckCircle2
+  CheckCircle2,
+  PhoneCall
 } from "lucide-react";
+import { SOLUTIONS } from "@/lib/data";
 
-interface ProductStory {
-  id: string;
-  name: string;
-  headlineQuote: string;
-  description: string;
-  slug: string;
-  capabilities: string[];
-  ctaText: string;
-  icon: React.ElementType;
-  tag: string;
-}
-
-const PRODUCTS: ProductStory[] = [
-  {
-    id: "network",
-    name: "ARKAPRANA NETWORK",
-    headlineQuote: "Connect everything.",
-    description: "Enterprise connectivity designed for reliability, visibility and scale.",
-    slug: "network",
-    capabilities: [
-      "Enterprise Network",
-      "Fiber Infrastructure",
-      "Wi-Fi & Wireless Mesh",
-      "Network Monitoring & Telemetry",
-      "Structured Cabling"
-    ],
-    ctaText: "Explore Network →",
-    icon: Network,
-    tag: "01 • CONNECTIVITY"
-  },
-  {
-    id: "infra",
-    name: "ARKAPRANA INFRA",
-    headlineQuote: "Build the foundation.",
-    description: "Mission-critical physical computing infrastructure engineered for continuous zero-downtime operation.",
-    slug: "infra",
-    capabilities: [
-      "Tier-3+ Datacenter Architecture",
-      "Modular Server & SAN Storage",
-      "Precision Cooling & Power (UPS)",
-      "Disaster Recovery & Hot Sites",
-      "Physical Security & Environmental Controls"
-    ],
-    ctaText: "Explore Infrastructure →",
-    icon: Server,
-    tag: "02 • INFRASTRUCTURE"
-  },
-  {
-    id: "cloud",
-    name: "ARKAPRANA CLOUD",
-    headlineQuote: "Run what matters.",
-    description: "Sovereign on-premise and hybrid cloud platforms maintaining absolute regulatory jurisdiction and low-latency throughput.",
-    slug: "cloud",
-    capabilities: [
-      "Sovereign On-Premise Cloud",
-      "Hybrid Multi-Cloud Orchestration",
-      "High-IOPS Distributed Storage",
-      "Edge Micro-Data Hubs",
-      "Kubernetes & Container Governance"
-    ],
-    ctaText: "Explore Cloud →",
-    icon: Cloud,
-    tag: "03 • COMPUTE"
-  },
-  {
-    id: "secure",
-    name: "ARKAPRANA SECURE",
-    headlineQuote: "Protect the ecosystem.",
-    description: "Defensive zero-trust architecture and automated security operations engineered to withstand targeted attacks.",
-    slug: "secure",
-    capabilities: [
-      "Zero-Trust Network Access (ZTNA)",
-      "24/7 Continuous Threat Hunting & SOC",
-      "Cryptographic HSM Vaults",
-      "Identity & Role Micro-Segmentation",
-      "ISO 27001 & BSSN Compliance Readiness"
-    ],
-    ctaText: "Explore Security →",
-    icon: ShieldCheck,
-    tag: "04 • DEFENSE"
-  },
-  {
-    id: "managed",
-    name: "ARKAPRANA MANAGED",
-    headlineQuote: "Keep technology moving.",
-    description: "Round-the-clock proactive engineering monitoring, telemetry automation, and rapid incident response.",
-    slug: "managed",
-    capabilities: [
-      "24/7 Dedicated Enterprise NOC",
-      "99.99% Guaranteed SLA Uptime",
-      "Proactive Telemetry Observability",
-      "Rapid Hardware Replacement Logistics",
-      "Continuous Capacity Optimization"
-    ],
-    ctaText: "Explore Managed IT →",
-    icon: Cpu,
-    tag: "05 • RELIABILITY"
-  },
-  {
-    id: "ai",
-    name: "ARKAPRANA AI",
-    headlineQuote: "Turn knowledge into intelligence.",
-    description: "Private sovereign AI models, document intelligence, and cognitive workflow automation deployed entirely on your servers.",
-    slug: "ai",
-    capabilities: [
-      "Private On-Premise LLM & RAG",
-      "Enterprise Knowledge Base Engine",
-      "Document Intelligence & OCR Synthesis",
-      "Autonomous Decision Agents",
-      "Strict Air-Gapped Data Isolation"
-    ],
-    ctaText: "Explore ARKAPRANA AI →",
-    icon: BrainCircuit,
-    tag: "06 • INTELLIGENCE"
-  },
-  {
-    id: "integration",
-    name: "ARKAPRANA INTEGRATION",
-    headlineQuote: "Make systems work together.",
-    description: "Turnkey enterprise technology delivery, cross-vendor hardware harmonisation, and certified systems integration.",
-    slug: "integration",
-    capabilities: [
-      "Turnkey Enterprise Technology Blueprints",
-      "Vendor-Agnostic Hardware Procurement",
-      "Multi-System API Orchestration",
-      "Certified Commissioning & Acceptance",
-      "Principal Executive Knowledge Transfer"
-    ],
-    ctaText: "Explore Integration →",
-    icon: Workflow,
-    tag: "07 • SYNTHESIS"
-  }
-];
+const iconMap: Record<string, React.ElementType> = {
+  Network,
+  Server,
+  Cloud,
+  ShieldCheck,
+  Cpu,
+  BrainCircuit,
+  Workflow
+};
 
 export default function SolutionsSection() {
-  const primaryProducts = PRODUCTS.slice(0, 2);
-  const secondaryProducts = PRODUCTS.slice(2);
+  const primaryProducts = SOLUTIONS.slice(0, 2);
+  const secondaryProducts = SOLUTIONS.slice(2);
 
   return (
     <section id="solutions" className="py-28 md:py-36 bg-white text-neutral-900 relative overflow-hidden">
@@ -176,10 +53,10 @@ export default function SolutionsSection() {
           </p>
         </div>
 
-        {/* Flagship Product Showcase (2 Featured Products) */}
+        {/* Flagship Showcase (2 Featured Products) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {primaryProducts.map((prod) => {
-            const Icon = prod.icon;
+            const Icon = iconMap[prod.iconName] || Network;
             return (
               <div
                 key={prod.id}
@@ -188,7 +65,7 @@ export default function SolutionsSection() {
                 <div>
                   <div className="flex items-center justify-between pb-6 mb-6 border-b border-neutral-200/60">
                     <span className="text-[10px] font-mono tracking-widest text-cyan-700 font-semibold uppercase">
-                      {prod.tag}
+                      {prod.badge}
                     </span>
                     <Icon className="w-5 h-5 text-neutral-500 group-hover:text-cyan-600 transition-colors" />
                   </div>
@@ -202,7 +79,7 @@ export default function SolutionsSection() {
                   </div>
 
                   <p className="text-sm sm:text-base text-neutral-600 leading-relaxed mb-8">
-                    {prod.description}
+                    {prod.tagline}
                   </p>
 
                   <div className="space-y-2.5 mb-8">
@@ -218,23 +95,26 @@ export default function SolutionsSection() {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-neutral-200/60">
+                <div className="pt-6 border-t border-neutral-200/60 flex items-center justify-between">
                   <Link
-                    href={`/solutions/${prod.slug}`}
+                    href={`/solutions/${prod.shortSlug}`}
                     className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 group-hover:text-cyan-700 transition-colors"
                   >
-                    <span>{prod.ctaText}</span>
+                    <span>Explore {prod.name.replace("ARKAPRANA ", "")} →</span>
                   </Link>
+                  <span className="text-[10px] font-mono text-neutral-400">
+                    Enterprise Tier
+                  </span>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Remaining 5 Products (Clean 3-Column Editorial Grid) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Remaining 5 Products (3-Column Editorial Grid) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {secondaryProducts.map((prod) => {
-            const Icon = prod.icon;
+            const Icon = iconMap[prod.iconName] || Network;
             return (
               <div
                 key={prod.id}
@@ -243,7 +123,7 @@ export default function SolutionsSection() {
                 <div>
                   <div className="flex items-center justify-between pb-4 mb-4 border-b border-neutral-200/50">
                     <span className="text-[9px] font-mono tracking-widest text-neutral-500 font-semibold uppercase">
-                      {prod.tag}
+                      {prod.badge}
                     </span>
                     <Icon className="w-4 h-4 text-neutral-500 group-hover:text-cyan-600 transition-colors" />
                   </div>
@@ -257,7 +137,7 @@ export default function SolutionsSection() {
                   </div>
 
                   <p className="text-xs text-neutral-600 leading-relaxed mb-6">
-                    {prod.description}
+                    {prod.tagline}
                   </p>
 
                   <ul className="space-y-1.5 mb-6">
@@ -272,15 +152,38 @@ export default function SolutionsSection() {
 
                 <div className="pt-4 border-t border-neutral-200/50">
                   <Link
-                    href={`/solutions/${prod.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-900 group-hover:text-cyan-700 transition-colors"
+                    href={`/solutions/${prod.shortSlug}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-900 group-hover:text-cyan-700 transition-colors"
                   >
-                    <span>{prod.ctaText}</span>
+                    <span>Explore {prod.name.replace("ARKAPRANA ", "")} →</span>
                   </Link>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        {/* Section 22 Strategic Lead-Gen CTA Strip */}
+        <div className="rounded-2xl bg-[#070b16] text-white p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 border border-white/[0.08] shadow-xl">
+          <div className="space-y-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block">
+              Architectural Consulting
+            </span>
+            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+              Membutuhkan kajian arsitektur sistem khusus?
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-400 max-w-xl leading-relaxed">
+              Diskusikan kebutuhan integrasi infrastruktur, kedaulatan data, atau implementasi private AI langsung bersama prinsipal arsitek teknologi ARKAPRANA.
+            </p>
+          </div>
+
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all shrink-0 shadow-lg hover:shadow-cyan-500/20 active:scale-[0.98]"
+          >
+            <span>Talk to an Engineer</span>
+            <ArrowRight className="w-3.5 h-3.5 text-black" />
+          </Link>
         </div>
 
       </div>

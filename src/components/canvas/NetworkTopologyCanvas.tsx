@@ -9,6 +9,7 @@ interface Node {
   vy: number;
   radius: number;
   baseAlpha: number;
+  tier: "infra" | "network" | "data" | "ai";
 }
 
 interface Pulse {
@@ -39,42 +40,55 @@ export default function NetworkTopologyCanvas() {
 
     window.addEventListener("resize", handleResize);
 
-    // Subtle, restrained number of nodes
-    const nodeCount = Math.min(Math.floor((width * height) / 22000), 38);
+    const tiers: ("infra" | "network" | "data" | "ai")[] = ["infra", "network", "data", "ai"];
+    const nodeCount = Math.min(Math.floor((width * height) / 20000), 45);
     const nodes: Node[] = [];
 
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.22, // calm, slow drift
-        vy: (Math.random() - 0.5) * 0.22,
-        radius: Math.random() > 0.85 ? 2.5 : 1.5,
-        baseAlpha: Math.random() * 0.35 + 0.15
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        radius: Math.random() > 0.8 ? 2.8 : 1.6,
+        baseAlpha: Math.random() * 0.35 + 0.15,
+        tier: tiers[i % tiers.length]
       });
     }
 
     const pulses: Pulse[] = [];
-    const connectionDistance = 160;
+    const connectionDistance = 175;
 
     let mouseX = -1000;
     let mouseY = -1000;
+    let targetMouseX = -1000;
+    let targetMouseY = -1000;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
+      targetMouseX = e.clientX - rect.left;
+      targetMouseY = e.clientY - rect.top;
     };
 
-    canvas.addEventListener("mousemove", handleMouseMove);
+    const handleMouseLeave = () => {
+      targetMouseX = -1000;
+      targetMouseY = -1000;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
 
     let lastSpawn = 0;
 
     const render = (time: number) => {
       animationFrameId = requestAnimationFrame(render);
 
-      // Spawn subtle data pulse at intervals
-      if (time - lastSpawn > 600 && pulses.length < 8 && nodes.length > 2) {
+      // Smooth mouse interpolation for graceful movement
+      mouseX += (targetMouseX - mouseX) * 0.08;
+      mouseY += (targetMouseY - mouseY) * 0.08;
+
+      // Spawn pulses at gentle intervals
+      if (time - lastSpawn > 500 && pulses.length < 10 && nodes.length > 2) {
         const from = Math.floor(Math.random() * nodes.length);
         for (let to = 0; to < nodes.length; to++) {
           if (to === from) continue;
@@ -86,7 +100,7 @@ export default function NetworkTopologyCanvas() {
               fromNode: from,
               toNode: to,
               progress: 0,
-              speed: 0.005 + Math.random() * 0.006 // slow, majestic speed
+              speed: 0.006 + Math.random() * 0.007
             });
             break;
           }
@@ -96,47 +110,51 @@ export default function NetworkTopologyCanvas() {
 
       ctx.clearRect(0, 0, width, height);
 
-      // Update positions & draw lines
+      // Update positions & physics
       for (let i = 0; i < nodes.length; i++) {
-        const n1 = nodes[i];
-        n1.x += n1.vx;
-        n1.y += n1.vy;
+        const n = nodes[i];
 
-        if (n1.x < 0 || n1.x > width) n1.vx *= -1;
-        if (n1.y < 0 || n1.y > height) n1.vy *= -1;
-
-        // Subtle mouse interaction - gentle guidance without extreme repulsion
-        const dmx = n1.x - mouseX;
-        const dmy = n1.y - mouseY;
-        const distMouse = Math.sqrt(dmx * dmx + dmy * dmy);
-        if (distMouse < 140) {
-          ctx.beginPath();
-          ctx.moveTo(n1.x, n1.y);
-          ctx.lineTo(mouseX, mouseY);
-          ctx.strokeStyle = `rgba(96, 165, 250, ${0.15 * (1 - distMouse / 140)})`;
-          ctx.lineWidth = 0.75;
-          ctx.stroke();
+        // Cursor gentle repulsion/fluid responsiveness
+        if (mouseX > 0 && mouseY > 0) {
+          const mdx = n.x - mouseX;
+          const mdy = n.y - mouseY;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+          if (mdist < 140 && mdist > 0) {
+            const force = (140 - mdist) / 140;
+            n.x += (mdx / mdist) * force * 0.8;
+            n.y += (mdy / mdist) * force * 0.8;
+          }
         }
 
+        n.x += n.vx;
+        n.y += n.vy;
+
+        if (n.x < 0) n.x = width;
+        if (n.x > width) n.x = 0;
+        if (n.y < 0) n.y = height;
+        if (n.y > height) n.y = 0;
+      }
+
+      // Draw connection lines
+      for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
-          const n2 = nodes[j];
-          const dx = n1.x - n2.x;
-          const dy = n1.y - n2.y;
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDistance) {
-            const alpha = (1 - dist / connectionDistance) * 0.12;
+            const alpha = (1 - dist / connectionDistance) * 0.16;
             ctx.beginPath();
-            ctx.moveTo(n1.x, n1.y);
-            ctx.lineTo(n2.x, n2.y);
-            ctx.strokeStyle = `rgba(148, 163, 184, ${alpha})`;
-            ctx.lineWidth = 0.6;
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+            ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
       }
 
-      // Draw Pulses
+      // Draw active pulses
       for (let p = pulses.length - 1; p >= 0; p--) {
         const pulse = pulses[p];
         pulse.progress += pulse.speed;
@@ -146,25 +164,28 @@ export default function NetworkTopologyCanvas() {
           continue;
         }
 
-        const n1 = nodes[pulse.fromNode];
-        const n2 = nodes[pulse.toNode];
-        if (!n1 || !n2) continue;
+        const from = nodes[pulse.fromNode];
+        const to = nodes[pulse.toNode];
+        if (!from || !to) continue;
 
-        const curX = n1.x + (n2.x - n1.x) * pulse.progress;
-        const curY = n1.y + (n2.y - n1.y) * pulse.progress;
+        const curX = from.x + (to.x - from.x) * pulse.progress;
+        const curY = from.y + (to.y - from.y) * pulse.progress;
 
         ctx.beginPath();
         ctx.arc(curX, curY, 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(147, 197, 253, 0.85)";
+        ctx.fillStyle = "rgba(125, 211, 252, 0.9)";
+        ctx.shadowColor = "rgba(56, 189, 248, 0.8)";
+        ctx.shadowBlur = 6;
         ctx.fill();
+        ctx.shadowBlur = 0;
       }
 
-      // Draw Nodes
+      // Draw nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(226, 232, 240, ${n.baseAlpha})`;
+        ctx.fillStyle = `rgba(224, 242, 254, ${n.baseAlpha})`;
         ctx.fill();
       }
     };
@@ -174,13 +195,15 @@ export default function NetworkTopologyCanvas() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
-      canvas.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-auto opacity-60 overflow-hidden">
-      <canvas ref={canvasRef} className="w-full h-full block" />
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none opacity-60 transition-opacity duration-700"
+    />
   );
 }

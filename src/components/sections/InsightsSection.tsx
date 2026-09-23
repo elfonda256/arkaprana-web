@@ -2,48 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Clock, ArrowUpRight } from "lucide-react";
-
-interface InsightArticle {
-  title: string;
-  category: string;
-  readTime: string;
-  excerpt: string;
-  slug: string;
-}
-
-const ARTICLES: InsightArticle[] = [
-  {
-    title: "Building Infrastructure Ready for AI",
-    category: "PHYSICAL ARCHITECTURE",
-    readTime: "6 min read",
-    excerpt: "Persyaratan daya densitas tinggi, pendinginan presisi, dan interkoneksi optik 400G yang dibutuhkan untuk menyokong kluster inferensi AI modern.",
-    slug: "infrastructure-ready-for-ai"
-  },
-  {
-    title: "Cybersecurity Starts with Architecture",
-    category: "ZERO-TRUST DEFENSE",
-    readTime: "7 min read",
-    excerpt: "Mengapa firewall konvensional tidak lagi memadai, dan bagaimana micro-segmentation serta continuous identity verification melindungi data korporasi.",
-    slug: "cybersecurity-architecture"
-  },
-  {
-    title: "From IT Infrastructure to Intelligent Infrastructure",
-    category: "SYSTEM EVOLUTION",
-    readTime: "5 min read",
-    excerpt: "Pergeseran paradigma dari sekadar memelihara server pasif menuju orkestrasi sistem komputasi yang mampu belajar dan merespons anomali secara otonom.",
-    slug: "intelligent-infrastructure"
-  },
-  {
-    title: "On-Premise AI: When Does It Make Sense?",
-    category: "EXECUTIVE PERSPECTIVE",
-    readTime: "9 min read",
-    excerpt: "Analisis pragmatis komparasi biaya, kedaulatan regulasi UU PDP, dan latensi inferensi untuk pimpinan teknologi dalam menentukan strategi AI mandiri.",
-    slug: "on-premise-ai"
-  }
-];
+import { ArrowRight, Clock, ArrowUpRight } from "lucide-react";
+import { INSIGHTS } from "@/lib/data";
 
 export default function InsightsSection() {
+  const featuredArticle = INSIGHTS[0];
+  const listArticles = INSIGHTS.slice(1);
+
   return (
     <section id="insights" className="py-28 md:py-36 bg-white text-neutral-900 relative overflow-hidden border-t border-b border-neutral-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -63,7 +28,7 @@ export default function InsightsSection() {
           </h2>
 
           <p className="text-neutral-600 text-base sm:text-lg leading-relaxed pt-2 max-w-2xl font-normal">
-            Catatan teknis, analisis arsitektur, dan prinsip rekayasa sistem yang ditulis langsung oleh para insinyur dan praktisi infrastruktur ARKAPRANA.
+            Catatan teknis, analisis arsitektur, dan prinsip rekayasa sistem yang disusun langsung oleh para insinyur dan praktisi infrastruktur ARKAPRANA.
           </p>
         </div>
 
@@ -71,23 +36,23 @@ export default function InsightsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           
           {/* Large Featured Article (Span 7) */}
-          <div className="lg:col-span-7 bg-[#F8FAFC] rounded-2xl border border-neutral-200/90 p-8 sm:p-12 flex flex-col justify-between group hover:border-neutral-300 hover:shadow-xl transition-all duration-300">
+          <div className="lg:col-span-7 bg-[#F8FAFC] rounded-3xl border border-neutral-200/90 p-8 sm:p-12 flex flex-col justify-between group hover:border-neutral-300 hover:shadow-xl transition-all duration-300">
             <div>
               <div className="flex items-center justify-between pb-6 mb-8 border-b border-neutral-200/80">
                 <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-cyan-700">
                   FEATURED RESEARCH ESSAY
                 </span>
                 <span className="text-[11px] font-mono text-neutral-500 flex items-center gap-1.5">
-                  <Clock className="w-3 h-3 text-neutral-400" /> 8 min read
+                  <Clock className="w-3 h-3 text-neutral-400" /> {featuredArticle.readTime}
                 </span>
               </div>
 
               <h3 className="text-2xl sm:text-4xl font-bold tracking-tight text-neutral-900 leading-tight mb-6 font-sans group-hover:text-cyan-800 transition-colors">
-                Why Private AI Is Becoming an Enterprise Infrastructure Decision
+                {featuredArticle.title}
               </h3>
 
               <p className="text-sm sm:text-base text-neutral-600 leading-relaxed mb-8 font-normal">
-                Mengapa mengandalkan API model bahasa publik pihak ketiga menimbulkan risiko kebocoran kerahasiaan kekayaan intelektual organisasi, dan bagaimana korporasi modern kini memindahkan beban kerja inferensi AI langsung ke dalam data center dan private cloud berdaulat mereka sendiri.
+                {featuredArticle.snippet}
               </p>
 
               {/* Technical Abstract Badges */}
@@ -106,10 +71,10 @@ export default function InsightsSection() {
 
             <div className="pt-6 border-t border-neutral-200/80 flex items-center justify-between">
               <span className="text-xs text-neutral-500 font-mono">
-                By Systems Architecture Group
+                By Principal Engineering Group
               </span>
               <Link
-                href="/insights"
+                href={`/insights/${featuredArticle.slug}`}
                 className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-900 hover:text-cyan-700 transition-colors"
               >
                 <span>Read Full Essay</span>
@@ -119,14 +84,14 @@ export default function InsightsSection() {
           </div>
 
           {/* Clean Article List (Span 5) */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
-            {ARTICLES.map((article, index) => (
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-3.5">
+            {listArticles.map((article) => (
               <Link
                 key={article.title}
-                href="/insights"
-                className="p-6 rounded-xl bg-[#F8FAFC] border border-neutral-200/70 hover:border-neutral-300 hover:bg-neutral-100/50 transition-all duration-200 block group"
+                href={`/insights/${article.slug}`}
+                className="p-5 rounded-2xl bg-[#F8FAFC] border border-neutral-200/70 hover:border-neutral-300 hover:bg-neutral-100/50 transition-all duration-200 block group"
               >
-                <div className="flex items-center justify-between text-[10px] font-mono mb-2">
+                <div className="flex items-center justify-between text-[10px] font-mono mb-1.5">
                   <span className="text-neutral-500 uppercase tracking-wider">
                     {article.category}
                   </span>
@@ -135,16 +100,16 @@ export default function InsightsSection() {
                   </span>
                 </div>
 
-                <h4 className="text-base sm:text-lg font-bold text-neutral-900 group-hover:text-cyan-800 transition-colors mb-2 leading-snug">
+                <h4 className="text-sm sm:text-base font-bold text-neutral-900 group-hover:text-cyan-800 transition-colors mb-1.5 leading-snug">
                   {article.title}
                 </h4>
 
                 <p className="text-xs text-neutral-600 line-clamp-2 leading-relaxed">
-                  {article.excerpt}
+                  {article.snippet}
                 </p>
 
-                <div className="mt-3 flex items-center text-[11px] font-semibold text-neutral-800 group-hover:text-cyan-700 transition-colors">
-                  <span>Explore Technical Summary</span>
+                <div className="mt-2.5 flex items-center text-[11px] font-semibold text-neutral-800 group-hover:text-cyan-700 transition-colors">
+                  <span>Explore Technical Analysis</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </Link>

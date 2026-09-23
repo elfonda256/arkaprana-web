@@ -25,11 +25,21 @@ const PROJECT_TYPES = [
   "Other"
 ];
 
+const TIMELINE_OPTIONS = [
+  "Exploring",
+  "0–3 Months",
+  "3–6 Months",
+  "6–12 Months",
+  "Long Term"
+];
+
 const INDUSTRIES = [
   "Konstruksi & Proyek",
   "Manufaktur & Pabrik",
   "Pelabuhan & Maritim",
   "Logistik & Pergudangan",
+  "Properti & Komersial",
+  "Perhotelan & Hospitality",
   "Pemerintahan & BUMN",
   "Perbankan & Finansial",
   "Korporasi & Enterprise",
@@ -40,10 +50,12 @@ export default function FinalCtaSection() {
   const [formData, setFormData] = useState({
     name: "",
     company: "",
+    role: "",
     email: "",
     phone: "",
     industry: INDUSTRIES[0],
     projectType: PROJECT_TYPES[0],
+    timeline: TIMELINE_OPTIONS[1],
     description: ""
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
@@ -53,18 +65,18 @@ export default function FinalCtaSection() {
     setStatus("submitting");
     setTimeout(() => {
       setStatus("success");
-    }, 800);
+    }, 700);
   };
 
   return (
-    <section id="contact-experience" className="py-28 md:py-36 bg-[#030712] text-white relative overflow-hidden border-t border-white/[0.08]">
-      {/* Ambient background atmosphere */}
+    <section id="contact" className="py-28 md:py-36 bg-[#030712] text-white relative overflow-hidden border-t border-white/[0.08]">
+      {/* Background Atmosphere */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-cyan-950/20 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute inset-0 bg-tech-grid opacity-15 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Narrative Section Header (Section 19 verbatim) */}
+        {/* Narrative Section Header (Section 23 verbatim) */}
         <div className="max-w-3xl mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-400">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
@@ -80,7 +92,7 @@ export default function FinalCtaSection() {
           </p>
 
           <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-xl font-normal">
-            Diskusikan kebutuhan infrastruktur, jaringan, cloud, keamanan siber, atau kecerdasan buatan organisasi Anda langsung bersama tim arsitek teknologi ARKAPRANA.
+            Kaji kebutuhan infrastruktur, jaringan, cloud, keamanan siber, atau kecerdasan buatan organisasi Anda langsung bersama tim arsitek teknologi ARKAPRANA.
           </p>
         </div>
 
@@ -88,7 +100,7 @@ export default function FinalCtaSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Column: Interactive Project Inquiry Form (Span 7) */}
-          <div className="lg:col-span-7 bg-[#070b16] rounded-2xl border border-white/[0.12] p-8 sm:p-10 shadow-2xl relative overflow-hidden">
+          <div className="lg:col-span-7 bg-[#070b16] rounded-3xl border border-white/[0.12] p-8 sm:p-10 shadow-2xl relative overflow-hidden">
             
             {status === "success" ? (
               <div className="text-center py-12 space-y-5 animate-in fade-in zoom-in-95 duration-200">
@@ -96,14 +108,14 @@ export default function FinalCtaSection() {
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
                 <h3 className="text-2xl font-bold text-white">
-                  Permintaan Konsultasi Diterima
+                  Thank you. Your project information has been received.
                 </h3>
                 <p className="text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">
-                  Terima kasih, <span className="text-white font-semibold">{formData.name}</span>. Tim Principal Engineer ARKAPRANA akan menelaah spesifikasi kebutuhan Anda dan menghubungi kembali dalam waktu kurang dari 24 jam kerja.
+                  Informasi proyek Anda telah dicatat. Tim Principal Engineering ARKAPRANA akan menelaah spesifikasi kebutuhan Anda dan menghubungi kembali dalam waktu kurang dari 24 jam kerja.
                 </p>
                 <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a
-                    href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20${encodeURIComponent(formData.name)}%20dari%20${encodeURIComponent(formData.company)}%20telah%20mengirimkan%20inquiry%20proyek%20${encodeURIComponent(formData.projectType)}`}
+                    href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20${encodeURIComponent(formData.name)}%20(${encodeURIComponent(formData.role)})%20dari%20${encodeURIComponent(formData.company)}%20telah%20mengirimkan%20inquiry%20proyek%20${encodeURIComponent(formData.projectType)}%20dengan%20timeline%20${encodeURIComponent(formData.timeline)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors"
@@ -122,9 +134,10 @@ export default function FinalCtaSection() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Name, Company, Role */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
                       Nama Lengkap *
                     </label>
                     <input
@@ -133,13 +146,13 @@ export default function FinalCtaSection() {
                       placeholder="e.g. Ir. Budi Santoso"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Perusahaan / Organisasi *
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Perusahaan *
                     </label>
                     <input
                       type="text"
@@ -147,15 +160,30 @@ export default function FinalCtaSection() {
                       placeholder="e.g. PT Nusantara Maritime"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Jabatan / Role *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. IT Director / CTO"
+                      value={formData.role}
+                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Email, Phone */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Alamat Email *
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Email Korporat *
                     </label>
                     <input
                       type="email"
@@ -163,13 +191,13 @@ export default function FinalCtaSection() {
                       placeholder="name@company.co.id"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Nomor Telepon / WhatsApp *
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Telepon / WhatsApp *
                     </label>
                     <input
                       type="tel"
@@ -177,14 +205,15 @@ export default function FinalCtaSection() {
                       placeholder="081X-XXXX-XXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Industry, Project Type, Timeline */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
                       Sektor Industri
                     </label>
                     <select
@@ -201,8 +230,8 @@ export default function FinalCtaSection() {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                      Tipe Proyek (Project Type) *
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Project Type *
                     </label>
                     <select
                       value={formData.projectType}
@@ -216,18 +245,35 @@ export default function FinalCtaSection() {
                       ))}
                     </select>
                   </div>
+
+                  <div>
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                      Timeline *
+                    </label>
+                    <select
+                      value={formData.timeline}
+                      onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#0a1020] border border-white/[0.1] text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400 transition-colors"
+                    >
+                      {TIMELINE_OPTIONS.map((time) => (
+                        <option key={time} value={time} className="bg-[#0a1020] text-white">
+                          {time}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
-                    Deskripsi Kebutuhan Proyek (Project Description)
+                  <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    Project Description
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Uraikan gambaran fasilitas, tantangan konektivitas/arsitektur, perkiraan lokasi, atau target implementasi yang ingin dicapai..."
+                    placeholder="Uraikan gambaran fasilitas, tantangan arsitektur, lokasi, atau target implementasi yang ingin dicapai..."
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors resize-none"
                   />
                 </div>
 
@@ -244,22 +290,22 @@ export default function FinalCtaSection() {
 
           </div>
 
-          {/* Right Column: Direct Channels & Sovereign Guarantee (Span 5) */}
+          {/* Right Column: Direct Engineering Channels & Trust Guarantee (Span 5) */}
           <div className="lg:col-span-5 space-y-6">
             
             {/* Direct Connect Box */}
-            <div className="bg-[#070b16] rounded-2xl border border-white/[0.1] p-6 sm:p-8 space-y-6">
+            <div className="bg-[#070b16] rounded-3xl border border-white/[0.1] p-6 sm:p-8 space-y-6">
               <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block">
-                Direct Engineering Line
+                Direct Engineering Dispatch
               </span>
               <h3 className="text-xl font-bold text-white">
-                Butuh respons segera untuk proyek kritis?
+                Butuh respons cepat untuk proyek mendesak?
               </h3>
               <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                Hubungi saluran komunikasi terenkripsi atau kirimkan ringkasan kebutuhan Anda secara langsung kepada tim prinsipal kami.
+                Hubungi saluran WhatsApp terenkripsi atau kirimkan ringkasan kebutuhan Anda langsung kepada prinsipal kami.
               </p>
 
-              <div className="space-y-4 pt-2">
+              <div className="space-y-3.5 pt-1">
                 <a
                   href={COMPANY_PROFILE.contact.whatsappUrl}
                   target="_blank"
@@ -274,7 +320,7 @@ export default function FinalCtaSection() {
                       {COMPANY_PROFILE.contact.phone} (WhatsApp)
                     </div>
                     <div className="text-[10px] font-mono text-neutral-400">
-                      Direct WhatsApp Dispatch • Immediate Response
+                      Direct WhatsApp Dispatch • Instant Response
                     </div>
                   </div>
                 </a>
@@ -291,7 +337,7 @@ export default function FinalCtaSection() {
                       {COMPANY_PROFILE.contact.email}
                     </div>
                     <div className="text-[10px] font-mono text-neutral-400">
-                      Official Project Desk • Response &lt; 24h
+                      Official Desk • SLA &lt; 24h
                     </div>
                   </div>
                 </a>
@@ -302,7 +348,7 @@ export default function FinalCtaSection() {
                   </div>
                   <div>
                     <div className="text-xs font-semibold text-white">
-                      {COMPANY_PROFILE.contact.address}
+                      Indonesia
                     </div>
                     <div className="text-[10px] font-mono text-neutral-400">
                       Nationwide Implementation Capabilities
@@ -312,14 +358,14 @@ export default function FinalCtaSection() {
               </div>
             </div>
 
-            {/* Credibility & Sovereign Compliance Badge */}
+            {/* Non-Disclosure Agreement Guarantee */}
             <div className="bg-[#070b16] rounded-2xl border border-white/[0.08] p-6 text-xs text-neutral-400 space-y-2">
               <div className="flex items-center gap-2 text-white font-medium">
                 <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                <span>Non-Disclosure &amp; Confidentiality Guarantee</span>
+                <span>Strict Non-Disclosure &amp; Security Assurance</span>
               </div>
-              <p className="text-[11.5px] text-neutral-400 leading-relaxed">
-                Setiap data teknis, denah fasilitas, dan spesifikasi arsitektur yang Anda bagikan dilindungi dengan standar kerahasiaan ketat (NDA) sebelum kajian teknis dimulai.
+              <p className="text-[11px] text-neutral-400 leading-relaxed">
+                Seluruh data teknis, denah fasilitas, dan informasi bisnis yang dibagikan terikat perjanjian kerahasiaan ketat (NDA) demi melindungi privasi aset Anda.
               </p>
             </div>
 
