@@ -1169,6 +1169,24 @@ export const DISCONNECT_PROBLEMS = [
 ];
 
 // V5 AI Opportunity Assessment (Section 17)
+export const AI_CAPABILITIES = [
+  { name: "Private LLM Deployment", status: "Active" },
+  { name: "Enterprise RAG & Search", status: "Active" },
+  { name: "Document Parsing Engine", status: "Active" },
+  { name: "Workflow Robotic Agents", status: "Active" },
+  { name: "Air-Gapped Sovereign AI", status: "Production Ready" },
+  { name: "Citation Grounding & Audit", status: "Verified" }
+];
+
+export const AI_USE_CASES = [
+  "Internal Policy Retrieval",
+  "Contract Clause Comparison",
+  "Automated RFP Synthesis",
+  "Technical SOP Extraction",
+  "Incident Log Synthesis",
+  "Vendor Compliance Auditing"
+];
+
 export const AI_OPPORTUNITY_AREAS = [
   { id: "documents", label: "DOCUMENTS", detail: "Contract analysis, technical PDF parsing & automated extraction" },
   { id: "knowledge", label: "KNOWLEDGE", detail: "Centralized internal Q&A, organizational SOPs & policy retrieval" },

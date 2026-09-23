@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useTheme } from "@/context/ThemeContext";
 
 interface BrandLogoProps {
   variant?: "dark" | "light" | "auto";
@@ -11,13 +14,19 @@ interface BrandLogoProps {
 }
 
 export default function BrandLogo({
-  variant = "dark",
+  variant = "auto",
   showWordmark = true,
   showDescriptor = false,
   size = "md",
   className = "",
   symbolOnlyOnMobile = false,
 }: BrandLogoProps) {
+  const { theme } = useTheme();
+
+  // Determine effective visual variant
+  const effectiveVariant = variant === "auto" ? theme : variant;
+  const isLight = effectiveVariant === "light";
+
   // Height sizing
   const heightClasses = {
     sm: "h-6 sm:h-7",
@@ -31,21 +40,19 @@ export default function BrandLogo({
     lg: { w: 38, h: 38 },
   };
 
-  const isLight = variant === "light";
-
   return (
     <div
       className={`inline-flex items-center gap-2.5 sm:gap-3 select-none animate-logo-reveal ${heightClasses[size]} ${className}`}
       aria-label="PT ARKAPRANA TEKNOLOGI NUSANTARA"
     >
       {/* Geometric "A" Emblem Vector */}
-      <div className="relative flex-shrink-0 flex items-center justify-center transition-opacity duration-500">
+      <div className="relative flex-shrink-0 flex items-center justify-center transition-opacity duration-300">
         <Image
           src={isLight ? "/brand/arkaprana-symbol-light.svg" : "/brand/arkaprana-symbol-dark.svg"}
           alt="ARKAPRANA Symbol"
           width={symbolSizes[size].w}
           height={symbolSizes[size].h}
-          className="w-auto h-full max-h-7 sm:max-h-8 object-contain transition-transform duration-500 ease-out"
+          className="w-auto h-full max-h-7 sm:max-h-8 object-contain transition-transform duration-300 ease-out"
           priority
         />
       </div>
@@ -59,8 +66,8 @@ export default function BrandLogo({
         >
           <div className="flex items-center tracking-[0.16em] font-bold">
             <span
-              className={`text-[15px] sm:text-[17px] font-black uppercase tracking-[0.16em] transition-colors ${
-                isLight ? "text-neutral-900" : "text-white"
+              className={`text-[15px] sm:text-[17px] font-black uppercase tracking-[0.16em] transition-colors duration-300 ${
+                isLight ? "text-[#111827]" : "text-[#E8ECF2]"
               }`}
               style={{
                 fontFamily:
@@ -74,8 +81,8 @@ export default function BrandLogo({
 
           {showDescriptor && (
             <span
-              className={`text-[8px] sm:text-[9px] font-mono tracking-[0.2em] uppercase mt-0.5 ${
-                isLight ? "text-neutral-500" : "text-neutral-400"
+              className={`text-[8px] sm:text-[9px] font-mono tracking-[0.2em] uppercase mt-0.5 transition-colors duration-300 ${
+                isLight ? "text-[#667085]" : "text-[#98A2B3]"
               }`}
             >
               PT ARKAPRANA TEKNOLOGI NUSANTARA

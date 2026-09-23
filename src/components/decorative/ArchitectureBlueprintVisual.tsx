@@ -1,12 +1,16 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function ArchitectureBlueprintVisual() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [hasDrawn, setHasDrawn] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const { theme } = useTheme();
+
+  const isLight = theme === "light";
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -22,7 +26,6 @@ export default function ArchitectureBlueprintVisual() {
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
         if (entry.isIntersecting && !hasDrawn) {
-          // Trigger draw animation on entry
           setHasDrawn(true);
         }
       },
@@ -38,12 +41,12 @@ export default function ArchitectureBlueprintVisual() {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="w-full max-w-4xl mx-auto my-8 p-4 sm:p-6 rounded-2xl bg-[#030612]/80 border border-white/[0.08] relative overflow-hidden pointer-events-none select-none"
+      className="w-full max-w-4xl mx-auto my-8 p-4 sm:p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] relative overflow-hidden pointer-events-none select-none transition-colors duration-300 shadow-xs"
     >
       {/* Background blueprint coordinate marks */}
-      <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-3 pb-2 border-b border-white/[0.06]">
+      <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-[var(--text-muted)] mb-3 pb-2 border-b border-[var(--border-subtle)]">
         <span>ARCHITECTURAL BUS TOPOLOGY // SCHEMATIC</span>
-        <span className="text-cyan-400">STATUS: {hasDrawn ? "SYNCED" : "INITIALIZING"}</span>
+        <span className="text-[var(--accent)]">STATUS: {hasDrawn ? "SYNCED" : "INITIALIZING"}</span>
       </div>
 
       <svg
@@ -54,16 +57,23 @@ export default function ArchitectureBlueprintVisual() {
       >
         <defs>
           <linearGradient id="archBusGrad" x1="0" y1="0" x2="760" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.3" />
-            <stop offset="50%" stopColor="#00f0ff" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.3" />
+            {isLight ? (
+              <>
+                <stop offset="0%" stopColor="#1769E0" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#1769E0" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#1769E0" stopOpacity="0.3" />
+              </>
+            ) : (
+              <>
+                <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#00f0ff" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.3" />
+              </>
+            )}
           </linearGradient>
         </defs>
 
-        {/* ========================================================
-            CENTRAL HORIZONTAL HIGHWAY BUS
-            ○──────○──────○──────○──────○──────○
-            ======================================================== */}
+        {/* Central Horizontal Highway Bus */}
         <line
           x1="50"
           y1="80"
@@ -81,7 +91,7 @@ export default function ArchitectureBlueprintVisual() {
         {/* Secondary Vertical Return Branches */}
         <path
           d="M 170 80 L 170 125 L 310 125 L 310 80"
-          stroke="rgba(56, 189, 248, 0.3)"
+          stroke={isLight ? "rgba(23, 105, 224, 0.25)" : "rgba(56, 189, 248, 0.3)"}
           strokeWidth="1"
           strokeDasharray="280"
           strokeDashoffset={hasDrawn ? "0" : "280"}
@@ -91,7 +101,7 @@ export default function ArchitectureBlueprintVisual() {
         />
         <path
           d="M 450 80 L 450 35 L 590 35 L 590 80"
-          stroke="rgba(56, 189, 248, 0.3)"
+          stroke={isLight ? "rgba(23, 105, 224, 0.25)" : "rgba(56, 189, 248, 0.3)"}
           strokeWidth="1"
           strokeDasharray="280"
           strokeDashoffset={hasDrawn ? "0" : "280"}
@@ -100,12 +110,13 @@ export default function ArchitectureBlueprintVisual() {
           }}
         />
 
-        {/* ========================================================
-            SUBTLE OCCASIONAL ENERGY PULSE (IDLE STATE)
-            Gentle traveling dot along main bus (12s cycle)
-            ======================================================== */}
+        {/* Energy Pulse */}
         {hasDrawn && !isReducedMotion && isVisible && (
-          <circle r="2.5" fill="#ffffff" filter="drop-shadow(0 0 4px #00f0ff)">
+          <circle
+            r="2.5"
+            fill={isLight ? "#1769E0" : "#ffffff"}
+            filter={isLight ? "drop-shadow(0 0 3px rgba(23, 105, 224, 0.5))" : "drop-shadow(0 0 4px #00f0ff)"}
+          >
             <animateMotion
               path="M 50 80 L 710 80"
               dur="14s"
@@ -116,10 +127,7 @@ export default function ArchitectureBlueprintVisual() {
           </circle>
         )}
 
-        {/* ========================================================
-            6 ARCHITECTURAL TIERS NODES:
-            INFRASTRUCTURE, NETWORK, CLOUD, SECURITY, DATA, AI
-            ======================================================== */}
+        {/* 6 Architectural Tiers Nodes */}
         {[
           { x: 50, label: "INFRASTRUCTURE", code: "01_PHYSICAL", sub: "Compute & Power" },
           { x: 170, label: "NETWORK", code: "02_TRANSIT", sub: "Optical & Mesh" },
@@ -137,16 +145,30 @@ export default function ArchitectureBlueprintVisual() {
             }}
           >
             {/* Outer Concentric Pulse Target */}
-            <circle cx={node.x} cy="80" r="9" stroke="rgba(56, 189, 248, 0.25)" strokeWidth="1" strokeDasharray="2 2" />
-            <circle cx={node.x} cy="80" r="4.5" fill="#030712" stroke="#00f0ff" strokeWidth="1.2" />
-            <circle cx={node.x} cy="80" r="2" fill="#38bdf8" />
+            <circle
+              cx={node.x}
+              cy="80"
+              r="9"
+              stroke={isLight ? "rgba(23, 105, 224, 0.2)" : "rgba(56, 189, 248, 0.25)"}
+              strokeWidth="1"
+              strokeDasharray="2 2"
+            />
+            <circle
+              cx={node.x}
+              cy="80"
+              r="4.5"
+              fill={isLight ? "#FFFFFF" : "#080A0F"}
+              stroke={isLight ? "#1769E0" : "#00f0ff"}
+              strokeWidth="1.2"
+            />
+            <circle cx={node.x} cy="80" r="2" fill={isLight ? "#1769E0" : "#38bdf8"} />
 
             {/* Node Typography Labels */}
             <text
               x={node.x}
               y="108"
               textAnchor="middle"
-              fill="#ffffff"
+              fill={isLight ? "#111827" : "#E8ECF2"}
               fontSize="9"
               fontFamily="sans-serif"
               fontWeight="600"
@@ -158,7 +180,7 @@ export default function ArchitectureBlueprintVisual() {
               x={node.x}
               y="122"
               textAnchor="middle"
-              fill="rgba(148, 163, 184, 0.7)"
+              fill={isLight ? "#667085" : "#98A2B3"}
               fontSize="8"
               fontFamily="monospace"
             >

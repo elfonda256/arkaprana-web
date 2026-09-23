@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 interface Node {
   x: number;
@@ -22,6 +23,9 @@ interface Pulse {
 export default function NetworkTopologyCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
+  const { theme } = useTheme();
+
+  const isLight = theme === "light";
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,7 +50,6 @@ export default function NetworkTopologyCanvas() {
     window.addEventListener("resize", handleResize);
 
     const tiers: ("infra" | "network" | "data" | "ai")[] = ["infra", "network", "data", "ai"];
-    // Sparser, calmer node count: 12 on mobile, 22 on desktop for breathable whitespace
     const nodeCount = isMobile ? 12 : Math.min(Math.floor((width * height) / 45000), 22);
     const nodes: Node[] = [];
 
@@ -54,7 +57,6 @@ export default function NetworkTopologyCanvas() {
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        // Extremely calm, minimal drift
         vx: (Math.random() - 0.5) * 0.05,
         vy: (Math.random() - 0.5) * 0.05,
         radius: Math.random() > 0.85 ? 1.5 : 1.0,
@@ -71,7 +73,6 @@ export default function NetworkTopologyCanvas() {
     let targetMouseX = -1000;
     let targetMouseY = -1000;
 
-    // Subtle desktop parallax (max 3-4px)
     const handleMouseMove = (e: MouseEvent) => {
       if (isMobile || prefersReducedMotion) return;
       const rect = canvas.getBoundingClientRect();
@@ -108,14 +109,16 @@ export default function NetworkTopologyCanvas() {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = "rgba(56, 189, 248, 0.08)";
+            ctx.strokeStyle = isLight ? "rgba(100, 116, 139, 0.10)" : "rgba(56, 189, 248, 0.08)";
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
         }
         ctx.beginPath();
         ctx.arc(nodes[i].x, nodes[i].y, nodes[i].radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(224, 242, 254, ${nodes[i].baseAlpha})`;
+        ctx.fillStyle = isLight
+          ? `rgba(71, 85, 105, ${nodes[i].baseAlpha})`
+          : `rgba(224, 242, 254, ${nodes[i].baseAlpha})`;
         ctx.fill();
       }
       return () => {
@@ -128,11 +131,9 @@ export default function NetworkTopologyCanvas() {
     const render = (time: number) => {
       animationFrameId = requestAnimationFrame(render);
 
-      // Smooth mouse interpolation
       mouseX += (targetMouseX - mouseX) * 0.06;
       mouseY += (targetMouseY - mouseY) * 0.06;
 
-      // Spawn pulses along lines rarely and softly (Item 14: 1-2 data pulses max)
       if (time - lastSpawn > 3200 && pulses.length < 3 && nodes.length > 2) {
         const from = Math.floor(Math.random() * nodes.length);
         for (let to = 0; to < nodes.length; to++) {
@@ -155,10 +156,9 @@ export default function NetworkTopologyCanvas() {
 
       ctx.clearRect(0, 0, width, height);
 
-      // Update positions & slight cursor response
+      // Positions update
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
-
         if (mouseX > 0 && mouseY > 0) {
           const mdx = n.x - mouseX;
           const mdy = n.y - mouseY;
@@ -179,7 +179,7 @@ export default function NetworkTopologyCanvas() {
         if (n.y > height) n.y = 0;
       }
 
-      // Draw thin connection lines (quiet, breathable 0.08 max opacity)
+      // Draw connection lines
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -187,18 +187,20 @@ export default function NetworkTopologyCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDistance) {
-            const alpha = (1 - dist / connectionDistance) * 0.08;
+            const alpha = (1 - dist / connectionDistance) * (isLight ? 0.07 : 0.08);
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+            ctx.strokeStyle = isLight
+              ? `rgba(100, 116, 139, ${alpha})`
+              : `rgba(56, 189, 248, ${alpha})`;
             ctx.lineWidth = 0.55;
             ctx.stroke();
           }
         }
       }
 
-      // Draw subtle data pulses travelling along connections
+      // Pulses
       for (let p = pulses.length - 1; p >= 0; p--) {
         const pulse = pulses[p];
         pulse.progress += pulse.speed;
@@ -217,19 +219,21 @@ export default function NetworkTopologyCanvas() {
 
         ctx.beginPath();
         ctx.arc(curX, curY, 1.4, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(186, 230, 253, 0.85)";
-        ctx.shadowColor = "rgba(0, 240, 255, 0.6)";
+        ctx.fillStyle = isLight ? "rgba(23, 105, 224, 0.85)" : "rgba(186, 230, 253, 0.85)";
+        ctx.shadowColor = isLight ? "rgba(23, 105, 224, 0.4)" : "rgba(0, 240, 255, 0.6)";
         ctx.shadowBlur = 4;
         ctx.fill();
         ctx.shadowBlur = 0;
       }
 
-      // Draw subtle nodes
+      // Nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(224, 242, 254, ${n.baseAlpha})`;
+        ctx.fillStyle = isLight
+          ? `rgba(71, 85, 105, ${n.baseAlpha * 0.9})`
+          : `rgba(224, 242, 254, ${n.baseAlpha})`;
         ctx.fill();
       }
     };
@@ -242,12 +246,14 @@ export default function NetworkTopologyCanvas() {
       window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, []);
+  }, [isLight]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-45 transition-transform duration-300 ease-out"
+      className={`absolute inset-0 w-full h-full pointer-events-none transition-all duration-500 ease-out ${
+        isLight ? "opacity-30" : "opacity-45"
+      }`}
       style={{
         transform: `translate3d(${parallaxOffset.x}px, ${parallaxOffset.y}px, 0)`,
         willChange: "transform"

@@ -11,20 +11,20 @@ export const metadata = {
 
 export default function InsightsPage() {
   return (
-    <main className="flex-1 pt-28 pb-20 bg-[#030712]">
+    <main className="flex-1 pt-28 pb-20 bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
       {/* Header */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-[var(--border-subtle)]">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
-            <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
-            <span>ENGINEERING PAPERS & EDITORIAL</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-glow)] border border-[var(--border-strong)] text-[var(--accent-blue)] text-xs font-mono">
+            <BookOpen className="w-3.5 h-3.5 text-[var(--accent-blue)]" />
+            <span>ENGINEERING PAPERS &amp; EDITORIAL</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-semibold text-white tracking-tight leading-tight font-display">
-            Perspectives on Modern Infrastructure & AI.
+          <h1 className="text-4xl sm:text-5xl font-semibold text-[var(--text-primary)] tracking-tight leading-tight font-display">
+            Perspectives on Modern Infrastructure &amp; AI.
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-normal">
             Catatan riset dan pemikiran teknik dari para insinyur ARKAPRANA mengenai kedaulatan data, keamanan siber perimeter, dan integrasi kecerdasan buatan enterprise.
           </p>
         </div>
@@ -36,14 +36,14 @@ export default function InsightsPage() {
           {INSIGHTS.map((post) => (
             <article
               key={post.id}
-              className="p-8 rounded-2xl bg-gradient-to-b from-[#081329] to-[#040817] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 flex flex-col justify-between group shadow-xl"
+              className="p-8 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md"
             >
               <div>
-                <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-4">
-                  <span className="text-cyan-400 uppercase font-semibold">
+                <div className="flex items-center justify-between text-xs font-mono text-[var(--text-muted)] mb-4">
+                  <span className="text-[var(--accent-blue)] uppercase font-semibold">
                     {post.category}
                   </span>
-                  <div className="flex items-center space-x-3 text-slate-500">
+                  <div className="flex items-center space-x-3 text-[var(--text-muted)]">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
                       {post.date}
@@ -55,21 +55,21 @@ export default function InsightsPage() {
                   </div>
                 </div>
 
-                <h2 className="text-lg font-semibold text-white mb-3 group-hover:text-cyan-300 transition-colors leading-snug font-display">
+                <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-blue)] transition-colors leading-snug font-display">
                   <Link href={`/insights/${post.id}`}>
                     {post.title}
                   </Link>
                 </h2>
 
-                <p className="text-xs text-slate-400 leading-relaxed line-clamp-3">
+                <p className="text-xs text-[var(--text-secondary)] leading-relaxed line-clamp-3">
                   {post.snippet}
                 </p>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-white/5">
+              <div className="pt-6 mt-6 border-t border-[var(--border-subtle)]">
                 <Link
                   href={`/insights/${post.id}`}
-                  className="inline-flex items-center text-xs font-medium text-cyan-400 hover:text-cyan-300 transition-colors group/link"
+                  className="inline-flex items-center text-xs font-medium text-[var(--accent-blue)] hover:opacity-80 transition-colors group/link"
                 >
                   <span>Read Technical Article</span>
                   <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover/link:translate-x-1 transition-transform" />

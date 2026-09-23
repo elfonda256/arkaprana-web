@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppFloatingCta from "@/components/layout/WhatsAppFloatingCta";
 import MobileStickyCta from "@/components/layout/MobileStickyCta";
 import PageTransition from "@/components/shared/PageTransition";
+import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -96,20 +97,37 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${manrope.variable} ${inter.variable} ${ibmPlexMono.variable} h-full antialiased bg-[#030712] text-slate-100`}
+      suppressHydrationWarning
+      className={`${manrope.variable} ${inter.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
       <head>
+        {/* Zero-FOUC Instant Theme Initialization Script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('arkaprana_theme');
+                  var theme = saved || 'dark';
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#030712] selection:bg-cyan-500/30 selection:text-white pb-16 sm:pb-0">
-        <Navbar />
-        <PageTransition>{children}</PageTransition>
-        <Footer />
-        <WhatsAppFloatingCta />
-        <MobileStickyCta />
+      <body className="min-h-full flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent-soft-bg)] selection:text-[var(--accent)] pb-16 sm:pb-0">
+        <ThemeProvider>
+          <Navbar />
+          <PageTransition>{children}</PageTransition>
+          <Footer />
+          <WhatsAppFloatingCta />
+          <MobileStickyCta />
+        </ThemeProvider>
       </body>
     </html>
   );

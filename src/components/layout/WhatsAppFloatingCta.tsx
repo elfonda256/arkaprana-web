@@ -67,19 +67,19 @@ export default function WhatsAppFloatingCta() {
 
       {/* Floating Modal Card */}
       {isOpen && (
-        <div className="fixed bottom-20 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] rounded-3xl bg-[#090E1A] text-white border border-white/[0.12] shadow-2xl p-6 backdrop-blur-xl animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div className="fixed bottom-20 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] rounded-3xl bg-[var(--bg-card)] text-[var(--text-primary)] border border-[var(--border-subtle)] shadow-2xl p-6 backdrop-blur-xl animate-in fade-in slide-in-from-bottom-5 duration-200">
           
           {/* Header */}
-          <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+          <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--border-subtle)]">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-500">
                 <MessageSquare className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-white font-sans">
+                <h4 className="text-sm font-bold text-[var(--text-primary)] font-display">
                   Talk to ARKAPRANA
                 </h4>
-                <span className="text-[10px] font-mono text-emerald-400">
+                <span className="text-[10px] font-mono text-emerald-500 font-semibold">
                   Direct WhatsApp Engineering Desk
                 </span>
               </div>
@@ -88,17 +88,17 @@ export default function WhatsAppFloatingCta() {
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="text-neutral-400 hover:text-white p-1 rounded-lg hover:bg-white/[0.06] transition-colors"
+              className="text-[var(--text-muted)] hover:text-[var(--text-primary)] p-1 rounded-lg hover:bg-[var(--bg-secondary)] transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
-          <p className="text-xs text-neutral-300 leading-relaxed mb-4">
+          <p className="text-xs text-[var(--text-secondary)] leading-relaxed mb-4">
             Pilih topik konsultasi di bawah untuk langsung terhubung dengan tim teknis ARKAPRANA:
           </p>
 
-          {/* 4 Choices (Section 27 verbatim) */}
+          {/* 4 Choices */}
           <div className="space-y-2 mb-4">
             {WA_OPTIONS.map((opt) => {
               const Icon = opt.icon;
@@ -107,29 +107,29 @@ export default function WhatsAppFloatingCta() {
                   key={opt.id}
                   type="button"
                   onClick={() => handleSelectOption(opt.text)}
-                  className="w-full text-left p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-emerald-400/40 transition-all flex items-center justify-between group cursor-pointer"
+                  className="w-full text-left p-3 rounded-xl bg-[var(--bg-secondary)] hover:bg-[var(--accent-glow)] border border-[var(--border-subtle)] hover:border-emerald-500/40 transition-all flex items-center justify-between group cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-lg bg-white/[0.05] flex items-center justify-center text-neutral-300 group-hover:text-emerald-400 transition-colors">
+                    <div className="w-7 h-7 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] group-hover:text-emerald-500 transition-colors">
                       <Icon className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <div className="text-xs font-semibold text-white group-hover:text-emerald-300 transition-colors">
+                      <div className="text-xs font-semibold text-[var(--text-primary)] group-hover:text-emerald-500 transition-colors font-display">
                         {opt.label}
                       </div>
-                      <div className="text-[10px] text-neutral-400 line-clamp-1">
+                      <div className="text-[10px] text-[var(--text-muted)] line-clamp-1">
                         {opt.desc}
                       </div>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[var(--text-muted)] group-hover:text-emerald-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                 </button>
               );
             })}
           </div>
 
           {/* Footer note */}
-          <div className="pt-2 text-[10px] font-mono text-neutral-400 text-center">
+          <div className="pt-2 text-[10px] font-mono text-[var(--text-muted)] text-center">
             Hotline: +62 816-997-963 • Respon cepat di jam kerja
           </div>
 

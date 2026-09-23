@@ -1,12 +1,16 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function FinalSignatureBlueprint() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [hasDrawn, setHasDrawn] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const { theme } = useTheme();
+
+  const isLight = theme === "light";
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -33,11 +37,17 @@ export default function FinalSignatureBlueprint() {
     return () => observer.disconnect();
   }, [hasDrawn]);
 
+  const activeColor = isLight ? "#1769E0" : "#38bdf8";
+  const glowColor = isLight ? "rgba(23, 105, 224, 0.4)" : "#00f0ff";
+  const baseStroke = isLight ? "rgba(100, 116, 139, 0.18)" : "rgba(56, 189, 248, 0.2)";
+
   return (
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden opacity-35"
+      className={`absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden transition-opacity duration-500 ${
+        isLight ? "opacity-25" : "opacity-35"
+      }`}
     >
       <svg
         viewBox="0 0 900 450"
@@ -47,17 +57,28 @@ export default function FinalSignatureBlueprint() {
       >
         <defs>
           <linearGradient id="finalBlueprintGrad" x1="0" y1="225" x2="900" y2="225" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.1" />
-            <stop offset="30%" stopColor="#00f0ff" stopOpacity="0.4" />
-            <stop offset="70%" stopColor="#38bdf8" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.1" />
+            <stop offset="0%" stopColor={activeColor} stopOpacity="0.08" />
+            <stop offset="30%" stopColor={activeColor} stopOpacity="0.35" />
+            <stop offset="70%" stopColor={activeColor} stopOpacity="0.35" />
+            <stop offset="100%" stopColor={activeColor} stopOpacity="0.08" />
           </linearGradient>
         </defs>
 
-        {/* ========================================================
-            FOUNDATION BASELINE BLUEPRINT GRID
-            "BUILD THE FOUNDATION"
-            ======================================================== */}
+        {/* Foundation Structural Pilings */}
+        {[150, 300, 450, 600, 750].map((x) => (
+          <line
+            key={`piling-${x}`}
+            x1={x}
+            y1="340"
+            x2={x}
+            y2="390"
+            stroke={baseStroke}
+            strokeWidth="1"
+            strokeDasharray="4 4"
+          />
+        ))}
+
+        {/* Baseline Blueprint */}
         <line
           x1="50"
           y1="340"
@@ -72,27 +93,10 @@ export default function FinalSignatureBlueprint() {
           }}
         />
 
-        {/* Foundation Structural Pilings */}
-        {[150, 300, 450, 600, 750].map((x) => (
-          <line
-            key={`piling-${x}`}
-            x1={x}
-            y1="340"
-            x2={x}
-            y2="390"
-            stroke="rgba(56, 189, 248, 0.2)"
-            strokeWidth="1"
-            strokeDasharray="4 4"
-          />
-        ))}
-
-        {/* ========================================================
-            SYSTEM INTERCONNECT MESH
-            "CONNECT THE SYSTEMS"
-            ======================================================== */}
+        {/* System Interconnect Mesh */}
         <path
           d="M 120 340 L 260 220 L 450 220 L 640 220 L 780 340"
-          stroke="rgba(56, 189, 248, 0.35)"
+          stroke={isLight ? "rgba(23, 105, 224, 0.25)" : "rgba(56, 189, 248, 0.35)"}
           strokeWidth="1"
           strokeDasharray="900"
           strokeDashoffset={hasDrawn ? "0" : "900"}
@@ -101,13 +105,10 @@ export default function FinalSignatureBlueprint() {
           }}
         />
 
-        {/* ========================================================
-            INTELLIGENCE CONVERGENCE APEX
-            "ENABLE THE INTELLIGENCE"
-            ======================================================== */}
+        {/* Intelligence Convergence Apex */}
         <path
           d="M 260 220 L 450 100 L 640 220"
-          stroke="rgba(0, 240, 255, 0.5)"
+          stroke={activeColor}
           strokeWidth="1.2"
           strokeDasharray="600"
           strokeDashoffset={hasDrawn ? "0" : "600"}
@@ -125,9 +126,9 @@ export default function FinalSignatureBlueprint() {
             transition: isReducedMotion ? "none" : "opacity 800ms ease 1200ms, transform 800ms cubic-bezier(0.16, 1, 0.3, 1) 1200ms"
           }}
         >
-          <circle cx="450" cy="100" r="26" stroke="rgba(56, 189, 248, 0.2)" strokeWidth="1" strokeDasharray="3 3" />
-          <circle cx="450" cy="100" r="14" stroke="#00f0ff" strokeWidth="1.2" fill="rgba(0, 240, 255, 0.05)" />
-          <circle cx="450" cy="100" r="4" fill="#ffffff" />
+          <circle cx="450" cy="100" r="26" stroke={baseStroke} strokeWidth="1" strokeDasharray="3 3" />
+          <circle cx="450" cy="100" r="14" stroke={activeColor} strokeWidth="1.2" fill={isLight ? "rgba(23, 105, 224, 0.04)" : "rgba(0, 240, 255, 0.05)"} />
+          <circle cx="450" cy="100" r="4" fill={isLight ? activeColor : "#ffffff"} />
         </g>
 
         {/* Intersecting Foundation Nodes */}
@@ -143,7 +144,7 @@ export default function FinalSignatureBlueprint() {
             cx={pt.x}
             cy={pt.y}
             r="3.5"
-            fill="#38bdf8"
+            fill={activeColor}
             style={{
               opacity: hasDrawn ? 1 : 0,
               transition: isReducedMotion ? "none" : `opacity 500ms ease ${900 + i * 100}ms`
@@ -151,12 +152,9 @@ export default function FinalSignatureBlueprint() {
           />
         ))}
 
-        {/* ========================================================
-            RARE GENTLE DATA PULSES (IDLE STATE)
-            Gentle traveling dot along apex (18s cycle)
-            ======================================================== */}
+        {/* Traveling Pulse */}
         {hasDrawn && !isReducedMotion && isVisible && (
-          <circle r="2" fill="#ffffff" filter="drop-shadow(0 0 3px #00f0ff)">
+          <circle r="2" fill={activeColor} filter={`drop-shadow(0 0 3px ${glowColor})`}>
             <animateMotion
               path="M 120 340 L 260 220 L 450 100 L 640 220 L 780 340"
               dur="18s"
@@ -167,8 +165,8 @@ export default function FinalSignatureBlueprint() {
           </circle>
         )}
 
-        {/* Technical Blueprint Annotations */}
-        <text x="450" y="70" textAnchor="middle" fill="rgba(148, 163, 184, 0.5)" fontSize="8" fontFamily="monospace" letterSpacing="0.2em">
+        {/* Blueprint Annotations */}
+        <text x="450" y="70" textAnchor="middle" fill={isLight ? "rgba(100, 116, 139, 0.5)" : "rgba(148, 163, 184, 0.5)"} fontSize="8" fontFamily="monospace" letterSpacing="0.2em">
           ARKAPRANA SOVEREIGN ARCHITECTURE // DATUM APEX
         </text>
       </svg>

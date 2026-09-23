@@ -35,22 +35,22 @@ export default function FinalSignatureSection() {
   return (
     <section
       ref={containerRef}
-      className="py-24 md:py-32 bg-[#02050E] text-white relative overflow-hidden border-t border-white/[0.08]"
+      className="py-24 md:py-32 bg-[var(--bg-secondary)] text-[var(--text-primary)] relative overflow-hidden border-t border-[var(--border-subtle)] transition-colors duration-300"
       aria-label="ARKAPRANA Signature Thesis"
     >
       {/* Ambient background atmosphere */}
-      <div className="absolute inset-0 bg-tech-grid opacity-10 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-cyan-950/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute inset-0 bg-tech-grid opacity-15 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[var(--accent)]/5 rounded-full blur-[140px] pointer-events-none" />
 
       {/* ARKAPRANA Living Outline: Technical Architecture Blueprint Silhouette */}
       <FinalSignatureBlueprint />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-12">
         
-        {/* Three Sequential Sentences (Human, Editorial, Confident) */}
+        {/* Three Sequential Sentences */}
         <div className="space-y-3 sm:space-y-4">
           <div
-            className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-neutral-300 font-display transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[var(--text-secondary)] font-display transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: inView ? 1 : 0,
               transform: inView ? "translate3d(0, 0, 0)" : "translate3d(0, 16px, 0)",
@@ -61,7 +61,7 @@ export default function FinalSignatureSection() {
           </div>
 
           <div
-            className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white font-display transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[var(--text-primary)] font-display transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: inView ? 1 : 0,
               transform: inView ? "translate3d(0, 0, 0)" : "translate3d(0, 16px, 0)",
@@ -72,7 +72,7 @@ export default function FinalSignatureSection() {
           </div>
 
           <div
-            className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-400 font-display transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] via-blue-500 to-indigo-500 font-display transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: inView ? 1 : 0,
               transform: inView ? "translate3d(0, 0, 0)" : "translate3d(0, 16px, 0)",
@@ -85,7 +85,7 @@ export default function FinalSignatureSection() {
 
         {/* Separator Line */}
         <div
-          className="w-16 h-0.5 bg-cyan-500/40 mx-auto transition-all duration-700"
+          className="w-16 h-0.5 bg-[var(--accent)]/40 mx-auto transition-all duration-700"
           style={{
             opacity: inView ? 1 : 0,
             transform: inView ? "scaleX(1)" : "scaleX(0)",
@@ -93,7 +93,7 @@ export default function FinalSignatureSection() {
           }}
         />
 
-        {/* Static Corporate Lockup (Section 25 verbatim) */}
+        {/* Corporate Lockup */}
         <div
           className="pt-2 space-y-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{
@@ -103,14 +103,14 @@ export default function FinalSignatureSection() {
           }}
         >
           <div className="flex justify-center">
-            <BrandLogo variant="dark" size="lg" showWordmark={true} showDescriptor={false} />
+            <BrandLogo variant="auto" size="lg" showWordmark={true} showDescriptor={false} />
           </div>
 
-          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-neutral-400">
+          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-[var(--text-muted)]">
             Technology &amp; Intelligent Solutions
           </p>
 
-          <p className="text-sm sm:text-base font-bold tracking-[0.2em] uppercase text-cyan-300 font-mono">
+          <p className="text-sm sm:text-base font-bold tracking-[0.2em] uppercase text-[var(--accent)] font-mono">
             BUILD. CONNECT. INTELLIGENCE.
           </p>
         </div>

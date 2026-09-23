@@ -4,57 +4,55 @@ import React, { useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
-  Mail,
-  Phone,
-  MapPin,
+  ShieldCheck,
   CheckCircle2,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
   Sparkles,
   MessageSquare,
-  FileText
+  FileText,
+  Lock,
+  ChevronRight
 } from "lucide-react";
 import { COMPANY_PROFILE } from "@/lib/data";
 import CompanyProfileModal from "@/components/shared/CompanyProfileModal";
 
+const INDUSTRIES = [
+  "Maritime & Logistics",
+  "Mining & Heavy Industry",
+  "Plantation & Agriculture",
+  "Financial Services & Banking",
+  "Healthcare & Hospital Systems",
+  "Manufacturing & Industrial",
+  "Government & Smart City",
+  "Retail & Enterprise Distribution",
+  "Telecommunications & Media"
+];
+
 const PROJECT_TYPES = [
-  "Network Infrastructure",
-  "Server & Data Center",
-  "Cloud Environment",
-  "Cybersecurity Defense",
-  "Managed IT Operations",
-  "Private AI & RAG",
-  "Automation & Robotics",
-  "Turnkey System Integration",
-  "Technology Consulting",
-  "Other"
+  "New Infrastructure Architecture (Greenfield)",
+  "Network Modernization & SD-WAN Mesh",
+  "Private Cloud & Virtualization Setup",
+  "Cybersecurity Hardening & SOC Implementation",
+  "Private On-Premise AI / Enterprise RAG",
+  "Full Turnkey System Integration",
+  "Dedicated 24/7 Managed IT Services"
 ];
 
 const TIMELINE_OPTIONS = [
-  "Exploring / Feasibility",
-  "Immediate (< 3 Months)",
-  "3–6 Months",
-  "6–12 Months",
-  "Long Term / Next Fiscal"
+  "Immediate (Within 1 Month)",
+  "Upcoming Quarter (1-3 Months)",
+  "Planning Phase (3-6 Months)",
+  "Annual Budget Cycle (6+ Months)"
 ];
 
 const BUDGET_OPTIONS = [
-  "Not decided",
-  "Under discussion",
-  "Budget available",
-  "Prefer to discuss"
-];
-
-const INDUSTRIES = [
-  "Konstruksi & Proyek Fisik",
-  "Manufaktur & Pabrik Industri",
-  "Pelabuhan & Maritim",
-  "Logistik & Pergudangan",
-  "Properti & Kawasan Komersial",
-  "Perhotelan & Hospitality",
-  "Pemerintahan & Institusi Publik",
-  "Badan Usaha Milik Negara (BUMN)",
-  "Perbankan & Finansial",
-  "Korporasi & Enterprise",
-  "Lainnya"
+  "< IDR 250 Juta",
+  "IDR 250Jt - 1M",
+  "IDR 1M - 5M",
+  "> IDR 5 Miliar"
 ];
 
 export default function FinalCtaSection() {
@@ -66,18 +64,20 @@ export default function FinalCtaSection() {
     phone: "",
     industry: INDUSTRIES[0],
     projectType: PROJECT_TYPES[0],
-    timeline: TIMELINE_OPTIONS[1],
-    budgetRange: BUDGET_OPTIONS[0],
+    timeline: TIMELINE_OPTIONS[0],
+    budgetRange: "",
     description: ""
   });
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
+
     setTimeout(() => {
       setStatus("success");
-    }, 600);
+    }, 800);
   };
 
   const handleBackToHome = () => {
@@ -90,8 +90,8 @@ export default function FinalCtaSection() {
       phone: "",
       industry: INDUSTRIES[0],
       projectType: PROJECT_TYPES[0],
-      timeline: TIMELINE_OPTIONS[1],
-      budgetRange: BUDGET_OPTIONS[0],
+      timeline: TIMELINE_OPTIONS[0],
+      budgetRange: "",
       description: ""
     });
     const el = document.getElementById("contact");
@@ -99,29 +99,29 @@ export default function FinalCtaSection() {
   };
 
   return (
-    <section id="contact" className="py-28 md:py-36 bg-[#030712] text-white relative overflow-hidden border-t border-white/[0.08]">
+    <section id="contact" className="py-28 md:py-36 bg-[var(--bg-primary)] text-[var(--text-primary)] relative overflow-hidden border-t border-[var(--border-subtle)] transition-colors duration-300">
       {/* Background Atmosphere */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-cyan-950/20 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute inset-0 bg-tech-grid opacity-15 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-[var(--accent)]/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Narrative Section Header */}
         <div className="max-w-3xl mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-[var(--text-secondary)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
             <span>Enterprise Inquiry Desk</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05] font-sans">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--text-primary)] leading-[1.05] font-sans">
             Let's Build What's Next.
           </h2>
 
-          <p className="text-neutral-300 text-base sm:text-xl leading-relaxed pt-1 max-w-2xl font-normal">
+          <p className="text-[var(--text-secondary)] text-base sm:text-xl leading-relaxed pt-1 max-w-2xl font-normal">
             Tell us what you're building, and let's design the technology behind it.
           </p>
 
-          <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-xl font-normal">
+          <p className="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed max-w-xl font-normal">
             Kaji kebutuhan infrastruktur, jaringan, cloud, keamanan siber, atau kecerdasan buatan organisasi Anda langsung bersama tim Principal Engineer ARKAPRANA.
           </p>
         </div>
@@ -130,28 +130,28 @@ export default function FinalCtaSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Column: Interactive Enterprise Inquiry Form (Span 7) */}
-          <div className="lg:col-span-7 bg-[#070b16] rounded-3xl border border-white/[0.12] p-8 sm:p-10 shadow-2xl relative overflow-hidden">
+          <div className="lg:col-span-7 bg-[var(--bg-card)] rounded-3xl border border-[var(--border-subtle)] p-8 sm:p-10 shadow-xl relative overflow-hidden transition-colors duration-300">
             
-            {/* Section 26: Qualified Lead Success Screen */}
+            {/* Qualified Lead Success Screen */}
             {status === "success" ? (
               <div className="text-center py-12 space-y-5 animate-in fade-in zoom-in-95 duration-200">
-                <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 mx-auto flex items-center justify-center">
+                <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-500 mx-auto flex items-center justify-center">
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white font-sans">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)] font-sans">
                     Thank you for reaching out to ARKAPRANA.
                   </h3>
-                  <div className="text-base text-cyan-300 font-medium">
+                  <div className="text-base text-[var(--accent)] font-medium">
                     Your project information has been received.
                   </div>
-                  <div className="text-sm font-serif italic text-neutral-300">
+                  <div className="text-sm font-serif italic text-[var(--text-secondary)]">
                     &ldquo;Let's explore what we can build together.&rdquo;
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-neutral-400 max-w-md mx-auto leading-relaxed pt-2">
+                <p className="text-xs sm:text-sm text-[var(--text-muted)] max-w-md mx-auto leading-relaxed pt-2">
                   Tim Principal Systems Engineer ARKAPRANA akan menelaah spesifikasi kebutuhan Anda dan menghubungi kembali melalui email atau telepon resmi dalam waktu 1x24 jam kerja.
                 </p>
 
@@ -160,17 +160,16 @@ export default function FinalCtaSection() {
                     href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20${encodeURIComponent(formData.name)}%20(${encodeURIComponent(formData.position || "Representative")})%20dari%20${encodeURIComponent(formData.company)}%20telah%20mengirimkan%20inquiry%20proyek%20${encodeURIComponent(formData.projectType)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors shadow-md"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-500 transition-colors shadow-sm"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
                     <span>Lanjutkan via WhatsApp Instan</span>
                   </a>
 
-                  {/* Section 26 CTA: Back to ARKAPRANA */}
                   <button
                     type="button"
                     onClick={handleBackToHome}
-                    className="w-full sm:w-auto px-6 py-3.5 rounded-full text-xs font-medium text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] transition-all cursor-pointer"
+                    className="w-full sm:w-auto px-6 py-3.5 rounded-full text-xs font-medium text-[var(--text-primary)] bg-[var(--btn-secondary-bg)] hover:bg-[var(--btn-secondary-hover-bg)] border border-[var(--border-subtle)] transition-all cursor-pointer"
                   >
                     Back to ARKAPRANA
                   </button>
@@ -179,10 +178,10 @@ export default function FinalCtaSection() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 
-                {/* Name, Company, Position (Section 25 verbatim) */}
+                {/* Name, Company, Position */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)] mb-2">
                       Name *
                     </label>
                     <input
@@ -191,12 +190,12 @@ export default function FinalCtaSection() {
                       placeholder="e.g. Ir. Budi Santoso"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)] mb-2">
                       Company *
                     </label>
                     <input
@@ -205,12 +204,12 @@ export default function FinalCtaSection() {
                       placeholder="e.g. PT Nusantara Maritime"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)] mb-2">
                       Position
                     </label>
                     <input
@@ -218,15 +217,15 @@ export default function FinalCtaSection() {
                       placeholder="e.g. IT Director / CTO"
                       value={formData.position}
                       onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                     />
                   </div>
                 </div>
 
-                {/* Email, Phone (Section 25 verbatim) */}
+                {/* Email, Phone */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)] mb-2">
                       Email *
                     </label>
                     <input
@@ -235,12 +234,12 @@ export default function FinalCtaSection() {
                       placeholder="name@company.co.id"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)] mb-2">
                       Phone
                     </label>
                     <input
@@ -248,24 +247,24 @@ export default function FinalCtaSection() {
                       placeholder="081X-XXXX-XXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                     />
                   </div>
                 </div>
 
-                {/* Industry, Project Type, Estimated Timeline (Section 25 verbatim) */}
+                {/* Industry, Project Type, Estimated Timeline */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)] mb-2">
                       Industry *
                     </label>
                     <select
                       value={formData.industry}
                       onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-[#0a1020] border border-white/[0.1] text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs sm:text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                     >
                       {INDUSTRIES.map((ind) => (
-                        <option key={ind} value={ind} className="bg-[#0a1020] text-white">
+                        <option key={ind} value={ind} className="bg-[var(--bg-card)] text-[var(--text-primary)]">
                           {ind}
                         </option>
                       ))}
@@ -273,16 +272,16 @@ export default function FinalCtaSection() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)] mb-2">
                       Project Type *
                     </label>
                     <select
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-[#0a1020] border border-white/[0.1] text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs sm:text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                     >
                       {PROJECT_TYPES.map((pt) => (
-                        <option key={pt} value={pt} className="bg-[#0a1020] text-white">
+                        <option key={pt} value={pt} className="bg-[var(--bg-card)] text-[var(--text-primary)]">
                           {pt}
                         </option>
                       ))}
@@ -290,16 +289,16 @@ export default function FinalCtaSection() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)] mb-2">
                       Estimated Timeline
                     </label>
                     <select
                       value={formData.timeline}
                       onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-[#0a1020] border border-white/[0.1] text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs sm:text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                     >
                       {TIMELINE_OPTIONS.map((time) => (
-                        <option key={time} value={time} className="bg-[#0a1020] text-white">
+                        <option key={time} value={time} className="bg-[var(--bg-card)] text-[var(--text-primary)]">
                           {time}
                         </option>
                       ))}
@@ -307,13 +306,13 @@ export default function FinalCtaSection() {
                   </div>
                 </div>
 
-                {/* Optional Budget Range (Section 25 verbatim) */}
+                {/* Optional Budget Range */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300">
+                    <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)]">
                       Budget Range (Optional)
                     </label>
-                    <span className="text-[10px] text-neutral-500 font-mono">
+                    <span className="text-[10px] text-[var(--text-muted)] font-mono">
                       Tidak mengikat / opsional
                     </span>
                   </div>
@@ -327,8 +326,8 @@ export default function FinalCtaSection() {
                           onClick={() => setFormData({ ...formData, budgetRange: opt })}
                           className={`p-2.5 rounded-xl border text-center text-xs transition-all cursor-pointer ${
                             isSelected
-                              ? "bg-white/[0.1] border-cyan-400 text-cyan-300"
-                              : "bg-white/[0.02] border-white/[0.06] text-neutral-400 hover:text-white hover:border-white/[0.15]"
+                              ? "bg-[var(--accent-soft-bg)] border-[var(--accent)] text-[var(--accent)] font-semibold shadow-xs"
+                              : "bg-[var(--bg-secondary)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)]/30"
                           }`}
                         >
                           {opt}
@@ -338,9 +337,9 @@ export default function FinalCtaSection() {
                   </div>
                 </div>
 
-                {/* Project Description * (Section 25 verbatim) */}
+                {/* Project Description * */}
                 <div>
-                  <label className="block text-[10px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                  <label className="block text-[10px] font-mono uppercase tracking-wider text-[var(--text-secondary)] mb-2">
                     Project Description *
                   </label>
                   <textarea
@@ -349,18 +348,18 @@ export default function FinalCtaSection() {
                     placeholder="Uraikan gambaran fasilitas, tantangan arsitektur, lokasi, atau target implementasi yang ingin dicapai..."
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-cyan-400 transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
                   />
                 </div>
 
-                {/* Section 25 CTA: DISCUSS YOUR PROJECT / SUBMIT PROJECT INQUIRY */}
+                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-neutral-100 btn-primary-interaction group shadow-xl active:scale-[0.99] disabled:opacity-50 cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:opacity-90 btn-primary-interaction group shadow-sm active:scale-[0.99] disabled:opacity-50 cursor-pointer"
                 >
                   <span>{status === "submitting" ? "Processing..." : "Discuss Your Project"}</span>
-                  <ArrowRight className="w-4 h-4 text-black cta-arrow" />
+                  <ArrowRight className="w-4 h-4 text-[var(--btn-primary-text)] cta-arrow" />
                 </button>
               </form>
             )}
@@ -370,15 +369,15 @@ export default function FinalCtaSection() {
           {/* Right Column: Direct Engineering Channels & Trust Guarantee (Span 5) */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Direct Connect Box */}
-            <div className="bg-[#070b16] rounded-3xl border border-white/[0.1] p-6 sm:p-8 space-y-6">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block">
-                Direct Engineering Dispatch
+            {/* Direct Channels Card */}
+            <div className="bg-[var(--bg-card)] rounded-3xl border border-[var(--border-subtle)] p-8 space-y-6 shadow-sm transition-colors duration-300">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent)] block font-semibold">
+                Direct Channels
               </span>
-              <h3 className="text-xl font-bold text-white font-sans">
-                Butuh respons cepat untuk proyek mendesak?
+              <h3 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] font-sans">
+                Prefer direct technical consultation?
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
                 Hubungi saluran WhatsApp terenkripsi atau kirimkan ringkasan kebutuhan Anda langsung kepada prinsipal arsitek kami.
               </p>
 
@@ -387,16 +386,16 @@ export default function FinalCtaSection() {
                   href={COMPANY_PROFILE.contact.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-emerald-500/40 hover:bg-emerald-950/20 transition-all group"
+                  className="flex items-center space-x-3.5 p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] hover:border-emerald-500/40 transition-all group"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500 shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white group-hover:text-emerald-300 transition-colors">
+                    <div className="text-xs font-semibold text-[var(--text-primary)] group-hover:text-emerald-500 transition-colors">
                       {COMPANY_PROFILE.contact.phone} (WhatsApp)
                     </div>
-                    <div className="text-[10px] font-mono text-neutral-400">
+                    <div className="text-[10px] font-mono text-[var(--text-muted)]">
                       Direct WhatsApp Dispatch • Instant Response
                     </div>
                   </div>
@@ -404,30 +403,30 @@ export default function FinalCtaSection() {
 
                 <a
                   href={`mailto:${COMPANY_PROFILE.contact.email}`}
-                  className="flex items-center space-x-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-cyan-500/40 hover:bg-cyan-950/20 transition-all group"
+                  className="flex items-center space-x-3.5 p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] hover:border-[var(--accent)]/40 transition-all group"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-[var(--accent-soft-bg)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--accent)] shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white group-hover:text-cyan-300 transition-colors">
+                    <div className="text-xs font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
                       {COMPANY_PROFILE.contact.email}
                     </div>
-                    <div className="text-[10px] font-mono text-neutral-400">
+                    <div className="text-[10px] font-mono text-[var(--text-muted)]">
                       Official Desk • SLA &lt; 24h
                     </div>
                   </div>
                 </a>
 
-                <div className="flex items-center space-x-3.5 p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-                  <div className="w-9 h-9 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-neutral-300 shrink-0">
-                    <MapPin className="w-4 h-4" />
+                <div className="flex items-center space-x-3.5 p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+                  <div className="w-9 h-9 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-muted)] shrink-0">
+                    <MapPin className="w-4 h-4 text-[var(--accent)]" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white">
+                    <div className="text-xs font-semibold text-[var(--text-primary)]">
                       Indonesia
                     </div>
-                    <div className="text-[10px] font-mono text-neutral-400">
+                    <div className="text-[10px] font-mono text-[var(--text-muted)]">
                       Nationwide Implementation Capabilities
                     </div>
                   </div>
@@ -435,30 +434,30 @@ export default function FinalCtaSection() {
               </div>
             </div>
 
-            {/* Corporate Document Center Trigger (Section 28) */}
-            <div className="bg-[#070b16] rounded-3xl border border-white/[0.08] p-6 space-y-3">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 block">
+            {/* Corporate Document Center Trigger */}
+            <div className="bg-[var(--bg-card)] rounded-3xl border border-[var(--border-subtle)] p-6 space-y-3 shadow-sm transition-colors duration-300">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent)] block font-semibold">
                 Corporate Resources
               </span>
-              <div className="text-sm font-semibold text-white">
+              <div className="text-sm font-semibold text-[var(--text-primary)]">
                 Download Company Profile &amp; Statements
               </div>
-              <p className="text-xs text-neutral-400 leading-relaxed pb-2">
+              <p className="text-xs text-[var(--text-secondary)] leading-relaxed pb-2">
                 Dapatkan dokumen overview resmi seputar rekayasa jaringan, infrastruktur data center, dan kedaulatan private AI ARKAPRANA.
               </p>
               <CompanyProfileModal
-                triggerClassName="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-semibold text-white border border-white/[0.1] transition-all cursor-pointer"
+                triggerClassName="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[var(--btn-secondary-bg)] hover:bg-[var(--btn-secondary-hover-bg)] text-xs font-semibold text-[var(--text-primary)] border border-[var(--border-subtle)] transition-all cursor-pointer shadow-xs"
                 triggerText="Download Company Profile"
               />
             </div>
 
             {/* Non-Disclosure Agreement Guarantee */}
-            <div className="bg-[#070b16] rounded-2xl border border-white/[0.08] p-6 text-xs text-neutral-400 space-y-2">
-              <div className="flex items-center gap-2 text-white font-medium">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+            <div className="bg-[var(--bg-card)] rounded-2xl border border-[var(--border-subtle)] p-6 text-xs text-[var(--text-secondary)] space-y-2 shadow-xs transition-colors duration-300">
+              <div className="flex items-center gap-2 text-[var(--text-primary)] font-medium">
+                <CheckCircle2 className="w-4 h-4 text-[var(--accent)]" />
                 <span>Strict Non-Disclosure &amp; Security Assurance</span>
               </div>
-              <p className="text-[11px] text-neutral-400 leading-relaxed">
+              <p className="text-[11px] text-[var(--text-muted)] leading-relaxed">
                 Seluruh data teknis, denah fasilitas, dan informasi bisnis yang dibagikan terikat perjanjian kerahasiaan ketat (NDA) demi melindungi privasi aset Anda.
               </p>
             </div>

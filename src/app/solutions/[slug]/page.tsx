@@ -74,10 +74,10 @@ export default async function SolutionDetailPage({ params }: Props) {
   const Icon = iconMap[sol.iconName] || Server;
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white pt-28 pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] pt-28 pb-24 relative overflow-hidden transition-colors duration-300">
       {/* Background Ambience */}
-      <div className="absolute inset-0 bg-tech-grid opacity-15 pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-cyan-950/20 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute inset-0 bg-tech-grid opacity-10 pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-[var(--accent-glow)] rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -85,7 +85,7 @@ export default async function SolutionDetailPage({ params }: Props) {
         <div className="mb-8">
           <Link
             href="/solutions"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
             <span>Back to All Solutions</span>
@@ -94,93 +94,93 @@ export default async function SolutionDetailPage({ params }: Props) {
 
         {/* 01. HERO (Section 07 & 09) */}
         <div className="max-w-4xl mb-16 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.1] text-cyan-400 text-xs font-mono">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-glow)] border border-[var(--border-strong)] text-[var(--accent-blue)] text-xs font-mono">
             <span>{sol.badge}</span>
             <span>•</span>
             <span>{sol.category}</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight font-sans">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--text-primary)] leading-tight font-display">
             {sol.name}
           </h1>
 
-          <div className="text-2xl sm:text-3xl font-serif italic text-cyan-200">
+          <div className="text-2xl sm:text-3xl font-serif italic text-[var(--accent-blue)]">
             &ldquo;{sol.headlineQuote}&rdquo;
           </div>
 
-          <p className="text-base sm:text-xl text-neutral-300 leading-relaxed font-normal">
+          <p className="text-base sm:text-xl text-[var(--text-primary)] leading-relaxed font-normal">
             {sol.tagline}
           </p>
 
-          <p className="text-sm sm:text-base text-neutral-400 leading-relaxed max-w-3xl">
+          <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-3xl">
             {sol.description}
           </p>
 
-          {/* Section 09: Dual CTAs ("Discuss Your Requirement" & "Talk to an Engineer") */}
+          {/* Section 09: Dual CTAs */}
           <div className="pt-2 flex flex-col sm:flex-row items-center gap-4">
             <Link
               href={`/contact?solution=${encodeURIComponent(sol.name)}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all shadow-lg hover:shadow-cyan-500/20 active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-semibold tracking-wide text-white bg-[var(--accent-blue)] hover:opacity-90 transition-all shadow-md active:scale-[0.98]"
             >
               <span>Discuss Your Requirement</span>
-              <ArrowRight className="w-3.5 h-3.5 text-black" />
+              <ArrowRight className="w-3.5 h-3.5 text-white" />
             </Link>
 
             <a
               href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20ingin%20berkonsultasi%20langsung%20dengan%20engineer%20mengenai%20${encodeURIComponent(sol.name)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-xs font-medium tracking-wide text-white bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.15] transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-xs font-medium tracking-wide text-[var(--text-primary)] bg-[var(--bg-card)] hover:bg-[var(--bg-secondary)] border border-[var(--border-subtle)] transition-all"
             >
-              <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+              <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
               <span>Talk to an Engineer</span>
             </a>
           </div>
         </div>
 
-        {/* 02. THE CHALLENGE & WHAT WE BUILD (Section 07 verbatim) */}
+        {/* 02. THE CHALLENGE & WHAT WE BUILD */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
           
           {/* THE CHALLENGE */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-[#070b16] border border-red-500/20 space-y-4">
-            <div className="flex items-center space-x-2 text-red-400 font-mono text-xs uppercase tracking-wider">
+          <div className="p-8 sm:p-10 rounded-3xl bg-[var(--bg-card)] border border-red-500/25 space-y-4 shadow-sm">
+            <div className="flex items-center space-x-2 text-red-500 font-mono text-xs uppercase tracking-wider">
               <ShieldAlert className="w-4 h-4" />
               <span>THE CHALLENGE</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white font-sans">
+            <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] font-display">
               Tantangan Operasional yang Dihadapi
             </h2>
-            <p className="text-sm text-neutral-300 leading-relaxed font-normal">
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed font-normal">
               {sol.problem}
             </p>
           </div>
 
           {/* WHAT WE BUILD */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-[#070b16] border border-cyan-500/30 space-y-4">
-            <div className="flex items-center space-x-2 text-cyan-400 font-mono text-xs uppercase tracking-wider">
+          <div className="p-8 sm:p-10 rounded-3xl bg-[var(--bg-card)] border border-[var(--border-strong)] space-y-4 shadow-sm">
+            <div className="flex items-center space-x-2 text-[var(--accent-blue)] font-mono text-xs uppercase tracking-wider">
               <CheckCircle2 className="w-4 h-4" />
               <span>WHAT WE BUILD</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white font-sans">
+            <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] font-display">
               Rekayasa Solusi Terpadu
             </h2>
-            <p className="text-sm text-neutral-300 leading-relaxed font-normal">
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed font-normal">
               {sol.solutionStatement}
             </p>
           </div>
 
         </div>
 
-        {/* 03. HOW IT WORKS (Section 07 verbatim: Assess, Design, Procure, Deploy, Integrate, Support) */}
+        {/* 03. HOW IT WORKS */}
         <div className="mb-20">
           <div className="max-w-2xl mb-8 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)]">
               Delivery Methodology
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-white font-sans">
+            <h2 className="text-2xl sm:text-4xl font-bold text-[var(--text-primary)] font-display">
               HOW IT WORKS
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-400">
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
               Siklus eksekusi sistematis dari asesmen awal hingga dukungan operasional jangka panjang.
             </p>
           </div>
@@ -189,17 +189,17 @@ export default async function SolutionDetailPage({ params }: Props) {
             {HOW_IT_WORKS_STEPS.map((hw) => (
               <div
                 key={hw.step}
-                className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between space-y-3"
+                className="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex flex-col justify-between space-y-3 shadow-sm"
               >
                 <div>
-                  <span className="text-[10px] font-mono text-cyan-400 block mb-1">
+                  <span className="text-[10px] font-mono text-[var(--accent-blue)] block mb-1">
                     PHASE {hw.step}
                   </span>
-                  <h4 className="text-sm font-bold text-white">
+                  <h4 className="text-sm font-bold text-[var(--text-primary)]">
                     {hw.name}
                   </h4>
                 </div>
-                <p className="text-[11px] text-neutral-400 leading-relaxed">
+                <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed">
                   {hw.desc}
                 </p>
               </div>
@@ -207,16 +207,16 @@ export default async function SolutionDetailPage({ params }: Props) {
           </div>
         </div>
 
-        {/* 04. CAPABILITIES (Section 07 verbatim) */}
+        {/* 04. CAPABILITIES */}
         <div className="mb-20">
           <div className="max-w-2xl mb-8 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)]">
               Integrated Modules
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-white font-sans">
+            <h2 className="text-2xl sm:text-4xl font-bold text-[var(--text-primary)] font-display">
               CAPABILITIES
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-400">
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
               Spesifikasi modul teknis yang terintegrasi di dalam domain {sol.name}.
             </p>
           </div>
@@ -225,12 +225,12 @@ export default async function SolutionDetailPage({ params }: Props) {
             {sol.capabilities.map((cap, idx) => (
               <div
                 key={cap}
-                className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-cyan-500/30 transition-colors flex items-start gap-3"
+                className="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-colors flex items-start gap-3 shadow-sm"
               >
-                <div className="w-6 h-6 rounded-lg bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 text-xs font-mono shrink-0 mt-0.5">
+                <div className="w-6 h-6 rounded-lg bg-[var(--accent-glow)] border border-[var(--border-strong)] flex items-center justify-center text-[var(--accent-blue)] text-xs font-mono shrink-0 mt-0.5">
                   0{idx + 1}
                 </div>
-                <div className="text-xs sm:text-sm font-medium text-neutral-200">
+                <div className="text-xs sm:text-sm font-medium text-[var(--text-primary)]">
                   {cap}
                 </div>
               </div>
@@ -238,87 +238,87 @@ export default async function SolutionDetailPage({ params }: Props) {
           </div>
         </div>
 
-        {/* 05. TECHNOLOGY (Section 07 verbatim) */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#070b16] border border-white/[0.1] shadow-2xl mb-20 relative overflow-hidden">
+        {/* 05. TECHNOLOGY */}
+        <div className="p-8 sm:p-12 rounded-3xl bg-[var(--bg-card)] border border-[var(--border-subtle)] shadow-sm mb-20 relative overflow-hidden">
           <div className="max-w-2xl mb-8 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)]">
               Architectural Specifications
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-white font-sans">
+            <h2 className="text-2xl sm:text-4xl font-bold text-[var(--text-primary)] font-display">
               TECHNOLOGY
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-400">
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
               {sol.architectureFocus}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-              <span className="text-[10px] font-mono uppercase text-neutral-500 block mb-1">
+            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+              <span className="text-[10px] font-mono uppercase text-[var(--text-muted)] block mb-1">
                 Topology Fabric
               </span>
-              <p className="text-xs font-mono text-neutral-200">
+              <p className="text-xs font-mono text-[var(--text-primary)]">
                 {sol.architectureDetails.topology}
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-              <span className="text-[10px] font-mono uppercase text-neutral-500 block mb-1">
+            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+              <span className="text-[10px] font-mono uppercase text-[var(--text-muted)] block mb-1">
                 Protocols
               </span>
               <div className="flex flex-wrap gap-1 mt-1">
                 {sol.architectureDetails.protocols.map((p) => (
-                  <span key={p} className="px-1.5 py-0.5 rounded bg-white/[0.04] text-[10px] font-mono text-cyan-300">
+                  <span key={p} className="px-1.5 py-0.5 rounded bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-blue)]">
                     {p}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-              <span className="text-[10px] font-mono uppercase text-neutral-500 block mb-1">
+            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+              <span className="text-[10px] font-mono uppercase text-[var(--text-muted)] block mb-1">
                 Security Tier
               </span>
-              <p className="text-xs font-mono text-neutral-200">
+              <p className="text-xs font-mono text-[var(--text-primary)]">
                 {sol.architectureDetails.securityTier}
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-              <span className="text-[10px] font-mono uppercase text-neutral-500 block mb-1">
+            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
+              <span className="text-[10px] font-mono uppercase text-[var(--text-muted)] block mb-1">
                 Redundancy Model
               </span>
-              <p className="text-xs font-mono text-emerald-400">
+              <p className="text-xs font-mono text-emerald-500 font-semibold">
                 {sol.architectureDetails.redundancy}
               </p>
             </div>
           </div>
         </div>
 
-        {/* 06. IMPLEMENTATION (Section 07 verbatim) */}
+        {/* 06. IMPLEMENTATION */}
         <div className="mb-20">
           <div className="max-w-2xl mb-8 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)]">
               Project Delivery Phases
             </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-white font-sans">
+            <h2 className="text-2xl sm:text-4xl font-bold text-[var(--text-primary)] font-display">
               IMPLEMENTATION
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-400">
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
               Tahapan eksekusi rekayasa bertahap untuk menjamin implementasi zero-incident.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {sol.implementationSteps.map((step) => (
-              <div key={step.phase} className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
-                <span className="text-[10px] font-mono uppercase text-cyan-400 block mb-1">
+              <div key={step.phase} className="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] shadow-sm">
+                <span className="text-[10px] font-mono uppercase text-[var(--accent-blue)] block mb-1">
                   {step.phase}
                 </span>
-                <h4 className="text-sm font-bold text-white mb-2">
+                <h4 className="text-sm font-bold text-[var(--text-primary)] mb-2">
                   {step.title}
                 </h4>
-                <p className="text-xs text-neutral-400 leading-relaxed">
+                <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -326,30 +326,30 @@ export default async function SolutionDetailPage({ params }: Props) {
           </div>
         </div>
 
-        {/* 07. ONGOING SUPPORT (Section 07 verbatim) */}
-        <div className="mb-20 p-8 sm:p-10 rounded-3xl bg-[#060a14] border border-white/[0.08] shadow-xl">
+        {/* 07. ONGOING SUPPORT */}
+        <div className="mb-20 p-8 sm:p-10 rounded-3xl bg-[var(--bg-card)] border border-[var(--border-subtle)] shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-3">
-              <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-[var(--accent-blue)] text-xs font-mono uppercase tracking-wider">
                 <LifeBuoy className="w-4 h-4" />
                 <span>ONGOING SUPPORT &amp; SLA</span>
               </div>
-              <h3 className="text-2xl font-bold text-white font-sans">
+              <h3 className="text-2xl font-bold text-[var(--text-primary)] font-display">
                 Dukungan Operasional Berkelanjutan 24/7
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
                 Seluruh implementasi didukung oleh tim Network &amp; Security Operations Center (NOC/SOC) dengan pemantauan telemetri waktu nyata, jaminan SLA ketersediaan 99.99%, pembaruan firmware berkala, dan penanganan eskalasi cepat di bawah 15 menit.
               </p>
-              <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-neutral-400">
-                <span className="flex items-center gap-1.5 text-cyan-300">
+              <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-[var(--text-muted)]">
+                <span className="flex items-center gap-1.5 text-[var(--accent-blue)]">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>24/7 Proactive Monitoring</span>
                 </span>
-                <span className="flex items-center gap-1.5 text-cyan-300">
+                <span className="flex items-center gap-1.5 text-[var(--accent-blue)]">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>SLA Contract 99.99%</span>
                 </span>
-                <span className="flex items-center gap-1.5 text-cyan-300">
+                <span className="flex items-center gap-1.5 text-[var(--accent-blue)]">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>Quarterly Architecture Review</span>
                 </span>
@@ -359,51 +359,51 @@ export default async function SolutionDetailPage({ params }: Props) {
             <div className="lg:col-span-4 flex flex-col gap-3">
               <Link
                 href={`/contact?solution=${encodeURIComponent(sol.name)}`}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold text-black bg-white hover:bg-neutral-200 transition-all shadow-md active:scale-[0.98]"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold text-white bg-[var(--accent-blue)] hover:opacity-90 transition-all shadow-md active:scale-[0.98]"
               >
                 <span>Discuss Your Requirement</span>
-                <ArrowRight className="w-3.5 h-3.5 text-black" />
+                <ArrowRight className="w-3.5 h-3.5 text-white" />
               </Link>
               <a
                 href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20ingin%20berkonsultasi%20dengan%20engineer%20mengenai%20${encodeURIComponent(sol.name)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-medium text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-medium text-[var(--text-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-card)] border border-[var(--border-subtle)] transition-all"
               >
-                <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+                <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
                 <span>Talk to an Engineer</span>
               </a>
             </div>
           </div>
         </div>
 
-        {/* 08. FINAL CTA (Section 09 verbatim: Discuss Your Requirement & Talk to an Engineer) */}
-        <div className="rounded-3xl bg-gradient-to-r from-[#060a14] via-[#091122] to-[#060a14] border border-cyan-500/30 p-10 sm:p-14 text-center space-y-5 shadow-2xl">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block">
+        {/* 08. FINAL CTA */}
+        <div className="rounded-3xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-10 sm:p-14 text-center space-y-5 shadow-sm">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)] block">
             Initiate Architecture Discussion
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold text-white font-sans tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-bold text-[var(--text-primary)] font-display tracking-tight">
             Ready to deploy {sol.name}?
           </h2>
-          <p className="text-sm sm:text-base text-neutral-300 max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-xl mx-auto leading-relaxed">
             Konsultasikan parameter teknis, lokasi, dan kebutuhan arsitektur Anda langsung bersama Principal Systems Engineer ARKAPRANA.
           </p>
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href={`/contact?solution=${encodeURIComponent(sol.name)}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-xs font-semibold tracking-wide text-black bg-white hover:bg-neutral-200 transition-all shadow-xl hover:shadow-cyan-500/20 active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-xs font-semibold tracking-wide text-white bg-[var(--accent-blue)] hover:opacity-90 transition-all shadow-md active:scale-[0.98]"
             >
               <span>Discuss Your Requirement</span>
-              <ArrowRight className="w-3.5 h-3.5 text-black" />
+              <ArrowRight className="w-3.5 h-3.5 text-white" />
             </Link>
 
             <a
               href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20ingin%20berbicara%20dengan%20engineer%20mengenai%20${encodeURIComponent(sol.name)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-xs font-medium tracking-wide text-neutral-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.12] transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-xs font-medium tracking-wide text-[var(--text-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-card)] border border-[var(--border-subtle)] transition-all"
             >
-              <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+              <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
               <span>Talk to an Engineer</span>
             </a>
           </div>
