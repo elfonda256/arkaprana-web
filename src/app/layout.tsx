@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppFloatingCta from "@/components/layout/WhatsAppFloatingCta";
 import MobileStickyCta from "@/components/layout/MobileStickyCta";
 import PageTransition from "@/components/shared/PageTransition";
+import AmbientBackgroundAnimation from "@/components/decorative/AmbientBackgroundAnimation";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
 
@@ -122,6 +123,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent-soft-bg)] selection:text-[var(--accent)] pb-16 sm:pb-0">
         <ThemeProvider>
+          <AmbientBackgroundAnimation />
           <Navbar />
           <PageTransition>{children}</PageTransition>
           <Footer />
