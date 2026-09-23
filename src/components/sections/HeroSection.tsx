@@ -15,6 +15,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import NetworkTopologyCanvas from "@/components/canvas/NetworkTopologyCanvas";
+import LivingOutlineHero from "@/components/decorative/LivingOutlineHero";
 
 export default function HeroSection() {
   const [activeTab, setActiveTab] = useState<"topology" | "cloud" | "ai">("topology");
@@ -23,6 +24,9 @@ export default function HeroSection() {
     <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-[#030712]">
       {/* Calm Abstract Digital Infrastructure Canvas Background */}
       <NetworkTopologyCanvas />
+
+      {/* ARKAPRANA Living Outline: Large Abstract Technical Blueprint Silhouette (Right/Background) */}
+      <LivingOutlineHero />
 
       {/* Subtle grid and ambient vignette */}
       <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />

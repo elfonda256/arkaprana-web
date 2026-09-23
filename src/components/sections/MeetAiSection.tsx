@@ -19,6 +19,7 @@ import {
   FileCheck
 } from "lucide-react";
 import { AI_OPPORTUNITY_AREAS } from "@/lib/data";
+import AiProcessingBlueprint from "@/components/decorative/AiProcessingBlueprint";
 
 const AI_CAPABILITIES = [
   { name: "PRIVATE AI", status: "Capability" },
@@ -113,6 +114,9 @@ export default function MeetAiSection() {
               Sovereign Ingestion &amp; Inference
             </span>
           </div>
+
+          {/* ARKAPRANA Living Outline: Technical AI Pipeline Schematic */}
+          <AiProcessingBlueprint />
 
           <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 relative">
             {[

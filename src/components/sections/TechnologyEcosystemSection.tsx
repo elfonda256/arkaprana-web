@@ -15,6 +15,7 @@ import {
   Sparkles
 } from "lucide-react";
 import BrandLogo from "@/components/brand/BrandLogo";
+import ArchitectureBlueprintVisual from "@/components/decorative/ArchitectureBlueprintVisual";
 
 interface EcosystemTier {
   id: string;
@@ -182,6 +183,9 @@ export default function TechnologyEcosystemSection() {
             Pusat kendali arsitektural yang menghubungkan 6 lapisan teknologi organisasi. Pilih setiap layer untuk memeriksa modul kemampuan dan spesifikasi teknisnya.
           </p>
         </div>
+
+        {/* ARKAPRANA Living Outline: Architecture Schematic Bus */}
+        <ArchitectureBlueprintVisual />
 
         {/* Interactive Explorer Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

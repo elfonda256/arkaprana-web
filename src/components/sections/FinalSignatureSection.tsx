@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import BrandLogo from "@/components/brand/BrandLogo";
+import FinalSignatureBlueprint from "@/components/decorative/FinalSignatureBlueprint";
 
 export default function FinalSignatureSection() {
   const [inView, setInView] = useState(false);
@@ -40,6 +41,9 @@ export default function FinalSignatureSection() {
       {/* Ambient background atmosphere */}
       <div className="absolute inset-0 bg-tech-grid opacity-10 pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-cyan-950/20 rounded-full blur-[140px] pointer-events-none" />
+
+      {/* ARKAPRANA Living Outline: Technical Architecture Blueprint Silhouette */}
+      <FinalSignatureBlueprint />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-12">
         
