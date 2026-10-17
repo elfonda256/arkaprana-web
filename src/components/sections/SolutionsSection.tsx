@@ -5,190 +5,428 @@ import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
-  Network,
-  Server,
-  Cloud,
-  ShieldCheck,
-  Cpu,
-  BrainCircuit,
-  Workflow
+  ChevronRight
 } from "lucide-react";
 import { SOLUTIONS } from "@/lib/data";
-
-const iconMap: Record<string, React.ElementType> = {
-  Network,
-  Server,
-  Cloud,
-  ShieldCheck,
-  Cpu,
-  BrainCircuit,
-  Workflow
-};
+import {
+  OpticalMeshGlyph,
+  CognitiveAiGlyph,
+  ModularDcGlyph,
+  ZeroTrustHsmGlyph,
+  ManagedSreGlyph,
+  SovereignCloudGlyph,
+  SystemIntegrationGlyph
+} from "@/components/decorative/NalarGlyphs";
 
 export default function SolutionsSection() {
-  const primaryProducts = SOLUTIONS.slice(0, 2);
-  const secondaryProducts = SOLUTIONS.slice(2);
+  const networkSol = SOLUTIONS.find((s) => s.id === "network") || SOLUTIONS[0];
+  const aiSol = SOLUTIONS.find((s) => s.id === "ai") || SOLUTIONS[5];
+  const infraSol = SOLUTIONS.find((s) => s.id === "infrastructure") || SOLUTIONS[1];
+  const secSol = SOLUTIONS.find((s) => s.id === "security") || SOLUTIONS[3];
+  const managedSol = SOLUTIONS.find((s) => s.id === "managed-it") || SOLUTIONS[4];
+  const cloudSol = SOLUTIONS.find((s) => s.id === "cloud") || SOLUTIONS[2];
+  const integrationSol = SOLUTIONS.find((s) => s.id === "integration") || SOLUTIONS[6];
 
   return (
-    <section id="solutions" className="py-28 md:py-36 bg-[var(--bg-primary)] text-[var(--text-primary)] relative overflow-hidden border-b border-[var(--border-subtle)] transition-colors duration-300">
+    <section id="solutions" className="py-24 md:py-32 bg-[#08090D] text-white relative overflow-hidden border-b border-white/10 transition-colors duration-300">
+      
+      {/* Subtle background ambient mesh */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-15 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px)`,
+          backgroundSize: "32px 32px",
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-[var(--text-secondary)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
-            <span>Productized Architecture</span>
+        {/* Editorial Section Header: CENTERED AS REQUESTED */}
+        <div className="max-w-3xl mx-auto text-center mb-14 space-y-4 flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+            <span className="tracking-widest uppercase">05 · CAPABILITIES · 7 CORE PILLARS</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold text-[var(--text-primary)] tracking-tight leading-tight font-display">
-            Engineered as products.
-            <span className="block text-[var(--text-secondary)] font-normal mt-1">
-              Integrated as one ecosystem.
-            </span>
+          <h2 className="text-3xl sm:text-5xl lg:text-[46px] font-light text-white tracking-tight leading-[1.18] font-display">
+            Tujuh Domain Rekayasa, Satu Ekosistem Terpadu.
           </h2>
 
-          <p className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed pt-2 max-w-2xl font-normal">
-            Bukan sekadar katalog layanan konvensional. Setiap domain teknologi ARKAPRANA dirancang dengan standar produk industri tingkat tinggi untuk memastikan kedaulatan, ketahanan, dan skalabilitas jangka panjang.
+          <p className="text-sm sm:text-base text-white/60 font-light leading-relaxed max-w-2xl mx-auto">
+            Bukan sekadar katalog layanan konvensional. Setiap pilar teknologi ARKAPRANA dirancang dengan standar produk industri tingkat tinggi untuk memastikan kedaulatan data, ketahanan sistem, dan skalabilitas tanpa gesekan multi-vendor.
           </p>
         </div>
 
-        {/* Flagship Showcase (2 Featured Products) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {primaryProducts.map((prod) => {
-            const Icon = iconMap[prod.iconName] || Network;
-            return (
-              <div
-                key={prod.id}
-                className="group relative rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-8 sm:p-10 solution-card-interaction hover:border-[var(--accent)]/40 flex flex-col justify-between shadow-xs transition-colors duration-300"
-              >
-                <div>
-                  <div className="flex items-center justify-between pb-6 mb-6 border-b border-[var(--border-subtle)]">
-                    <span className="text-[10px] font-mono tracking-widest text-[var(--accent)] font-semibold uppercase">
-                      {prod.badge}
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <ArrowRight className="w-4 h-4 text-[var(--accent)] card-hover-arrow" />
-                      <Icon className="w-5 h-5 text-[var(--text-secondary)] group-hover:text-[var(--accent)] card-icon transition-colors" />
-                    </div>
+        {/* Asymmetric Bento Architecture Grid with Nalar-Style Technical Glyphs */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-8">
+          
+          {/* Bento Tile 1 (Span 7): Network & Optical Backbone */}
+          <div
+            className="lg:col-span-7 rounded-3xl bg-[#0F111A] border border-white/10 p-7 sm:p-9 flex flex-col justify-between shadow-xl hover:border-[#38BDF8]/40 transition-all duration-300 relative overflow-hidden group backdrop-blur-xl"
+          >
+            {/* Top Specular Reflection Highlight */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#38BDF8]/40 to-transparent pointer-events-none" />
+
+            <div>
+              {/* Header Meta with Technical Glyph */}
+              <div className="flex items-center justify-between pb-5 mb-6 border-b border-white/[0.08]">
+                <div className="flex items-center gap-3.5">
+                  <div className="size-11 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#38BDF8] group-hover:border-[#38BDF8]/50 transition-colors">
+                    <OpticalMeshGlyph size={30} highlight={true} />
                   </div>
-
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] mb-2 font-sans">
-                    {prod.name}
-                  </h3>
-
-                  <div className="text-xl sm:text-2xl font-serif italic text-[var(--accent)] mb-4 font-normal">
-                    &ldquo;{prod.headlineQuote}&rdquo;
-                  </div>
-
-                  <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed mb-8">
-                    {prod.tagline}
-                  </p>
-
-                  <div className="space-y-2.5 mb-8">
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] block mb-3">
-                      Core Capabilities
+                  <div>
+                    <span className="text-[10px] font-mono tracking-widest text-[#38BDF8] font-semibold uppercase block">
+                      {networkSol.badge} · TRANSIT HIGHWAY
                     </span>
-                    {prod.capabilities.map((cap) => (
-                      <div key={cap} className="flex items-center gap-2.5 text-xs text-[var(--text-primary)]">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent)] shrink-0" />
-                        <span>{cap}</span>
-                      </div>
-                    ))}
+                    <span className="text-xs text-white/50 font-mono">
+                      Carrier-Neutral Optical Transport
+                    </span>
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-[var(--border-subtle)] flex items-center justify-between">
-                  <Link
-                    href={`/solutions/${prod.shortSlug}`}
-                    className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors"
-                  >
-                    <span>Explore {prod.name.replace("ARKAPRANA ", "")} →</span>
-                  </Link>
-                  <span className="text-[10px] font-mono text-[var(--text-muted)]">
-                    Enterprise Tier
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                    &lt; 0.8ms JITTER
                   </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Remaining 5 Products (3-Column Editorial Grid) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {secondaryProducts.map((prod) => {
-            const Icon = iconMap[prod.iconName] || Network;
-            return (
-              <div
-                key={prod.id}
-                className="group relative rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-6 sm:p-7 solution-card-interaction hover:border-[var(--accent)]/40 flex flex-col justify-between shadow-xs transition-colors duration-300"
-              >
-                <div>
-                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--border-subtle)]">
-                    <span className="text-[9px] font-mono tracking-widest text-[var(--text-muted)] font-semibold uppercase">
-                      {prod.badge}
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <ArrowRight className="w-3.5 h-3.5 text-[var(--accent)] card-hover-arrow" />
-                      <Icon className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--accent)] card-icon transition-colors" />
-                    </div>
-                  </div>
-
-                  <h3 className="text-lg font-bold tracking-tight text-[var(--text-primary)] mb-1">
-                    {prod.name}
-                  </h3>
-
-                  <div className="text-base font-serif italic text-[var(--text-secondary)] mb-3 font-normal">
-                    &ldquo;{prod.headlineQuote}&rdquo;
-                  </div>
-
-                  <p className="text-xs text-[var(--text-secondary)] leading-relaxed mb-6">
-                    {prod.tagline}
-                  </p>
-
-                  <ul className="space-y-1.5 mb-6">
-                    {prod.capabilities.slice(0, 3).map((cap) => (
-                      <li key={cap} className="flex items-center gap-2 text-[11px] text-[var(--text-primary)]">
-                        <span className="w-1 h-1 rounded-full bg-[var(--accent)] shrink-0" />
-                        <span>{cap}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="pt-4 border-t border-[var(--border-subtle)]">
                   <Link
-                    href={`/solutions/${prod.shortSlug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors"
+                    href={`/solutions/${networkSol.shortSlug}`}
+                    className="p-2 rounded-xl bg-white/[0.05] text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                    aria-label="Lihat detail Network"
                   >
-                    <span>Explore {prod.name.replace("ARKAPRANA ", "")} →</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Strategic Lead-Gen CTA Strip (Theme-Adaptive) */}
-        <div className="rounded-2xl bg-[var(--bg-card)] text-[var(--text-primary)] p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 border border-[var(--border-subtle)] shadow-xl transition-colors duration-300">
-          <div className="space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent)] block font-semibold">
-              Architectural Consulting
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)]">
-              Membutuhkan kajian arsitektur sistem khusus?
-            </h3>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-xl leading-relaxed">
-              Diskusikan kebutuhan integrasi infrastruktur, kedaulatan data, atau implementasi private AI langsung bersama prinsipal arsitek teknologi ARKAPRANA.
-            </p>
+              {/* Title & Tagline */}
+              <h3 className="text-2xl sm:text-3xl font-medium tracking-tight text-white font-display mb-2">
+                {networkSol.name}
+              </h3>
+              <p className="text-xs sm:text-sm text-white/60 leading-relaxed mb-6 max-w-xl font-light">
+                {networkSol.description}
+              </p>
+
+              {/* Architectural Technical Schematic Simulation */}
+              <div className="rounded-2xl bg-[#090A0E] border border-white/[0.06] p-4 mb-6">
+                <div className="flex items-center justify-between text-[10px] font-mono text-white/40 mb-3 pb-2 border-b border-white/[0.06]">
+                  <span>TOPOLOGY: MULTI-PATH OPTICAL RING</span>
+                  <span className="text-emerald-400">DWDM OPTICAL HIGHWAY</span>
+                </div>
+                
+                <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                  <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                    <div className="text-[9px] text-white/40 uppercase">Throughput</div>
+                    <div className="text-sm font-semibold text-white mt-0.5">Nx100 Gbps</div>
+                    <div className="text-[9px] text-emerald-400">Zero Packet Loss</div>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                    <div className="text-[9px] text-white/40 uppercase">Failover Time</div>
+                    <div className="text-sm font-semibold text-white mt-0.5">&lt; 18ms</div>
+                    <div className="text-[9px] text-[#38BDF8]">BGP Multi-Homing</div>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                    <div className="text-[9px] text-white/40 uppercase">Coverage</div>
+                    <div className="text-sm font-semibold text-white mt-0.5">Nationwide</div>
+                    <div className="text-[9px] text-[#38BDF8]">Fiber + SD-WAN</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Capabilities Checklist */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-white/80">
+                {networkSol.capabilities.slice(0, 4).map((cap) => (
+                  <div key={cap} className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#38BDF8] shrink-0" />
+                    <span className="text-[12px] font-light">{cap}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs">
+              <span className="font-mono text-[10px] text-white/40">
+                STANDARDS: IEEE 802.3ba · BGP4 · ITU-T G.694.1
+              </span>
+              <Link
+                href={`/solutions/${networkSol.shortSlug}`}
+                className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1.5 transition-colors"
+              >
+                <span>Spesifikasi Network</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
 
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wide bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:opacity-90 transition-all shrink-0 shadow-sm active:scale-[0.98] btn-primary-interaction group"
+          {/* Bento Tile 2 (Span 5): Private AI & Cognitive Engine */}
+          <div
+            className="lg:col-span-5 rounded-3xl bg-[#0F111A] border border-white/10 p-7 sm:p-9 flex flex-col justify-between shadow-xl hover:border-[#38BDF8]/40 transition-all duration-300 relative overflow-hidden group backdrop-blur-xl"
           >
-            <span>Talk to an Engineer</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[var(--btn-primary-text)] cta-arrow" />
-          </Link>
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#38BDF8]/40 to-transparent pointer-events-none" />
+
+            <div>
+              <div className="flex items-center justify-between pb-5 mb-6 border-b border-white/[0.08]">
+                <div className="flex items-center gap-3.5">
+                  <div className="size-11 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#38BDF8] group-hover:border-[#38BDF8]/50 transition-colors">
+                    <CognitiveAiGlyph size={30} highlight={true} />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono tracking-widest text-[#38BDF8] font-semibold uppercase block">
+                      {aiSol.badge} · COGNITIVE
+                    </span>
+                    <span className="text-xs text-white/50 font-mono">
+                      Air-Gapped Sovereign AI
+                    </span>
+                  </div>
+                </div>
+
+                <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  0% DATA LEAKAGE
+                </span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-medium tracking-tight text-white font-display mb-2">
+                {aiSol.name}
+              </h3>
+              <p className="text-xs sm:text-sm text-white/60 leading-relaxed mb-6 font-light">
+                {aiSol.description}
+              </p>
+
+              {/* Security & RAG Highlight Box */}
+              <div className="p-4 rounded-2xl bg-[#090A0E] border border-white/[0.06] space-y-3 mb-6">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-white/40 text-[10px] uppercase">Arsitektur Model</span>
+                  <span className="text-white font-semibold">Local vLLM / TensorRT</span>
+                </div>
+                <div className="flex items-center justify-between text-xs font-mono border-t border-white/[0.06] pt-2">
+                  <span className="text-white/40 text-[10px] uppercase">Enterprise Knowledge Vault</span>
+                  <span className="text-emerald-400 font-semibold">Airgapped Vector Index</span>
+                </div>
+                <div className="flex items-center justify-between text-xs font-mono border-t border-white/[0.06] pt-2">
+                  <span className="text-white/40 text-[10px] uppercase">Regulasi Kedaulatan</span>
+                  <span className="text-[#38BDF8] font-semibold">100% On-Premise Indonesia</span>
+                </div>
+              </div>
+
+              <ul className="space-y-2.5 text-xs text-white/80">
+                {aiSol.capabilities.slice(0, 3).map((cap) => (
+                  <li key={cap} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] shrink-0" />
+                    <span className="font-light">{cap}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs">
+              <span className="font-mono text-[10px] text-white/40">
+                LATENCY: &lt; 15ms VECTOR INFERENCE
+              </span>
+              <Link
+                href={`/solutions/${aiSol.shortSlug}`}
+                className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1.5 transition-colors"
+              >
+                <span>Spesifikasi AI</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Row 2: 3 Specialized Domain Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+          
+          {/* Card 3: Modular Data Center & Compute */}
+          <div className="rounded-2xl bg-[#0F111A] border border-white/10 p-6 sm:p-7 flex flex-col justify-between shadow-xl hover:border-[#38BDF8]/40 transition-all duration-300 group backdrop-blur-xl">
+            <div>
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+                <div className="flex items-center gap-2.5">
+                  <ModularDcGlyph size={26} highlight={true} />
+                  <span className="text-[10px] font-mono tracking-widest text-white/50 font-semibold uppercase">
+                    {infraSol.badge}
+                  </span>
+                </div>
+                <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/[0.05] border border-white/10 text-white/70">
+                  TIER-III COMPLIANT
+                </span>
+              </div>
+
+              <h4 className="text-lg font-medium tracking-tight text-white mb-1.5 font-display">
+                {infraSol.name}
+              </h4>
+              <p className="text-xs text-white/60 leading-relaxed mb-4 font-light">
+                {infraSol.tagline}
+              </p>
+
+              <div className="p-3 rounded-xl bg-[#090A0E] border border-white/[0.06] text-[11px] font-mono space-y-1.5 mb-4">
+                <div className="flex justify-between">
+                  <span className="text-white/40">PUE Target:</span>
+                  <span className="text-white font-semibold">&lt; 1.31 In-Row</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/40">Power Topology:</span>
+                  <span className="text-white font-semibold">2N Dual-Bus</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-white/[0.08]">
+              <Link
+                href={`/solutions/${infraSol.shortSlug}`}
+                className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1 transition-colors"
+              >
+                <span>Lihat Data Center</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 4: Zero-Trust Security & HSM Defense */}
+          <div className="rounded-2xl bg-[#0F111A] border border-white/10 p-6 sm:p-7 flex flex-col justify-between shadow-xl hover:border-[#38BDF8]/40 transition-all duration-300 group backdrop-blur-xl">
+            <div>
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+                <div className="flex items-center gap-2.5">
+                  <ZeroTrustHsmGlyph size={26} highlight={true} />
+                  <span className="text-[10px] font-mono tracking-widest text-white/50 font-semibold uppercase">
+                    {secSol.badge}
+                  </span>
+                </div>
+                <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  FIPS 140-3 L3
+                </span>
+              </div>
+
+              <h4 className="text-lg font-medium tracking-tight text-white mb-1.5 font-display">
+                {secSol.name}
+              </h4>
+              <p className="text-xs text-white/60 leading-relaxed mb-4 font-light">
+                {secSol.tagline}
+              </p>
+
+              <div className="p-3 rounded-xl bg-[#090A0E] border border-white/[0.06] text-[11px] font-mono space-y-1.5 mb-4">
+                <div className="flex justify-between">
+                  <span className="text-white/40">Perimeter:</span>
+                  <span className="text-white font-semibold">Micro-Segmented</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/40">SOC Telemetry:</span>
+                  <span className="text-emerald-400 font-semibold">24/7 SIEM &amp; EDR</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-white/[0.08]">
+              <Link
+                href={`/solutions/${secSol.shortSlug}`}
+                className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1 transition-colors"
+              >
+                <span>Lihat Cybersecurity</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 5: Managed IT & Operations */}
+          <div className="rounded-2xl bg-[#0F111A] border border-white/10 p-6 sm:p-7 flex flex-col justify-between shadow-xl hover:border-[#38BDF8]/40 transition-all duration-300 group backdrop-blur-xl">
+            <div>
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+                <div className="flex items-center gap-2.5">
+                  <ManagedSreGlyph size={26} highlight={true} />
+                  <span className="text-[10px] font-mono tracking-widest text-white/50 font-semibold uppercase">
+                    {managedSol.badge}
+                  </span>
+                </div>
+                <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/[0.05] border border-white/10 text-white/70">
+                  24/7 NOC ESCORT
+                </span>
+              </div>
+
+              <h4 className="text-lg font-medium tracking-tight text-white mb-1.5 font-display">
+                {managedSol.name}
+              </h4>
+              <p className="text-xs text-white/60 leading-relaxed mb-4 font-light">
+                {managedSol.tagline}
+              </p>
+
+              <div className="p-3 rounded-xl bg-[#090A0E] border border-white/[0.06] text-[11px] font-mono space-y-1.5 mb-4">
+                <div className="flex justify-between">
+                  <span className="text-white/40">SLA Availability:</span>
+                  <span className="text-emerald-400 font-semibold">99.982% Guarantee</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/40">Escalation Matrix:</span>
+                  <span className="text-white font-semibold">Tier-3 SRE</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-white/[0.08]">
+              <Link
+                href={`/solutions/${managedSol.shortSlug}`}
+                className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1 transition-colors"
+              >
+                <span>Lihat Managed IT</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Row 3: 2 Broad Domain Integration Strips */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          
+          {/* Card 6: Sovereign Private Cloud */}
+          <div className="rounded-2xl bg-[#0F111A] border border-white/10 p-6 sm:p-7 flex items-center justify-between shadow-xl hover:border-[#38BDF8]/40 transition-all duration-300 group backdrop-blur-xl">
+            <div className="space-y-2 max-w-md">
+              <div className="flex items-center gap-2.5">
+                <SovereignCloudGlyph size={24} highlight={true} />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#38BDF8]">
+                  {cloudSol.badge} · SOVEREIGN PRIVATE CLOUD
+                </span>
+              </div>
+              <h4 className="text-base sm:text-lg font-medium tracking-tight text-white font-display">
+                {cloudSol.name}
+              </h4>
+              <p className="text-xs text-white/60 leading-relaxed font-light">
+                {cloudSol.tagline}
+              </p>
+            </div>
+            <Link
+              href={`/solutions/${cloudSol.shortSlug}`}
+              className="p-3 rounded-xl bg-white/[0.05] border border-white/10 text-white/70 hover:text-white hover:border-[#38BDF8] transition-all shrink-0 ml-4 group-hover:translate-x-1"
+              aria-label="Buka Cloud Solutions"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Card 7: Turnkey System Integration */}
+          <div className="rounded-2xl bg-[#0F111A] border border-white/10 p-6 sm:p-7 flex items-center justify-between shadow-xl hover:border-[#38BDF8]/40 transition-all duration-300 group backdrop-blur-xl">
+            <div className="space-y-2 max-w-md">
+              <div className="flex items-center gap-2.5">
+                <SystemIntegrationGlyph size={24} highlight={true} />
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#38BDF8]">
+                  {integrationSol.badge} · SYSTEM INTEGRATION
+                </span>
+              </div>
+              <h4 className="text-base sm:text-lg font-medium tracking-tight text-white font-display">
+                {integrationSol.name}
+              </h4>
+              <p className="text-xs text-white/60 leading-relaxed font-light">
+                {integrationSol.tagline}
+              </p>
+            </div>
+            <Link
+              href={`/solutions/${integrationSol.shortSlug}`}
+              className="p-3 rounded-xl bg-white/[0.05] border border-white/10 text-white/70 hover:text-white hover:border-[#38BDF8] transition-all shrink-0 ml-4 group-hover:translate-x-1"
+              aria-label="Buka System Integration"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
         </div>
 
       </div>

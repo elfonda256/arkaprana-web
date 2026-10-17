@@ -6,7 +6,9 @@ import WhatsAppFloatingCta from "@/components/layout/WhatsAppFloatingCta";
 import MobileStickyCta from "@/components/layout/MobileStickyCta";
 import PageTransition from "@/components/shared/PageTransition";
 import AmbientBackgroundAnimation from "@/components/decorative/AmbientBackgroundAnimation";
+import DiagnosticTerminalDrawer from "@/components/shared/DiagnosticTerminalDrawer";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -123,12 +125,15 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent-soft-bg)] selection:text-[var(--accent)] pb-16 sm:pb-0">
         <ThemeProvider>
-          <AmbientBackgroundAnimation />
-          <Navbar />
-          <PageTransition>{children}</PageTransition>
-          <Footer />
-          <WhatsAppFloatingCta />
-          <MobileStickyCta />
+          <LanguageProvider>
+            <AmbientBackgroundAnimation />
+            <Navbar />
+            <PageTransition>{children}</PageTransition>
+            <Footer />
+            <WhatsAppFloatingCta />
+            <MobileStickyCta />
+            <DiagnosticTerminalDrawer />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

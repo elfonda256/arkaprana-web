@@ -1,18 +1,16 @@
 import React from "react";
 import HeroSection from "@/components/sections/HeroSection";
-import BusinessProblemSection from "@/components/sections/BusinessProblemSection";
+import NalarProductShowcaseSection from "@/components/sections/NalarProductShowcaseSection";
+import NalarFloatingAppsSection from "@/components/sections/NalarFloatingAppsSection";
+import NalarUsecasesSection from "@/components/sections/NalarUsecasesSection";
 import TechnologyEcosystemSection from "@/components/sections/TechnologyEcosystemSection";
-import SolutionDiscoverySection from "@/components/sections/SolutionDiscoverySection";
 import SolutionsSection from "@/components/sections/SolutionsSection";
-import EnvironmentBuilderSection from "@/components/sections/EnvironmentBuilderSection";
-import BusinessValueSection from "@/components/sections/BusinessValueSection";
-import IndustriesSection from "@/components/sections/IndustriesSection";
-import EngineeringApproachSection from "@/components/sections/EngineeringApproachSection";
-import EngagementModelsSection from "@/components/sections/EngagementModelsSection";
-import MeetAiSection from "@/components/sections/MeetAiSection";
-import InsightsSection from "@/components/sections/InsightsSection";
-import FinalCtaSection from "@/components/sections/FinalCtaSection";
-import FinalSignatureSection from "@/components/sections/FinalSignatureSection";
+import NalarIndustryCarouselSection from "@/components/sections/NalarIndustryCarouselSection";
+import NalarEnterpriseAuditSection from "@/components/sections/NalarEnterpriseAuditSection";
+import NalarImpactChartSection from "@/components/sections/NalarImpactChartSection";
+import BusinessProblemSection from "@/components/sections/BusinessProblemSection";
+import NalarFaqSection from "@/components/sections/NalarFaqSection";
+import NalarOrbitalCtaSection from "@/components/sections/NalarOrbitalCtaSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 
 export const metadata = {
@@ -35,71 +33,63 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="flex-1">
-      {/* 01. [DARK] HERO: BUILD. CONNECT. INTELLIGENCE. (Section 04) */}
+      {/* 01. [DARK] HERO: BUILD. CONNECT. INTELLIGENCE. (Image 4 Stack Card Removed as Requested) */}
       <HeroSection />
 
-      {/* 02. [LIGHT] BUSINESS PROBLEM: "Technology becomes complicated when everything is disconnected." (Section 05) */}
+      {/* 02. [DARK] NALARX-STYLE INTERACTIVE HARDWARE SHOWCASE & COMMAND CENTER */}
       <ScrollReveal delayMs={50}>
-        <BusinessProblemSection />
+        <NalarProductShowcaseSection />
       </ScrollReveal>
 
-      {/* 03. [DARK] ECOSYSTEM: Interactive Architecture Explorer (Section 01 & 30) */}
+      {/* 03. [LIGHT] NALARX-STYLE FLOATING APPS CLOUD (IMAGE 3: "Your company runs on dozens of apps...") */}
+      <ScrollReveal delayMs={50}>
+        <NalarFloatingAppsSection />
+      </ScrollReveal>
+
+      {/* 04. [DARK] NALARX-STYLE ENTERPRISE USE CASES WITH CINEMATIC PHOTOGRAPHY & PIPELINE ARCHITECTURE */}
+      <ScrollReveal delayMs={50}>
+        <NalarUsecasesSection />
+      </ScrollReveal>
+
+      {/* 05. [DARK] ECOSYSTEM: Flowing Architecture Laser Highway & Accordion Explorer */}
       <ScrollReveal delayMs={50}>
         <TechnologyEcosystemSection />
       </ScrollReveal>
 
-      {/* 04. [LIGHT] SOLUTION DISCOVERY: "WHAT ARE YOU TRYING TO BUILD?" (Section 06) */}
-      <ScrollReveal delayMs={50}>
-        <SolutionDiscoverySection />
-      </ScrollReveal>
-
-      {/* 05. [LIGHT] SOLUTIONS AS PRODUCTS: 01 to 07 Enterprise Solutions (Section 07 & 08) */}
+      {/* 06. [DARK] SOLUTIONS AS PRODUCTS: 01 to 07 Enterprise Solutions with Technical Glyphs */}
       <ScrollReveal delayMs={50}>
         <SolutionsSection />
       </ScrollReveal>
 
-      {/* 06. [DARK] BUSINESS SOLUTION BUILDER: "BUILD YOUR TECHNOLOGY ENVIRONMENT" (Section 12) */}
+      {/* 07. [DARK] NALARX-STYLE INDUSTRY PHOTOGRAPHIC CAROUSEL (IMAGE 5: 8 Industries, 0 Double Images) */}
       <ScrollReveal delayMs={50}>
-        <EnvironmentBuilderSection />
+        <NalarIndustryCarouselSection />
       </ScrollReveal>
 
-      {/* 07. [LIGHT] BUSINESS VALUE: "Technology should create business value." 5 Themes (Section 15) */}
+      {/* 08. [LIGHT] NALARX-STYLE "BUILT FOR THE ENTERPRISE" WARM CREAM AUDIT (IMAGE 2: Auto-Revealing Answers) */}
       <ScrollReveal delayMs={50}>
-        <BusinessValueSection />
+        <NalarEnterpriseAuditSection />
       </ScrollReveal>
 
-      {/* 08. [LIGHT] INDUSTRIES: Sector Specializations & Real-World Constraints (Section 10 & 11) */}
+      {/* 09. [DARK] NALARX-STYLE "WHY THIS MATTERS IN 2030" STRIPED BAR CHART & METRIC GRID */}
       <ScrollReveal delayMs={50}>
-        <IndustriesSection />
+        <NalarImpactChartSection />
       </ScrollReveal>
 
-      {/* 09. [DARK] PROJECT JOURNEY: "HOW WE WORK" 8-Step Timeline (Section 13) */}
+      {/* 10. [DARK] MULTI-VENDOR FRICTION DIAGNOSTIC */}
       <ScrollReveal delayMs={50}>
-        <EngineeringApproachSection />
+        <BusinessProblemSection />
       </ScrollReveal>
 
-      {/* 10. [DARK] ENGAGEMENT MODELS: "HOW WE CAN WORK TOGETHER" 5 Models (Section 14) */}
+      {/* 11. [DARK] FREQUENTLY ASKED QUESTIONS MINIMALIST DARK ACCORDION */}
       <ScrollReveal delayMs={50}>
-        <EngagementModelsSection />
+        <NalarFaqSection />
       </ScrollReveal>
 
-      {/* 11. [DARK] FLAGSHIP AI: "Your data. Your infrastructure. Your intelligence." & AI Questionnaire (Section 16 & 17) */}
+      {/* 12. [DARK] NALARX-STYLE ORBITAL INTEGRATION CTA: "Stop running your business by feel. Start running it with intelligence" */}
       <ScrollReveal delayMs={50}>
-        <MeetAiSection />
+        <NalarOrbitalCtaSection />
       </ScrollReveal>
-
-      {/* 12. [LIGHT] INSIGHTS: Authority Building & Architecture Essays (Section 31 & 32) */}
-      <ScrollReveal delayMs={50}>
-        <InsightsSection />
-      </ScrollReveal>
-
-      {/* 13. [DARK] LEAD CONVERSION: Enterprise Inquiry Form & Lead Qualification (Section 25 & 26) */}
-      <ScrollReveal delayMs={50}>
-        <FinalCtaSection />
-      </ScrollReveal>
-
-      {/* 14. [DARK] FINAL SIGNATURE ANIMATION: BUILD THE FOUNDATION. CONNECT THE SYSTEMS. ENABLE THE INTELLIGENCE. (Section 25) */}
-      <FinalSignatureSection />
     </main>
   );
 }

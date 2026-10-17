@@ -34,24 +34,38 @@ export default function EngineeringApproachSection() {
   return (
     <section id="engineering" className="py-28 md:py-36 bg-[var(--bg-primary)] text-[var(--text-primary)] relative overflow-hidden border-t border-b border-[var(--border-subtle)] transition-colors duration-300">
       {/* Background Tech Grid */}
-      <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-[var(--accent)]/5 rounded-full blur-[160px] pointer-events-none" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] rounded-full pointer-events-none opacity-25"
+        style={{ background: "radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%)" }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-[var(--text-secondary)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
-            <span>Project Delivery Lifecycle</span>
+        {/* Editorial Section Index */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 mb-12 border-b border-[var(--border-subtle)] gap-4">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs font-semibold text-[var(--accent)] tracking-widest uppercase">
+              07 // ENGINEERING METHODOLOGY
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--border-strong)]" />
+            <span className="font-mono text-xs text-[var(--text-muted)] tracking-wider">
+              8-STAGE GOVERNED DELIVERY LIFECYCLE
+            </span>
           </div>
+          <div className="flex items-center gap-2 font-mono text-[11px] text-[var(--text-muted)]">
+            <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+            <span>Turnkey Engineering Accountability</span>
+          </div>
+        </div>
 
+        {/* Section Headline */}
+        <div className="max-w-4xl mb-14 space-y-4">
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--text-primary)] leading-tight font-display">
             How we work.
           </h2>
 
           <p className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed pt-1 font-normal max-w-2xl">
-            We build things properly — and stay involved long after deployment. Our 8-stage engineering process ensures every system is grounded in real operational constraints, built to specification, and supported continuously.
+            Kami membangun sistem dengan disiplin rekayasa ketat — dan mendampingi kelangsungan operasional Anda jauh melampaui fase komisioning. Delapan tahapan delivery kami menjamin kepatuhan spesifikasi teknis dan akuntabilitas SLA yang nyata.
           </p>
         </div>
 

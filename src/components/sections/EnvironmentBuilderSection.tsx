@@ -9,12 +9,10 @@ import {
   ShieldCheck,
   Cpu,
   BrainCircuit,
-  Workflow,
   Check,
   ArrowRight,
-  Sparkles,
-  Layers,
-  ChevronRight
+  Activity,
+  Zap
 } from "lucide-react";
 import { ENVIRONMENT_BUILDER_MODULES } from "@/lib/data";
 
@@ -68,27 +66,78 @@ export default function EnvironmentBuilderSection() {
     selectedModules.map((m) => m.name).join(", ")
   );
 
+  // Real architectural metrics calculation
+  const hasNetwork = selectedIds.includes("network");
+  const hasServer = selectedIds.includes("server");
+  const hasCloud = selectedIds.includes("cloud");
+  const hasSecurity = selectedIds.includes("security");
+  const hasManaged = selectedIds.includes("managed");
+  const hasAi = selectedIds.includes("ai");
+
+  // Calculated SLA
+  let calculatedSla = "99.900%";
+  if (hasNetwork && hasServer && hasCloud && hasSecurity && hasManaged) {
+    calculatedSla = "99.995%";
+  } else if (hasNetwork && hasServer && (hasCloud || hasSecurity)) {
+    calculatedSla = "99.982%";
+  } else if (selectedIds.length >= 4) {
+    calculatedSla = "99.950%";
+  }
+
+  // Calculated MTTR Target
+  const calculatedMttr = hasManaged
+    ? "< 15 Menit (24/7 Managed NOC Pod)"
+    : "< 1 Jam (Tier-2 SLA Escalation)";
+
+  // Calculated Failover Mode
+  const calculatedFailover = hasNetwork && hasCloud
+    ? "Sub-Second Dynamic BGP / EVPN"
+    : hasNetwork
+    ? "Sub-3s Hardware Failover"
+    : "Standard Redundant Path";
+
+  // Active Compliance Frameworks
+  const complianceFrameworks: string[] = ["UU PDP 2024", "ISO/IEC 27001"];
+  if (hasSecurity || hasCloud || hasServer) complianceFrameworks.push("POJK 11/2022");
+  if (hasServer || selectedIds.includes("storage")) complianceFrameworks.push("ANSI/TIA-942");
+  if (hasAi) complianceFrameworks.push("Air-Gapped Sovereign AI");
+
   return (
     <section id="environment-builder" className="py-28 md:py-36 bg-[var(--bg-secondary)] text-[var(--text-primary)] relative overflow-hidden border-t border-b border-[var(--border-subtle)] transition-colors duration-300">
       {/* Dynamic Background Atmosphere */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-[var(--accent)]/10 via-[var(--accent)]/5 to-transparent rounded-full blur-[160px] pointer-events-none" />
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[450px] rounded-full pointer-events-none opacity-30"
+        style={{ background: "radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%)" }}
+      />
       <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
-        <div className="max-w-3xl mb-14 space-y-4">
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-[var(--text-secondary)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
-            <span>Interactive Architecture Tool</span>
+        {/* Editorial Section Index */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 mb-12 border-b border-[var(--border-subtle)] gap-4">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs font-semibold text-[var(--accent)] tracking-widest uppercase">
+              05 // ARCHITECTURE COMPOSER
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--border-strong)]" />
+            <span className="font-mono text-xs text-[var(--text-muted)] tracking-wider">
+              DYNAMIC FABRIC SIMULATION
+            </span>
           </div>
+          <div className="flex items-center gap-2 font-mono text-[11px] text-[var(--text-muted)]">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Custom Enterprise Stack Builder</span>
+          </div>
+        </div>
 
+        {/* Headline */}
+        <div className="max-w-4xl mb-12 space-y-4">
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--text-primary)] leading-tight font-display">
             Build your technology environment.
           </h2>
 
-          <p className="text-[var(--text-secondary)] text-base sm:text-xl leading-relaxed pt-1 font-normal">
-            Pilih modul infrastruktur dan kecerdasan yang dibutuhkan organisasi Anda. Sistem visual kami akan menyusun cetak biru arsitektur terintegrasi secara real-time.
+          <p className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed pt-1 font-normal max-w-2xl">
+            Pilih modul infrastruktur dan kecerdasan yang dibutuhkan organisasi Anda. Visualisasi terpadu kami menyusun cetak biru arsitektur terintegrasi secara real-time.
           </p>
         </div>
 
@@ -129,7 +178,7 @@ export default function EnvironmentBuilderSection() {
                   <div
                     key={mod.id}
                     onClick={() => toggleModule(mod.id)}
-                    className={`p-4 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${
+                    className={`p-4 rounded-xl border transition-all cursor-pointer flex items-center justify-between group btn-tactile ${
                       isSelected
                         ? "bg-[var(--accent-soft-bg)] border-[var(--accent)] shadow-xs ring-1 ring-[var(--accent)]/30"
                         : "bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] border-[var(--border-subtle)] hover:border-[var(--accent)]/30"
@@ -268,6 +317,54 @@ export default function EnvironmentBuilderSection() {
                     </div>
                   );
                 })}
+              </div>
+            </div>
+
+            {/* Live Enterprise Feasibility & SLA Estimator */}
+            <div className="p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent)] font-semibold flex items-center gap-1.5">
+                  <Activity className="w-3.5 h-3.5" />
+                  <span>Calculated Architectural Specifications:</span>
+                </span>
+                <span className="text-[9px] font-mono text-emerald-500 font-bold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                  LIVE ESTIMATOR
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="p-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] space-y-1">
+                  <div className="text-[10px] font-mono text-[var(--text-muted)] uppercase">Projected SLA</div>
+                  <div className="text-base sm:text-lg font-bold font-mono text-[var(--accent)]">{calculatedSla}</div>
+                  <div className="text-[9px] text-[var(--text-secondary)] font-mono">High Availability</div>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] space-y-1">
+                  <div className="text-[10px] font-mono text-[var(--text-muted)] uppercase">Target MTTR</div>
+                  <div className="text-xs sm:text-sm font-bold font-mono text-emerald-500">{calculatedMttr}</div>
+                  <div className="text-[9px] text-[var(--text-secondary)] font-mono">Incident Recovery</div>
+                </div>
+
+                <div className="p-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] space-y-1">
+                  <div className="text-[10px] font-mono text-[var(--text-muted)] uppercase">Failover Dynamic</div>
+                  <div className="text-xs sm:text-sm font-bold font-mono text-[var(--text-primary)]">{calculatedFailover}</div>
+                  <div className="text-[9px] text-[var(--text-secondary)] font-mono">BGP Routing</div>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-[var(--border-subtle)]">
+                <div className="text-[10px] font-mono text-[var(--text-muted)] mb-1.5">Automated Compliance Scope:</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {complianceFrameworks.map((cf) => (
+                    <span
+                      key={cf}
+                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[var(--text-secondary)] flex items-center gap-1"
+                    >
+                      <ShieldCheck className="w-3 h-3 text-emerald-500" />
+                      <span>{cf}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 

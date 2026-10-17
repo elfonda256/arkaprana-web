@@ -32,29 +32,44 @@ export default function MeetAiSection() {
   return (
     <section id="ai-platform" className="relative py-28 md:py-40 bg-[var(--bg-primary)] text-[var(--text-primary)] overflow-hidden border-t border-b border-[var(--border-subtle)] transition-colors duration-300">
       {/* Ambient Lighting */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-gradient-to-b from-[var(--accent)]/10 via-[var(--accent)]/5 to-transparent rounded-full blur-[160px] pointer-events-none" />
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[850px] h-[400px] rounded-full pointer-events-none opacity-30"
+        style={{ background: "radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%)" }}
+      />
       <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[var(--accent)] text-xs font-mono shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-[var(--accent)]" />
-            <span>Future AI Flagship</span>
+        {/* Editorial Section Index */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 mb-12 border-b border-[var(--border-subtle)] gap-4">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs font-semibold text-[var(--accent)] tracking-widest uppercase">
+              06 // SOVEREIGN COGNITIVE PIPELINE
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--border-strong)]" />
+            <span className="font-mono text-xs text-[var(--text-muted)] tracking-wider">
+              ON-PREMISE ENTERPRISE RAG &amp; AGENTS
+            </span>
           </div>
+          <div className="flex items-center gap-2 font-mono text-[11px] text-[var(--text-muted)]">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>100% Zero-Egress Airgap</span>
+          </div>
+        </div>
 
-          {/* Headline */}
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--text-primary)] leading-[1.14]">
+        {/* Section Headline */}
+        <div className="max-w-4xl mb-12 space-y-4">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--text-primary)] leading-[1.14] font-display">
             Your data. Your infrastructure.
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] to-blue-600">
+            <span className="block text-[var(--accent)]">
               Your intelligence.
             </span>
           </h2>
 
-          <p className="text-[var(--text-secondary)] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed pt-2 font-normal">
-            Turn your internal knowledge, operational logs, and business documentation into practical intelligence your teams can actually use — without sensitive data ever leaving your control.
+          <p className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed pt-2 font-normal max-w-2xl">
+            Ubah dokumen operasional, log transaksi, dan regulasi internal menjadi agen intelijen praktis yang siap pakai — tanpa data sensitif pernah meninggalkan kendali data center lokal Anda.
           </p>
+        </div>
 
           {/* Capabilities with Status Labels */}
           <div className="flex flex-wrap items-center justify-center gap-2 pt-4 max-w-4xl mx-auto">
@@ -70,7 +85,6 @@ export default function MeetAiSection() {
               </span>
             ))}
           </div>
-        </div>
 
         {/* Abstract AI Processing Visualization */}
         <div className="mb-20 max-w-5xl mx-auto p-6 sm:p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] relative overflow-hidden transition-colors duration-300">
@@ -232,7 +246,7 @@ export default function MeetAiSection() {
               <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--text-primary)] font-mono flex-1 mr-2">
                 <Search className="w-4 h-4 text-[var(--accent)] shrink-0" />
                 <span className="truncate">
-                  "Bandingkan klausul garansi SLA pada kontrak fiber optik dan data center 2025"
+                  &ldquo;Bandingkan klausul garansi SLA pada kontrak fiber optik dan data center 2025&rdquo;
                 </span>
               </div>
               <button

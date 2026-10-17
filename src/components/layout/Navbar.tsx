@@ -19,6 +19,8 @@ import {
 } from "lucide-react";
 import BrandLogo from "@/components/brand/BrandLogo";
 import ThemeToggle from "@/components/layout/ThemeToggle";
+import LanguageToggle from "@/components/layout/LanguageToggle";
+import { useLanguage } from "@/context/LanguageContext";
 
 const MEGA_SOLUTIONS = [
   {
@@ -77,6 +79,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsDropdown, setSolutionsDropdown] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,33 +90,38 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setMobileMenuOpen(false);
-    setSolutionsDropdown(false);
+    requestAnimationFrame(() => {
+      setMobileMenuOpen(false);
+      setSolutionsDropdown(false);
+    });
   }, [pathname]);
 
   const navLinks = [
-    { label: "Solutions", href: "/solutions", hasDropdown: true },
-    { label: "Industries", href: "/industries" },
-    { label: "Capabilities", href: "/capabilities" },
-    { label: "Insights", href: "/insights" },
-    { label: "About", href: "/about" },
+    { label: t("nav_solutions", "Solutions"), href: "/solutions", hasDropdown: true },
+    { label: t("nav_industries", "Industries"), href: "/industries" },
+    { label: t("nav_capabilities", "Capabilities"), href: "/capabilities" },
+    { label: t("nav_insights", "Insights"), href: "/insights" },
+    { label: t("nav_about", "About"), href: "/about" },
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        scrolled
-          ? "bg-[var(--nav-bg-scrolled)] backdrop-blur-md border-b border-[var(--border-subtle)] py-3 shadow-sm"
-          : "bg-transparent border-b border-transparent py-4 sm:py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          
-          {/* Logo strictly [SYMBOL] ARKAPRANA (auto theme-responsive) */}
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-6 md:pt-4 pointer-events-none">
+      <div className="relative mx-auto max-w-[1340px] pointer-events-auto">
+        {/* Floating Glass Island Pill Frame */}
+        <div
+          aria-hidden="true"
+          className={`absolute inset-0 rounded-2xl md:rounded-full transition-all duration-300 ${
+            scrolled
+              ? "nav-glass-island shadow-2xl"
+              : "bg-[rgba(10,12,18,0.72)] backdrop-blur-xl border border-white/[0.08] shadow-lg"
+          }`}
+        />
+
+        <nav className="relative flex items-center justify-between px-4 sm:px-6 h-[62px] md:h-[66px]">
+          {/* Logo strictly [SYMBOL] ARKAPRANA */}
           <Link
             href="/"
-            className="group flex items-center transition-opacity hover:opacity-90"
+            className="group flex items-center transition-opacity hover:opacity-90 shrink-0"
             aria-label="ARKAPRANA Homepage"
           >
             <BrandLogo
@@ -125,8 +133,8 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          {/* Centered Desktop Navigation Links */}
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navLinks.map((link) => {
               const isActive =
                 pathname === link.href ||
@@ -142,31 +150,30 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className={`px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-md transition-colors flex items-center gap-1.5 ${
+                      className={`px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-full transition-colors flex items-center gap-1.5 ${
                         isActive
-                          ? "text-[var(--text-primary)] bg-[var(--accent-soft-bg)] font-semibold"
-                          : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--accent-soft-bg)]"
+                          ? "text-white bg-white/10 font-semibold"
+                          : "text-white/65 hover:text-white hover:bg-white/[0.06]"
                       }`}
                     >
                       {link.label}
                       <ChevronDown
-                        className={`w-3 h-3 text-[var(--text-secondary)] transition-transform duration-200 ${
-                          solutionsDropdown ? "rotate-180 text-[var(--text-primary)]" : ""
+                        className={`w-3 h-3 text-white/50 transition-transform duration-200 ${
+                          solutionsDropdown ? "rotate-180 text-white" : ""
                         }`}
                       />
                     </Link>
 
                     {/* Solutions Mega Menu */}
                     {solutionsDropdown && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[640px] pt-3 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                        <div className="bg-[var(--nav-dropdown-bg)] backdrop-blur-2xl border border-[var(--border-subtle)] rounded-2xl p-4 shadow-2xl">
-                          
-                          <div className="flex items-center justify-between px-3 py-1.5 border-b border-[var(--border-subtle)] mb-3">
-                            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--text-muted)]">
-                              Technology Pillars // Architecture
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[640px] pt-3 z-50 dropdown-fluid">
+                        <div className="bg-[#0B0D13]/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 shadow-2xl">
+                          <div className="flex items-center justify-between px-3 py-1.5 border-b border-white/10 mb-3">
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-white/45">
+                              {t("nav_pillars_title", "Technology Pillars · Architecture")}
                             </span>
-                            <span className="text-[10px] font-mono text-[var(--accent)] flex items-center gap-1">
-                              <Sparkles className="w-2.5 h-2.5" /> 7 Core Solutions
+                            <span className="text-[10px] font-mono text-[#38BDF8] flex items-center gap-1">
+                              <Sparkles className="w-2.5 h-2.5" /> {t("nav_7_solutions", "7 Core Solutions")}
                             </span>
                           </div>
 
@@ -177,19 +184,19 @@ export default function Navbar() {
                                 <Link
                                   key={sol.name}
                                   href={sol.href}
-                                  className="flex items-start p-3 rounded-xl hover:bg-[var(--accent-soft-bg)] border border-transparent hover:border-[var(--border-subtle)] transition-all group"
+                                  className="flex items-start p-3 rounded-xl hover:bg-white/[0.05] border border-transparent hover:border-white/10 transition-all group"
                                 >
-                                  <div className="w-8 h-8 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-secondary)] group-hover:text-[var(--accent)] group-hover:border-[var(--border-active)] transition-colors shrink-0 mr-3 mt-0.5">
+                                  <div className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/60 group-hover:text-[#38BDF8] group-hover:border-[#38BDF8]/40 transition-colors shrink-0 mr-3 mt-0.5">
                                     <Icon className="w-4 h-4" />
                                   </div>
                                   <div className="flex-1 min-w-0">
                                     <div className="flex items-center justify-between mb-0.5">
-                                      <span className="text-xs font-bold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                                      <span className="text-xs font-bold text-white group-hover:text-[#38BDF8] transition-colors">
                                         {sol.name}
                                       </span>
-                                      <ArrowRight className="w-3 h-3 text-[var(--text-muted)] group-hover:text-[var(--accent)] group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100" />
+                                      <ArrowRight className="w-3 h-3 text-white/40 group-hover:text-[#38BDF8] group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100" />
                                     </div>
-                                    <p className="text-[11px] text-[var(--text-secondary)] line-clamp-2 leading-relaxed">
+                                    <p className="text-[11px] text-white/55 line-clamp-2 leading-relaxed">
                                       {sol.description}
                                     </p>
                                   </div>
@@ -198,15 +205,15 @@ export default function Navbar() {
                             })}
                           </div>
 
-                          <div className="pt-3 mt-3 border-t border-[var(--border-subtle)] flex items-center justify-between px-3 text-[11px]">
-                            <span className="text-[var(--text-secondary)]">
-                              Building a custom multi-system environment?
+                          <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between px-3 text-[11px]">
+                            <span className="text-white/50">
+                              {t("nav_custom_env", "Building a custom multi-system environment?")}
                             </span>
                             <Link
                               href="/solutions"
-                              className="text-[var(--accent)] hover:underline font-medium inline-flex items-center gap-1"
+                              className="text-[#38BDF8] hover:underline font-medium inline-flex items-center gap-1"
                             >
-                              Explore all solutions <ArrowRight className="w-3 h-3" />
+                              {t("nav_explore_solutions", "Explore all solutions")} <ArrowRight className="w-3 h-3" />
                             </Link>
                           </div>
                         </div>
@@ -220,85 +227,82 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-md transition-colors ${
+                  className={`px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-full transition-colors ${
                     isActive
-                      ? "text-[var(--text-primary)] bg-[var(--accent-soft-bg)] font-semibold"
-                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--accent-soft-bg)]"
+                      ? "text-white bg-white/10 font-semibold"
+                      : "text-white/65 hover:text-white hover:bg-white/[0.06]"
                   }`}
                 >
                   {link.label}
                 </Link>
               );
             })}
-          </nav>
+          </div>
 
-          {/* Right Header Controls: Minimalist Theme Toggle + CTA */}
+          {/* Right Header Controls: Language Toggle & Nalar-Style 'Book a Demo' CTA */}
           <div className="hidden md:flex items-center space-x-3">
-            <ThemeToggle />
-
+            <LanguageToggle />
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:opacity-90 btn-primary-interaction group shadow-xs"
+              className="inline-flex items-center justify-center rounded-full text-xs font-semibold whitespace-nowrap bg-white text-[#08090D] hover:bg-slate-100 transition-all duration-300 px-5 h-[34px] shadow-[0_0_18px_rgba(255,255,255,0.15)] hover:shadow-[0_0_24px_rgba(255,255,255,0.3)] hover:scale-105 active:scale-95"
             >
-              <span>Discuss Your Project</span>
-              <ArrowRight className="w-3 h-3 text-[var(--btn-primary-text)] cta-arrow" />
+              <span>{t("nav_book_demo", "Book a Demo")}</span>
             </Link>
           </div>
 
-          {/* Mobile Right Controls: Compact Toggle & Hamburger */}
+          {/* Mobile Right Controls: LanguageToggle + Hamburger */}
           <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle compact={true} />
-
+            <LanguageToggle showIcon={false} />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--accent-soft-bg)] focus:outline-none"
+              className="p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 focus:outline-none"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-5 h-5 text-[var(--text-primary)]" />
+                <X className="w-5 h-5 text-white" />
               ) : (
-                <Menu className="w-5 h-5" />
+                <Menu className="w-5 h-5 text-white" />
               )}
             </button>
           </div>
-        </div>
-      </div>
+        </nav>
 
-      {/* Mobile Drawer Navigation */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-[var(--nav-dropdown-bg)] backdrop-blur-2xl border-b border-[var(--border-subtle)] px-4 pt-3 pb-6 animate-in slide-in-from-top duration-200">
-          <div className="space-y-1">
-            {navLinks.map((link) => (
+        {/* Mobile Drawer Navigation */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-[#0B0D13]/98 backdrop-blur-2xl border-t border-white/10 rounded-b-2xl px-4 pt-3 pb-6 animate-in slide-in-from-top duration-200 shadow-2xl">
+            <div className="flex items-center justify-between pb-3 mb-2 border-b border-white/10 px-1">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-white/50">Bahasa / Language</span>
+              <LanguageToggle />
+            </div>
+
+            <div className="space-y-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="block px-3 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="pt-4 mt-3 border-t border-white/10 space-y-3">
               <Link
-                key={link.label}
-                href={link.href}
-                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--accent-soft-bg)] transition-colors"
+                href="/contact"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold bg-white text-[#08090D] hover:bg-slate-100 transition-colors shadow-sm"
               >
-                {link.label}
+                <span>{t("nav_book_demo", "Book a Demo")}</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#08090D]" />
               </Link>
-            ))}
-          </div>
-
-          <div className="pt-4 mt-3 border-t border-[var(--border-subtle)] space-y-3">
-            <div className="flex items-center justify-between px-3 py-1">
-              <span className="text-xs text-[var(--text-secondary)] font-mono">APPEARANCE</span>
-              <ThemeToggle />
-            </div>
-
-            <Link
-              href="/contact"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-xs font-medium bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:opacity-90 transition-colors shadow-xs"
-            >
-              <span>Discuss Your Project</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[var(--btn-primary-text)]" />
-            </Link>
-            <div className="px-3 text-[11px] text-[var(--text-muted)] flex justify-between">
-              <span>Indonesia</span>
-              <span>elfano2156@gmail.com</span>
+              <div className="px-3 text-[11px] text-white/45 flex justify-between">
+                <span>Indonesia</span>
+                <span>elfano2156@gmail.com</span>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 }

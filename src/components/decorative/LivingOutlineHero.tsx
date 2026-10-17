@@ -15,7 +15,7 @@ export default function LivingOutlineHero() {
   useEffect(() => {
     // Check reduced motion
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsReducedMotion(true);
+      requestAnimationFrame(() => setIsReducedMotion(true));
       return;
     }
 

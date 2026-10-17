@@ -72,57 +72,7 @@
   --accent-blue: var(--accent);
 }
 
-[data-theme="light"] {
-  /* Atmosphere: LIGHT MODE (Corporate & Engineering Office) */
-  --theme-mode: light;
-  --bg-primary: #F7F8FA;
-  --bg-elevated: #FFFFFF;
-  --bg-secondary: #F1F3F6;
-  --bg-card: #FFFFFF;
-  --bg-card-hover: #FFFFFF;
-  --bg-surface: #FFFFFF;
-
-  --border-subtle: #DDE2E8;
-  --border-card: #DDE2E8;
-  --border-active: rgba(23, 105, 224, 0.4);
-
-  --text-primary: #111827;
-  --text-secondary: #667085;
-  --text-muted: #94A3B8;
-  --text-faint: #CBD5E1;
-
-  /* Accent: Signal corporate blue */
-  --accent: #1769E0;
-  --accent-signal: #1769E0;
-  --accent-cyan: #0284C7;
-  --accent-glow: rgba(23, 105, 224, 0.12);
-  --accent-soft-bg: rgba(23, 105, 224, 0.06);
-
-  /* Navbar & Floating Surfaces */
-  --nav-bg-scrolled: rgba(255, 255, 255, 0.92);
-  --nav-border: #DDE2E8;
-  --nav-text: #111827;
-  --nav-text-muted: #667085;
-  --nav-dropdown-bg: rgba(255, 255, 255, 0.98);
-
-  /* Living Outline & Canvas */
-  --living-outline-stroke: rgba(100, 116, 139, 0.14);
-  --living-outline-base: rgba(148, 163, 184, 0.10);
-  --living-outline-pulse: #1769E0;
-  --living-outline-pulse-glow: rgba(23, 105, 224, 0.4);
-  --living-outline-opacity: 0.55;
-  --tech-grid-color: rgba(100, 116, 139, 0.045);
-  --edge-fade-color: #F7F8FA;
-
-  /* Buttons */
-  --btn-primary-bg: #111827;
-  --btn-primary-text: #FFFFFF;
-  --btn-primary-hover: #1F2937;
-  --btn-secondary-bg: #FFFFFF;
-  --btn-secondary-border: #DDE2E8;
-  --btn-secondary-text: #111827;
-  --btn-secondary-hover-bg: #F1F3F6;
-}
+/* Note: Site is locked to exclusive obsidian dark mode matching Nalarx.com design */
 
 /* ===================================================
    SMOOTH THEME TRANSITION (300ms - 450ms)
@@ -537,44 +487,9 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 /* ===================================================
-   AMBIENT MINIMALIST BACKGROUND ANIMATION
-   Ultra-subtle, GPU-accelerated motion layers:
-   1. ambientGridDrift: 36s seamless infinite diagonal drift (60px cycle)
-   2. ambientAuraBreathe1 / 2: 24s & 30s slow sinusoidal atmosphere float
-   3. ambientScanSweep: 26s cyclical hairline telemetry beam
-   4. ambientFaintPulse: 4s gentle breathing pulse for telemetry markers
+   AMBIENT MINIMALIST BACKGROUND (HIGH PERFORMANCE)
+   Zero CPU Repaint: Static hardware grid + scan beam
    =================================================== */
-
-@keyframes ambientGridDrift {
-  0% {
-    background-position: 0px 0px;
-  }
-  100% {
-    background-position: 60px 60px;
-  }
-}
-
-@keyframes ambientAuraBreathe1 {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.35;
-  }
-  50% {
-    transform: translate3d(30px, -20px, 0) scale(1.06);
-    opacity: 0.55;
-  }
-}
-
-@keyframes ambientAuraBreathe2 {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.25;
-  }
-  50% {
-    transform: translate3d(-25px, 20px, 0) scale(1.08);
-    opacity: 0.42;
-  }
-}
 
 @keyframes ambientScanSweep {
   0% {
@@ -605,30 +520,286 @@ h1, h2, h3, h4, h5, h6, .font-display {
   }
 }
 
-.ambient-grid-canvas {
-  background-size: 60px 60px;
-  animation: ambientGridDrift 36s linear infinite;
-  will-change: background-position;
-}
-
-.ambient-aura-1 {
-  animation: ambientAuraBreathe1 24s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-.ambient-aura-2 {
-  animation: ambientAuraBreathe2 30s ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
 .ambient-scan-beam {
   animation: ambientScanSweep 26s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  will-change: transform, opacity;
 }
 
 .ambient-telemetry-pulse {
   animation: ambientFaintPulse 4s ease-in-out infinite;
 }
+
+/* ===================================================
+   EMIL KOWALSKI & APPLE FLUID CRAFT SYSTEM
+   - Tactile button press on pointer-down (scale 0.975)
+   - Spring-like transition curves: cubic-bezier(0.16, 1, 0.3, 1)
+   - Layered specular highlights & depth elevation
+   - Accessible focus-visible rings (WCAG 2.2 AA)
+   =================================================== */
+
+/* Tactile button response */
+.btn-tactile,
+.btn-primary-interaction,
+.btn-secondary-interaction {
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 180ms ease,
+              background-color 180ms ease,
+              border-color 180ms ease !important;
+  will-change: transform;
+}
+
+.btn-tactile:active,
+.btn-primary-interaction:active,
+.btn-secondary-interaction:active {
+  transform: scale(0.972) !important;
+}
+
+/* Fluid Dropdown & Popover entrance */
+.dropdown-fluid {
+  transform-origin: top center;
+  animation: dropdownFluidEnter 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dropdownFluidEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Accessible focus ring across all interactive controls */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===================================================
+   NALARX-STYLE HIGH-CRAFT ANIMATIONS & KEYFRAMES
+   =================================================== */
+
+/* 1. Waveform Auto-Draw */
+.nx-wave-strand {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: nxDraw 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.nx-wave-run {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: nxDraw 0.5s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+}
+
+@keyframes nxDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 2. Orbit Wipe & Dot Entrance */
+.nx-orbit-el {
+  clip-path: inset(0 100% 0 0);
+  animation: nxOrbitWipe 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.nx-orbit-dot {
+  opacity: 0;
+  animation: nxDotIn 0.5s ease-out forwards;
+}
+
+@keyframes nxOrbitWipe {
+  to {
+    clip-path: inset(0 -10% 0 0);
+  }
+}
+
+@keyframes nxDotIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 3. Star-Movement Orbit Tracers for CTA Pill */
+@keyframes starMovementTop {
+  0% {
+    transform: translate(-100%, 0);
+    opacity: 0;
+  }
+  20%, 80% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(100%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes starMovementBottom {
+  0% {
+    transform: translate(100%, 0);
+    opacity: 0;
+  }
+  20%, 80% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-100%, 0);
+    opacity: 0;
+  }
+}
+
+.animate-star-top {
+  animation: starMovementTop 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-star-bottom {
+  animation: starMovementBottom 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* 4. Text Shimmer */
+@keyframes shimmerText {
+  0% {
+    background-position: 150% center;
+  }
+  100% {
+    background-position: -50% center;
+  }
+}
+
+.animate-shimmer-text {
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 255, 255, 0.65) 35%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.65) 65%,
+    rgba(255, 255, 255, 0.65) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerText 4.5s ease-in-out infinite;
+}
+
+/* 5. Floating Glass Island Navbar */
+.nav-glass-island {
+  background: rgba(10, 11, 16, 0.65);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 14px 38px -10px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 6. Progress bar for feature cards */
+@keyframes nxProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-nx-progress {
+  animation: nxProgress 10s linear forwards;
+}
+
+/* 7. Flowing Architecture Connectors (Nalarx-style Traveling Photons) */
+@keyframes nxFlowDashed {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nxFlowReverse {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 48;
+  }
+}
+
+.animate-nx-flow {
+  stroke-dasharray: 6 6;
+  animation: nxFlowDashed 1.4s linear infinite;
+}
+
+.animate-nx-flow-fast {
+  stroke-dasharray: 4 4;
+  animation: nxFlowDashed 0.8s linear infinite;
+}
+
+/* 8. Technical Animated SVG Glyphs */
+@keyframes nxGlyphDraw {
+  0% {
+    stroke-dashoffset: 120;
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes nxRotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nxPulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 2px rgba(56, 189, 248, 0.4));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.9));
+  }
+}
+
+.animate-nx-rotate-slow {
+  animation: nxRotateSlow 24s linear infinite;
+  transform-origin: center;
+}
+
+.animate-nx-pulse-glow {
+  animation: nxPulseGlow 3s ease-in-out infinite;
+}
+
+/* 9. Smooth Expandable Enterprise Accordion */
+.accordion-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-wrapper.is-open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-inner {
+  overflow: hidden;
+}
+
 
 /* Respect Accessibility: Prefers Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
@@ -656,13 +827,265 @@ h1, h2, h3, h4, h5, h6, .font-display {
   .animate-subtle-glow,
   .animate-logo-reveal,
   .living-blueprint-glow,
-  .ambient-grid-canvas,
-  .ambient-aura-1,
-  .ambient-aura-2,
   .ambient-scan-beam,
   .ambient-telemetry-pulse {
     animation: none !important;
     filter: none !important;
   }
 }
+
+/* ===================================================
+   NALARX-STYLE CONTINUOUS MOTION ANIMATIONS
+   Orbital continuous rotation & Multi-harmonic float drifting
+   =================================================== */
+
+@keyframes orbitalRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitalCounterRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes floatDriftA {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(1.2deg);
+  }
+}
+
+@keyframes floatDriftB {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(14px) rotate(-1.5deg);
+  }
+}
+
+@keyframes floatDriftC {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  33% {
+    transform: translate(6px, -10px) rotate(-1deg);
+  }
+  66% {
+    transform: translate(-6px, 8px) rotate(1.4deg);
+  }
+}
+
+@keyframes floatDriftD {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(-1.8deg);
+  }
+}
+
+@keyframes smokeDrift {
+  0% {
+    transform: scale(1) translate(0%, 0%);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.08) translate(-2%, 3%);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1) translate(0%, 0%);
+    opacity: 0.4;
+  }
+}
+
+.animate-orbital-slow {
+  animation: orbitalRotate 60s linear infinite;
+}
+
+.animate-orbital-reverse {
+  animation: orbitalCounterRotate 75s linear infinite;
+}
+
+.animate-counter-slow {
+  animation: orbitalCounterRotate 60s linear infinite;
+}
+
+.animate-counter-reverse {
+  animation: orbitalRotate 75s linear infinite;
+}
+
+.animate-float-a {
+  animation: floatDriftA 5.5s ease-in-out infinite;
+}
+
+.animate-float-b {
+  animation: floatDriftB 7s ease-in-out infinite;
+}
+
+.animate-float-c {
+  animation: floatDriftC 8.5s ease-in-out infinite;
+}
+
+.animate-float-d {
+  animation: floatDriftD 6.2s ease-in-out infinite;
+}
+
+@keyframes scanlinesMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 16px;
+  }
+}
+
+.animate-scanlines {
+  animation: scanlinesMove 1.5s linear infinite;
+}
+
+@keyframes mistDrift1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(-45px, 25px) scale(1.15);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes mistDrift2 {
+  0% {
+    transform: translate(0, 0) scale(1.1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(40px, -30px) scale(0.92);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0, 0) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+.animate-mist-1 {
+  animation: mistDrift1 14s ease-in-out infinite;
+}
+
+.animate-mist-2 {
+  animation: mistDrift2 18s ease-in-out infinite;
+}
+
+@keyframes wavePulse {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0.7;
+  }
+  50% {
+    stroke-dashoffset: -160;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -320;
+    opacity: 0.7;
+  }
+}
+
+.animate-wave-pulse {
+  stroke-dasharray: 80 40;
+  animation: wavePulse 6s linear infinite;
+}
+
+@keyframes laserFlow {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-laser-flow {
+  animation: laserFlow 2s linear infinite;
+}
+
+/* Executive Document Printing Stylesheet */
+@media print {
+  /* Hide non-document website elements */
+  header,
+  nav,
+  footer,
+  aside,
+  button,
+  .print\:hidden,
+  #site-header,
+  #site-footer,
+  .bg-tech-grid {
+    display: none !important;
+  }
+
+  body,
+  main {
+    background: #ffffff !important;
+    color: #111827 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  article {
+    max-width: 100% !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  h1, h2, h3, h4 {
+    color: #000000 !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  p, li {
+    color: #1f2937 !important;
+    font-size: 10.5pt !important;
+    line-height: 1.6 !important;
+  }
+
+  .border-\[var\(--border-subtle\)\],
+  .border-\[var\(--border-strong\)\] {
+    border-color: #d1d5db !important;
+  }
+
+  .bg-\[var\(--bg-secondary\)\],
+  .bg-\[var\(--bg-card\)\] {
+    background-color: #f9fafb !important;
+    color: #111827 !important;
+    border-color: #e5e7eb !important;
+  }
+
+  /* Prevent awkward page cut-offs */
+  .p-6, .p-8, section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
 

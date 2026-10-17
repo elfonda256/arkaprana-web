@@ -1,15 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import {
   FileText,
   Download,
   X,
   CheckCircle2,
   Clock,
-  ArrowRight,
-  Shield,
   Send
 } from "lucide-react";
 import { CORPORATE_DOCUMENTS } from "@/lib/data";

@@ -7,8 +7,10 @@ import { ArrowRight, Globe, ShieldCheck, Sparkles } from "lucide-react";
 export default function FutureVisionSection() {
   return (
     <section className="py-32 md:py-44 bg-[#02050c] relative overflow-hidden border-t border-white/[0.08]">
-      {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[350px] bg-cyan-950/20 rounded-full blur-[160px] pointer-events-none" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[350px] rounded-full pointer-events-none opacity-20"
+        style={{ background: "radial-gradient(ellipse at center, rgba(6, 182, 212, 0.4) 0%, transparent 70%)" }}
+      />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         

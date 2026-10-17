@@ -10,7 +10,7 @@ export default function FinalSignatureSection() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setInView(true);
+      requestAnimationFrame(() => setInView(true));
       return;
     }
 
@@ -40,7 +40,10 @@ export default function FinalSignatureSection() {
     >
       {/* Ambient background atmosphere */}
       <div className="absolute inset-0 bg-tech-grid opacity-15 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[var(--accent)]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full pointer-events-none opacity-25"
+        style={{ background: "radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%)" }}
+      />
 
       {/* ARKAPRANA Living Outline: Technical Architecture Blueprint Silhouette */}
       <FinalSignatureBlueprint />

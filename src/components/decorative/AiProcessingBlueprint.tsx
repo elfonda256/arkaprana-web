@@ -14,9 +14,11 @@ export default function AiProcessingBlueprint() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsReducedMotion(true);
-      setAnimStage(5);
-      setHasRun(true);
+      requestAnimationFrame(() => {
+        setIsReducedMotion(true);
+        setAnimStage(5);
+        setHasRun(true);
+      });
       return;
     }
 

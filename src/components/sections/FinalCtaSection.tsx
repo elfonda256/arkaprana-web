@@ -1,20 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import {
   ArrowRight,
-  ShieldCheck,
   CheckCircle2,
   Phone,
   Mail,
   MapPin,
-  Clock,
-  Sparkles,
-  MessageSquare,
-  FileText,
-  Lock,
-  ChevronRight
+  MessageSquare
 } from "lucide-react";
 import { COMPANY_PROFILE } from "@/lib/data";
 import CompanyProfileModal from "@/components/shared/CompanyProfileModal";
@@ -101,7 +94,10 @@ export default function FinalCtaSection() {
   return (
     <section id="contact" className="py-28 md:py-36 bg-[var(--bg-primary)] text-[var(--text-primary)] relative overflow-hidden border-t border-[var(--border-subtle)] transition-colors duration-300">
       {/* Background Atmosphere */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-[var(--accent)]/5 rounded-full blur-[160px] pointer-events-none" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] rounded-full pointer-events-none opacity-25"
+        style={{ background: "radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%)" }}
+      />
       <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -114,11 +110,11 @@ export default function FinalCtaSection() {
           </div>
 
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--text-primary)] leading-[1.05] font-sans">
-            Let's Build What's Next.
+            Let&apos;s Build What&apos;s Next.
           </h2>
 
           <p className="text-[var(--text-secondary)] text-base sm:text-xl leading-relaxed pt-1 max-w-2xl font-normal">
-            Tell us what you're building, and let's design the technology behind it.
+            Tell us what you&apos;re building, and let&apos;s design the technology behind it.
           </p>
 
           <p className="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed max-w-xl font-normal">
@@ -147,7 +143,7 @@ export default function FinalCtaSection() {
                     Your project information has been received.
                   </div>
                   <div className="text-sm font-serif italic text-[var(--text-secondary)]">
-                    &ldquo;Let's explore what we can build together.&rdquo;
+                    &ldquo;Let&apos;s explore what we can build together.&rdquo;
                   </div>
                 </div>
 

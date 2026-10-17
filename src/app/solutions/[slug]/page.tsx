@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SOLUTIONS, getSolutionBySlug, COMPANY_PROFILE } from "@/lib/data";
+import { SOLUTIONS, getSolutionBySlug } from "@/lib/data";
 import {
   Network,
   Server,
@@ -14,14 +14,12 @@ import {
   CheckCircle2,
   ChevronLeft,
   Layers,
-  HelpCircle,
-  Activity,
-  Terminal,
   ShieldAlert,
   MessageSquare,
-  Wrench,
   LifeBuoy
 } from "lucide-react";
+import NalarWaveOrbits from "@/components/decorative/NalarWaveOrbits";
+import ScrollReveal from "@/components/shared/ScrollReveal";
 
 const iconMap: Record<string, React.ElementType> = {
   Network,
@@ -33,7 +31,6 @@ const iconMap: Record<string, React.ElementType> = {
   Workflow
 };
 
-// 6-Step How It Works Lifecycle (Section 07 verbatim: Assess, Design, Procure, Deploy, Integrate, Support)
 const HOW_IT_WORKS_STEPS = [
   { step: "01", name: "Assess", desc: "Audit menyeluruh terhadap kondisi fisik, kapasitas, dan beban kerja eksisting." },
   { step: "02", name: "Design", desc: "Penyusunan blueprint arsitektur terinci dengan simulasi kapasitas dan redundansi." },
@@ -74,340 +71,288 @@ export default async function SolutionDetailPage({ params }: Props) {
   const Icon = iconMap[sol.iconName] || Server;
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] pt-28 pb-24 relative overflow-hidden transition-colors duration-300">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-tech-grid opacity-10 pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-[var(--accent-glow)] rounded-full blur-[160px] pointer-events-none" />
+    <div className="min-h-screen bg-[#08090D] text-white pt-32 pb-24 relative overflow-hidden">
+      {/* Dynamic Responsive Waveforms, Orbits & Drifting Mist */}
+      <NalarWaveOrbits />
+
+      {/* Subtle Coordinate Grid Overlay */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-15 pointer-events-none -z-10"
+        style={{
+          backgroundImage: "radial-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Back Navigation Breadcrumb */}
-        <div className="mb-8">
+        <div className="mb-10">
           <Link
             href="/solutions"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-mono text-white/50 hover:text-white transition-colors px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md hover:scale-105 active:scale-95"
           >
-            <ChevronLeft className="w-4 h-4" />
-            <span>Back to All Solutions</span>
+            <ChevronLeft className="size-3.5 text-[#38BDF8]" />
+            <span>Kembali ke Seluruh Solusi</span>
           </Link>
         </div>
 
-        {/* 01. HERO (Section 07 & 09) */}
-        <div className="max-w-4xl mb-16 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-glow)] border border-[var(--border-strong)] text-[var(--accent-blue)] text-xs font-mono">
-            <span>{sol.badge}</span>
-            <span>•</span>
-            <span>{sol.category}</span>
+        {/* 01. HERO WITH CENTERED DISPLAY */}
+        <div className="max-w-4xl mx-auto text-center mb-20 space-y-6 flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70 backdrop-blur-md">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+            <span>{sol.badge} · {sol.category}</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--text-primary)] leading-tight font-display">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-white leading-[1.12] font-display">
             {sol.name}
           </h1>
 
-          <div className="text-2xl sm:text-3xl font-serif italic text-[var(--accent-blue)]">
+          <div className="text-xl sm:text-2xl font-serif italic text-white/80 max-w-2xl mx-auto">
             &ldquo;{sol.headlineQuote}&rdquo;
           </div>
 
-          <p className="text-base sm:text-xl text-[var(--text-primary)] leading-relaxed font-normal">
-            {sol.tagline}
-          </p>
-
-          <p className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg text-white/60 font-light leading-relaxed max-w-3xl mx-auto">
             {sol.description}
           </p>
 
-          {/* Section 09: Dual CTAs */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center gap-4">
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href={`/contact?solution=${encodeURIComponent(sol.name)}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-semibold tracking-wide text-white bg-[var(--accent-blue)] hover:opacity-90 transition-all shadow-md active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-white/95 transition-all shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95"
             >
-              <span>Discuss Your Requirement</span>
-              <ArrowRight className="w-3.5 h-3.5 text-white" />
+              <span>Konsultasikan Topologi</span>
+              <ArrowRight className="size-3.5" />
             </Link>
 
             <a
               href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20ingin%20berkonsultasi%20langsung%20dengan%20engineer%20mengenai%20${encodeURIComponent(sol.name)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-xs font-medium tracking-wide text-[var(--text-primary)] bg-[var(--bg-card)] hover:bg-[var(--bg-secondary)] border border-[var(--border-subtle)] transition-all"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs font-mono text-white/70 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all"
             >
-              <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
-              <span>Talk to an Engineer</span>
+              <MessageSquare className="size-3.5 text-emerald-400" />
+              <span>Direct WhatsApp Desk</span>
             </a>
           </div>
         </div>
 
         {/* 02. THE CHALLENGE & WHAT WE BUILD */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-          
-          {/* THE CHALLENGE */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-[var(--bg-card)] border border-red-500/25 space-y-4 shadow-sm">
-            <div className="flex items-center space-x-2 text-red-500 font-mono text-xs uppercase tracking-wider">
-              <ShieldAlert className="w-4 h-4" />
-              <span>THE CHALLENGE</span>
+        <ScrollReveal delayMs={50}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
+            {/* THE CHALLENGE */}
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#0D0F18]/90 border border-red-500/25 space-y-4 shadow-xl backdrop-blur-xl">
+              <div className="flex items-center gap-2 text-red-400 font-mono text-xs uppercase tracking-wider">
+                <ShieldAlert className="size-4" />
+                <span>THE CHALLENGE</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-light text-white font-display">
+                Tantangan Operasional yang Dihadapi
+              </h2>
+              <p className="text-sm text-white/60 leading-relaxed font-light">
+                {sol.problem}
+              </p>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] font-display">
-              Tantangan Operasional yang Dihadapi
-            </h2>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed font-normal">
-              {sol.problem}
-            </p>
-          </div>
 
-          {/* WHAT WE BUILD */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-[var(--bg-card)] border border-[var(--border-strong)] space-y-4 shadow-sm">
-            <div className="flex items-center space-x-2 text-[var(--accent-blue)] font-mono text-xs uppercase tracking-wider">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>WHAT WE BUILD</span>
+            {/* WHAT WE BUILD */}
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#0D0F18]/90 border border-[#38BDF8]/30 space-y-4 shadow-xl backdrop-blur-xl">
+              <div className="flex items-center gap-2 text-[#38BDF8] font-mono text-xs uppercase tracking-wider">
+                <CheckCircle2 className="size-4" />
+                <span>WHAT WE BUILD</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-light text-white font-display">
+                Rekayasa Solusi Terpadu
+              </h2>
+              <p className="text-sm text-white/60 leading-relaxed font-light">
+                {sol.solutionStatement}
+              </p>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] font-display">
-              Rekayasa Solusi Terpadu
-            </h2>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed font-normal">
-              {sol.solutionStatement}
-            </p>
           </div>
-
-        </div>
+        </ScrollReveal>
 
         {/* 03. HOW IT WORKS */}
-        <div className="mb-20">
-          <div className="max-w-2xl mb-8 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)]">
-              Delivery Methodology
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-[var(--text-primary)] font-display">
-              HOW IT WORKS
-            </h2>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
-              Siklus eksekusi sistematis dari asesmen awal hingga dukungan operasional jangka panjang.
-            </p>
-          </div>
+        <ScrollReveal delayMs={60}>
+          <div className="mb-24">
+            <div className="max-w-3xl mx-auto text-center mb-12 space-y-3 flex flex-col items-center">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#38BDF8] px-3 py-1 rounded-full border border-[#38BDF8]/20 bg-[#38BDF8]/10">
+                Delivery Methodology
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-light text-white font-display tracking-tight">
+                Siklus Eksekusi Sistematis
+              </h2>
+              <p className="text-xs sm:text-sm text-white/50 max-w-xl mx-auto font-light">
+                Dari asesmen fisik awal hingga integrasi penuh dan jaminan ketersediaan operasional jangka panjang.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {HOW_IT_WORKS_STEPS.map((hw) => (
-              <div
-                key={hw.step}
-                className="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex flex-col justify-between space-y-3 shadow-sm"
-              >
-                <div>
-                  <span className="text-[10px] font-mono text-[var(--accent-blue)] block mb-1">
-                    PHASE {hw.step}
-                  </span>
-                  <h4 className="text-sm font-bold text-[var(--text-primary)]">
-                    {hw.name}
-                  </h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
+              {HOW_IT_WORKS_STEPS.map((hw) => (
+                <div
+                  key={hw.step}
+                  className="p-5 rounded-2xl bg-[#0D0F18]/90 border border-white/10 flex flex-col justify-between space-y-3 shadow-lg hover:border-[#38BDF8]/40 transition-colors"
+                >
+                  <div>
+                    <span className="text-[10px] font-mono text-[#38BDF8] block mb-1">
+                      PHASE {hw.step}
+                    </span>
+                    <h4 className="text-sm font-semibold text-white">
+                      {hw.name}
+                    </h4>
+                  </div>
+                  <p className="text-[11px] text-white/50 leading-relaxed font-light">
+                    {hw.desc}
+                  </p>
                 </div>
-                <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed">
-                  {hw.desc}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* 04. CAPABILITIES */}
-        <div className="mb-20">
-          <div className="max-w-2xl mb-8 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)]">
-              Integrated Modules
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-[var(--text-primary)] font-display">
-              CAPABILITIES
-            </h2>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
-              Spesifikasi modul teknis yang terintegrasi di dalam domain {sol.name}.
-            </p>
-          </div>
+        <ScrollReveal delayMs={70}>
+          <div className="mb-24">
+            <div className="max-w-3xl mx-auto text-center mb-12 space-y-3 flex flex-col items-center">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#38BDF8] px-3 py-1 rounded-full border border-[#38BDF8]/20 bg-[#38BDF8]/10">
+                Integrated Capabilities
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-light text-white font-display tracking-tight">
+                Modul Rekayasa Spesifik
+              </h2>
+              <p className="text-xs sm:text-sm text-white/50 max-w-xl mx-auto font-light">
+                Spesifikasi modul teknis yang terintegrasi di dalam domain {sol.name}.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sol.capabilities.map((cap, idx) => (
-              <div
-                key={cap}
-                className="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-colors flex items-start gap-3 shadow-sm"
-              >
-                <div className="w-6 h-6 rounded-lg bg-[var(--accent-glow)] border border-[var(--border-strong)] flex items-center justify-center text-[var(--accent-blue)] text-xs font-mono shrink-0 mt-0.5">
-                  0{idx + 1}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {sol.capabilities.map((cap, idx) => (
+                <div
+                  key={cap}
+                  className="p-5 rounded-2xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-colors flex items-start gap-3.5 shadow-lg"
+                >
+                  <div className="size-7 rounded-lg bg-[#38BDF8]/10 border border-[#38BDF8]/25 flex items-center justify-center text-[#38BDF8] text-xs font-mono font-semibold shrink-0 mt-0.5">
+                    0{idx + 1}
+                  </div>
+                  <div className="text-xs sm:text-sm font-medium text-white/85 leading-snug">
+                    {cap}
+                  </div>
                 </div>
-                <div className="text-xs sm:text-sm font-medium text-[var(--text-primary)]">
-                  {cap}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* 05. TECHNOLOGY */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[var(--bg-card)] border border-[var(--border-subtle)] shadow-sm mb-20 relative overflow-hidden">
-          <div className="max-w-2xl mb-8 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)]">
-              Architectural Specifications
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-[var(--text-primary)] font-display">
-              TECHNOLOGY
-            </h2>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
-              {sol.architectureFocus}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
-              <span className="text-[10px] font-mono uppercase text-[var(--text-muted)] block mb-1">
-                Topology Fabric
+        {/* 05. TECHNOLOGY SPECS BOX */}
+        <ScrollReveal delayMs={80}>
+          <div className="p-8 sm:p-12 rounded-3xl bg-[#0D0F18]/90 border border-white/10 shadow-2xl mb-24 relative overflow-hidden backdrop-blur-xl">
+            <div className="max-w-3xl mb-10 space-y-2">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#38BDF8]">
+                Architectural Specifications
               </span>
-              <p className="text-xs font-mono text-[var(--text-primary)]">
-                {sol.architectureDetails.topology}
+              <h2 className="text-2xl sm:text-3xl font-light text-white font-display">
+                Spesifikasi Teknis &amp; Redundansi
+              </h2>
+              <p className="text-xs sm:text-sm text-white/60 font-light">
+                {sol.architectureFocus}
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
-              <span className="text-[10px] font-mono uppercase text-[var(--text-muted)] block mb-1">
-                Protocols
-              </span>
-              <div className="flex flex-wrap gap-1 mt-1">
-                {sol.architectureDetails.protocols.map((p) => (
-                  <span key={p} className="px-1.5 py-0.5 rounded bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-blue)]">
-                    {p}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
-              <span className="text-[10px] font-mono uppercase text-[var(--text-muted)] block mb-1">
-                Security Tier
-              </span>
-              <p className="text-xs font-mono text-[var(--text-primary)]">
-                {sol.architectureDetails.securityTier}
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
-              <span className="text-[10px] font-mono uppercase text-[var(--text-muted)] block mb-1">
-                Redundancy Model
-              </span>
-              <p className="text-xs font-mono text-emerald-500 font-semibold">
-                {sol.architectureDetails.redundancy}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* 06. IMPLEMENTATION */}
-        <div className="mb-20">
-          <div className="max-w-2xl mb-8 space-y-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)]">
-              Project Delivery Phases
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-bold text-[var(--text-primary)] font-display">
-              IMPLEMENTATION
-            </h2>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
-              Tahapan eksekusi rekayasa bertahap untuk menjamin implementasi zero-incident.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {sol.implementationSteps.map((step) => (
-              <div key={step.phase} className="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] shadow-sm">
-                <span className="text-[10px] font-mono uppercase text-[var(--accent-blue)] block mb-1">
-                  {step.phase}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="p-5 rounded-2xl bg-black/40 border border-white/10">
+                <span className="text-[10px] font-mono uppercase text-white/40 block mb-1">
+                  Topology Fabric
                 </span>
-                <h4 className="text-sm font-bold text-[var(--text-primary)] mb-2">
-                  {step.title}
-                </h4>
-                <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-                  {step.description}
+                <p className="text-xs font-mono text-white">
+                  {sol.architectureDetails.topology}
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* 07. ONGOING SUPPORT */}
-        <div className="mb-20 p-8 sm:p-10 rounded-3xl bg-[var(--bg-card)] border border-[var(--border-subtle)] shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8 space-y-3">
-              <div className="flex items-center gap-2 text-[var(--accent-blue)] text-xs font-mono uppercase tracking-wider">
-                <LifeBuoy className="w-4 h-4" />
-                <span>ONGOING SUPPORT &amp; SLA</span>
+              <div className="p-5 rounded-2xl bg-black/40 border border-white/10">
+                <span className="text-[10px] font-mono uppercase text-white/40 block mb-1">
+                  Protocols
+                </span>
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {sol.architectureDetails.protocols.map((p) => (
+                    <span key={p} className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/10 text-[10px] font-mono text-[#38BDF8]">
+                      {p}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-[var(--text-primary)] font-display">
-                Dukungan Operasional Berkelanjutan 24/7
-              </h3>
-              <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
-                Seluruh implementasi didukung oleh tim Network &amp; Security Operations Center (NOC/SOC) dengan pemantauan telemetri waktu nyata, jaminan SLA ketersediaan 99.99%, pembaruan firmware berkala, dan penanganan eskalasi cepat di bawah 15 menit.
-              </p>
-              <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-[var(--text-muted)]">
-                <span className="flex items-center gap-1.5 text-[var(--accent-blue)]">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>24/7 Proactive Monitoring</span>
+
+              <div className="p-5 rounded-2xl bg-black/40 border border-white/10">
+                <span className="text-[10px] font-mono uppercase text-white/40 block mb-1">
+                  Security Tier
                 </span>
-                <span className="flex items-center gap-1.5 text-[var(--accent-blue)]">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>SLA Contract 99.99%</span>
+                <p className="text-xs font-mono text-white">
+                  {sol.architectureDetails.securityTier}
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-black/40 border border-white/10">
+                <span className="text-[10px] font-mono uppercase text-white/40 block mb-1">
+                  Redundancy Model
                 </span>
-                <span className="flex items-center gap-1.5 text-[var(--accent-blue)]">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Quarterly Architecture Review</span>
-                </span>
+                <p className="text-xs font-mono text-emerald-400 font-semibold">
+                  {sol.architectureDetails.redundancy}
+                </p>
               </div>
             </div>
+          </div>
+        </ScrollReveal>
 
-            <div className="lg:col-span-4 flex flex-col gap-3">
-              <Link
-                href={`/contact?solution=${encodeURIComponent(sol.name)}`}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold text-white bg-[var(--accent-blue)] hover:opacity-90 transition-all shadow-md active:scale-[0.98]"
-              >
-                <span>Discuss Your Requirement</span>
-                <ArrowRight className="w-3.5 h-3.5 text-white" />
-              </Link>
-              <a
-                href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20ingin%20berkonsultasi%20dengan%20engineer%20mengenai%20${encodeURIComponent(sol.name)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-medium text-[var(--text-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-card)] border border-[var(--border-subtle)] transition-all"
-              >
-                <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
-                <span>Talk to an Engineer</span>
-              </a>
+        {/* 06. ONGOING SUPPORT & SLA */}
+        <ScrollReveal delayMs={90}>
+          <div className="mb-24 p-8 sm:p-12 rounded-3xl bg-[#0D0F18]/90 border border-white/10 shadow-2xl backdrop-blur-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <div className="flex items-center gap-2 text-[#38BDF8] text-xs font-mono uppercase tracking-wider">
+                  <LifeBuoy className="size-4" />
+                  <span>ONGOING SUPPORT &amp; SLA</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-light text-white font-display">
+                  Dukungan Operasional Berkelanjutan 24/7
+                </h3>
+                <p className="text-xs sm:text-sm text-white/60 font-light leading-relaxed">
+                  Seluruh implementasi didukung oleh tim Network &amp; Security Operations Center (NOC/SOC) dengan pemantauan telemetri waktu nyata, jaminan SLA ketersediaan 99.99%, pembaruan berkala, dan penanganan eskalasi cepat di bawah 15 menit.
+                </p>
+                <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-white/50">
+                  <span className="flex items-center gap-1.5 text-white/80">
+                    <CheckCircle2 className="size-3.5 text-emerald-400" />
+                    <span>24/7 Proactive Monitoring</span>
+                  </span>
+                  <span className="flex items-center gap-1.5 text-white/80">
+                    <CheckCircle2 className="size-3.5 text-emerald-400" />
+                    <span>SLA Contract 99.99%</span>
+                  </span>
+                  <span className="flex items-center gap-1.5 text-white/80">
+                    <CheckCircle2 className="size-3.5 text-emerald-400" />
+                    <span>Quarterly Architecture Review</span>
+                  </span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-4 flex flex-col gap-3">
+                <Link
+                  href={`/contact?solution=${encodeURIComponent(sol.name)}`}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-white/95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95"
+                >
+                  <span>Mulai Konsultasi</span>
+                  <ArrowRight className="size-3.5" />
+                </Link>
+                <a
+                  href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20ingin%20berkonsultasi%20dengan%20engineer%20mengenai%20${encodeURIComponent(sol.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-mono text-white/70 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all"
+                >
+                  <MessageSquare className="size-3.5 text-emerald-400" />
+                  <span>Bicara dengan Engineer</span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* 08. FINAL CTA */}
-        <div className="rounded-3xl bg-[var(--bg-card)] border border-[var(--border-subtle)] p-10 sm:p-14 text-center space-y-5 shadow-sm">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent-blue)] block">
-            Initiate Architecture Discussion
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-bold text-[var(--text-primary)] font-display tracking-tight">
-            Ready to deploy {sol.name}?
-          </h2>
-          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-xl mx-auto leading-relaxed">
-            Konsultasikan parameter teknis, lokasi, dan kebutuhan arsitektur Anda langsung bersama Principal Systems Engineer ARKAPRANA.
-          </p>
-          <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href={`/contact?solution=${encodeURIComponent(sol.name)}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-xs font-semibold tracking-wide text-white bg-[var(--accent-blue)] hover:opacity-90 transition-all shadow-md active:scale-[0.98]"
-            >
-              <span>Discuss Your Requirement</span>
-              <ArrowRight className="w-3.5 h-3.5 text-white" />
-            </Link>
-
-            <a
-              href={`https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20ingin%20berbicara%20dengan%20engineer%20mengenai%20${encodeURIComponent(sol.name)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-xs font-medium tracking-wide text-[var(--text-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-card)] border border-[var(--border-subtle)] transition-all"
-            >
-              <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
-              <span>Talk to an Engineer</span>
-            </a>
-          </div>
-        </div>
+        </ScrollReveal>
 
       </div>
     </div>

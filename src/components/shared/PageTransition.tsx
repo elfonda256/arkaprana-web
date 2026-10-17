@@ -13,10 +13,13 @@ export default function PageTransition({ children }: { children: React.ReactNode
       return;
     }
 
-    setIsTransitioning(true);
     const timer = setTimeout(() => {
       setIsTransitioning(false);
     }, 380);
+
+    requestAnimationFrame(() => {
+      setIsTransitioning(true);
+    });
 
     return () => clearTimeout(timer);
   }, [pathname]);

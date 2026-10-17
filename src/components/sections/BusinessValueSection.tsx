@@ -8,7 +8,6 @@ import {
   Zap,
   Activity,
   Maximize2,
-  CheckCircle2,
   Layers
 } from "lucide-react";
 import { BUSINESS_VALUE_THEMES } from "@/lib/data";
@@ -26,18 +25,30 @@ export default function BusinessValueSection() {
     <section className="py-28 md:py-36 bg-[var(--bg-primary)] text-[var(--text-primary)] overflow-hidden border-b border-[var(--border-subtle)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[var(--text-secondary)] text-[11px] font-mono tracking-widest uppercase shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span>Operational Impact</span>
+        {/* Editorial Section Index */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 mb-12 border-b border-[var(--border-subtle)] gap-4">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs font-semibold text-[var(--accent)] tracking-widest uppercase">
+              04 // VALUE ASSURANCE
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--border-strong)]" />
+            <span className="font-mono text-xs text-[var(--text-muted)] tracking-wider">
+              ENTERPRISE BUSINESS OUTCOMES
+            </span>
           </div>
+          <div className="flex items-center gap-2 font-mono text-[11px] text-[var(--text-muted)]">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Verifiable Engineering Metrics</span>
+          </div>
+        </div>
 
+        {/* Section Headline */}
+        <div className="max-w-4xl mb-14 space-y-4">
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--text-primary)] leading-[1.12] font-display">
             Technology should create business value.
           </h2>
 
-          <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-normal pt-1">
+          <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-normal pt-1 max-w-3xl">
             Investasi teknologi bukan sekadar membeli perangkat keras atau lisensi perangkat lunak. ARKAPRANA merancang lingkungan komputasi yang secara langsung menopang kelangsungan, efisiensi, dan ekspansi organisasi Anda.
           </p>
         </div>
@@ -53,9 +64,12 @@ export default function BusinessValueSection() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-[var(--border-subtle)]">
-                    <span className="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-widest">
-                      THEME 0{idx + 1}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <Icon className="w-4 h-4 text-[var(--accent)]" />
+                      <span className="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-widest">
+                        THEME 0{idx + 1}
+                      </span>
+                    </div>
                     <span className="px-2.5 py-1 rounded-full bg-[var(--bg-secondary)] border border-[var(--border-subtle)] text-[10px] font-mono font-medium text-[var(--text-secondary)]">
                       {themeItem.metricTag}
                     </span>
@@ -82,9 +96,11 @@ export default function BusinessValueSection() {
             );
           })}
 
-          {/* 6th Card: Strategic Technology Journey */}
           <div className="p-8 rounded-3xl bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[var(--text-primary)] shadow-md flex flex-col justify-between relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-[var(--accent)]/5 rounded-full blur-[80px] pointer-events-none" />
+            <div
+              className="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none opacity-30"
+              style={{ background: "radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%)" }}
+            />
 
             <div className="relative z-10">
               <span className="text-[11px] font-mono text-[var(--accent)] uppercase tracking-widest block mb-4 font-semibold">

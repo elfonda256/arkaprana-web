@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 export default function StatementSection() {
   return (
@@ -20,7 +18,7 @@ export default function StatementSection() {
 
         {/* Monumental Transition Statement (Section 08 verbatim) */}
         <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.08] mb-8 font-sans">
-          Technology shouldn't be fragmented.
+          Technology shouldn&apos;t be fragmented.
           <span className="block text-neutral-500 font-medium mt-3">
             It should work as one system.
           </span>

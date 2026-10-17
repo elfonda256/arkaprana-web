@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Clock, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { INSIGHTS } from "@/lib/data";
 
 export default function InsightsSection() {
@@ -13,22 +13,34 @@ export default function InsightsSection() {
     <section id="insights" className="py-28 md:py-36 bg-[var(--bg-secondary)] text-[var(--text-primary)] relative overflow-hidden border-t border-b border-[var(--border-subtle)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.25em] text-[var(--text-secondary)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
-            <span>ARKAPRANA INSIGHTS</span>
+        {/* Editorial Section Index */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 mb-12 border-b border-[var(--border-subtle)] gap-4">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs font-semibold text-[var(--accent)] tracking-widest uppercase">
+              08 // TECHNICAL PAPERS &amp; RESEARCH
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--border-strong)]" />
+            <span className="font-mono text-xs text-[var(--text-muted)] tracking-wider">
+              ENGINEERING PERSPECTIVES
+            </span>
           </div>
+          <div className="flex items-center gap-2 font-mono text-[11px] text-[var(--text-muted)]">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent)]" />
+            <span>Architecture Whitepapers</span>
+          </div>
+        </div>
 
+        {/* Section Headline */}
+        <div className="max-w-4xl mb-14 space-y-4">
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[var(--text-primary)] leading-[1.12] font-display">
-            Engineering Perspectives.
+            Engineering perspectives.
             <span className="block text-[var(--text-secondary)] font-normal mt-1">
               Architecture for the decade ahead.
             </span>
           </h2>
 
           <p className="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed pt-2 max-w-2xl font-normal">
-            Catatan teknis, analisis arsitektur, dan prinsip rekayasa sistem yang disusun langsung oleh para insinyur dan praktisi infrastruktur ARKAPRANA.
+            Catatan teknis, analisis arsitektur, dan prinsip rekayasa sistem yang disusun langsung oleh tim prinsipal infrastruktur ARKAPRANA.
           </p>
         </div>
 
@@ -42,8 +54,8 @@ export default function InsightsSection() {
                 <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[var(--accent)]">
                   FEATURED RESEARCH ESSAY
                 </span>
-                <span className="text-[11px] font-mono text-[var(--text-muted)] flex items-center gap-1.5">
-                  <Clock className="w-3 h-3 text-[var(--text-muted)]" /> {featuredArticle.readTime}
+                <span className="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
+                  {featuredArticle.category}
                 </span>
               </div>
 
@@ -71,14 +83,14 @@ export default function InsightsSection() {
 
             <div className="pt-6 border-t border-[var(--border-subtle)] flex items-center justify-between">
               <span className="text-xs text-[var(--text-muted)] font-mono">
-                By Principal Engineering Group
+                Principal Engineering Group
               </span>
               <Link
                 href={`/insights/${featuredArticle.slug}`}
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors group btn-secondary-interaction"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors group btn-tactile"
               >
-                <span>Read Full Essay</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[var(--accent)] cta-arrow" />
+                <span>Buka Dokumen Arsitektur</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[var(--accent)]" />
               </Link>
             </div>
           </div>
@@ -89,14 +101,14 @@ export default function InsightsSection() {
               <Link
                 key={article.title}
                 href={`/insights/${article.slug}`}
-                className="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--accent)]/40 hover:shadow-md hover:-translate-y-1 transition-all duration-300 block group"
+                className="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--accent)]/40 hover:shadow-md transition-all duration-300 block group btn-tactile"
               >
                 <div className="flex items-center justify-between text-[10px] font-mono mb-1.5">
-                  <span className="text-[var(--text-muted)] uppercase tracking-wider">
+                  <span className="text-[var(--accent)] uppercase tracking-wider font-semibold">
                     {article.category}
                   </span>
                   <span className="text-[var(--text-muted)]">
-                    {article.readTime}
+                    RESEARCH
                   </span>
                 </div>
 
@@ -109,8 +121,8 @@ export default function InsightsSection() {
                 </p>
 
                 <div className="mt-2.5 flex items-center text-[11px] font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
-                  <span>Explore Technical Analysis</span>
-                  <ArrowUpRight className="w-3 h-3 ml-1 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform text-[var(--accent)]" />
+                  <span>Lihat Analisis Sistem</span>
+                  <ArrowUpRight className="w-3 h-3 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[var(--accent)]" />
                 </div>
               </Link>
             ))}

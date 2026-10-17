@@ -23,30 +23,31 @@ function AmbientBackgroundAnimationComponent() {
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none"
     >
-      {/* 1. Seamless Micro-Grid Layer with subtle diagonal drift */}
+      {/* 1. Seamless Micro-Grid Layer (Static, Zero CPU Repaint Cost) */}
       <div
-        className="ambient-grid-canvas absolute inset-0 w-full h-full opacity-60 dark:opacity-80"
+        className="absolute inset-0 w-full h-full opacity-40 dark:opacity-60 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, var(--tech-grid-color) 1px, transparent 1px),
             linear-gradient(to bottom, var(--tech-grid-color) 1px, transparent 1px)
           `,
+          backgroundSize: "60px 60px",
         }}
       />
 
-      {/* 2. Primary Atmospheric Aura Orb (Top Right) */}
+      {/* 2. Primary Atmospheric Aura Orb (Top Right) - Hardware Gradient (0 blur overhead) */}
       <div
-        className="ambient-aura-1 absolute -top-[15vw] -right-[15vw] w-[55vw] h-[55vw] max-w-[850px] max-h-[850px] rounded-full blur-[140px] md:blur-[180px]"
+        className="absolute -top-[10vw] -right-[10vw] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] rounded-full pointer-events-none opacity-60 dark:opacity-40"
         style={{
-          background: "radial-gradient(circle, var(--accent-glow) 0%, rgba(91, 167, 255, 0) 70%)",
+          background: "radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 70%)",
         }}
       />
 
-      {/* 3. Secondary Atmospheric Aura Orb (Bottom Left) */}
+      {/* 3. Secondary Atmospheric Aura Orb (Bottom Left) - Hardware Gradient (0 blur overhead) */}
       <div
-        className="ambient-aura-2 absolute -bottom-[15vw] -left-[15vw] w-[60vw] h-[60vw] max-w-[900px] max-h-[900px] rounded-full blur-[150px] md:blur-[190px]"
+        className="absolute -bottom-[10vw] -left-[10vw] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] rounded-full pointer-events-none opacity-50 dark:opacity-30"
         style={{
-          background: "radial-gradient(circle, var(--accent-soft-bg) 0%, rgba(56, 189, 248, 0) 70%)",
+          background: "radial-gradient(circle at 50% 50%, var(--accent-soft-bg) 0%, transparent 70%)",
         }}
       />
 

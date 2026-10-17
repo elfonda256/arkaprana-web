@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 export default function ValuePropositionSection() {
   const pillars = [
@@ -29,13 +27,13 @@ export default function ValuePropositionSection() {
 
         {/* Lead Statement (Section 08 verbatim) */}
         <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.08] mb-12 font-sans">
-          Technology shouldn't be fragmented.
+          Technology shouldn&apos;t be fragmented.
         </h2>
 
         {/* 6-Part Proposition Stack with Large Typography */}
         <div className="max-w-3xl mx-auto text-left py-10 px-6 sm:px-12 rounded-3xl bg-white border border-neutral-200/90 shadow-sm mb-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {pillars.map((pillar, idx) => (
+            {pillars.map((pillar) => (
               <div key={pillar.text} className="border-l-2 border-neutral-200 pl-4 py-1 hover:border-cyan-600 transition-colors">
                 <div className="text-xl sm:text-2xl font-bold text-neutral-900 font-sans tracking-tight">
                   {pillar.text}

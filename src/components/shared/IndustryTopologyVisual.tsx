@@ -15,7 +15,7 @@ export default function IndustryTopologyVisual({
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsReducedMotion(true);
+      requestAnimationFrame(() => setIsReducedMotion(true));
     }
   }, []);
 

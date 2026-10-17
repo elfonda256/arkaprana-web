@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import { PROJECT_LIFECYCLE } from "@/lib/data";
-import { CheckCircle2, ChevronRight, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { CheckCircle2 } from "lucide-react";
 
 export default function LifecycleSection() {
   const [activeStep, setActiveStep] = useState(0);
@@ -60,7 +59,7 @@ export default function LifecycleSection() {
           <div className="max-w-3xl relative z-10 space-y-5">
             <div className="flex items-center space-x-3">
               <span className="font-mono text-xs px-2.5 py-1 rounded bg-cyan-950/40 text-cyan-300 font-semibold border border-cyan-800/40">
-                PHASE 0{PROJECT_LIFECYCLE[activeStep].step} // STAGE GATE
+                PHASE 0{PROJECT_LIFECYCLE[activeStep].step} · STAGE GATE
               </span>
               <h3 className="text-2xl font-bold text-white tracking-tight">
                 {PROJECT_LIFECYCLE[activeStep].phase}

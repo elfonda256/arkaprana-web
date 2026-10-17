@@ -125,7 +125,7 @@ export default function FindYourSolutionSection() {
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.08] font-sans">
             Not sure where to start?
             <span className="block text-neutral-500 font-normal mt-1">
-              Tell us what you're trying to solve.
+              Tell us what you&apos;re trying to solve.
             </span>
           </h2>
 
@@ -165,7 +165,7 @@ export default function FindYourSolutionSection() {
             {/* Question 2: What's your current challenge? */}
             <div>
               <label className="block text-xs font-mono uppercase tracking-wider text-neutral-500 mb-3 font-semibold">
-                Question 02 • What's your current challenge?
+                Question 02 • What&apos;s your current challenge?
               </label>
               <div className="space-y-2">
                 {CHALLENGE_OPTIONS.map((ch) => (

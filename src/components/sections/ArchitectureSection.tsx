@@ -215,7 +215,7 @@ export default function ArchitectureSection() {
                 <div className="flex items-center space-x-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
                   <span className="font-mono text-xs text-neutral-300 tracking-wider uppercase">
-                    ACTIVE TIER: {activeLayer.verb} // LEVEL 0{activeLayer.level}
+                    ACTIVE TIER: {activeLayer.verb} · LEVEL 0{activeLayer.level}
                   </span>
                 </div>
                 <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-cyan-950/60 border border-cyan-800/40 text-cyan-300">

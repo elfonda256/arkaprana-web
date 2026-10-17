@@ -14,8 +14,10 @@ export default function FinalSignatureBlueprint() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsReducedMotion(true);
-      setHasDrawn(true);
+      requestAnimationFrame(() => {
+        setIsReducedMotion(true);
+        setHasDrawn(true);
+      });
       return;
     }
 

@@ -25,8 +25,10 @@ export default function EngagementModelsSection() {
   return (
     <section id="engagement-models" className="py-28 md:py-36 bg-[var(--bg-secondary)] text-[var(--text-primary)] relative overflow-hidden border-t border-b border-[var(--border-subtle)] transition-colors duration-300">
       {/* Background Ambience */}
-      <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[var(--accent)]/5 rounded-full blur-[160px] pointer-events-none" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none opacity-25"
+        style={{ background: "radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%)" }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -113,9 +115,11 @@ export default function EngagementModelsSection() {
             );
           })}
 
-          {/* 6th Card: Consultation CTA Box */}
           <div className="p-8 rounded-3xl bg-[var(--bg-card)] border border-[var(--border-subtle)] flex flex-col justify-between shadow-xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-[var(--accent)]/5 rounded-full blur-[80px] pointer-events-none" />
+            <div
+              className="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none opacity-30"
+              style={{ background: "radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%)" }}
+            />
 
             <div className="relative z-10">
               <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--accent)] block mb-3 font-semibold">

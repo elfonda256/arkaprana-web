@@ -23,7 +23,7 @@ export default function ScrollReveal({
   useEffect(() => {
     // Respect reduced motion
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsVisible(true);
+      requestAnimationFrame(() => setIsVisible(true));
       return;
     }
 
