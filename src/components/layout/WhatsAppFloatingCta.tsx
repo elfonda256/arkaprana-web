@@ -2,41 +2,85 @@
 
 import React, { useState } from "react";
 import { MessageSquare, X, ArrowUpRight, Shield, Sparkles, Building, Layers } from "lucide-react";
+import { useLanguage, Language } from "@/context/LanguageContext";
 
-const WA_OPTIONS = [
-  {
-    id: "project",
-    label: "Discuss a Project",
-    desc: "Inisiasi proyek baru, upgrade infrastruktur atau data center",
-    text: "Halo ARKAPRANA, saya ingin mendiskusikan kebutuhan proyek teknologi untuk organisasi kami.",
-    icon: Building
-  },
-  {
-    id: "solution",
-    label: "Ask About a Solution",
-    desc: "Pertanyaan teknis seputar Network, Cloud, Security, atau Managed IT",
-    text: "Halo ARKAPRANA, saya ingin menanyakan rincian solusi dan spesifikasi teknis enterprise Anda.",
-    icon: Layers
-  },
-  {
-    id: "ai",
-    label: "Explore AI",
-    desc: "Kajian adopsi Private On-Premise LLM, RAG & Otomasi Cerdas",
-    text: "Halo ARKAPRANA, saya tertarik mengeksplorasi implementasi Private AI dan Otomasi Dokumen untuk perusahaan kami.",
-    icon: Sparkles
-  },
-  {
-    id: "partnership",
-    label: "Technology Partnership",
-    desc: "Diskusi kolaborasi strategis, kemitraan vendor & integrasi",
-    text: "Halo ARKAPRANA, kami ingin mendiskusikan peluang kolaborasi dan kemitraan teknologi strategis.",
-    icon: Shield
-  }
-];
+interface WaOptionItem {
+  id: string;
+  label: string;
+  desc: string;
+  text: string;
+  icon: React.ElementType;
+}
+
+const WA_OPTIONS_MAP: Record<Language, WaOptionItem[]> = {
+  id: [
+    {
+      id: "project",
+      label: "Diskusikan Proyek",
+      desc: "Inisiasi proyek baru, upgrade infrastruktur atau data center",
+      text: "Halo ARKAPRANA, saya ingin mendiskusikan kebutuhan proyek teknologi untuk organisasi kami.",
+      icon: Building
+    },
+    {
+      id: "solution",
+      label: "Tanyakan Solusi",
+      desc: "Pertanyaan teknis seputar Network, Cloud, Security, atau Managed IT",
+      text: "Halo ARKAPRANA, saya ingin menanyakan rincian solusi dan spesifikasi teknis enterprise Anda.",
+      icon: Layers
+    },
+    {
+      id: "ai",
+      label: "Eksplorasi AI Privat",
+      desc: "Kajian adopsi Private On-Premise LLM, RAG & Otomasi Cerdas",
+      text: "Halo ARKAPRANA, saya tertarik mengeksplorasi implementasi Private AI dan Otomasi Dokumen untuk perusahaan kami.",
+      icon: Sparkles
+    },
+    {
+      id: "partnership",
+      label: "Kemitraan Teknologi",
+      desc: "Diskusi kolaborasi strategis, kemitraan vendor & integrasi",
+      text: "Halo ARKAPRANA, kami ingin mendiskusikan peluang kolaborasi dan kemitraan teknologi strategis.",
+      icon: Shield
+    }
+  ],
+  en: [
+    {
+      id: "project",
+      label: "Discuss a Project",
+      desc: "Initiate new infrastructure, data center, or network project",
+      text: "Hello ARKAPRANA, I would like to discuss a technology project requirement for our organization.",
+      icon: Building
+    },
+    {
+      id: "solution",
+      label: "Ask About a Solution",
+      desc: "Technical specifications on Network, Cloud, Security, or Managed IT",
+      text: "Hello ARKAPRANA, I would like to inquire about your enterprise solution specifications.",
+      icon: Layers
+    },
+    {
+      id: "ai",
+      label: "Explore Sovereign AI",
+      desc: "Feasibility study on Private On-Premise LLM, Enterprise RAG & Agents",
+      text: "Hello ARKAPRANA, I am interested in exploring Private AI and Document Automation for our enterprise.",
+      icon: Sparkles
+    },
+    {
+      id: "partnership",
+      label: "Technology Partnership",
+      desc: "Strategic integration, vendor synergy, and long-term collaboration",
+      text: "Hello ARKAPRANA, we would like to discuss strategic technology partnership opportunities.",
+      icon: Shield
+    }
+  ]
+};
 
 export default function WhatsAppFloatingCta() {
   const [isOpen, setIsOpen] = useState(false);
+  const { language } = useLanguage();
   const waNumber = "62816997963"; // 0816-997-963
+
+  const options = WA_OPTIONS_MAP[language] || WA_OPTIONS_MAP.id;
 
   const handleSelectOption = (text: string) => {
     const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
@@ -51,7 +95,7 @@ export default function WhatsAppFloatingCta() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Talk to ARKAPRANA on WhatsApp"
+          aria-label={language === "en" ? "Talk to ARKAPRANA on WhatsApp" : "Hubungi ARKAPRANA via WhatsApp"}
           className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl hover:shadow-emerald-500/25 transition-all duration-200 active:scale-95 border border-emerald-400/30"
         >
           <div className="relative">
@@ -60,7 +104,7 @@ export default function WhatsAppFloatingCta() {
             <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-200 rounded-full" />
           </div>
           <span className="text-xs font-semibold tracking-wide">
-            Talk to ARKAPRANA
+            {language === "en" ? "Talk to ARKAPRANA" : "Bicara dengan ARKAPRANA"}
           </span>
         </button>
       </div>
@@ -77,10 +121,10 @@ export default function WhatsAppFloatingCta() {
               </div>
               <div>
                 <h4 className="text-sm font-bold text-[var(--text-primary)] font-display">
-                  Talk to ARKAPRANA
+                  {language === "en" ? "Talk to ARKAPRANA" : "Bicara dengan ARKAPRANA"}
                 </h4>
                 <span className="text-[10px] font-mono text-emerald-500 font-semibold">
-                  Direct WhatsApp Engineering Desk
+                  {language === "en" ? "Direct WhatsApp Engineering Desk" : "Meja Konsultasi WhatsApp Langsung"}
                 </span>
               </div>
             </div>
@@ -95,12 +139,14 @@ export default function WhatsAppFloatingCta() {
           </div>
 
           <p className="text-xs text-[var(--text-secondary)] leading-relaxed mb-4">
-            Pilih topik konsultasi di bawah untuk langsung terhubung dengan tim teknis ARKAPRANA:
+            {language === "en"
+              ? "Select an engineering consultation topic below to connect directly with ARKAPRANA engineers:"
+              : "Pilih topik konsultasi di bawah untuk langsung terhubung dengan tim teknis ARKAPRANA:"}
           </p>
 
           {/* 4 Choices */}
           <div className="space-y-2 mb-4">
-            {WA_OPTIONS.map((opt) => {
+            {options.map((opt) => {
               const Icon = opt.icon;
               return (
                 <button
@@ -130,7 +176,9 @@ export default function WhatsAppFloatingCta() {
 
           {/* Footer note */}
           <div className="pt-2 text-[10px] font-mono text-[var(--text-muted)] text-center">
-            Hotline: +62 816-997-963 • Respon cepat di jam kerja
+            {language === "en"
+              ? "Hotline: +62 816-997-963 • Rapid business hour response"
+              : "Hotline: +62 816-997-963 • Respon cepat di jam kerja"}
           </div>
 
         </div>

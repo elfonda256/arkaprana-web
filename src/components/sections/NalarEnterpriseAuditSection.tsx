@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import NalarSpirograph from "@/components/decorative/NalarSpirograph";
 import { ShieldCheck, Lock, Server, Users, CheckCircle2, Cpu, ArrowUpRight } from "lucide-react";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 interface AuditPillar {
   id: string;
   title: string;
@@ -15,66 +17,112 @@ interface AuditPillar {
   metric: string;
 }
 
-const AUDIT_PILLARS: AuditPillar[] = [
-  {
-    id: "deployment",
-    title: "Flexible deployment",
-    description: "Runs in your private cloud or fully on-premise air-gapped. Your telemetry and network records never leave your environment.",
-    badgeTitle: "ON-PREM & CLOUD",
-    badgeSub: "Airgapped Topology",
-    badgeTag: "Zero External Egress",
-    icon: Server,
-    metric: "100% In-House Hardware",
-  },
-  {
-    id: "permission",
-    title: "Permission-aware",
-    description: "Agents inherit the roles and LDAP/RBAC access policies your organization already has. Every answer stays strictly inside what that operator may see.",
-    badgeTitle: "ROLE-BASED IAM",
-    badgeSub: "Zero-Trust Access",
-    badgeTag: "Strict Scope Isolation",
-    icon: Users,
-    metric: "Active Directory / SAML",
-  },
-  {
-    id: "protection",
-    title: "Data protection",
-    description: "Your data never trains public models. Encrypted in transit (TLS 1.3 / MACsec) and at rest with hardware-isolated HSM enclaves.",
-    badgeTitle: "FIPS 140-3 HSM",
-    badgeSub: "Hardware Sealed",
-    badgeTag: "0% Training Leakage",
-    icon: Lock,
-    metric: "Quantum-Safe Encryption",
-  },
-  {
-    id: "compliance",
-    title: "Compliance & standards",
-    description: "SOC 2, ISO 27001, and dedicated Indonesian data residency compliance on enterprise plans, with cryptographic access controls you define.",
-    badgeTitle: "SOC 2 & PP 71/2019",
-    badgeSub: "Data residency in Indonesia",
-    badgeTag: "Enterprise Audit Bar",
-    icon: ShieldCheck,
-    metric: "OJK & UU PDP Compliant",
-  },
-];
+const AUDIT_PILLARS_MAP: Record<"id" | "en", AuditPillar[]> = {
+  id: [
+    {
+      id: "deployment",
+      title: "Penyebaran fleksibel",
+      description: "Beroperasi di cloud privat Anda atau sepenuhnya on-premise air-gapped. Data telemetri dan log jaringan Anda tidak pernah meninggalkan lingkungan Anda.",
+      badgeTitle: "ON-PREM & CLOUD",
+      badgeSub: "Topologi Airgapped",
+      badgeTag: "Nol Egress Eksternal",
+      icon: Server,
+      metric: "100% Hardware Mandiri",
+    },
+    {
+      id: "permission",
+      title: "Berbasis izin & hak akses",
+      description: "Agen mewarisi peran dan kebijakan akses LDAP/RBAC yang telah ada di organisasi Anda. Setiap jawaban dan aksi dibatasi ketat sesuai hak operator.",
+      badgeTitle: "IAM BERBASIS PERAN",
+      badgeSub: "Akses Zero-Trust",
+      badgeTag: "Isolasi Lingkup Ketat",
+      icon: Users,
+      metric: "Active Directory / SAML",
+    },
+    {
+      id: "protection",
+      title: "Perlindungan data terisolasi",
+      description: "Data Anda tidak pernah digunakan melatih model publik. Terenkripsi dalam transit (TLS 1.3 / MACsec) dan at rest dengan brankas HSM terisolasi perangkat keras.",
+      badgeTitle: "HSM FIPS 140-3",
+      badgeSub: "Segel Perangkat Keras",
+      badgeTag: "0% Kebocoran Training",
+      icon: Lock,
+      metric: "Enkripsi Quantum-Safe",
+    },
+    {
+      id: "compliance",
+      title: "Kepatuhan & standar regulasi",
+      description: "Memenuhi sertifikasi SOC 2, ISO 27001, dan kepatuhan kedaulatan data Indonesia (UU PDP & POJK) dengan kendali akses kriptografis yang Anda tentukan.",
+      badgeTitle: "SOC 2 & PP 71/2019",
+      badgeSub: "Residensi data di Indonesia",
+      badgeTag: "Standar Audit Enterprise",
+      icon: ShieldCheck,
+      metric: "Patuh OJK & UU PDP",
+    },
+  ],
+  en: [
+    {
+      id: "deployment",
+      title: "Flexible deployment",
+      description: "Runs in your private cloud or fully on-premise air-gapped. Your telemetry and network records never leave your environment.",
+      badgeTitle: "ON-PREM & CLOUD",
+      badgeSub: "Airgapped Topology",
+      badgeTag: "Zero External Egress",
+      icon: Server,
+      metric: "100% In-House Hardware",
+    },
+    {
+      id: "permission",
+      title: "Permission-aware",
+      description: "Agents inherit the roles and LDAP/RBAC access policies your organization already has. Every answer stays strictly inside what that operator may see.",
+      badgeTitle: "ROLE-BASED IAM",
+      badgeSub: "Zero-Trust Access",
+      badgeTag: "Strict Scope Isolation",
+      icon: Users,
+      metric: "Active Directory / SAML",
+    },
+    {
+      id: "protection",
+      title: "Data protection",
+      description: "Your data never trains public models. Encrypted in transit (TLS 1.3 / MACsec) and at rest with hardware-isolated HSM enclaves.",
+      badgeTitle: "FIPS 140-3 HSM",
+      badgeSub: "Hardware Sealed",
+      badgeTag: "0% Training Leakage",
+      icon: Lock,
+      metric: "Quantum-Safe Encryption",
+    },
+    {
+      id: "compliance",
+      title: "Compliance & standards",
+      description: "SOC 2, ISO 27001, and dedicated Indonesian data residency compliance on enterprise plans, with cryptographic access controls you define.",
+      badgeTitle: "SOC 2 & PP 71/2019",
+      badgeSub: "Data residency in Indonesia",
+      badgeTag: "Enterprise Audit Bar",
+      icon: ShieldCheck,
+      metric: "OJK & UU PDP Compliant",
+    },
+  ]
+};
 
 export default function NalarEnterpriseAuditSection() {
   const [activePillarId, setActivePillarId] = useState<string>("deployment");
   const [isPaused, setIsPaused] = useState<boolean>(false);
+  const { t, language } = useLanguage();
+  const auditPillars = AUDIT_PILLARS_MAP[language] || AUDIT_PILLARS_MAP.id;
 
   // Automatic cycling every 4.2 seconds (no click required)
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
       setActivePillarId((current) => {
-        const idx = AUDIT_PILLARS.findIndex((p) => p.id === current);
-        const nextIdx = (idx + 1) % AUDIT_PILLARS.length;
-        return AUDIT_PILLARS[nextIdx].id;
+        const idx = auditPillars.findIndex((p) => p.id === current);
+        const nextIdx = (idx + 1) % auditPillars.length;
+        return auditPillars[nextIdx].id;
       });
     }, 4200);
 
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, auditPillars]);
 
   return (
     <section 
@@ -88,25 +136,27 @@ export default function NalarEnterpriseAuditSection() {
         <div className="max-w-3xl mx-auto text-center mb-16 pb-10 border-b border-[#E0DCD2] space-y-3 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#D5D0C2] bg-[#EAE6DC] text-[11px] font-mono text-[#52525B]">
             <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="tracking-widest uppercase">08 · GOVERNANCE &amp; AUDIT</span>
+            <span className="tracking-widest uppercase">
+              {t("audit_badge", "08 · GOVERNANCE & AUDIT")}
+            </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-[50px] font-light text-[#111215] tracking-tight leading-[1.15] font-display">
-            Built for the enterprise.
+            {t("audit_title", "Built for the enterprise.")}
           </h2>
           <p className="text-xl sm:text-2xl font-light text-[#71717A] tracking-tight leading-snug font-display max-w-2xl mx-auto">
-            From deployment to compliance, every layer meets your audit bar.
+            {t("audit_subtitle", "From deployment to compliance, every layer meets your audit bar.")}
           </p>
 
           <div className="inline-flex items-center gap-2 pt-1 text-xs font-mono text-[#8E8B82]">
             <span className="size-2 rounded-full bg-emerald-500 animate-ping" />
-            <span>Otomatis memverifikasi arsitektur keamanan live</span>
+            <span>{t("audit_live", "Otomatis memverifikasi arsitektur keamanan live")}</span>
           </div>
         </div>
 
         {/* 4 Interactive Rows with Automatic Answer Reveal (Replica of Image 2) */}
         <div className="space-y-0 divide-y divide-[#E2DED4]">
-          {AUDIT_PILLARS.map((pillar) => {
+          {auditPillars.map((pillar) => {
             const isActive = activePillarId === pillar.id;
             const Icon = pillar.icon;
 
@@ -161,7 +211,7 @@ export default function NalarEnterpriseAuditSection() {
                         <div className="pt-2.5 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono">
                           <span className="text-[#38BDF8] flex items-center gap-1 font-medium">
                             <CheckCircle2 className="size-3" />
-                            <span>Verified Architecture</span>
+                            <span>{language === "en" ? "Verified Architecture" : "Arsitektur Terverifikasi"}</span>
                           </span>
                           <span className="text-white/40">{pillar.badgeTag}</span>
                         </div>

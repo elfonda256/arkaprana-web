@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function NalarImpactChartSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     // Immediate fallback trigger
@@ -40,14 +42,16 @@ export default function NalarImpactChartSection() {
         <div className="max-w-3xl mx-auto text-center mb-16 space-y-2">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70 backdrop-blur-md mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-            <span className="tracking-widest uppercase">09 · ECONOMIC IMPACT · SCALED ROI</span>
+            <span className="tracking-widest uppercase">
+              {t("impact_badge", "09 · ECONOMIC IMPACT · SCALED ROI")}
+            </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.18] font-display">
-            Why this matters
+            {t("impact_title_1", "Why this matters")}
           </h2>
           <h2 className="text-3xl sm:text-5xl font-light text-white/45 tracking-tight leading-[1.18] font-display">
-            in 2030 and beyond.
+            {t("impact_title_2", "in 2030 and beyond.")}
           </h2>
         </div>
 
@@ -111,10 +115,10 @@ export default function NalarImpactChartSection() {
                     {/* Bottom Label (Below baseline) */}
                     <div className="h-[75px] flex flex-col justify-start pt-3 text-center">
                       <span className="block text-[11px] font-medium text-white/90 leading-tight">
-                        Non-digital incumbents
+                        {language === "en" ? "Non-digital incumbents" : "Perusahaan Non-Digital"}
                       </span>
                       <span className="block text-[9.5px] font-mono text-white/40 mt-1">
-                        Baseline productivity
+                        {language === "en" ? "Baseline productivity" : "Produktivitas baseline"}
                       </span>
                     </div>
                   </div>
@@ -139,10 +143,10 @@ export default function NalarImpactChartSection() {
                     {/* Bottom Label */}
                     <div className="h-[75px] flex flex-col justify-start pt-3 text-center">
                       <span className="block text-[11px] font-medium text-white/90 leading-tight">
-                        Digital-native businesses
+                        {language === "en" ? "Digital-native businesses" : "Bisnis Digital Asli"}
                       </span>
                       <span className="block text-[9.5px] font-mono text-white/40 mt-1">
-                        More productive
+                        {language === "en" ? "More productive" : "Lebih produktif"}
                       </span>
                     </div>
                   </div>
@@ -171,10 +175,10 @@ export default function NalarImpactChartSection() {
                     {/* Bottom Label */}
                     <div className="h-[75px] flex flex-col justify-start pt-3 text-center">
                       <span className="block text-[11px] font-semibold text-white leading-tight">
-                        AI-native businesses
+                        {language === "en" ? "AI-native businesses" : "Bisnis Berbasis AI"}
                       </span>
                       <span className="block text-[9.5px] font-mono text-[#38BDF8] mt-1 font-medium">
-                        Most productive
+                        {language === "en" ? "Most productive" : "Paling produktif"}
                       </span>
                     </div>
                   </div>
@@ -199,10 +203,10 @@ export default function NalarImpactChartSection() {
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-1 font-mono">
-                      EBIT GROWTH
+                      {t("impact_ebit", "EBIT GROWTH")}
                     </h4>
                     <p className="text-xs text-white/60 leading-relaxed font-light">
-                      High performers achieve 3x EBIT impact, and the gap widens every quarter.
+                      {t("impact_ebit_desc", "High performers achieve 3x EBIT impact, and the gap widens every quarter.")}
                     </p>
                   </div>
                 </div>
@@ -211,14 +215,16 @@ export default function NalarImpactChartSection() {
                 <div className="p-6 sm:p-7 space-y-3 group hover:bg-white/[0.02] transition-colors">
                   <div className="font-display text-4xl sm:text-5xl font-light text-white flex items-baseline gap-1">
                     <span>2.5</span>
-                    <span className="text-xs font-mono text-white/60 font-light">hrs/day</span>
+                    <span className="text-xs font-mono text-white/60 font-light">
+                      {language === "en" ? "hrs/day" : "jam/hari"}
+                    </span>
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-1 font-mono">
-                      TIME SAVED
+                      {t("impact_time", "TIME SAVED")}
                     </h4>
                     <p className="text-xs text-white/60 leading-relaxed font-light">
-                      Every employee saves 2.5 hrs a day; operational productivity compounds.
+                      {t("impact_time_desc", "Every employee saves 2.5 hrs a day; operational productivity compounds.")}
                     </p>
                   </div>
                 </div>
@@ -236,10 +242,10 @@ export default function NalarImpactChartSection() {
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-1 font-mono">
-                      FASTER DECISIONS
+                      {t("impact_decision", "FASTER DECISIONS")}
                     </h4>
                     <p className="text-xs text-white/60 leading-relaxed font-light">
-                      Organizations report 54% efficiency gains from AI, with 61% automation.
+                      {t("impact_decision_desc", "Organizations report 54% efficiency gains from AI, with 61% automation.")}
                     </p>
                   </div>
                 </div>
@@ -248,14 +254,16 @@ export default function NalarImpactChartSection() {
                 <div className="p-6 sm:p-7 space-y-3 group hover:bg-white/[0.02] transition-colors">
                   <div className="font-display text-4xl sm:text-5xl font-light text-white flex items-baseline gap-1">
                     <span>2</span>
-                    <span className="text-xs font-mono text-white/60 font-light">year window</span>
+                    <span className="text-xs font-mono text-white/60 font-light">
+                      {language === "en" ? "year window" : "jendela 2 thn"}
+                    </span>
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-1 font-mono">
-                      THE WINDOW
+                      {t("impact_window", "THE WINDOW")}
                     </h4>
                     <p className="text-xs text-white/60 leading-relaxed font-light">
-                      Two years before the leader–laggard technology gap turns structural (McKinsey).
+                      {t("impact_window_desc", "Two years before the leader–laggard technology gap turns structural (McKinsey).")}
                     </p>
                   </div>
                 </div>
@@ -268,7 +276,9 @@ export default function NalarImpactChartSection() {
 
           {/* Sources Footnote (Exact Copy from Image 1) */}
           <div className="pt-8 mt-8 border-t border-white/[0.06] text-[11px] font-mono text-white/40">
-            Sources: McKinsey State of AI 2025, PwC AI Jobs Barometer 2025, LSE Inclusion Initiative × Protiviti 2025. Figures illustrative.
+            {language === "en"
+              ? "Sources: McKinsey State of AI 2025, PwC AI Jobs Barometer 2025, LSE Inclusion Initiative × Protiviti 2025. Figures illustrative."
+              : "Sumber: Riset McKinsey State of AI 2025, PwC AI Jobs Barometer 2025, LSE Inclusion Initiative × Protiviti 2025. Angka bersifat ilustratif."}
           </div>
 
         </div>

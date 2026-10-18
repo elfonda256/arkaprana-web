@@ -13,6 +13,7 @@ import {
   Zap,
   Activity
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export interface AccordionItemData {
   id: string;
@@ -41,6 +42,7 @@ export default function EnterpriseAccordionDrawer({
   defaultOpenId,
   onSelect
 }: EnterpriseAccordionDrawerProps) {
+  const { language } = useLanguage();
   const [openId, setOpenId] = useState<string | null>(defaultOpenId || items[0]?.id || null);
 
   const toggleItem = (id: string) => {
@@ -145,7 +147,7 @@ export default function EnterpriseAccordionDrawer({
                     {item.vendors && item.vendors.length > 0 && (
                       <div>
                         <span className="text-[10px] font-mono uppercase text-white/40 block mb-1.5">
-                          Multi-Vendor Ecosystem
+                          {language === "en" ? "Multi-Vendor Ecosystem" : "Ekosistem Multi-Vendor"}
                         </span>
                         <div className="flex flex-wrap gap-1.5">
                           {item.vendors.map((v) => (
@@ -163,7 +165,7 @@ export default function EnterpriseAccordionDrawer({
                     {item.compliance && item.compliance.length > 0 && (
                       <div>
                         <span className="text-[10px] font-mono uppercase text-white/40 block mb-1.5">
-                          Security & Compliance
+                          {language === "en" ? "Security & Compliance" : "Keamanan & Kepatuhan"}
                         </span>
                         <div className="flex flex-wrap gap-1.5">
                           {item.compliance.map((c) => (

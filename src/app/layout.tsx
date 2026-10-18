@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Inter, IBM_Plex_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -31,6 +31,13 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#08090D",
+};
 
 export const metadata: Metadata = {
   title: "ARKAPRANA | Technology & Intelligent Solutions",

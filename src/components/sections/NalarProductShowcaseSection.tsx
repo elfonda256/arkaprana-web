@@ -29,81 +29,151 @@ interface FeatureCard {
   agentThinkingText: string;
 }
 
-const FEATURES: FeatureCard[] = [
-  {
-    id: "analyze",
-    tag: "Analyze",
-    title: "Analisis telemetri & jaringan real-time",
-    desc: "Tanyakan mengapa metrik berubah. Agen AI Arkaprana menemukan pemicunya, menjelaskan anomali, dan menyajikan data valid langsung dari router core.",
-    userPrompt: "Cek latensi & anomali trafik backbone fiber Jakarta - Surabaya hari ini.",
-    agentResponse: "Menganalisis 8 node DWDM dan 14 router BGP core. Latensi rata-rata stabil pada 3.18ms tanpa jitter signifikan. Tidak ada packet loss terdeteksi.",
-    badge: "Optical Mesh Telemetry Verified",
-    agentThinkingText: "Memindai 8 node DWDM & 14 router BGP...",
-    metrics: [
-      { label: "Latensi JKT-SBY", value: "3.18 ms", positive: true },
-      { label: "Throughput Active", value: "94.2 Gbps", positive: true },
-      { label: "Packet Loss", value: "0.00%", positive: true },
-    ],
-    actionLabel: "Unduh Laporan Telemetri (PDF)",
-  },
-  {
-    id: "delegate",
-    tag: "Delegate",
-    title: "Delegasikan tugas ke spesialis infrastruktur",
-    desc: "Berikan tugas verifikasi backup, audit sertifikat, atau pembaruan konfigurasi. Setiap agen bekerja strictly dalam batasan izin dan audit trail.",
-    userPrompt: "Jadwalkan audit sertifikat HSM dan backup snapshot konfigurasi router core.",
-    agentResponse: "Tugas didelegasikan ke Security Agent. Audit HSM FIPS 140-3 selesai: semua 32 kunci valid. Backup snapshot konfigurasi berhasil dienkripsi di vault on-premise.",
-    badge: "HSM Vault Sealed & Synced",
-    agentThinkingText: "Menghubungi HSM Enclave & memverifikasi hash kunci...",
-    metrics: [
-      { label: "Kunci HSM Terverifikasi", value: "32 / 32", positive: true },
-      { label: "Zero-Trust State", value: "Active", positive: true },
-      { label: "Audit Trail", value: "100% Logged", positive: true },
-    ],
-    actionLabel: "Verifikasi Audit Hash di Vault",
-  },
-  {
-    id: "functions",
-    tag: "Functions",
-    title: "Terhubung ke seluruh ekosistem multi-vendor",
-    desc: "Arkaprana menyatukan router Cisco/Juniper, hypervisor VMware/OpenStack, storage SAN, dan sensor DCIM ke dalam satu sistem kendali cerdas.",
-    userPrompt: "Apakah ada modul daya atau suhu rak data center yang mendekati ambang batas?",
-    agentResponse: "Memeriksa sensor DCIM di 4 koridor rak. Suhu rata-rata 21.4°C, PUE efisien di 1.31. Sistem pendingin in-row 2N beroperasi optimal tanpa hotspot.",
-    badge: "DCIM Tier-III Real-Time Feeds",
-    agentThinkingText: "Membaca 48 sensor termal & bus daya 2N DCIM...",
-    metrics: [
-      { label: "PUE Efficiency", value: "1.31 In-Row", positive: true },
-      { label: "Rack Temp Avg", value: "21.4 °C", positive: true },
-      { label: "Power Redundancy", value: "2N Active", positive: true },
-    ],
-    actionLabel: "Buka Telemetri DCIM Data Center",
-  },
-  {
-    id: "automate",
-    tag: "Automate",
-    title: "Otomasi mitigasi & failover mandiri 24/7",
-    desc: "Tentukan aturan failover cerdas. Sistem mendeteksi degradasi link dan me-reroute trafik dalam milidetik sebelum operasional bisnis Anda terganggu.",
-    userPrompt: "Aktifkan auto-failover ke rute optik ring alternatif jika jitter melebihi 2ms.",
-    agentResponse: "Aturan mitigasi aktif. Jika degradasi terdeteksi, trafik BGP dialihkan secara otomatis dalam <18ms melalui jalur proteksi redundant DWDM.",
-    badge: "Sub-18ms Autonomous Reroute Ready",
-    agentThinkingText: "Memprogram policy BGP rerouting sub-18ms...",
-    metrics: [
-      { label: "Failover Target", value: "< 18 ms", positive: true },
-      { label: "SLA Guarantee", value: "99.982%", positive: true },
-      { label: "Mitigation Mode", value: "Autonomous", positive: true },
-    ],
-    actionLabel: "Konfigurasi Parameter Failover",
-  },
-];
+const FEATURES_MAP: Record<"id" | "en", FeatureCard[]> = {
+  id: [
+    {
+      id: "analyze",
+      tag: "Analisis",
+      title: "Analisis telemetri & jaringan real-time",
+      desc: "Tanyakan mengapa metrik berubah. Agen AI Arkaprana menemukan pemicunya, menjelaskan anomali, dan menyajikan data valid langsung dari router core.",
+      userPrompt: "Cek latensi & anomali trafik backbone fiber Jakarta - Surabaya hari ini.",
+      agentResponse: "Menganalisis 8 node DWDM dan 14 router BGP core. Latensi rata-rata stabil pada 3.18ms tanpa jitter signifikan. Tidak ada packet loss terdeteksi.",
+      badge: "Telemetri Mesh Optik Terverifikasi",
+      agentThinkingText: "Memindai 8 node DWDM & 14 router BGP...",
+      metrics: [
+        { label: "Latensi JKT-SBY", value: "3.18 ms", positive: true },
+        { label: "Throughput Active", value: "94.2 Gbps", positive: true },
+        { label: "Packet Loss", value: "0.00%", positive: true },
+      ],
+      actionLabel: "Unduh Laporan Telemetri (PDF)",
+    },
+    {
+      id: "delegate",
+      tag: "Delegasi",
+      title: "Delegasikan tugas ke spesialis infrastruktur",
+      desc: "Berikan tugas verifikasi backup, audit sertifikat, atau pembaruan konfigurasi. Setiap agen bekerja strictly dalam batasan izin dan audit trail.",
+      userPrompt: "Jadwalkan audit sertifikat HSM dan backup snapshot konfigurasi router core.",
+      agentResponse: "Tugas didelegasikan ke Security Agent. Audit HSM FIPS 140-3 selesai: semua 32 kunci valid. Backup snapshot konfigurasi berhasil dienkripsi di vault on-premise.",
+      badge: "Brankas HSM Tersegel & Tersinkron",
+      agentThinkingText: "Menghubungi HSM Enclave & memverifikasi hash kunci...",
+      metrics: [
+        { label: "Kunci HSM Terverifikasi", value: "32 / 32", positive: true },
+        { label: "Zero-Trust State", value: "Active", positive: true },
+        { label: "Audit Trail", value: "100% Logged", positive: true },
+      ],
+      actionLabel: "Verifikasi Audit Hash di Vault",
+    },
+    {
+      id: "functions",
+      tag: "Fungsi",
+      title: "Terhubung ke seluruh ekosistem multi-vendor",
+      desc: "Arkaprana menyatukan router Cisco/Juniper, hypervisor VMware/OpenStack, storage SAN, dan sensor DCIM ke dalam satu sistem kendali cerdas.",
+      userPrompt: "Apakah ada modul daya atau suhu rak data center yang mendekati ambang batas?",
+      agentResponse: "Memeriksa sensor DCIM di 4 koridor rak. Suhu rata-rata 21.4°C, PUE efisien di 1.31. Sistem pendingin in-row 2N beroperasi optimal tanpa hotspot.",
+      badge: "Aliran Data Real-Time DCIM Tier-III",
+      agentThinkingText: "Membaca 48 sensor termal & bus daya 2N DCIM...",
+      metrics: [
+        { label: "PUE Efficiency", value: "1.31 In-Row", positive: true },
+        { label: "Rack Temp Avg", value: "21.4 °C", positive: true },
+        { label: "Power Redundancy", value: "2N Active", positive: true },
+      ],
+      actionLabel: "Buka Telemetri DCIM Data Center",
+    },
+    {
+      id: "automate",
+      tag: "Otomasi",
+      title: "Otomasi mitigasi & failover mandiri 24/7",
+      desc: "Tentukan aturan failover cerdas. Sistem mendeteksi degradasi link dan me-reroute trafik dalam milidetik sebelum operasional bisnis Anda terganggu.",
+      userPrompt: "Aktifkan auto-failover ke rute optik ring alternatif jika jitter melebihi 2ms.",
+      agentResponse: "Aturan mitigasi aktif. Jika degradasi terdeteksi, trafik BGP dialihkan secara otomatis dalam <18ms melalui jalur proteksi redundant DWDM.",
+      badge: "Pengalihan Rute Otonom Sub-18ms Siap",
+      agentThinkingText: "Memprogram policy BGP rerouting sub-18ms...",
+      metrics: [
+        { label: "Failover Target", value: "< 18 ms", positive: true },
+        { label: "SLA Guarantee", value: "99.982%", positive: true },
+        { label: "Mitigation Mode", value: "Autonomous", positive: true },
+      ],
+      actionLabel: "Konfigurasi Parameter Failover",
+    },
+  ],
+  en: [
+    {
+      id: "analyze",
+      tag: "Analyze",
+      title: "Real-time telemetry & network analytics",
+      desc: "Ask why metrics moved. Arkaprana's AI agents pinpoint root causes, explain anomalies, and verify data straight from core routers.",
+      userPrompt: "Check latency & traffic anomalies across Jakarta - Surabaya fiber backbone today.",
+      agentResponse: "Analyzed 8 DWDM nodes and 14 core BGP routers. Average latency is rock-solid at 3.18ms with no significant jitter. Zero packet loss detected.",
+      badge: "Optical Mesh Telemetry Verified",
+      agentThinkingText: "Scanning 8 DWDM nodes & 14 BGP routers...",
+      metrics: [
+        { label: "JKT-SBY Latency", value: "3.18 ms", positive: true },
+        { label: "Active Throughput", value: "94.2 Gbps", positive: true },
+        { label: "Packet Loss", value: "0.00%", positive: true },
+      ],
+      actionLabel: "Download Telemetry Report (PDF)",
+    },
+    {
+      id: "delegate",
+      tag: "Delegate",
+      title: "Delegate tasks to infrastructure specialists",
+      desc: "Assign backup verifications, certificate audits, or configuration rollouts. Every agent operates strictly within policy boundaries and immutable audit trails.",
+      userPrompt: "Schedule an HSM certificate audit and backup snapshot for core router configs.",
+      agentResponse: "Task delegated to Security Agent. HSM FIPS 140-3 audit complete: all 32 keys valid. Configuration snapshot encrypted in on-premise vault.",
+      badge: "HSM Vault Sealed & Synced",
+      agentThinkingText: "Connecting to HSM Enclave & verifying key hashes...",
+      metrics: [
+        { label: "Verified HSM Keys", value: "32 / 32", positive: true },
+        { label: "Zero-Trust State", value: "Active", positive: true },
+        { label: "Audit Trail", value: "100% Logged", positive: true },
+      ],
+      actionLabel: "Verify Audit Hash in Vault",
+    },
+    {
+      id: "functions",
+      tag: "Functions",
+      title: "Connect across heterogeneous multi-vendor ecosystems",
+      desc: "Arkaprana unifies Cisco/Juniper routers, VMware/OpenStack hypervisors, SAN storage, and DCIM sensors into one sovereign command plane.",
+      userPrompt: "Are any power modules or data center rack temperatures approaching thresholds?",
+      agentResponse: "Inspecting DCIM sensors across 4 rack corridors. Average temp 21.4°C, PUE efficient at 1.31. 2N in-row cooling operating optimally with no hotspots.",
+      badge: "DCIM Tier-III Real-Time Feeds",
+      agentThinkingText: "Reading 48 thermal sensors & 2N DCIM power buses...",
+      metrics: [
+        { label: "PUE Efficiency", value: "1.31 In-Row", positive: true },
+        { label: "Avg Rack Temp", value: "21.4 °C", positive: true },
+        { label: "Power Redundancy", value: "2N Active", positive: true },
+      ],
+      actionLabel: "Open DCIM Data Center Telemetry",
+    },
+    {
+      id: "automate",
+      tag: "Automate",
+      title: "24/7 autonomous mitigation & seamless failover",
+      desc: "Define intelligent failover policies. The system detects link degradation and reroutes traffic in milliseconds before business operations are affected.",
+      userPrompt: "Activate auto-failover to redundant ring route if jitter exceeds 2ms.",
+      agentResponse: "Mitigation rule armed. Upon degradation, BGP traffic reroutes autonomously in <18ms across redundant DWDM protection links.",
+      badge: "Sub-18ms Autonomous Reroute Ready",
+      agentThinkingText: "Programming sub-18ms BGP reroute policy...",
+      metrics: [
+        { label: "Failover Target", value: "< 18 ms", positive: true },
+        { label: "SLA Guarantee", value: "99.982%", positive: true },
+        { label: "Mitigation Mode", value: "Autonomous", positive: true },
+      ],
+      actionLabel: "Configure Failover Parameters",
+    },
+  ]
+};
 
 export default function NalarProductShowcaseSection() {
   const [activeTab, setActiveTab] = useState<FeatureCard["id"]>("delegate");
   const { language, setLanguage, t } = useLanguage();
   const [actionDone, setActionDone] = useState(false);
 
+  const features = FEATURES_MAP[language] || FEATURES_MAP.id;
+
   // Progressive step-by-step animation stage (0: reset, 1: user msg, 2: agent thinking, 3: agent bubble, 4: metrics, 5: button)
   const [animStep, setAnimStep] = useState(1);
-  const activeFeature = FEATURES.find((f) => f.id === activeTab) || FEATURES[0];
+  const activeFeature = features.find((f) => f.id === activeTab) || features[0];
 
   // Progressive staggered appearance sequence when tab changes
   useEffect(() => {
@@ -129,14 +199,14 @@ export default function NalarProductShowcaseSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveTab((prev) => {
-        const currentIndex = FEATURES.findIndex((f) => f.id === prev);
-        const nextIndex = (currentIndex + 1) % FEATURES.length;
-        return FEATURES[nextIndex].id;
+        const currentIndex = features.findIndex((f) => f.id === prev);
+        const nextIndex = (currentIndex + 1) % features.length;
+        return features[nextIndex].id;
       });
     }, 10000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [features]);
 
   const handleSelectTab = (id: FeatureCard["id"]) => {
     setActiveTab(id);
@@ -188,7 +258,7 @@ export default function NalarProductShowcaseSection() {
         {/* Mobile Horizontal Feature Tab Bar */}
         <div className="lg:hidden mb-6">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-            {FEATURES.map((feat) => {
+            {features.map((feat) => {
               const isSelected = activeTab === feat.id;
               return (
                 <button
@@ -215,7 +285,7 @@ export default function NalarProductShowcaseSection() {
           
           {/* Left Column (2 Feature Cards) */}
           <div className="hidden lg:flex lg:col-span-4 flex-col gap-5">
-            {FEATURES.slice(0, 2).map((feat) => {
+            {features.slice(0, 2).map((feat) => {
               const isSelected = activeTab === feat.id;
               return (
                 <button
@@ -315,7 +385,7 @@ export default function NalarProductShowcaseSection() {
                         </p>
                         <p className="truncate text-[9.5px] text-emerald-400 font-mono flex items-center gap-1">
                           <span className="size-1 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>Airgapped On-Premises</span>
+                          <span>{language === "en" ? "Airgapped On-Premises" : "Airgapped On-Premise Terisolasi"}</span>
                         </p>
                       </div>
                     </div>
@@ -336,7 +406,7 @@ export default function NalarProductShowcaseSection() {
                             {activeFeature.userPrompt}
                           </p>
                           <span className="block text-[8.5px] text-black/50 text-right mt-0.5">
-                            Just now · Operator
+                            {language === "en" ? "Just now · Operator" : "Baru saja · Operator"}
                           </span>
                         </div>
                       </div>
@@ -410,7 +480,7 @@ export default function NalarProductShowcaseSection() {
                               {actionDone ? (
                                 <>
                                   <CheckCircle2 className="size-3 text-emerald-400" />
-                                  <span>Tindakan Berhasil Diverifikasi</span>
+                                  <span>{language === "en" ? "Action Verified in Vault" : "Tindakan Berhasil Diverifikasi"}</span>
                                 </>
                               ) : (
                                 <>
@@ -429,7 +499,7 @@ export default function NalarProductShowcaseSection() {
                     {/* Bottom Input Preview Bar */}
                     <div className="p-2 border-t border-white/[0.06] bg-[#0E1017] flex items-center gap-2">
                       <div className="flex-1 rounded-full bg-white/[0.06] px-3 py-1.5 text-[9.5px] text-white/40 font-mono">
-                        Ask infrastructure query...
+                        {language === "en" ? "Ask infrastructure telemetry query..." : "Tanyakan telemetri infrastruktur..."}
                       </div>
                       <div className="size-6 rounded-full bg-[#38BDF8] flex items-center justify-center text-black shadow-sm">
                         <Zap className="size-3 fill-black" />
@@ -444,7 +514,7 @@ export default function NalarProductShowcaseSection() {
 
           {/* Right Column (2 Feature Cards) */}
           <div className="hidden lg:flex lg:col-span-4 flex-col gap-5">
-            {FEATURES.slice(2, 4).map((feat) => {
+            {features.slice(2, 4).map((feat) => {
               const isSelected = activeTab === feat.id;
               return (
                 <button

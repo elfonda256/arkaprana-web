@@ -12,8 +12,9 @@ import {
   Building2,
   MapPin
 } from "lucide-react";
-import { PROJECT_CASE_STUDIES } from "@/lib/data";
+import { getLocalizedProjects } from "@/lib/i18nData";
 import NalarPageHeroAtmosphere from "@/components/decorative/NalarPageHeroAtmosphere";
+import NalarOrbitalCtaSection from "@/components/sections/NalarOrbitalCtaSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -21,6 +22,7 @@ export default function ProjectsClient() {
   const { t, language } = useLanguage();
   const [activeSector, setActiveSector] = useState<string>("all");
   const [expandedTopologyId, setExpandedTopologyId] = useState<string | null>("cs-banking");
+  const projects = getLocalizedProjects(language);
 
   const sectorFilters = [
     { id: "all", label: t("proj_filter_all", "Semua Sektor") },
@@ -30,7 +32,7 @@ export default function ProjectsClient() {
     { id: "public", label: t("proj_filter_public", "Infrastruktur Publik") }
   ];
 
-  const filteredProjects = PROJECT_CASE_STUDIES.filter((cs) => {
+  const filteredProjects = projects.filter((cs) => {
     if (activeSector === "all") return true;
     if (activeSector === "energy") {
       return cs.sector === "energy" || cs.sector === "manufacturing";
@@ -119,10 +121,10 @@ export default function ProjectsClient() {
                     {tab.label}
                     <span className="ml-2 opacity-70 text-[10px]">
                       {tab.id === "all"
-                        ? `(${PROJECT_CASE_STUDIES.length})`
+                        ? `(${projects.length})`
                         : tab.id === "energy"
-                        ? `(${PROJECT_CASE_STUDIES.filter(p => p.sector === "energy" || p.sector === "manufacturing").length})`
-                        : `(${PROJECT_CASE_STUDIES.filter(p => p.sector === tab.id).length})`}
+                        ? `(${projects.filter(p => p.sector === "energy" || p.sector === "manufacturing").length})`
+                        : `(${projects.filter(p => p.sector === tab.id).length})`}
                     </span>
                   </button>
                 );
@@ -132,10 +134,10 @@ export default function ProjectsClient() {
             <div className="flex items-center gap-3 text-[11px] font-mono text-zinc-500">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Verified Deployment Models</span>
+                <span>{language === "en" ? "Verified Deployment Models" : "Model Deployment Terverifikasi"}</span>
               </span>
               <span>|</span>
-              <span>Zero SPOF Architecture</span>
+              <span>{language === "en" ? "Zero SPOF Architecture" : "Arsitektur Tanpa Titik Gagal Tunggal (Zero SPOF)"}</span>
             </div>
           </div>
         </ScrollReveal>
@@ -211,7 +213,7 @@ export default function ProjectsClient() {
                         <span>{t("proj_verified_metrics", "Verifikasi Metrik Operasional Sebelum vs Sesudah")}</span>
                       </span>
                       <span className="text-[10px] font-mono text-emerald-400 font-medium">
-                        Verified Outcomes
+                        {language === "en" ? "Verified Outcomes" : "Hasil Terverifikasi"}
                       </span>
                     </div>
 
@@ -258,7 +260,7 @@ export default function ProjectsClient() {
                             : (language === "en" ? "Show System & Protocol Topology Breakdown" : "Buka Diagram Topologi Sistem & Protokol")}
                         </span>
                         <span className="text-xs font-mono text-zinc-500">
-                          (4 Layers Detail)
+                          {language === "en" ? "(4 Layers Detail)" : "(Detail 4 Lapisan)"}
                         </span>
                       </div>
                       <div className="p-1 rounded-full bg-white/5 border border-white/10 text-zinc-400 group-hover/btn:text-white">
@@ -327,6 +329,11 @@ export default function ProjectsClient() {
           })}
         </div>
       </div>
+
+      {/* MONUMENTAL NALAR ORBITAL CTA SECTION */}
+      <ScrollReveal delayMs={80}>
+        <NalarOrbitalCtaSection />
+      </ScrollReveal>
     </div>
   );
 }

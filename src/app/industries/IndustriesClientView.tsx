@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { INDUSTRIES } from "@/lib/data";
+import { getLocalizedIndustries } from "@/lib/i18nData";
 import {
   Factory,
   Ship,
@@ -17,6 +17,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import NalarPageHeroAtmosphere from "@/components/decorative/NalarPageHeroAtmosphere";
+import NalarOrbitalCtaSection from "@/components/sections/NalarOrbitalCtaSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -50,6 +51,7 @@ const industryImages: Record<string, string> = {
 
 export default function IndustriesClientView() {
   const { language, t } = useLanguage();
+  const industries = getLocalizedIndustries(language);
 
   return (
     <main className="flex-1 bg-[#08090D] text-white min-h-screen">
@@ -67,7 +69,7 @@ export default function IndustriesClientView() {
       {/* 02. INDUSTRIES GRID WITH REFINED SPATIAL GOVERNANCE & SCROLL ANIMATIONS */}
       <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-          {INDUSTRIES.map((ind, idx) => {
+          {industries.map((ind, idx) => {
             const Icon = iconMap[ind.slug] || Building;
             const photoPath = industryImages[ind.slug] || "/images/industry-manufacturing.jpg";
 
@@ -99,7 +101,7 @@ export default function IndustriesClientView() {
                           </div>
                           <div>
                             <span className="text-[10px] font-mono text-[#38BDF8] uppercase tracking-wider block">
-                              MISSION-CRITICAL SECTOR
+                              {language === "en" ? "MISSION-CRITICAL SECTOR" : "SEKTOR MISI KRITIS"}
                             </span>
                             <h2 className="text-xl font-light text-white font-display">
                               {ind.name}
@@ -109,7 +111,7 @@ export default function IndustriesClientView() {
 
                         <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 border border-white/10 text-[10px] font-mono text-emerald-400 backdrop-blur-md">
                           <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>Active Topology</span>
+                          <span>{language === "en" ? "Active Topology" : "Topologi Aktif"}</span>
                         </span>
                       </div>
                     </div>
@@ -180,7 +182,7 @@ export default function IndustriesClientView() {
                   {/* Footer Strip */}
                   <div className="p-6 sm:px-8 sm:py-5 border-t border-white/10 bg-black/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-auto">
                     <span className="text-[11px] font-mono text-white/40">
-                      Implementation: 8-Phase Engineering
+                      {language === "en" ? "Implementation: 8-Phase Engineering" : "Implementasi: 8 Tahap Rekayasa Teknik"}
                     </span>
 
                     <Link
@@ -198,37 +200,9 @@ export default function IndustriesClientView() {
         </div>
       </section>
 
-      {/* 03. CLOSING CTA BANNER WITH SCROLL REVEAL */}
+      {/* 03. MONUMENTAL NALAR ORBITAL CTA SECTION */}
       <ScrollReveal delayMs={80}>
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center border-t border-white/10">
-          <div className="rounded-3xl border border-white/10 bg-[#0C0E15] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
-            <div className="space-y-4 max-w-2xl mx-auto">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[10px] font-mono text-[#38BDF8]">
-                <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-                <span>SECTOR TOPOLOGY ADVISORY</span>
-              </div>
-              <h3 className="text-2xl sm:text-4xl font-light text-white tracking-tight font-display">
-                {language === "en"
-                  ? "Does Your Sector Operation Require Custom Solutions?"
-                  : "Operasional Sektor Anda Membutuhkan Solusi Khusus?"}
-              </h3>
-              <p className="text-sm text-white/60 font-light leading-relaxed">
-                {language === "en"
-                  ? "Reach out to our Principal Engineers to architect weather-hardened networks, TIA-942 rated data centers, or secure private on-premise AI systems."
-                  : "Hubungi Principal Engineer kami untuk merancang topologi jaringan tahan cuaca ekstrem, data center bersertifikasi TIA-942, atau sistem otomasi AI on-premise yang aman."}
-              </p>
-              <div className="pt-4 flex justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-black bg-white hover:bg-white/95 transition-all shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95"
-                >
-                  <span>{t("btn_discuss_project", "Mulai Diskusi Proyek")}</span>
-                  <ArrowRight className="size-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <NalarOrbitalCtaSection />
       </ScrollReveal>
     </main>
   );

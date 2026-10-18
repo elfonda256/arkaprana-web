@@ -2,10 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import {
-  COMPANY_PROFILE,
-  PROJECT_JOURNEY_STEPS
-} from "@/lib/data";
+import { COMPANY_PROFILE } from "@/lib/data";
+import { getLocalizedAboutData } from "@/lib/i18nData";
 import {
   ArrowRight,
   ShieldCheck,
@@ -25,48 +23,30 @@ import {
 } from "lucide-react";
 import CompanyProfileModal from "@/components/shared/CompanyProfileModal";
 import NalarPageHeroAtmosphere from "@/components/decorative/NalarPageHeroAtmosphere";
+import NalarOrbitalCtaSection from "@/components/sections/NalarOrbitalCtaSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
 
-const PILLARS = [
-  { name: "NETWORK", desc: "Enterprise connectivity, fiber optic backbone, Wi-Fi 7 & SD-WAN mesh.", icon: Network },
-  { name: "INFRASTRUCTURE", desc: "Tier-3+ modular data center, high-density compute & NVMe flash storage.", icon: Server },
-  { name: "CLOUD", desc: "Sovereign on-premise private cloud & resilient Kubernetes clusters.", icon: Cloud },
-  { name: "CYBERSECURITY", desc: "Defense-in-depth Zero-Trust architecture, HSM vaults & 24/7 SOC.", icon: ShieldCheck },
-  { name: "MANAGED IT", desc: "24/7 dedicated enterprise NOC monitoring, SLA uptime & preventive care.", icon: Cpu },
-  { name: "AI & AUTOMATION", desc: "Private on-premise LLMs, enterprise RAG & cognitive workflow agents.", icon: BrainCircuit },
-  { name: "SYSTEM INTEGRATION", desc: "Turnkey hardware procurement, multi-vendor harmonisation & certified commissioning.", icon: Workflow }
+const PILLAR_ICONS = [
+  Network,
+  Server,
+  Cloud,
+  ShieldCheck,
+  Cpu,
+  BrainCircuit,
+  Workflow
 ];
 
-const BELIEFS = [
-  {
-    titleId: "Engineering First",
-    titleEn: "Engineering First",
-    descId: "Kami percaya bahwa arsitektur teknologi harus dirancang dengan disiplin rekayasa mendalam, bukan sekadar memindahkan kotak perangkat keras atau penjualan lisensi komersial.",
-    descEn: "We believe technology architecture must be crafted with rigorous engineering discipline, not mere hardware reselling or commercial license packaging."
-  },
-  {
-    titleId: "Tanpa Kompromi pada Kedaulatan Data",
-    titleEn: "Zero Compromise on Data Sovereignty",
-    descId: "Data korporat dan kedaulatan informasi organisasi adalah aset paling berharga. Sistem kami dirancang mematuhi regulasi lokal (UU PDP) dengan isolasi penuh di wilayah Indonesia.",
-    descEn: "Corporate data and informational sovereignty are inviolable assets. Our systems strictly comply with Indonesian regulatory mandates (UU PDP) via complete in-country isolation."
-  },
-  {
-    titleId: "Ekosistem Terpadu Mengatasi Fragmentasi",
-    titleEn: "Integrated Ecosystem Over Fragmentation",
-    descId: "Teknologi menjadi rumit saat terpisah. Kami menghubungkan setiap simpul dari kabel serat optik bawah tanah hingga model bahasa kecerdasan buatan dalam satu orkestrasi.",
-    descEn: "Technology breaks down when siloed. We interconnect every node—from subterranean fiber-optic conduits to private generative AI models—under unified orchestration."
-  },
-  {
-    titleId: "Model Kemitraan Jangka Panjang",
-    titleEn: "Long-Term Partnership Model",
-    descId: "Kami tidak hanya membangun dan pergi. Kami mendampingi operasional, memantau telemetri 24/7, dan mengevolusikan infrastruktur seiring pertumbuhan organisasi Anda.",
-    descEn: "We do not deploy and vanish. We co-pilot day-2 operations, monitor continuous 24/7 telemetry, and systematically evolve infrastructure alongside your scale."
-  }
+const LEADERSHIP_ICONS = [
+  Users,
+  Network,
+  ShieldCheck,
+  BrainCircuit
 ];
 
 export default function AboutClientView() {
   const { language, t } = useLanguage();
+  const aboutData = getLocalizedAboutData(language);
 
   return (
     <main className="flex-1 bg-[#08090D] text-white min-h-screen">
@@ -75,7 +55,11 @@ export default function AboutClientView() {
         badgeText={t("abt_page_badge", "05 · ABOUT ARKAPRANA · COMPANY & VISION")}
         headlinePrimary={t("abt_page_title_1", "Technology built for what comes next.")}
         headlineSecondary={t("abt_page_title_2", "Engineering sovereign intelligence for Indonesian enterprise.")}
-        description={COMPANY_PROFILE.positioning}
+        description={
+          language === "en"
+            ? "PT ARKAPRANA TEKNOLOGI NUSANTARA is an enterprise systems integrator providing high-density computing, carrier-grade data networks, and sovereign artificial intelligence capabilities in Indonesia."
+            : COMPANY_PROFILE.positioning
+        }
       >
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
           <CompanyProfileModal
@@ -110,19 +94,35 @@ export default function AboutClientView() {
             </div>
 
             <div className="lg:col-span-7 space-y-6 text-white/70 text-sm sm:text-base leading-relaxed font-light">
-              <p>
-                <strong className="text-white font-medium">PT ARKAPRANA TEKNOLOGI NUSANTARA</strong> (ARKAPRANA) didirikan sebagai perusahaan teknologi dan system integrator rekayasa yang berfokus menghadirkan kapabilitas komputasi, jaringan data, dan kecerdasan buatan kelas enterprise di Indonesia.
-              </p>
-              <p>
-                Kami memandang bahwa adopsi teknologi cerdas seperti Artificial Intelligence tidak dapat berdiri sendiri di ruang hampa. Kecerdasan sejati memerlukan fondasi komputasi fisik, jaringan data berlatensi rendah, serta arsitektur keamanan siber yang tidak dapat ditembus.
-              </p>
-              <p>
-                Melalui kombinasi kemampuan rekayasa teknis tingkat prinsipal dan komitmen kedaulatan data lokal, kami menjadi technology partner bagi organisasi dalam merancang, membangun, mengoperasikan, dan mengevolusikan lingkungan teknologi mereka.
-              </p>
+              {language === "en" ? (
+                <>
+                  <p>
+                    <strong className="text-white font-medium">PT ARKAPRANA TEKNOLOGI NUSANTARA</strong> (ARKAPRANA) was established as an enterprise engineering firm and systems integrator delivering critical compute, carrier-grade data networks, and sovereign artificial intelligence capabilities across Indonesia.
+                  </p>
+                  <p>
+                    We believe that intelligent technology adoption such as Artificial Intelligence cannot exist in a vacuum. True intelligence requires physical computing foundations, ultra-low latency optical networks, and impenetrable Zero-Trust cybersecurity architectures.
+                  </p>
+                  <p>
+                    Through principal-level engineering mastery and unyielding commitment to domestic data sovereignty, we serve as the trusted technology partner for enterprises designing, building, operating, and evolving their technological ecosystems.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    <strong className="text-white font-medium">PT ARKAPRANA TEKNOLOGI NUSANTARA</strong> (ARKAPRANA) didirikan sebagai perusahaan teknologi dan system integrator rekayasa yang berfokus menghadirkan kapabilitas komputasi, jaringan data, dan kecerdasan buatan kelas enterprise di Indonesia.
+                  </p>
+                  <p>
+                    Kami memandang bahwa adopsi teknologi cerdas seperti Artificial Intelligence tidak dapat berdiri sendiri di ruang hampa. Kecerdasan sejati memerlukan fondasi komputasi fisik, jaringan data berlatensi rendah, serta arsitektur keamanan siber yang tidak dapat ditembus.
+                  </p>
+                  <p>
+                    Melalui kombinasi kemampuan rekayasa teknis tingkat prinsipal dan komitmen kedaulatan data lokal, kami menjadi technology partner bagi organisasi dalam merancang, membangun, mengoperasikan, dan mengevolusikan lingkungan teknologi mereka.
+                  </p>
+                </>
+              )}
 
               <div className="p-6 sm:p-7 rounded-2xl bg-[#0D0F18]/90 border border-white/10 space-y-3 backdrop-blur-xl">
                 <span className="text-[10px] font-mono text-[#38BDF8] uppercase tracking-widest font-semibold block">
-                  Strategic Technology Journey
+                  {language === "en" ? "Strategic Technology Journey" : "Tahapan Transformasi Strategis"}
                 </span>
                 <div className="text-xs sm:text-sm font-semibold text-white font-mono tracking-wider">
                   INFRASTRUCTURE → NETWORK → CLOUD → SECURITY → DATA → AI
@@ -155,24 +155,24 @@ export default function AboutClientView() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {BELIEFS.map((b, idx) => (
-            <ScrollReveal key={b.titleId} delayMs={idx * 50}>
-              <div
-                className="relative rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-500 p-8 sm:p-9 space-y-4 shadow-xl backdrop-blur-2xl group hover:-translate-y-1 h-full"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10.5px] font-mono text-[#38BDF8] uppercase tracking-widest px-2.5 py-0.5 rounded-md bg-[#38BDF8]/10 border border-[#38BDF8]/20 font-semibold">
-                    {language === "en" ? `PRINCIPLE 0${idx + 1}` : `PRINSIP 0${idx + 1}`}
-                  </span>
-                  <span className="size-1.5 rounded-full bg-white/20 group-hover:bg-[#38BDF8] transition-colors" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {aboutData.beliefs.map((b, idx) => (
+            <ScrollReveal key={b.title} delayMs={idx * 50}>
+              <div className="relative rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-500 p-8 sm:p-9 space-y-4 shadow-xl backdrop-blur-2xl group hover:-translate-y-1 h-full flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10.5px] font-mono text-[#38BDF8] uppercase tracking-widest px-2.5 py-0.5 rounded-md bg-[#38BDF8]/10 border border-[#38BDF8]/20 font-semibold">
+                      {language === "en" ? `BELIEF 0${idx + 1}` : `PRINSIP 0${idx + 1}`}
+                    </span>
+                    <span className="size-1.5 rounded-full bg-white/20 group-hover:bg-[#38BDF8] transition-colors" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-light text-white font-display">
+                    {b.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-light">
+                    {b.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-light text-white font-display">
-                  {language === "en" ? b.titleEn : b.titleId}
-                </h3>
-                <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-light">
-                  {language === "en" ? b.descEn : b.descId}
-                </p>
               </div>
             </ScrollReveal>
           ))}
@@ -190,15 +190,16 @@ export default function AboutClientView() {
                   <div className="flex items-center gap-2.5 text-[#38BDF8]">
                     <Compass className="size-6" />
                     <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-white/80">
-                      VISI PERUSAHAAN (VISION)
+                      {language === "en" ? "CORPORATE VISION" : "VISI PERUSAHAAN (VISION)"}
                     </h3>
                   </div>
                   <p className="text-lg sm:text-2xl font-light text-white/95 leading-relaxed italic font-serif">
-                    &ldquo;{COMPANY_PROFILE.vision}&rdquo;
+                    &ldquo;{aboutData.vision}&rdquo;
                   </p>
                 </div>
+
                 <div className="text-[10.5px] font-mono text-[#38BDF8] pt-4 border-t border-white/[0.06]">
-                  PT ARKAPRANA TEKNOLOGI NUSANTARA · KEDAULATAN IT INDONESIA
+                  PT ARKAPRANA TEKNOLOGI NUSANTARA · {language === "en" ? "SOVEREIGN ARCHITECTURE" : "KEDAULATAN IT INDONESIA"}
                 </div>
               </div>
             </ScrollReveal>
@@ -211,11 +212,11 @@ export default function AboutClientView() {
                 <div className="flex items-center gap-2.5 text-[#38BDF8]">
                   <Target className="size-6" />
                   <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-white/80">
-                    MISI PERUSAHAAN (MISSION)
+                    {language === "en" ? "CORPORATE MISSION" : "MISI PERUSAHAAN (MISSION)"}
                   </h3>
                 </div>
                 <ul className="space-y-4">
-                  {COMPANY_PROFILE.missions.map((mission, idx) => (
+                  {aboutData.missions.map((mission, idx) => (
                     <li key={idx} className="flex items-start text-xs sm:text-sm text-white/70 gap-3.5 font-light">
                       <span className="size-5 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] border border-[#38BDF8]/20 flex items-center justify-center font-mono text-[10px] shrink-0 mt-0.5 font-semibold">
                         0{idx + 1}
@@ -250,13 +251,11 @@ export default function AboutClientView() {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PILLARS.map((p, idx) => {
-            const Icon = p.icon;
+          {aboutData.pillars.map((p, idx) => {
+            const Icon = PILLAR_ICONS[idx % PILLAR_ICONS.length] || Server;
             return (
               <ScrollReveal key={p.name} delayMs={idx * 50}>
-                <div
-                  className="relative rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-500 p-7 flex flex-col justify-between group shadow-xl backdrop-blur-2xl hover:-translate-y-1 h-full"
-                >
+                <div className="relative rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-500 p-7 flex flex-col justify-between group shadow-xl backdrop-blur-2xl hover:-translate-y-1 h-full">
                   <div>
                     <div className="size-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#38BDF8] mb-5 group-hover:scale-110 group-hover:border-[#38BDF8]/50 transition-all shadow-inner">
                       <Icon className="size-6" />
@@ -305,25 +304,25 @@ export default function AboutClientView() {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {PROJECT_JOURNEY_STEPS.map((step, idx) => (
+          {aboutData.methodology.map((step, idx) => (
             <ScrollReveal key={step.step} delayMs={idx * 40}>
-              <div
-                className="p-6 rounded-2xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-300 space-y-3 shadow-lg backdrop-blur-xl h-full"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-[#38BDF8] font-semibold">
-                    STEP {step.step}
-                  </span>
-                  <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+              <div className="p-6 rounded-2xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-300 space-y-3 shadow-lg backdrop-blur-xl h-full flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-[#38BDF8] font-semibold">
+                      STEP {step.step}
+                    </span>
+                    <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+                  </div>
+                  <h4 className="text-base font-semibold text-white font-display">
+                    {step.name}
+                  </h4>
+                  <p className="text-xs text-white/60 leading-relaxed font-light">
+                    {step.desc}
+                  </p>
                 </div>
-                <h4 className="text-base font-semibold text-white font-display">
-                  {step.name}
-                </h4>
-                <p className="text-xs text-white/60 leading-relaxed font-light">
-                  {step.tagline}
-                </p>
                 <div className="pt-3 border-t border-white/[0.06] text-[10px] font-mono text-white/40">
-                  Deliverable: {step.deliverable}
+                  {language === "en" ? "Phase Verification Gate" : "Gerbang Verifikasi Tahap"}
                 </div>
               </div>
             </ScrollReveal>
@@ -350,51 +349,35 @@ export default function AboutClientView() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
-          <ScrollReveal delayMs={50}>
-            <div className="p-8 rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-300 space-y-4 shadow-xl backdrop-blur-xl h-full">
-              <div className="size-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#38BDF8] shadow-inner">
-                <Users className="size-6" />
-              </div>
-              <h4 className="text-lg font-light text-white font-display">Principal Systems Architect</h4>
-              <div className="text-xs font-mono text-[#38BDF8]">Office of the CTO</div>
-              <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-light">
-                {language === "en"
-                  ? "Leads backbone network topology design, private cloud fabric, and data sovereignty compliance audits."
-                  : "Memimpin perancangan topologi jaringan backbone, arsitektur private cloud, dan audit kedaulatan data."}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delayMs={100}>
-            <div className="p-8 rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-300 space-y-4 shadow-xl backdrop-blur-xl h-full">
-              <div className="size-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#38BDF8] shadow-inner">
-                <ShieldCheck className="size-6" />
-              </div>
-              <h4 className="text-lg font-light text-white font-display">Principal Security Officer</h4>
-              <div className="text-xs font-mono text-[#38BDF8]">Zero-Trust Practice</div>
-              <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-light">
-                {language === "en"
-                  ? "Directs cybersecurity governance, ISO 27001 audit standards, HSM deployments, and perimeter defense."
-                  : "Menangani tata kelola keamanan siber, kepatuhan audit ISO 27001, implementasi HSM, dan enkripsi perimeter."}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delayMs={150}>
-            <div className="p-8 rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-300 space-y-4 shadow-xl backdrop-blur-xl h-full">
-              <div className="size-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#38BDF8] shadow-inner">
-                <BrainCircuit className="size-6" />
-              </div>
-              <h4 className="text-lg font-light text-white font-display">Head of Cognitive Engineering</h4>
-              <div className="text-xs font-mono text-[#38BDF8]">ARKAPRANA AI Lab</div>
-              <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-light">
-                {language === "en"
-                  ? "Directs research and delivery of on-premise sovereign LLMs, enterprise RAG, and cognitive workflow agents."
-                  : "Memimpin riset dan implementasi Private On-Premise LLM, sistem RAG, serta otomasi alur kerja korporat."}
-              </p>
-            </div>
-          </ScrollReveal>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {aboutData.leadership.map((leader, idx) => {
+            const Icon = LEADERSHIP_ICONS[idx % LEADERSHIP_ICONS.length] || Users;
+            return (
+              <ScrollReveal key={leader.name} delayMs={idx * 50}>
+                <div className="p-7 rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-300 space-y-4 shadow-xl backdrop-blur-xl h-full flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div className="size-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#38BDF8] shadow-inner">
+                      <Icon className="size-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-base font-semibold text-white font-display leading-tight mb-1">
+                        {leader.name}
+                      </h4>
+                      <div className="text-[11px] font-mono text-[#38BDF8]">
+                        {leader.role}
+                      </div>
+                    </div>
+                    <p className="text-xs text-white/60 leading-relaxed font-light">
+                      {leader.focus}
+                    </p>
+                  </div>
+                  <div className="pt-3 border-t border-white/[0.06] text-[10px] font-mono text-white/40">
+                    {leader.credentials}
+                  </div>
+                </div>
+              </ScrollReveal>
+            );
+          })}
         </div>
       </section>
 
@@ -404,7 +387,7 @@ export default function AboutClientView() {
           <div className="rounded-3xl border border-white/10 bg-[#0C0E15] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
             <div className="space-y-4 max-w-2xl mx-auto">
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#38BDF8] block">
-                Official Communication Desk
+                {language === "en" ? "Official Communication Desk" : "Meja Komunikasi Resmi"}
               </span>
               <h3 className="text-2xl sm:text-4xl font-light text-white tracking-tight font-display">
                 {language === "en" ? "Ready to Partner with ARKAPRANA?" : "Siap Bermitra Bersama ARKAPRANA?"}
@@ -446,6 +429,11 @@ export default function AboutClientView() {
             </div>
           </div>
         </section>
+      </ScrollReveal>
+
+      {/* MONUMENTAL NALAR ORBITAL CTA SECTION */}
+      <ScrollReveal delayMs={80}>
+        <NalarOrbitalCtaSection />
       </ScrollReveal>
     </main>
   );

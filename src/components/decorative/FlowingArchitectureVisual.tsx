@@ -8,6 +8,7 @@ import {
   ZeroTrustHsmGlyph,
   CognitiveAiGlyph
 } from "./NalarGlyphs";
+import { useLanguage } from "@/context/LanguageContext";
 
 export interface ArchitectureStation {
   id: string;
@@ -77,6 +78,7 @@ export default function FlowingArchitectureVisual({
   onSelectStation,
 }: FlowingArchitectureVisualProps) {
   const [hoveredStationId, setHoveredStationId] = useState<string | null>(null);
+  const { language } = useLanguage();
 
   const activeId = hoveredStationId || selectedStationId;
 
@@ -87,11 +89,15 @@ export default function FlowingArchitectureVisual({
       <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-white/50 mb-6 pb-2.5 border-b border-white/[0.08]">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
-          <span className="text-white/80">SYNAPSE REAL-TIME ARCHITECTURE BUS</span>
+          <span className="text-white/80">
+            {language === "en" ? "SYNAPSE REAL-TIME ARCHITECTURE BUS" : "BUS ARSITEKTUR REAL-TIME SYNAPSE"}
+          </span>
         </div>
         <div className="flex items-center gap-3">
           <span className="hidden sm:inline text-white/40">PROTOCOL: DWDM / BGP EVPN / TLS 1.3</span>
-          <span className="text-emerald-400 font-semibold">SIGNAL FLOW: ACTIVE</span>
+          <span className="text-emerald-400 font-semibold">
+            {language === "en" ? "SIGNAL FLOW: ACTIVE" : "ALIRAN SINYAL: AKTIF"}
+          </span>
         </div>
       </div>
 

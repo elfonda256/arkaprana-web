@@ -6,63 +6,116 @@ import { COMPANY_PROFILE } from "@/lib/data";
 import { Mail, Phone, MapPin, CheckCircle2, ArrowRight, MessageSquare, ShieldCheck } from "lucide-react";
 import CompanyProfileModal from "@/components/shared/CompanyProfileModal";
 import NalarPageHeroAtmosphere from "@/components/decorative/NalarPageHeroAtmosphere";
+import NalarOrbitalCtaSection from "@/components/sections/NalarOrbitalCtaSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
-import { useLanguage } from "@/context/LanguageContext";
+import { useLanguage, Language } from "@/context/LanguageContext";
 
-const PROJECT_TYPES = [
-  "Network Infrastructure",
-  "Server & Data Center",
-  "Cloud Environment",
-  "Cybersecurity Defense",
-  "Managed IT Operations",
-  "Private AI & RAG",
-  "Automation & Robotics",
-  "Turnkey System Integration",
-  "Technology Consulting",
-  "Other"
-];
+const PROJECT_TYPES_MAP: Record<Language, string[]> = {
+  id: [
+    "Infrastruktur Jaringan & Serat Optik",
+    "Server & Data Center Modular Tier-3+",
+    "Lingkungan Sovereign Cloud & Virtualisasi",
+    "Pertahanan Keamanan Siber & Zero-Trust",
+    "Operasi TI Terkelola & NOC 24/7",
+    "AI Privat On-Premise & RAG Enterprise",
+    "Otomasi Industri & Robotika",
+    "Integrasi Sistem Turnkey Multi-Vendor",
+    "Konsultasi & Audit Arsitektur Teknologi",
+    "Lainnya"
+  ],
+  en: [
+    "Network & Optical Fiber Infrastructure",
+    "Server & Tier-3+ Modular Data Center",
+    "Sovereign Cloud & Virtualization",
+    "Cybersecurity & Zero-Trust Defense",
+    "Managed IT Operations & 24/7 NOC",
+    "Private On-Premise AI & Enterprise RAG",
+    "Industrial Automation & Robotics",
+    "Turnkey Multi-Vendor System Integration",
+    "Technology Architecture Consulting",
+    "Other"
+  ]
+};
 
-const TIMELINE_OPTIONS = [
-  "Exploring / Feasibility",
-  "Immediate (< 3 Months)",
-  "3–6 Months",
-  "6–12 Months",
-  "Long Term / Next Fiscal"
-];
+const TIMELINE_OPTIONS_MAP: Record<Language, string[]> = {
+  id: [
+    "Eksplorasi / Studi Kelayakan",
+    "Segera (< 3 Bulan)",
+    "3–6 Bulan",
+    "6–12 Bulan",
+    "Jangka Panjang / Tahun Fiskal Berikutnya"
+  ],
+  en: [
+    "Exploring / Feasibility Study",
+    "Immediate (< 3 Months)",
+    "3–6 Months",
+    "6–12 Months",
+    "Long Term / Next Fiscal Year"
+  ]
+};
 
-const BUDGET_OPTIONS = [
-  "Not decided",
-  "Under discussion",
-  "Budget available",
-  "Prefer to discuss"
-];
+const BUDGET_OPTIONS_MAP: Record<Language, string[]> = {
+  id: [
+    "Belum diputuskan",
+    "Dalam pembahasan",
+    "Anggaran tersedia",
+    "Lebih memilih diskusi"
+  ],
+  en: [
+    "Not decided",
+    "Under discussion",
+    "Budget available",
+    "Prefer to discuss"
+  ]
+};
 
-const INDUSTRIES = [
-  "Konstruksi & Proyek Fisik",
-  "Manufaktur & Pabrik Industri",
-  "Pelabuhan & Maritim",
-  "Logistik & Pergudangan",
-  "Properti & Kawasan Komersial",
-  "Perhotelan & Hospitality",
-  "Pemerintahan & Institusi Publik",
-  "Badan Usaha Milik Negara (BUMN)",
-  "Perbankan & Finansial",
-  "Korporasi & Enterprise",
-  "Lainnya"
-];
+const INDUSTRIES_MAP: Record<Language, string[]> = {
+  id: [
+    "Konstruksi & Proyek Fisik",
+    "Manufaktur & Pabrik Industri",
+    "Pelabuhan & Maritim",
+    "Logistik & Pergudangan",
+    "Properti & Kawasan Komersial",
+    "Perhotelan & Hospitality",
+    "Pemerintahan & Institusi Publik",
+    "Badan Usaha Milik Negara (BUMN)",
+    "Perbankan & Finansial",
+    "Korporasi & Enterprise",
+    "Lainnya"
+  ],
+  en: [
+    "Construction & Physical Infrastructure",
+    "Manufacturing & Industrial Plants",
+    "Maritime & Ports",
+    "Logistics & Warehousing",
+    "Commercial Real Estate & Campuses",
+    "Hospitality & Hotels",
+    "Public Sector & Government",
+    "State-Owned Enterprises (SOE)",
+    "Banking & Financial Services",
+    "Enterprise & Corporations",
+    "Other"
+  ]
+};
 
 export default function ContactPage() {
   const { t, language } = useLanguage();
+
+  const industries = INDUSTRIES_MAP[language] || INDUSTRIES_MAP.id;
+  const projectTypes = PROJECT_TYPES_MAP[language] || PROJECT_TYPES_MAP.id;
+  const timelineOptions = TIMELINE_OPTIONS_MAP[language] || TIMELINE_OPTIONS_MAP.id;
+  const budgetOptions = BUDGET_OPTIONS_MAP[language] || BUDGET_OPTIONS_MAP.id;
+
   const [formData, setFormData] = useState({
     name: "",
     company: "",
     position: "",
     email: "",
     phone: "",
-    industry: INDUSTRIES[0],
-    projectType: PROJECT_TYPES[0],
-    timeline: TIMELINE_OPTIONS[1],
-    budgetRange: BUDGET_OPTIONS[0],
+    industry: industries[0],
+    projectType: projectTypes[0],
+    timeline: timelineOptions[1],
+    budgetRange: budgetOptions[0],
     description: ""
   });
 
@@ -86,10 +139,10 @@ export default function ContactPage() {
       position: "",
       email: "",
       phone: "",
-      industry: INDUSTRIES[0],
-      projectType: PROJECT_TYPES[0],
-      timeline: TIMELINE_OPTIONS[1],
-      budgetRange: BUDGET_OPTIONS[0],
+      industry: industries[0],
+      projectType: projectTypes[0],
+      timeline: timelineOptions[1],
+      budgetRange: budgetOptions[0],
       description: ""
     });
   };
@@ -250,7 +303,7 @@ export default function ContactPage() {
                           onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
                           className="w-full px-4 py-3 rounded-xl bg-zinc-900/80 border border-white/10 text-xs text-white focus:outline-none focus:border-cyan-400 transition-colors"
                         >
-                          {INDUSTRIES.map((ind) => (
+                          {industries.map((ind) => (
                             <option key={ind} value={ind} className="bg-zinc-900 text-white">
                               {ind}
                             </option>
@@ -267,7 +320,7 @@ export default function ContactPage() {
                           onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                           className="w-full px-4 py-3 rounded-xl bg-zinc-900/80 border border-white/10 text-xs text-white focus:outline-none focus:border-cyan-400 transition-colors"
                         >
-                          {PROJECT_TYPES.map((pt) => (
+                          {projectTypes.map((pt) => (
                             <option key={pt} value={pt} className="bg-zinc-900 text-white">
                               {pt}
                             </option>
@@ -284,7 +337,7 @@ export default function ContactPage() {
                           onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
                           className="w-full px-4 py-3 rounded-xl bg-zinc-900/80 border border-white/10 text-xs text-white focus:outline-none focus:border-cyan-400 transition-colors"
                         >
-                          {TIMELINE_OPTIONS.map((time) => (
+                          {timelineOptions.map((time) => (
                             <option key={time} value={time} className="bg-zinc-900 text-white">
                               {time}
                             </option>
@@ -304,7 +357,7 @@ export default function ContactPage() {
                         </span>
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                        {BUDGET_OPTIONS.map((opt) => {
+                        {budgetOptions.map((opt) => {
                           const isSelected = formData.budgetRange === opt;
                           return (
                             <button
@@ -348,7 +401,11 @@ export default function ContactPage() {
                       disabled={loading}
                       className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide text-black bg-white hover:bg-zinc-200 group shadow-lg active:scale-[0.99] disabled:opacity-50 cursor-pointer transition-all"
                     >
-                      <span>{loading ? "Processing..." : t("contact_btn_submit", "Kirim Permintaan Konsultasi Rekayasa")}</span>
+                      <span>
+                        {loading
+                          ? (language === "en" ? "Processing..." : "Memproses...")
+                          : t("contact_btn_submit", "Kirim Permintaan Konsultasi Rekayasa")}
+                      </span>
                       <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-0.5 transition-transform" />
                     </button>
                   </form>
@@ -388,7 +445,7 @@ export default function ContactPage() {
                         {COMPANY_PROFILE.contact.phone} (WhatsApp)
                       </div>
                       <div className="text-[10px] font-mono text-zinc-500">
-                        Direct WhatsApp Dispatch • Instant Response
+                        {language === "en" ? "Direct WhatsApp Dispatch • Instant Response" : "Saluran WhatsApp Langsung • Respons Instan"}
                       </div>
                     </div>
                   </a>
@@ -419,7 +476,7 @@ export default function ContactPage() {
                         {t("contact_hq_location", "Kantor Pusat Rekayasa")}
                       </div>
                       <div className="text-[10px] font-mono text-zinc-500">
-                        Indonesia • Nationwide Capabilities
+                        {language === "en" ? "Indonesia • Nationwide Capabilities" : "Indonesia • Jangkauan Nasional"}
                       </div>
                     </div>
                   </div>
@@ -431,7 +488,7 @@ export default function ContactPage() {
             <ScrollReveal delayMs={200}>
               <div className="bg-zinc-950/80 rounded-3xl border border-white/10 p-6 space-y-3 shadow-2xl backdrop-blur-md">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block">
-                  Corporate Resources
+                  {language === "en" ? "Corporate Resources" : "Sumber Daya Korporat"}
                 </span>
                 <div className="text-sm font-semibold text-white">
                   {language === "en" ? "Download Company Profile & Statements" : "Unduh Dokumen Profil Perusahaan"}
@@ -465,6 +522,11 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+
+      {/* MONUMENTAL NALAR ORBITAL CTA SECTION */}
+      <ScrollReveal delayMs={80}>
+        <NalarOrbitalCtaSection />
+      </ScrollReveal>
     </main>
   );
 }

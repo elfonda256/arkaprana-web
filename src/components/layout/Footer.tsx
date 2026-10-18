@@ -3,12 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
-import { SOLUTIONS, INDUSTRIES, COMPANY_PROFILE } from "@/lib/data";
+import { COMPANY_PROFILE } from "@/lib/data";
+import { getLocalizedSolutions, getLocalizedIndustries } from "@/lib/i18nData";
 import BrandLogo from "@/components/brand/BrandLogo";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const solutions = getLocalizedSolutions(language);
+  const industries = getLocalizedIndustries(language);
 
   return (
     <footer className="bg-[#06070A] border-t border-white/10 relative overflow-hidden text-white/60">
@@ -22,7 +25,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-[11px] uppercase font-mono tracking-[0.2em] text-[#38BDF8]">
-              Technology &amp; Intelligent Solutions
+              {language === "en" ? "Sovereign Infrastructure & AI" : "Infrastruktur & AI Berdaulat"}
             </p>
 
             <p className="text-xs text-white/60 leading-relaxed max-w-sm font-light">
@@ -41,10 +44,10 @@ export default function Footer() {
           {/* Column 1: Solutions */}
           <div>
             <h4 className="text-[11px] uppercase font-mono tracking-widest text-white/90 font-medium mb-4">
-              Solutions
+              {language === "en" ? "Solutions" : "Solusi"}
             </h4>
             <ul className="space-y-2 text-xs">
-              {SOLUTIONS.map((sol) => (
+              {solutions.map((sol) => (
                 <li key={sol.id}>
                   <Link
                     href={`/solutions/${sol.slug}`}
@@ -61,10 +64,10 @@ export default function Footer() {
           {/* Column 2: Industries */}
           <div>
             <h4 className="text-[11px] uppercase font-mono tracking-widest text-white/90 font-medium mb-4">
-              Industries
+              {language === "en" ? "Industries" : "Sektor Industri"}
             </h4>
             <ul className="space-y-2 text-xs font-light">
-              {INDUSTRIES.slice(0, 5).map((ind) => (
+              {industries.slice(0, 5).map((ind) => (
                 <li key={ind.name}>
                   <Link href="/industries" className="hover:text-white transition-colors">
                     {ind.name}
@@ -73,7 +76,7 @@ export default function Footer() {
               ))}
               <li>
                 <Link href="/industries" className="text-[#38BDF8] hover:underline font-medium inline-flex items-center gap-1">
-                  All 12 Sectors →
+                  {language === "en" ? "All 8 Sectors →" : "Seluruh 8 Sektor →"}
                 </Link>
               </li>
             </ul>
@@ -82,27 +85,32 @@ export default function Footer() {
           {/* Column 3: Capabilities & Insights */}
           <div>
             <h4 className="text-[11px] uppercase font-mono tracking-widest text-white/90 font-medium mb-4">
-              Navigation
+              {language === "en" ? "Navigation" : "Navigasi"}
             </h4>
             <ul className="space-y-2 text-xs font-light">
               <li>
-                <Link href="/#architecture" className="hover:text-white transition-colors">
-                  Capabilities Stack
+                <Link href="/capabilities" className="hover:text-white transition-colors">
+                  {language === "en" ? "Capabilities Blueprint" : "Cetak Biru Kapabilitas"}
+                </Link>
+              </li>
+              <li>
+                <Link href="/projects" className="hover:text-white transition-colors">
+                  {language === "en" ? "Case Studies & Deployments" : "Studi Kasus & Proyek"}
                 </Link>
               </li>
               <li>
                 <Link href="/insights" className="hover:text-white transition-colors">
-                  ARKAPRANA Insights
+                  {language === "en" ? "Technical Insights" : "Wawasan Rekayasa"}
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
-                  About ARKAPRANA
+                  {language === "en" ? "About ARKAPRANA" : "Tentang ARKAPRANA"}
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-white transition-colors">
-                  Contact Principal Desk
+                  {language === "en" ? "Principal Consultation Desk" : "Meja Konsultasi Insinyur"}
                 </Link>
               </li>
             </ul>
@@ -111,7 +119,7 @@ export default function Footer() {
           {/* Column 4: Contact Minimal */}
           <div>
             <h4 className="text-[11px] uppercase font-mono tracking-widest text-white/90 font-medium mb-4">
-              Contact
+              {language === "en" ? "Contact" : "Kontak"}
             </h4>
             <div className="space-y-3 text-xs font-light">
               <div className="flex items-center space-x-2">

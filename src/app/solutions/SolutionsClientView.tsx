@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { SOLUTIONS } from "@/lib/data";
+import { getLocalizedSolutions } from "@/lib/i18nData";
 import {
   Network,
   Server,
@@ -17,6 +17,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import NalarPageHeroAtmosphere from "@/components/decorative/NalarPageHeroAtmosphere";
+import NalarOrbitalCtaSection from "@/components/sections/NalarOrbitalCtaSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -32,6 +33,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function SolutionsClientView() {
   const { language, t } = useLanguage();
+  const solutions = getLocalizedSolutions(language);
 
   return (
     <main className="flex-1 bg-[#08090D] text-white min-h-screen">
@@ -46,7 +48,7 @@ export default function SolutionsClientView() {
         )}
       >
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-          {SOLUTIONS.map((s) => (
+          {solutions.map((s) => (
             <Link
               key={s.id}
               href={`#${s.slug}`}
@@ -60,7 +62,7 @@ export default function SolutionsClientView() {
 
       {/* 02. SOLUTIONS CARDS WITH NALAR-GRADE SPATIAL REFINEMENT & SCROLL ANIMATIONS */}
       <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 sm:space-y-16">
-        {SOLUTIONS.map((sol, idx) => {
+        {solutions.map((sol, idx) => {
           const Icon = iconMap[sol.iconName] || Server;
           const isReversed = idx % 2 !== 0;
 
@@ -148,7 +150,9 @@ export default function SolutionsClientView() {
                         <Layers className="size-4" />
                         <span>{t("sol_tech_arch", "TECHNICAL ARCHITECTURE")}</span>
                       </span>
-                      <span className="text-[10px] text-white/40">ENTERPRISE GRADE</span>
+                      <span className="text-[10px] text-white/40">
+                        {language === "en" ? "ENTERPRISE GRADE" : "STANDAR ENTERPRISE"}
+                      </span>
                     </div>
 
                     <div>
@@ -178,7 +182,7 @@ export default function SolutionsClientView() {
                       <span>{t("sol_sla_guarantee", "Vendor Agnostic SLA")}</span>
                       <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
                         <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
-                        99.99% Guaranteed
+                        {language === "en" ? "99.99% Guaranteed" : "Garansi 99.99%"}
                       </span>
                     </div>
                   </div>
@@ -189,37 +193,9 @@ export default function SolutionsClientView() {
         })}
       </section>
 
-      {/* 03. CLOSING CTA BANNER WITH SCROLL REVEAL & MIST GLOW */}
+      {/* 03. MONUMENTAL NALAR ORBITAL CTA SECTION */}
       <ScrollReveal delayMs={100}>
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center border-t border-white/10">
-          <div className="rounded-3xl border border-white/10 bg-[#0C0E15] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
-            <div className="space-y-4 max-w-2xl mx-auto">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[10px] font-mono text-[#38BDF8]">
-                <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-                <span>BESPOKE TOPOLOGY CONSULTATION</span>
-              </div>
-              <h3 className="text-2xl sm:text-4xl font-light text-white tracking-tight font-display">
-                {language === "en"
-                  ? "Need a Custom Topology for Your Organization?"
-                  : "Butuh Topologi Khusus untuk Organisasi Anda?"}
-              </h3>
-              <p className="text-sm text-white/60 font-light leading-relaxed">
-                {language === "en"
-                  ? "ARKAPRANA's principal engineering team conducts infrastructure audits, capacity simulations, and tailored architecture blueprints aligned with your operational SLAs."
-                  : "Tim principal engineer ARKAPRANA siap melakukan audit infrastruktur, simulasi kapasitas, dan menyusun blueprint arsitektur yang disesuaikan dengan SLA operasional Anda."}
-              </p>
-              <div className="pt-4 flex justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-black bg-white hover:bg-white/95 transition-all shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95"
-                >
-                  <span>{t("btn_discuss_project", "Mulai Diskusi Proyek")}</span>
-                  <ArrowRight className="size-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <NalarOrbitalCtaSection />
       </ScrollReveal>
     </main>
   );

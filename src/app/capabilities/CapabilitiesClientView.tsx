@@ -15,8 +15,9 @@ import {
   Compass,
   ChevronRight
 } from "lucide-react";
-import { CAPABILITIES_DATA } from "@/lib/data";
+import { getLocalizedCapabilities } from "@/lib/i18nData";
 import NalarPageHeroAtmosphere from "@/components/decorative/NalarPageHeroAtmosphere";
+import NalarOrbitalCtaSection from "@/components/sections/NalarOrbitalCtaSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -33,6 +34,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function CapabilitiesClientView() {
   const { language, t } = useLanguage();
+  const capabilities = getLocalizedCapabilities(language);
 
   return (
     <main className="flex-1 bg-[#08090D] text-white min-h-screen">
@@ -47,7 +49,7 @@ export default function CapabilitiesClientView() {
         )}
       >
         <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
-          {CAPABILITIES_DATA.map((c) => (
+          {capabilities.map((c) => (
             <Link
               key={c.id}
               href={`#${c.slug}`}
@@ -61,7 +63,7 @@ export default function CapabilitiesClientView() {
 
       {/* 02. 8 CAPABILITIES CARDS WITH NALAR-GRADE PRECISION & SCROLL ANIMATIONS */}
       <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 sm:space-y-16">
-        {CAPABILITIES_DATA.map((cap, idx) => {
+        {capabilities.map((cap, idx) => {
           const Icon = iconMap[cap.id] || Server;
 
           return (
@@ -178,7 +180,7 @@ export default function CapabilitiesClientView() {
 
                   <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
                     <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Sovereign RI &amp; ISO 27001 Aligned</span>
+                    <span>{language === "en" ? "Sovereign RI & ISO 27001 Aligned" : "Kedaulatan RI & Selaras ISO 27001"}</span>
                   </span>
                 </div>
               </div>
@@ -187,37 +189,9 @@ export default function CapabilitiesClientView() {
         })}
       </section>
 
-      {/* 03. CLOSING CTA BANNER WITH SCROLL REVEAL */}
+      {/* 03. MONUMENTAL NALAR ORBITAL CTA SECTION */}
       <ScrollReveal delayMs={80}>
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center border-t border-white/10">
-          <div className="rounded-3xl border border-white/10 bg-[#0C0E15] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
-            <div className="space-y-4 max-w-2xl mx-auto">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[10px] font-mono text-[#38BDF8]">
-                <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-                <span>TECHNICAL CAPABILITY VALIDATION</span>
-              </div>
-              <h3 className="text-2xl sm:text-4xl font-light text-white tracking-tight font-display">
-                {language === "en"
-                  ? "Want to Audit or Benchmark These Capabilities?"
-                  : "Ingin Mengaudit atau Menguji Kapabilitas Ini?"}
-              </h3>
-              <p className="text-sm text-white/60 font-light leading-relaxed">
-                {language === "en"
-                  ? "Consult directly with ARKAPRANA's system architects for network readiness mapping, compute power calculations, or on-premise private AI simulations."
-                  : "Diskusikan langsung bersama tim arsitek ARKAPRANA untuk pemetaan kesiapan jaringan, perhitungan beban daya komputasi, atau simulasi model AI privat on-premise."}
-              </p>
-              <div className="pt-4 flex justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-black bg-white hover:bg-white/95 transition-all shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95"
-                >
-                  <span>{t("btn_consult_capability", "Mulai Konsultasi Kapabilitas")}</span>
-                  <ArrowRight className="size-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <NalarOrbitalCtaSection />
       </ScrollReveal>
     </main>
   );

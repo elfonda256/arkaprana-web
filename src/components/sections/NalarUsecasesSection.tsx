@@ -30,201 +30,392 @@ interface UsecaseTab {
   rightOutputs: { title: string; subtitle: string; icon: React.ElementType }[];
 }
 
-const USECASES: UsecaseTab[] = [
-  {
-    id: "retail",
-    tabLabel: "Retail & Supply Chain",
-    code: "01 · RETAIL & SUPPLY CHAIN · MULTI-SITE AUTOMATION",
-    targetRole: "For Head of IT · Regional Managers · Store Operations",
-    headline: "Tingkatkan efisiensi jaringan & operasional cabang tanpa henti setiap hari.",
-    bgImage: "/images/usecase-retail.jpg",
-    leftInputs: [
-      {
-        title: "SD-WAN Core",
-        subtitle: "140 branch routers, link SLA",
-        icon: Network,
-      },
-      {
-        title: "DCIM In-Row Sensors",
-        subtitle: "Temperature, PUE, UPS 2N",
-        icon: Server,
-      },
-      {
-        title: "ERP & POS Sync",
-        subtitle: "Transaction logs, queue status",
-        icon: Database,
-      },
-    ],
-    agentSteps: [
-      {
-        num: "01",
-        title: "Ingest & Validate",
-        desc: "Membaca telemetri fiber optik real-time & memverifikasi zero-jitter.",
-        icon: Layers,
-      },
-      {
-        num: "02",
-        title: "Forecast & Score",
-        desc: "Model AI mendeteksi anomali degradasi link sebelum toko buka.",
-        icon: Cpu,
-      },
-      {
-        num: "03",
-        title: "Plan & Mitigate",
-        desc: "Otomasi failover mandiri sub-18ms & enkripsi snapshot ke vault.",
-        icon: ShieldCheck,
-      },
-    ],
-    rightOutputs: [
-      {
-        title: "Branch SLA WhatsApp",
-        subtitle: "Laporan harian terkirim 07:00",
-        icon: MessageSquare,
-      },
-      {
-        title: "Regional Latency Map",
-        subtitle: "Dashboard real-time Head of IT",
-        icon: BarChart3,
-      },
-      {
-        title: "Sub-18ms Reroute Log",
-        subtitle: "Tercatat di vault audit trail",
-        icon: CheckCircle2,
-      },
-    ],
-  },
-  {
-    id: "telecom",
-    tabLabel: "Telecom & Optical Transit",
-    code: "02 · TELECOM & ISP · HIGHWAY DWDM TRANSIT",
-    targetRole: "For VP Network Architecture · Carrier Operations · NOC Leads",
-    headline: "Transmisi data optik 94.2 Gbps dengan latensi terendah antar-kota.",
-    bgImage: "/images/usecase-network.jpg",
-    leftInputs: [
-      {
-        title: "DWDM Optical Transponders",
-        subtitle: "8 ring nodes, 100G lambda",
-        icon: Network,
-      },
-      {
-        title: "BGP Peering Sessions",
-        subtitle: "Multi-homed carrier-neutral",
-        icon: Server,
-      },
-      {
-        title: "Dark Fiber Monitoring",
-        subtitle: "OTDR real-time attenuation",
-        icon: Database,
-      },
-    ],
-    agentSteps: [
-      {
-        num: "01",
-        title: "Optical Monitoring",
-        desc: "Mendeteksi fluktuasi sinyal DWDM dengan presisi desibel optik.",
-        icon: Layers,
-      },
-      {
-        num: "02",
-        title: "Anomali Jitter AI",
-        desc: "Korelasikan degradasi kabel dengan anomali cuaca & rute fisik.",
-        icon: Cpu,
-      },
-      {
-        num: "03",
-        title: "Autonomous Path Shift",
-        desc: "Pengalihan rute optik otomatis tanpa diskoneksi sesi BGP aktif.",
-        icon: ShieldCheck,
-      },
-    ],
-    rightOutputs: [
-      {
-        title: "NOC Critical Broadcast",
-        subtitle: "Eskalasi instan tim Tier-3",
-        icon: MessageSquare,
-      },
-      {
-        title: "Backbone Health Matrix",
-        subtitle: "Monitoring 24/7/365 terpadu",
-        icon: BarChart3,
-      },
-      {
-        title: "Zero-Loss Attenuation",
-        subtitle: "SLA garansi 99.99% terpenuhi",
-        icon: CheckCircle2,
-      },
-    ],
-  },
-  {
-    id: "finance",
-    tabLabel: "Banking & Financial Services",
-    code: "03 · BANKING & FINANCIAL · ZERO-TRUST HSM DEFENSE",
-    targetRole: "For Chief Information Security Officer · Chief Risk Officer",
-    headline: "Kedaulatan data finansial & brankas kriptografi FIPS 140-3 tanpa risiko kebocoran.",
-    bgImage: "/images/usecase-datacenter.jpg",
-    leftInputs: [
-      {
-        title: "Core Banking API Gateway",
-        subtitle: "TLS 1.3 zero-trust perimeter",
-        icon: Server,
-      },
-      {
-        title: "Thales HSM Hardware",
-        subtitle: "Master encryption key vault",
-        icon: ShieldCheck,
-      },
-      {
-        title: "SIEM & SOC Telemetry",
-        subtitle: "Continuous PAM authentication",
-        icon: Database,
-      },
-    ],
-    agentSteps: [
-      {
-        num: "01",
-        title: "Key Lifecycle Audit",
-        desc: "Memvalidasi seluruh 32 master kunci kriptografi secara air-gapped.",
-        icon: Layers,
-      },
-      {
-        num: "02",
-        title: "Zero-Trust Behavioral",
-        desc: "Menganalisis anomali akses database nasabah dengan AI terisolasi.",
-        icon: Cpu,
-      },
-      {
-        num: "03",
-        title: "Enclave Lockdown",
-        desc: "Mengunci sesi akses berisiko dan memicu isolasi segmen otomatis.",
-        icon: ShieldCheck,
-      },
-    ],
-    rightOutputs: [
-      {
-        title: "Compliance Audit Hash",
-        subtitle: "Sesuai regulasi BI & OJK",
-        icon: MessageSquare,
-      },
-      {
-        title: "Zero-Trust Posture",
-        subtitle: "100% Microsegmented state",
-        icon: BarChart3,
-      },
-      {
-        title: "Airgapped Key Enclave",
-        subtitle: "Zero external telemetry leak",
-        icon: CheckCircle2,
-      },
-    ],
-  },
-];
+const USECASES_MAP: Record<"id" | "en", UsecaseTab[]> = {
+  id: [
+    {
+      id: "retail",
+      tabLabel: "Ritel & Rantai Pasok",
+      code: "01 · RITEL & RANTAI PASOK · OTOMASI MULTI-CABANG",
+      targetRole: "Untuk Head of IT · Manajer Regional · Operasional Toko",
+      headline: "Tingkatkan efisiensi jaringan & operasional cabang tanpa henti setiap hari.",
+      bgImage: "/images/usecase-retail.jpg",
+      leftInputs: [
+        {
+          title: "SD-WAN Core",
+          subtitle: "140 router cabang, link SLA",
+          icon: Network,
+        },
+        {
+          title: "Sensor In-Row DCIM",
+          subtitle: "Suhu, PUE, UPS 2N",
+          icon: Server,
+        },
+        {
+          title: "Sinkronisasi ERP & POS",
+          subtitle: "Log transaksi, antrean kasir",
+          icon: Database,
+        },
+      ],
+      agentSteps: [
+        {
+          num: "01",
+          title: "Ingest & Validasi",
+          desc: "Membaca telemetri serat optik real-time & memverifikasi zero-jitter.",
+          icon: Layers,
+        },
+        {
+          num: "02",
+          title: "Prediksi & Scoring",
+          desc: "Model AI mendeteksi anomali degradasi link sebelum toko buka.",
+          icon: Cpu,
+        },
+        {
+          num: "03",
+          title: "Rencana & Mitigasi",
+          desc: "Otomasi failover mandiri sub-18ms & enkripsi snapshot ke vault.",
+          icon: ShieldCheck,
+        },
+      ],
+      rightOutputs: [
+        {
+          title: "WhatsApp SLA Cabang",
+          subtitle: "Laporan harian terkirim 07:00",
+          icon: MessageSquare,
+        },
+        {
+          title: "Peta Latensi Regional",
+          subtitle: "Dashboard real-time Head of IT",
+          icon: BarChart3,
+        },
+        {
+          title: "Log Reroute Sub-18ms",
+          subtitle: "Tercatat di vault audit trail",
+          icon: CheckCircle2,
+        },
+      ],
+    },
+    {
+      id: "telecom",
+      tabLabel: "Telekomunikasi & Transit",
+      code: "02 · TELEKOMUNIKASI & ISP · DWDM TRANSIT TULANG PUNGGUNG",
+      targetRole: "Untuk VP Arsitektur Jaringan · Operasi Carrier · Lead NOC",
+      headline: "Transmisi data optik multi-terabit dengan latensi terendah antar-kota.",
+      bgImage: "/images/usecase-network.jpg",
+      leftInputs: [
+        {
+          title: "Transponder Optik DWDM",
+          subtitle: "8 node ring, 100G lambda",
+          icon: Network,
+        },
+        {
+          title: "Sesi Peering BGP",
+          subtitle: "Netral operator multi-homed",
+          icon: Server,
+        },
+        {
+          title: "Monitoring Serat Optik",
+          subtitle: "Atenuasi optik real-time OTDR",
+          icon: Database,
+        },
+      ],
+      agentSteps: [
+        {
+          num: "01",
+          title: "Pemantauan Optik",
+          desc: "Mendeteksi fluktuasi sinyal DWDM dengan presisi desibel optik.",
+          icon: Layers,
+        },
+        {
+          num: "02",
+          title: "Anomali Jitter AI",
+          desc: "Korelasikan degradasi kabel dengan anomali cuaca & rute fisik.",
+          icon: Cpu,
+        },
+        {
+          num: "03",
+          title: "Pengalihan Jalur Mandiri",
+          desc: "Pengalihan rute optik otomatis tanpa diskoneksi sesi BGP aktif.",
+          icon: ShieldCheck,
+        },
+      ],
+      rightOutputs: [
+        {
+          title: "Siaran Kritis NOC",
+          subtitle: "Eskalasi instan tim Tier-3",
+          icon: MessageSquare,
+        },
+        {
+          title: "Matriks Kesehatan Backbone",
+          subtitle: "Monitoring terpadu 24/7/365",
+          icon: BarChart3,
+        },
+        {
+          title: "Atenuasi Zero-Loss",
+          subtitle: "SLA garansi 99.99% terpenuhi",
+          icon: CheckCircle2,
+        },
+      ],
+    },
+    {
+      id: "finance",
+      tabLabel: "Perbankan & Finansial",
+      code: "03 · PERBANKAN & KEUANGAN · PERTAHANAN ZERO-TRUST HSM",
+      targetRole: "Untuk Chief Information Security Officer · Chief Risk Officer",
+      headline: "Kedaulatan data finansial & brankas kriptografi FIPS 140-3 tanpa risiko kebocoran.",
+      bgImage: "/images/usecase-datacenter.jpg",
+      leftInputs: [
+        {
+          title: "Gateway API Core Banking",
+          subtitle: "Perimeter zero-trust TLS 1.3",
+          icon: Server,
+        },
+        {
+          title: "Hardware Thales HSM",
+          subtitle: "Brankas kunci enkripsi master",
+          icon: ShieldCheck,
+        },
+        {
+          title: "Telemetri SIEM & SOC",
+          subtitle: "Autentikasi PAM berkelanjutan",
+          icon: Database,
+        },
+      ],
+      agentSteps: [
+        {
+          num: "01",
+          title: "Audit Siklus Kunci",
+          desc: "Memvalidasi seluruh 32 master kunci kriptografi secara air-gapped.",
+          icon: Layers,
+        },
+        {
+          num: "02",
+          title: "Perilaku Zero-Trust",
+          desc: "Menganalisis anomali akses database nasabah dengan AI terisolasi.",
+          icon: Cpu,
+        },
+        {
+          num: "03",
+          title: "Penguncian Enclave",
+          desc: "Mengunci sesi akses berisiko dan memicu isolasi segmen otomatis.",
+          icon: ShieldCheck,
+        },
+      ],
+      rightOutputs: [
+        {
+          title: "Hash Kepatuhan Audit",
+          subtitle: "Sesuai regulasi BI & OJK",
+          icon: MessageSquare,
+        },
+        {
+          title: "Postur Zero-Trust",
+          subtitle: "Status mikrosegmentasi 100%",
+          icon: BarChart3,
+        },
+        {
+          title: "Enclave Kunci Airgapped",
+          subtitle: "Tanpa kebocoran telemetri eksternal",
+          icon: CheckCircle2,
+        },
+      ],
+    },
+  ],
+  en: [
+    {
+      id: "retail",
+      tabLabel: "Retail & Supply Chain",
+      code: "01 · RETAIL & SUPPLY CHAIN · MULTI-SITE AUTOMATION",
+      targetRole: "For Head of IT · Regional Managers · Store Operations",
+      headline: "Maximize branch network uptime and daily operations with zero manual friction.",
+      bgImage: "/images/usecase-retail.jpg",
+      leftInputs: [
+        {
+          title: "SD-WAN Core",
+          subtitle: "140 branch routers, link SLA",
+          icon: Network,
+        },
+        {
+          title: "In-Row DCIM Sensors",
+          subtitle: "Temperature, PUE, UPS 2N",
+          icon: Server,
+        },
+        {
+          title: "ERP & POS Sync",
+          subtitle: "Transaction logs, queue status",
+          icon: Database,
+        },
+      ],
+      agentSteps: [
+        {
+          num: "01",
+          title: "Ingest & Validate",
+          desc: "Continuous optical telemetry monitoring with sub-millisecond precision.",
+          icon: Layers,
+        },
+        {
+          num: "02",
+          title: "Forecast & Score",
+          desc: "Predictive AI models detect link degradation before stores open.",
+          icon: Cpu,
+        },
+        {
+          num: "03",
+          title: "Plan & Mitigate",
+          desc: "Autonomous sub-18ms failover execution and vault encrypted snapshots.",
+          icon: ShieldCheck,
+        },
+      ],
+      rightOutputs: [
+        {
+          title: "Daily WhatsApp Briefing",
+          subtitle: "Automated executive summary sent at 07:00",
+          icon: MessageSquare,
+        },
+        {
+          title: "Regional Latency Map",
+          subtitle: "Live telemetry dashboard for Head of IT",
+          icon: BarChart3,
+        },
+        {
+          title: "Sub-18ms Reroute Log",
+          subtitle: "Permanently stored in tamper-proof audit vault",
+          icon: CheckCircle2,
+        },
+      ],
+    },
+    {
+      id: "telecom",
+      tabLabel: "Telecom & Optical Transit",
+      code: "02 · TELECOM & ISP · HIGHWAY DWDM TRANSIT",
+      targetRole: "For VP Network Architecture · Carrier Operations · NOC Leads",
+      headline: "Multi-terabit optical data transit with guaranteed lowest inter-city latency.",
+      bgImage: "/images/usecase-network.jpg",
+      leftInputs: [
+        {
+          title: "DWDM Optical Transponders",
+          subtitle: "8 ring nodes, 100G lambda",
+          icon: Network,
+        },
+        {
+          title: "BGP Peering Sessions",
+          subtitle: "Carrier-neutral multi-homed",
+          icon: Server,
+        },
+        {
+          title: "Dark Fiber Monitoring",
+          subtitle: "Real-time OTDR attenuation",
+          icon: Database,
+        },
+      ],
+      agentSteps: [
+        {
+          num: "01",
+          title: "Optical Monitoring",
+          desc: "Detect subtle optical power loss and decibel fluctuations instantly.",
+          icon: Layers,
+        },
+        {
+          num: "02",
+          title: "AI Jitter Diagnostics",
+          desc: "Correlate signal attenuation with environmental & physical route events.",
+          icon: Cpu,
+        },
+        {
+          num: "03",
+          title: "Autonomous Path Shift",
+          desc: "Instant non-disruptive optical rerouting maintaining active BGP sessions.",
+          icon: ShieldCheck,
+        },
+      ],
+      rightOutputs: [
+        {
+          title: "NOC Critical Broadcast",
+          subtitle: "Automated sub-15min escalation to Tier-3 engineers",
+          icon: MessageSquare,
+        },
+        {
+          title: "Backbone Health Matrix",
+          subtitle: "Unified 24/7/365 telemetry monitoring plane",
+          icon: BarChart3,
+        },
+        {
+          title: "Zero-Loss Attenuation",
+          subtitle: "Statutory 99.99% availability SLA fulfillment",
+          icon: CheckCircle2,
+        },
+      ],
+    },
+    {
+      id: "finance",
+      tabLabel: "Banking & Financial Services",
+      code: "03 · BANKING & FINANCIAL · ZERO-TRUST HSM DEFENSE",
+      targetRole: "For Chief Information Security Officer · Chief Risk Officer",
+      headline: "Financial data sovereignty & FIPS 140-3 cryptography vaults with zero leakage risk.",
+      bgImage: "/images/usecase-datacenter.jpg",
+      leftInputs: [
+        {
+          title: "Core Banking API Gateway",
+          subtitle: "TLS 1.3 Zero-Trust perimeter",
+          icon: Server,
+        },
+        {
+          title: "Thales HSM Hardware",
+          subtitle: "Master encryption key vault",
+          icon: ShieldCheck,
+        },
+        {
+          title: "SIEM & SOC Telemetry",
+          subtitle: "Continuous PAM authentication",
+          icon: Database,
+        },
+      ],
+      agentSteps: [
+        {
+          num: "01",
+          title: "Key Lifecycle Audit",
+          desc: "Air-gapped verification of all 32 cryptographic master keys.",
+          icon: Layers,
+        },
+        {
+          num: "02",
+          title: "Zero-Trust Behavioral",
+          desc: "Isolated AI models detect unauthorized account query anomalies.",
+          icon: Cpu,
+        },
+        {
+          num: "03",
+          title: "Enclave Lockdown",
+          desc: "Instant isolation of anomalous sessions with zero collateral downtime.",
+          icon: ShieldCheck,
+        },
+      ],
+      rightOutputs: [
+        {
+          title: "Compliance Audit Hash",
+          subtitle: "Fully compliant with Indonesian Central Bank & OJK",
+          icon: MessageSquare,
+        },
+        {
+          title: "Zero-Trust Posture",
+          subtitle: "100% microsegmented network topology",
+          icon: BarChart3,
+        },
+        {
+          title: "Airgapped Key Enclave",
+          subtitle: "Zero outbound telemetry leakage",
+          icon: CheckCircle2,
+        },
+      ],
+    },
+  ]
+};
 
 export default function NalarUsecasesSection() {
   const [selectedTabId, setSelectedTabId] = useState<string>("retail");
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
+  const usecases = USECASES_MAP[language] || USECASES_MAP.id;
   const activeUsecase =
-    USECASES.find((u) => u.id === selectedTabId) || USECASES[0];
+    usecases.find((u) => u.id === selectedTabId) || usecases[0];
 
   return (
     <section id="use-cases" className="relative py-24 md:py-32 bg-[#08090D] text-white overflow-hidden border-b border-white/10">
@@ -265,7 +456,7 @@ export default function NalarUsecasesSection() {
         {/* Centered Top Pill Tab Switcher (Exact replica of Nalarx Image 2) */}
         <div className="flex justify-center mb-10">
           <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full bg-[#12141F] border border-white/10 backdrop-blur-xl max-w-full overflow-x-auto [scrollbar-width:none]">
-            {USECASES.map((tab) => {
+            {usecases.map((tab) => {
               const isSelected = selectedTabId === tab.id;
               return (
                 <button
@@ -365,11 +556,11 @@ export default function NalarUsecasesSection() {
                     {/* Top Container Badge */}
                     <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/20">
                       <span className="font-mono text-[10px] font-bold tracking-widest uppercase text-white/90">
-                        ARKAPRANA ENTERPRISE AGENTS
+                        {language === "en" ? "ARKAPRANA ENTERPRISE AGENTS" : "AGEN ENTERPRISE ARKAPRANA"}
                       </span>
                       <div className="flex items-center gap-1.5 text-[9.5px] font-mono text-white/80">
                         <span className="size-1.5 rounded-full bg-white animate-ping" />
-                        <span>Autonomous Run</span>
+                        <span>{language === "en" ? "Autonomous Run" : "Eksekusi Mandiri"}</span>
                       </div>
                     </div>
 

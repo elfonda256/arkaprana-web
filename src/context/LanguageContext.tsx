@@ -28,14 +28,14 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     nav_7_solutions: "7 Solusi Inti",
 
     // Hero
-    hero_badge: "SOVEREIGN INTELLIGENCE & INFRASTRUCTURE LAYER",
+    hero_badge: "LAPISAN KECERDASAN & INFRASTRUKTUR BERDAULAT",
     hero_headline: "Lapisan Kecerdasan AI untuk Infrastruktur & Agen Enterprise",
     hero_desc: "ARKAPRANA menghubungkan setiap router, modular data center, dan sistem korporasi di perusahaan Anda — mengubah telemetri dan pengetahuan internal menjadi aksi otonom berdaulat.",
     hero_cta_demo: "Pesan Demo",
     hero_cta_see_how: "Lihat Cara Kerjanya",
 
     // Section 01: Product Showcase
-    showcase_badge: "01 · PLATFORM · COMMAND CONSOLE",
+    showcase_badge: "01 · PLATFORM · KONSOL KENDALI",
     showcase_title: "Satu Sistem Cerdas untuk Mengendalikan Seluruh Infrastruktur.",
     showcase_desc: "Bukan sekadar dashboard terpisah — Arkaprana terhubung langsung ke router core, modular data center, dan lingkungan cloud privat Anda.",
 
@@ -45,36 +45,36 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     floating_subtitle: "Satu Sistem Kendali Cerdas Berdaulat · Terintegrasi Real-Time",
 
     // Section 03: Use Cases
-    usecases_badge: "02 · DEPLOYMENT · ENTERPRISE USE CASES",
+    usecases_badge: "02 · IMPLEMENTASI · STUDI KASUS ENTERPRISE",
     usecases_title: "Skenario Nyata. Eksekusi Mandiri.",
     usecases_desc: "Lihat bagaimana arsitektur agen terintegrasi Arkaprana mengolah sinyal telemetri mentah, menjalankan mitigasi otonom, dan melindungi kelangsungan bisnis Anda.",
 
     // Section 04: Ecosystem
-    ecosystem_badge: "03 · ARCHITECTURE · INTEGRATED ECOSYSTEM",
+    ecosystem_badge: "03 · ARSITEKTUR · EKOSISTEM TERPADU",
     ecosystem_title: "Teknologi Harus Bekerja Sebagai Satu Sistem.",
     ecosystem_desc: "Dari ruang server fisik Tier-3 dan jaringan transmisi optik DWDM, hingga cloud privat berdaulat dan otomasi AI otonom — Arkaprana mengintegrasikan seluruh domain rekayasa Anda tanpa fragmentasi.",
-    ecosystem_drawers_title: "Architectural Domain Drawers",
+    ecosystem_drawers_title: "Laci Domain Arsitektur",
     ecosystem_drawers_hint: "Klik untuk membuka spesifikasi teknis",
 
     // Section 05: Capabilities / Solutions
-    solutions_badge: "05 · CAPABILITIES · 7 CORE PILLARS",
+    solutions_badge: "05 · KAPABILITAS · 7 PILAR INTI",
     solutions_title: "Tujuh Domain Rekayasa, Satu Ekosistem Terpadu.",
     solutions_desc: "Bukan sekadar katalog layanan konvensional. Setiap pilar teknologi ARKAPRANA dirancang dengan standar produk industri tingkat tinggi untuk memastikan kedaulatan data, ketahanan sistem, dan skalabilitas tanpa gesekan multi-vendor.",
 
     // Section 06: Industries
-    industries_badge: "06 · PROVEN FIELD ADOPTION · INDUSTRIES",
+    industries_badge: "06 · ADOPSI LAPANGAN TERUJI · INDUSTRI",
     industries_title_1: "Bagaimana Arkaprana menggerakkan alur kerja",
     industries_title_2: "di seluruh sektor industri.",
     industries_desc: "8 Sektor Industri Korporasi · Solusi Teruji Tanpa Duplikasi Sistem",
 
     // Section 07: Enterprise Audit
-    audit_badge: "08 · GOVERNANCE & AUDIT",
+    audit_badge: "08 · TATA KELOLA & AUDIT",
     audit_title: "Dibangun untuk standar enterprise.",
     audit_subtitle: "Dari implementasi hingga kepatuhan regulasi, setiap lapisan lulus audit ketat.",
     audit_live: "Otomatis memverifikasi arsitektur keamanan live",
 
     // Section 08: 2030 Impact
-    impact_badge: "09 · ECONOMIC IMPACT · SCALED ROI",
+    impact_badge: "09 · DAMPAK EKONOMI · SKALA ROI",
     impact_title_1: "Mengapa ini penting",
     impact_title_2: "di tahun 2030 dan seterusnya.",
     impact_ebit: "PERTUMBUHAN EBIT",
@@ -87,18 +87,18 @@ const TRANSLATIONS: Record<Language, Record<string, string>> = {
     impact_window_desc: "Tersisa dua tahun sebelum kesenjangan teknologi pemenang dan tertinggal menjadi permanen.",
 
     // Section 09: Friction
-    friction_badge: "04 · DIAGNOSTIC · MULTI-VENDOR FRICTION",
+    friction_badge: "04 · DIAGNOSTIK · FRIKSI MULTI-VENDOR",
     friction_title: "Ketika Sistem Berjalan Terisolasi, Downtime Menjadi Hal yang Tak Terhindarkan.",
     friction_desc: "Pertumbuhan organisasi sering kali mewariskan tumpukan teknologi dari belasan vendor berbeda. Tanpa satu arsitektur terpadu, setiap pembaruan menimbulkan celah keamanan, latensi tersembunyi, dan saling lempar tanggung jawab.",
 
     // Section 10: FAQ
-    faq_badge: "10 · KNOWLEDGE BASE · FAQS",
+    faq_badge: "10 · BASIS PENGETAHUAN · PERTANYAAN UMUM",
     faq_title: "Pertanyaan yang Sering Diajukan",
     faq_desc: "Segala hal yang perlu Anda ketahui mengenai Arkaprana. Tidak menemukan jawaban Anda?",
     faq_reach_out: "Hubungi kami.",
 
     // Section 11: Orbital CTA
-    orbital_badge: "11 · ORCHESTRATION · ONE UNIFIED SYSTEM",
+    orbital_badge: "11 · ORKESTRASI · SATU SISTEM TERPADU",
     orbital_title_1: "Hentikan menjalankan bisnis dengan perasaan.",
     orbital_title_2: "Mulai jalankan dengan kecerdasan sistem.",
     orbital_desc: "Koneksikan seluruh router, modular data center, cloud privat, dan basis pengetahuan internal Anda ke dalam satu sistem kendali cerdas berdaulat.",

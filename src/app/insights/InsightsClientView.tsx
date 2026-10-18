@@ -2,14 +2,16 @@
 
 import React from "react";
 import Link from "next/link";
-import { INSIGHTS } from "@/lib/data";
+import { getLocalizedInsights } from "@/lib/i18nData";
 import { ArrowRight, Calendar, Library } from "lucide-react";
 import NalarPageHeroAtmosphere from "@/components/decorative/NalarPageHeroAtmosphere";
+import NalarOrbitalCtaSection from "@/components/sections/NalarOrbitalCtaSection";
 import ScrollReveal from "@/components/shared/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function InsightsClientView() {
   const { language, t } = useLanguage();
+  const insights = getLocalizedInsights(language);
 
   return (
     <main className="flex-1 bg-[#08090D] text-white min-h-screen">
@@ -27,7 +29,7 @@ export default function InsightsClientView() {
       {/* 02. INSIGHT ARTICLES GRID WITH NALAR-GRADE CARDS & SCROLL ANIMATIONS */}
       <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {INSIGHTS.map((post, idx) => (
+          {insights.map((post, idx) => (
             <ScrollReveal key={post.id} delayMs={idx * 50}>
               <article className="relative rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-500 flex flex-col justify-between group shadow-xl hover:shadow-[0_0_35px_rgba(56,189,248,0.18)] p-7 sm:p-8 backdrop-blur-2xl hover:-translate-y-1.5 h-full">
                 {/* Top Specular Glow Line */}
@@ -86,37 +88,9 @@ export default function InsightsClientView() {
         </div>
       </section>
 
-      {/* 03. CLOSING CTA BANNER WITH SCROLL REVEAL */}
+      {/* 03. MONUMENTAL NALAR ORBITAL CTA SECTION */}
       <ScrollReveal delayMs={80}>
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center border-t border-white/10">
-          <div className="rounded-3xl border border-white/10 bg-[#0C0E15] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
-            <div className="space-y-4 max-w-2xl mx-auto">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[10px] font-mono text-[#38BDF8]">
-                <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-                <span>REGULATORY &amp; ARCHITECTURAL ADVISORY</span>
-              </div>
-              <h3 className="text-2xl sm:text-4xl font-light text-white tracking-tight font-display">
-                {language === "en"
-                  ? "Want to Discuss These Research Findings?"
-                  : "Ingin Berdiskusi Mengenai Riset Ini?"}
-              </h3>
-              <p className="text-sm text-white/60 font-light leading-relaxed">
-                {language === "en"
-                  ? "ARKAPRANA's architecture research team regularly assists corporate CTOs and Principal Engineers in aligning systems with UU PDP compliance and TIA-942 Tier-3 standards."
-                  : "Tim riset arsitektur ARKAPRANA rutin mendampingi CTO dan Principal Engineer korporat dalam memetakan kesesuaian sistem dengan kepatuhan UU PDP dan standar TIA-942."}
-              </p>
-              <div className="pt-4 flex justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-black bg-white hover:bg-white/95 transition-all shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95"
-                >
-                  <span>{language === "en" ? "Contact Research Team" : "Hubungi Tim Riset"}</span>
-                  <ArrowRight className="size-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <NalarOrbitalCtaSection />
       </ScrollReveal>
     </main>
   );

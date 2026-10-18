@@ -7,7 +7,8 @@ import {
   CheckCircle2,
   ChevronRight
 } from "lucide-react";
-import { SOLUTIONS } from "@/lib/data";
+import { getLocalizedSolutions } from "@/lib/i18nData";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   OpticalMeshGlyph,
   CognitiveAiGlyph,
@@ -19,13 +20,16 @@ import {
 } from "@/components/decorative/NalarGlyphs";
 
 export default function SolutionsSection() {
-  const networkSol = SOLUTIONS.find((s) => s.id === "network") || SOLUTIONS[0];
-  const aiSol = SOLUTIONS.find((s) => s.id === "ai") || SOLUTIONS[5];
-  const infraSol = SOLUTIONS.find((s) => s.id === "infrastructure") || SOLUTIONS[1];
-  const secSol = SOLUTIONS.find((s) => s.id === "security") || SOLUTIONS[3];
-  const managedSol = SOLUTIONS.find((s) => s.id === "managed-it") || SOLUTIONS[4];
-  const cloudSol = SOLUTIONS.find((s) => s.id === "cloud") || SOLUTIONS[2];
-  const integrationSol = SOLUTIONS.find((s) => s.id === "integration") || SOLUTIONS[6];
+  const { language, t } = useLanguage();
+  const solutions = getLocalizedSolutions(language);
+
+  const networkSol = solutions.find((s) => s.id === "network") || solutions[0];
+  const aiSol = solutions.find((s) => s.id === "ai") || solutions[5];
+  const infraSol = solutions.find((s) => s.id === "infrastructure") || solutions[1];
+  const secSol = solutions.find((s) => s.id === "security") || solutions[3];
+  const managedSol = solutions.find((s) => s.id === "managed-it") || solutions[4];
+  const cloudSol = solutions.find((s) => s.id === "cloud") || solutions[2];
+  const integrationSol = solutions.find((s) => s.id === "integration") || solutions[6];
 
   return (
     <section id="solutions" className="py-24 md:py-32 bg-[#08090D] text-white relative overflow-hidden border-b border-white/10 transition-colors duration-300">
@@ -46,15 +50,20 @@ export default function SolutionsSection() {
         <div className="max-w-3xl mx-auto text-center mb-14 space-y-4 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70">
             <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-            <span className="tracking-widest uppercase">05 · CAPABILITIES · 7 CORE PILLARS</span>
+            <span className="tracking-widest uppercase">
+              {t("solutions_badge", "05 · CAPABILITIES · 7 CORE PILLARS")}
+            </span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-[46px] font-light text-white tracking-tight leading-[1.18] font-display">
-            Tujuh Domain Rekayasa, Satu Ekosistem Terpadu.
+            {t("solutions_title", "Tujuh Domain Rekayasa, Satu Ekosistem Terpadu.")}
           </h2>
 
           <p className="text-sm sm:text-base text-white/60 font-light leading-relaxed max-w-2xl mx-auto">
-            Bukan sekadar katalog layanan konvensional. Setiap pilar teknologi ARKAPRANA dirancang dengan standar produk industri tingkat tinggi untuk memastikan kedaulatan data, ketahanan sistem, dan skalabilitas tanpa gesekan multi-vendor.
+            {t(
+              "solutions_desc",
+              "Bukan sekadar katalog layanan konvensional. Setiap pilar teknologi ARKAPRANA dirancang dengan standar produk industri tingkat tinggi untuk memastikan kedaulatan data, ketahanan sistem, dan skalabilitas tanpa gesekan multi-vendor."
+            )}
           </p>
         </div>
 
@@ -110,24 +119,34 @@ export default function SolutionsSection() {
               {/* Architectural Technical Schematic Simulation */}
               <div className="rounded-2xl bg-[#090A0E] border border-white/[0.06] p-4 mb-6">
                 <div className="flex items-center justify-between text-[10px] font-mono text-white/40 mb-3 pb-2 border-b border-white/[0.06]">
-                  <span>TOPOLOGY: MULTI-PATH OPTICAL RING</span>
-                  <span className="text-emerald-400">DWDM OPTICAL HIGHWAY</span>
+                  <span>{language === "en" ? "TOPOLOGY: MULTI-PATH OPTICAL RING" : "TOPOLOGI: RING OPTIK MULTI-JALUR"}</span>
+                  <span className="text-emerald-400">{language === "en" ? "DWDM OPTICAL HIGHWAY" : "JALUR OPTIK DWDM"}</span>
                 </div>
                 
                 <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono">
                   <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <div className="text-[9px] text-white/40 uppercase">Throughput</div>
+                    <div className="text-[9px] text-white/40 uppercase">
+                      {language === "en" ? "Throughput" : "Kapasitas Transmisi"}
+                    </div>
                     <div className="text-sm font-semibold text-white mt-0.5">Nx100 Gbps</div>
-                    <div className="text-[9px] text-emerald-400">Zero Packet Loss</div>
+                    <div className="text-[9px] text-emerald-400">
+                      {language === "en" ? "Zero Packet Loss" : "Nol Kehilangan Paket"}
+                    </div>
                   </div>
                   <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <div className="text-[9px] text-white/40 uppercase">Failover Time</div>
+                    <div className="text-[9px] text-white/40 uppercase">
+                      {language === "en" ? "Failover Time" : "Waktu Pengalihan"}
+                    </div>
                     <div className="text-sm font-semibold text-white mt-0.5">&lt; 18ms</div>
                     <div className="text-[9px] text-[#38BDF8]">BGP Multi-Homing</div>
                   </div>
                   <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <div className="text-[9px] text-white/40 uppercase">Coverage</div>
-                    <div className="text-sm font-semibold text-white mt-0.5">Nationwide</div>
+                    <div className="text-[9px] text-white/40 uppercase">
+                      {language === "en" ? "Coverage" : "Jangkauan"}
+                    </div>
+                    <div className="text-sm font-semibold text-white mt-0.5">
+                      {language === "en" ? "Nationwide" : "Nasional"}
+                    </div>
                     <div className="text-[9px] text-[#38BDF8]">Fiber + SD-WAN</div>
                   </div>
                 </div>
@@ -152,7 +171,7 @@ export default function SolutionsSection() {
                 href={`/solutions/${networkSol.shortSlug}`}
                 className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1.5 transition-colors"
               >
-                <span>Spesifikasi Network</span>
+                <span>{language === "en" ? "Network Specifications" : "Spesifikasi Jaringan"}</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -175,13 +194,13 @@ export default function SolutionsSection() {
                       {aiSol.badge} · COGNITIVE
                     </span>
                     <span className="text-xs text-white/50 font-mono">
-                      Air-Gapped Sovereign AI
+                      {language === "en" ? "Air-Gapped Sovereign AI" : "AI Berdaulat Air-Gapped"}
                     </span>
                   </div>
                 </div>
 
                 <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-                  0% DATA LEAKAGE
+                  {language === "en" ? "0% DATA LEAKAGE" : "0% KEBOCORAN DATA"}
                 </span>
               </div>
 
@@ -195,15 +214,21 @@ export default function SolutionsSection() {
               {/* Security & RAG Highlight Box */}
               <div className="p-4 rounded-2xl bg-[#090A0E] border border-white/[0.06] space-y-3 mb-6">
                 <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-white/40 text-[10px] uppercase">Arsitektur Model</span>
+                  <span className="text-white/40 text-[10px] uppercase">
+                    {language === "en" ? "Model Architecture" : "Arsitektur Model"}
+                  </span>
                   <span className="text-white font-semibold">Local vLLM / TensorRT</span>
                 </div>
                 <div className="flex items-center justify-between text-xs font-mono border-t border-white/[0.06] pt-2">
-                  <span className="text-white/40 text-[10px] uppercase">Enterprise Knowledge Vault</span>
+                  <span className="text-white/40 text-[10px] uppercase">
+                    {language === "en" ? "Enterprise Knowledge Vault" : "Brankas Pengetahuan Korporat"}
+                  </span>
                   <span className="text-emerald-400 font-semibold">Airgapped Vector Index</span>
                 </div>
                 <div className="flex items-center justify-between text-xs font-mono border-t border-white/[0.06] pt-2">
-                  <span className="text-white/40 text-[10px] uppercase">Regulasi Kedaulatan</span>
+                  <span className="text-white/40 text-[10px] uppercase">
+                    {language === "en" ? "Sovereign Regulation" : "Regulasi Kedaulatan"}
+                  </span>
                   <span className="text-[#38BDF8] font-semibold">100% On-Premise Indonesia</span>
                 </div>
               </div>
@@ -226,7 +251,7 @@ export default function SolutionsSection() {
                 href={`/solutions/${aiSol.shortSlug}`}
                 className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1.5 transition-colors"
               >
-                <span>Spesifikasi AI</span>
+                <span>{language === "en" ? "AI Specifications" : "Spesifikasi AI"}</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -261,11 +286,11 @@ export default function SolutionsSection() {
 
               <div className="p-3 rounded-xl bg-[#090A0E] border border-white/[0.06] text-[11px] font-mono space-y-1.5 mb-4">
                 <div className="flex justify-between">
-                  <span className="text-white/40">PUE Target:</span>
+                  <span className="text-white/40">{language === "en" ? "PUE Target:" : "Target PUE:"}</span>
                   <span className="text-white font-semibold">&lt; 1.31 In-Row</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-white/40">Power Topology:</span>
+                  <span className="text-white/40">{language === "en" ? "Power Topology:" : "Topologi Daya:"}</span>
                   <span className="text-white font-semibold">2N Dual-Bus</span>
                 </div>
               </div>
@@ -276,7 +301,7 @@ export default function SolutionsSection() {
                 href={`/solutions/${infraSol.shortSlug}`}
                 className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1 transition-colors"
               >
-                <span>Lihat Data Center</span>
+                <span>{language === "en" ? "View Data Center" : "Lihat Pusat Data"}</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -321,7 +346,7 @@ export default function SolutionsSection() {
                 href={`/solutions/${secSol.shortSlug}`}
                 className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1 transition-colors"
               >
-                <span>Lihat Cybersecurity</span>
+                <span>{language === "en" ? "View Cybersecurity" : "Lihat Keamanan Siber"}</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -351,11 +376,13 @@ export default function SolutionsSection() {
 
               <div className="p-3 rounded-xl bg-[#090A0E] border border-white/[0.06] text-[11px] font-mono space-y-1.5 mb-4">
                 <div className="flex justify-between">
-                  <span className="text-white/40">SLA Availability:</span>
-                  <span className="text-emerald-400 font-semibold">99.982% Guarantee</span>
+                  <span className="text-white/40">{language === "en" ? "SLA Availability:" : "Ketersediaan SLA:"}</span>
+                  <span className="text-emerald-400 font-semibold">
+                    {language === "en" ? "99.982% Guarantee" : "Garansi 99.982%"}
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-white/40">Escalation Matrix:</span>
+                  <span className="text-white/40">{language === "en" ? "Escalation Matrix:" : "Matriks Eskalasi:"}</span>
                   <span className="text-white font-semibold">Tier-3 SRE</span>
                 </div>
               </div>
@@ -366,7 +393,7 @@ export default function SolutionsSection() {
                 href={`/solutions/${managedSol.shortSlug}`}
                 className="text-xs font-semibold text-white group-hover:text-[#38BDF8] inline-flex items-center gap-1 transition-colors"
               >
-                <span>Lihat Managed IT</span>
+                <span>{language === "en" ? "View Managed IT" : "Lihat Layanan TI Terkelola"}</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>

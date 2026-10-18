@@ -96,6 +96,19 @@ html.theme-transitioning *::after {
    BASE TYPOGRAPHY & ELEMENTS
    =================================================== */
 
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, textarea, select {
+  font-size: 16px;
+}
+
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
