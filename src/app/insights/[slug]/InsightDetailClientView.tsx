@@ -44,9 +44,9 @@ export default function InsightDetailClientView({ slug }: InsightDetailClientVie
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 relative z-10 flex flex-wrap items-center justify-between gap-4 print:hidden">
         <Link
           href="/insights"
-          className="inline-flex items-center text-xs font-mono text-white/50 hover:text-white transition-colors px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md"
+          className="inline-flex items-center text-xs font-mono text-slate-700 dark:text-white/70 hover:text-slate-950 dark:hover:text-white transition-colors px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-white/10 bg-white/90 dark:bg-white/[0.03] backdrop-blur-md shadow-xs"
         >
-          <ChevronLeft className="size-3.5 mr-1" />
+          <ChevronLeft className="size-3.5 mr-1 text-slate-500 dark:text-white/60" />
           <span>{t("btn_back_insights", "Kembali ke Dokumen Wawasan")}</span>
         </Link>
 

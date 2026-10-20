@@ -177,7 +177,7 @@ export default function Navbar() {
           className={`absolute inset-0 rounded-2xl md:rounded-full transition-all duration-300 ${
             scrolled
               ? "nav-glass-island shadow-2xl"
-              : "bg-white/80 dark:bg-[rgba(10,12,18,0.72)] backdrop-blur-xl border border-slate-200/80 dark:border-white/[0.08] shadow-sm dark:shadow-lg"
+              : "bg-white/95 dark:bg-[rgba(10,12,18,0.8)] backdrop-blur-xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm dark:shadow-lg"
           }`}
         />
 
@@ -217,12 +217,12 @@ export default function Navbar() {
                       className={`px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-full transition-colors flex items-center gap-1.5 ${
                         isActive
                           ? "text-slate-950 dark:text-white bg-slate-100 dark:bg-white/10 font-semibold"
-                          : "text-slate-600 dark:text-white/65 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.06]"
+                          : "text-slate-700 dark:text-white/70 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06]"
                       }`}
                     >
                       {link.label}
                       <ChevronDown
-                        className={`w-3 h-3 text-slate-400 dark:text-white/50 transition-transform duration-200 ${
+                        className={`w-3 h-3 text-slate-500 dark:text-white/50 transition-transform duration-200 ${
                           solutionsDropdown ? "rotate-180 text-slate-900 dark:text-white" : ""
                         }`}
                       />
@@ -294,7 +294,7 @@ export default function Navbar() {
                   className={`px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-full transition-colors ${
                     isActive
                       ? "text-slate-950 dark:text-white bg-slate-100 dark:bg-white/10 font-semibold"
-                      : "text-slate-600 dark:text-white/65 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.06]"
+                      : "text-slate-700 dark:text-white/70 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06]"
                   }`}
                 >
                   {link.label}

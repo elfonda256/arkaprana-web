@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function CompanyProfileModal({
-  triggerClassName = "inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold tracking-wide text-neutral-900 bg-white hover:bg-neutral-200 transition-all shadow-md active:scale-[0.98]",
+  triggerClassName = "inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold tracking-wide text-white bg-slate-900 hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-white/95 transition-all shadow-md active:scale-[0.98] cursor-pointer",
   triggerText
 }: Props) {
   const { language, t } = useLanguage();

@@ -370,9 +370,9 @@ export default function SolutionDetailClientView({ slug }: SolutionDetailClientV
                   }
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-mono text-white/70 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-medium text-slate-700 dark:text-white/75 hover:text-slate-950 dark:hover:text-white bg-slate-50 dark:bg-white/[0.04] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-200 dark:border-white/10 transition-all shadow-xs"
                 >
-                  <MessageSquare className="size-3.5 text-emerald-400" />
+                  <MessageSquare className="size-3.5 text-emerald-600 dark:text-emerald-400" />
                   <span>{language === "en" ? "Talk to an Engineer" : "Bicara dengan Engineer"}</span>
                 </a>
               </div>

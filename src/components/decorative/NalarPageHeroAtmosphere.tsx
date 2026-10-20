@@ -52,9 +52,9 @@ export default function NalarPageHeroAtmosphere({
       {/* 4. Main Centered Editorial Content with Fluid Entry Animations */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {badgeText && (
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-white/[0.04] text-[11px] font-mono text-slate-700 dark:text-white/70 backdrop-blur-md mb-6 shadow-xs animate-in fade-in slide-in-from-bottom-2 duration-500">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-white/15 bg-white/95 dark:bg-white/[0.05] text-[11px] font-mono text-slate-800 dark:text-white/90 backdrop-blur-md mb-6 shadow-xs animate-in fade-in slide-in-from-bottom-2 duration-500">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0284C7] dark:bg-[#38BDF8] animate-pulse" />
-            <span className="tracking-widest uppercase">{badgeText}</span>
+            <span className="tracking-widest uppercase font-medium">{badgeText}</span>
           </div>
         )}
 
@@ -63,7 +63,7 @@ export default function NalarPageHeroAtmosphere({
             {headlinePrimary}
           </h1>
           {headlineSecondary && (
-            <h2 className="text-3xl sm:text-5xl lg:text-[56px] font-light text-slate-500 dark:text-white/45 tracking-tight leading-[1.14] font-display">
+            <h2 className="text-3xl sm:text-5xl lg:text-[56px] font-light text-slate-700 dark:text-white/75 tracking-tight leading-[1.14] font-display">
               {headlineSecondary}
             </h2>
           )}

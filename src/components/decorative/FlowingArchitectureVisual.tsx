@@ -216,8 +216,8 @@ export default function FlowingArchitectureVisual({
                   <div
                     className={`font-mono text-[9.5px] px-2 py-0.5 rounded-full mb-3 border transition-all duration-300 ${
                       isSelected
-                        ? "bg-[#38BDF8]/20 border-[#38BDF8] text-[#38BDF8] shadow-[0_0_12px_rgba(56,189,248,0.5)]"
-                        : "bg-white/[0.04] border-white/10 text-white/50"
+                        ? "bg-sky-500/15 dark:bg-[#38BDF8]/20 border-sky-500 dark:border-[#38BDF8] text-sky-600 dark:text-[#38BDF8] shadow-[0_0_12px_rgba(56,189,248,0.5)] font-medium"
+                        : "bg-slate-100 dark:bg-white/[0.04] border-slate-200 dark:border-white/10 text-slate-600 dark:text-white/50"
                     }`}
                   >
                     {st.metric}
@@ -227,8 +227,8 @@ export default function FlowingArchitectureVisual({
                   <div
                     className={`relative size-12 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                       isSelected
-                        ? "bg-[#38BDF8] text-black shadow-[0_0_24px_rgba(56,189,248,0.7)] scale-110"
-                        : "bg-[#141722] text-white/80 border border-white/15 hover:border-[#38BDF8]/60 hover:text-white"
+                        ? "bg-sky-500 dark:bg-[#38BDF8] text-white dark:text-black shadow-[0_0_24px_rgba(56,189,248,0.7)] scale-110"
+                        : "bg-white dark:bg-[#141722] text-slate-800 dark:text-white/80 border border-slate-200 dark:border-white/15 hover:border-sky-500 dark:hover:border-[#38BDF8]/60 hover:text-sky-600 dark:hover:text-white shadow-xs"
                     }`}
                   >
                     {st.id === "dc" && <ModularDcGlyph size={26} highlight={isSelected} />}
@@ -239,16 +239,16 @@ export default function FlowingArchitectureVisual({
 
                     {/* Ring ping on active */}
                     {isSelected && (
-                      <span className="absolute inset-0 rounded-2xl ring-2 ring-[#38BDF8] animate-ping opacity-35" />
+                      <span className="absolute inset-0 rounded-2xl ring-2 ring-sky-500 dark:ring-[#38BDF8] animate-ping opacity-35" />
                     )}
                   </div>
 
                   {/* Bottom Typography Labels */}
                   <div className="text-center mt-3">
-                    <span className="block text-xs font-semibold text-white tracking-tight group-hover:text-[#38BDF8] transition-colors">
+                    <span className="block text-xs font-semibold text-slate-900 dark:text-white tracking-tight group-hover:text-sky-600 dark:group-hover:text-[#38BDF8] transition-colors">
                       {st.title}
                     </span>
-                    <span className="block text-[9.5px] font-mono text-white/45 mt-0.5">
+                    <span className="block text-[9.5px] font-mono text-slate-500 dark:text-white/45 mt-0.5">
                       {st.code}
                     </span>
                   </div>
@@ -271,16 +271,16 @@ export default function FlowingArchitectureVisual({
                   onClick={() => onSelectStation(st.id)}
                   className={`w-full flex items-center justify-between p-3.5 rounded-xl border transition-all text-left ${
                     isSelected
-                      ? "bg-white/[0.08] border-[#38BDF8] shadow-md"
-                      : "bg-white/[0.02] border-white/10"
+                      ? "bg-sky-500/10 dark:bg-white/[0.08] border-sky-500 dark:border-[#38BDF8] shadow-md"
+                      : "bg-white dark:bg-white/[0.02] border-slate-200 dark:border-white/10 shadow-xs"
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <div
                       className={`size-10 rounded-xl flex items-center justify-center shrink-0 ${
                         isSelected
-                          ? "bg-[#38BDF8] text-black shadow-md"
-                          : "bg-white/[0.06] text-white/70"
+                          ? "bg-sky-500 dark:bg-[#38BDF8] text-white dark:text-black shadow-md"
+                          : "bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-white/70 border border-slate-200 dark:border-white/10"
                       }`}
                     >
                       {st.id === "dc" && <ModularDcGlyph size={22} highlight={isSelected} />}
@@ -292,14 +292,14 @@ export default function FlowingArchitectureVisual({
 
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono text-[#38BDF8]">{st.code}</span>
-                        <span className="text-xs font-semibold text-white">{st.title}</span>
+                        <span className="text-[10px] font-mono text-sky-600 dark:text-[#38BDF8] font-semibold">{st.code}</span>
+                        <span className="text-xs font-semibold text-slate-900 dark:text-white">{st.title}</span>
                       </div>
-                      <span className="text-[10px] text-white/50 block font-light">{st.subtitle}</span>
+                      <span className="text-[10px] text-slate-600 dark:text-white/50 block font-light">{st.subtitle}</span>
                     </div>
                   </div>
 
-                  <span className="text-[10px] font-mono text-[#38BDF8] bg-[#38BDF8]/10 px-2 py-0.5 rounded border border-[#38BDF8]/20">
+                  <span className="text-[10px] font-mono text-sky-600 dark:text-[#38BDF8] bg-sky-500/10 dark:bg-[#38BDF8]/10 px-2 py-0.5 rounded border border-sky-500/20 dark:border-[#38BDF8]/20 font-medium">
                     {st.metric}
                   </span>
                 </button>

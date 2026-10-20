@@ -63,15 +63,15 @@ export default function AboutClientView() {
       >
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
           <CompanyProfileModal
-            triggerClassName="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-white/95 transition-all shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95 cursor-pointer"
+            triggerClassName="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-white/95 transition-all shadow-md dark:shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:scale-105 active:scale-95 cursor-pointer"
             triggerText={t("btn_download_cp", "Download Company Profile")}
           />
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-mono text-white/70 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-medium text-slate-700 hover:text-slate-950 dark:text-white/80 dark:hover:text-white bg-white/90 dark:bg-white/[0.06] hover:bg-slate-100 dark:hover:bg-white/[0.1] border border-slate-300 dark:border-white/15 transition-all hover:scale-105 active:scale-95 shadow-xs"
           >
             <span>{t("btn_talk_engineer", "Bicara dengan Engineer")}</span>
-            <ChevronRight className="size-3.5 text-[#38BDF8]" />
+            <ChevronRight className="size-3.5 text-sky-600 dark:text-[#38BDF8]" />
           </Link>
         </div>
       </NalarPageHeroAtmosphere>
@@ -405,46 +405,46 @@ export default function AboutClientView() {
       {/* 08. CLOSING CONTACT DESK */}
       <ScrollReveal delayMs={80}>
         <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
-          <div className="rounded-3xl border border-slate-700/60 bg-[#131B2E] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+          <div className="rounded-3xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#131B2E] p-8 sm:p-14 shadow-xl dark:shadow-2xl relative overflow-hidden">
             <div className="space-y-4 max-w-2xl mx-auto">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#38BDF8] block">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-sky-600 dark:text-[#38BDF8] font-semibold block">
                 {language === "en" ? "Official Communication Desk" : "Meja Komunikasi Resmi"}
               </span>
-              <h3 className="text-2xl sm:text-4xl font-light text-white tracking-tight font-display">
+              <h3 className="text-2xl sm:text-4xl font-light text-slate-900 dark:text-white tracking-tight font-display">
                 {language === "en" ? "Ready to Partner with ARKAPRANA?" : "Siap Bermitra Bersama ARKAPRANA?"}
               </h3>
-              <p className="text-sm text-white/60 font-light leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-white/60 font-light leading-relaxed">
                 {language === "en"
                   ? "Discuss your digital infrastructure architecture and sovereign intelligent solutions directly with our principal engineering council."
                   : "Diskusikan kebutuhan arsitektur infrastruktur digital dan solusi cerdas Anda langsung bersama tim principal engineer kami."}
               </p>
 
-              <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-white/50">
+              <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-600 dark:text-white/50">
                 <span className="flex items-center gap-2">
-                  <Mail className="size-3.5 text-[#38BDF8]" />
+                  <Mail className="size-3.5 text-sky-600 dark:text-[#38BDF8]" />
                   <span>{COMPANY_PROFILE.contact.email}</span>
                 </span>
                 <span className="flex items-center gap-2">
-                  <Phone className="size-3.5 text-[#38BDF8]" />
+                  <Phone className="size-3.5 text-sky-600 dark:text-[#38BDF8]" />
                   <span>{COMPANY_PROFILE.contact.phone}</span>
                 </span>
                 <span className="flex items-center gap-2">
-                  <MapPin className="size-3.5 text-[#38BDF8]" />
+                  <MapPin className="size-3.5 text-sky-600 dark:text-[#38BDF8]" />
                   <span>Indonesia</span>
                 </span>
               </div>
 
               <div className="pt-6 flex flex-wrap items-center justify-center gap-4">
                 <CompanyProfileModal
-                  triggerClassName="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-white/95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 cursor-pointer"
+                  triggerClassName="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-slate-900 hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-white/95 transition-all shadow-md dark:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 cursor-pointer"
                   triggerText={t("btn_download_cp", "Download Company Profile")}
                 />
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs font-mono text-white/70 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all hover:scale-105 active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs font-medium text-slate-700 hover:text-slate-950 dark:text-white/80 dark:hover:text-white bg-white/90 dark:bg-white/[0.06] hover:bg-slate-100 dark:hover:bg-white/[0.1] border border-slate-300 dark:border-white/15 transition-all hover:scale-105 active:scale-95 shadow-xs"
                 >
                   <span>{t("btn_discuss_project", "Mulai Diskusi Proyek")}</span>
-                  <ArrowRight className="size-3.5" />
+                  <ArrowRight className="size-3.5 text-sky-600 dark:text-white/70" />
                 </Link>
               </div>
             </div>
