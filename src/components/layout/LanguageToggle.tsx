@@ -29,7 +29,7 @@ export default function LanguageToggle({ className = "", showIcon = true }: Lang
         aria-pressed={language === "id"}
         className={`px-2.5 py-1 text-[11px] font-mono tracking-wider rounded-full transition-all duration-200 ${
           language === "id"
-            ? "bg-white text-[#08090D] font-bold shadow-[0_0_12px_rgba(255,255,255,0.25)] scale-100"
+            ? "bg-white text-[#0B0F19] font-bold shadow-[0_0_12px_rgba(255,255,255,0.25)] scale-100"
             : "text-white/60 hover:text-white hover:bg-white/[0.04]"
         }`}
       >
@@ -42,7 +42,7 @@ export default function LanguageToggle({ className = "", showIcon = true }: Lang
         aria-pressed={language === "en"}
         className={`px-2.5 py-1 text-[11px] font-mono tracking-wider rounded-full transition-all duration-200 ${
           language === "en"
-            ? "bg-white text-[#08090D] font-bold shadow-[0_0_12px_rgba(255,255,255,0.25)] scale-100"
+            ? "bg-white text-[#0B0F19] font-bold shadow-[0_0_12px_rgba(255,255,255,0.25)] scale-100"
             : "text-white/60 hover:text-white hover:bg-white/[0.04]"
         }`}
       >

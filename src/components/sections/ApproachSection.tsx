@@ -8,22 +8,22 @@ const icons = [Network, Server, Cloud, Shield, BrainCircuit];
 
 export default function ApproachSection() {
   return (
-    <section className="py-24 bg-[#040817] border-t border-b border-white/5 relative overflow-hidden">
+    <section className="py-24 bg-[#F8FAFC] dark:bg-[#0B0F19] border-t border-b border-slate-200 dark:border-slate-800 relative overflow-hidden transition-colors duration-300">
       {/* Background Decorative Mesh */}
       <div className="absolute inset-0 bg-radial-gradient opacity-40 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-600 dark:text-cyan-400 text-xs font-mono">
             <span>THE ARKAPRANA APPROACH</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             From Infrastructure to Intelligence.
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             Kami tidak sekadar memasang hardware atau menjual software terisolasi. ARKAPRANA merekayasa sebuah <strong>ekosistem teknologi terpadu</strong> yang beroperasi saling mendukung dari lapisan fisik kabel hingga model kognitif kecerdasan buatan.
           </p>
         </div>

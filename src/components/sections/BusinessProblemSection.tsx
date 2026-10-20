@@ -239,20 +239,20 @@ export default function BusinessProblemSection() {
   const unifiedPillars = UNIFIED_PILLARS_MAP[language] || UNIFIED_PILLARS_MAP.id;
 
   return (
-    <section className="relative py-24 sm:py-32 bg-[var(--bg-secondary)] text-[var(--text-primary)] overflow-hidden border-t border-b border-[var(--border-subtle)] transition-colors duration-300">
+    <section className="relative py-24 sm:py-32 bg-[var(--bg-secondary)] text-[var(--text-primary)] overflow-hidden transition-colors duration-300">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Standardized Nalarx Eyebrow & Display Headline: CENTERED AS REQUESTED */}
         <div className="max-w-4xl mx-auto text-center mb-14 space-y-4 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-white/10 bg-white/80 dark:bg-white/[0.04] text-[11px] font-mono text-slate-700 dark:text-white/70 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0284C7] dark:bg-[#38BDF8] animate-pulse" />
             <span className="tracking-widest uppercase">{t("friction_badge", "04 · DIAGNOSTIC · MULTI-VENDOR FRICTION")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.18] font-display">
+          <h2 className="text-3xl sm:text-5xl font-light text-[var(--text-primary)] tracking-tight leading-[1.18] font-display">
             {t("friction_title", "Ketika Sistem Berjalan Terisolasi, Downtime Menjadi Hal yang Tak Terhindarkan.")}
           </h2>
-          <p className="text-sm sm:text-base text-white/60 font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[var(--text-secondary)] font-light leading-relaxed max-w-2xl mx-auto">
             {t("friction_desc", "Pertumbuhan organisasi sering kali mewariskan tumpukan teknologi dari belasan vendor berbeda. Tanpa satu arsitektur terpadu, setiap pembaruan menimbulkan celah keamanan, latensi tersembunyi, dan saling lempar tanggung jawab.")}
           </p>
         </div>

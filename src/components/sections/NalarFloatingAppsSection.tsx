@@ -18,7 +18,7 @@ export default function NalarFloatingAppsSection() {
   const { t, language } = useLanguage();
 
   return (
-    <section className="relative py-20 sm:py-28 md:py-44 bg-[#F5F3EC] text-[#141518] overflow-hidden border-t border-b border-[#E3DFD5]">
+    <section className="relative py-20 sm:py-28 md:py-44 bg-[#F5F3EC] text-[#141518] overflow-hidden">
       
       {/* 1. Atmospheric Drifting Smoky Background */}
       <div 
@@ -66,10 +66,11 @@ export default function NalarFloatingAppsSection() {
               {/* Mobile Card 1: Odoo ERP */}
               <div className="bg-white/95 rounded-xl p-3 shadow-sm border border-[#E2DED4]">
                 <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center gap-1.5">
-                    <span className="size-2 rounded-full bg-[#8E44AD]" />
-                    <span className="text-[11px] font-bold text-[#8E44AD]">odoo</span>
-                  </div>
+                  <img
+                    src="/brand/apps/odoo-cropped.png"
+                    alt="Odoo"
+                    className="h-3.5 w-auto object-contain"
+                  />
                   <span className="text-[9px] font-mono text-[#71717A] bg-[#F4F4F5] px-1.5 py-0.2 rounded-full font-medium">
                     {language === "en" ? "4 days" : "4 hari"}
                   </span>
@@ -114,10 +115,11 @@ export default function NalarFloatingAppsSection() {
               {/* Mobile Card 4: Tokopedia */}
               <div className="bg-white/95 rounded-xl p-3 shadow-sm border border-[#E2DED4]">
                 <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center gap-1.5">
-                    <span className="size-2 rounded-full bg-[#03AC0E]" />
-                    <span className="text-[11px] font-bold text-[#03AC0E]">tokopedia</span>
-                  </div>
+                  <img
+                    src="/brand/apps/tokopedia-cropped.png"
+                    alt="Tokopedia"
+                    className="h-3.5 w-auto object-contain"
+                  />
                   <span className="text-[9px] font-mono font-bold text-rose-600 bg-rose-50 px-1.5 py-0.2 rounded-full">
                     -7%
                   </span>
@@ -174,10 +176,11 @@ export default function NalarFloatingAppsSection() {
         <div className="hidden sm:block absolute top-4 sm:top-10 left-2 sm:left-12 lg:left-20 z-10 animate-float-a">
           <div className="w-[180px] sm:w-[210px] bg-white/95 backdrop-blur-md rounded-2xl p-3.5 sm:p-4 shadow-[0_12px_32px_rgba(0,0,0,0.06)] border border-[#E2DED4] transition-transform hover:scale-105 duration-300">
             <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-1.5">
-                <span className="size-2 rounded-full bg-[#8E44AD]" />
-                <span className="text-[11px] font-bold tracking-tight text-[#8E44AD] font-sans">odoo</span>
-              </div>
+              <img
+                src="/brand/apps/odoo-cropped.png"
+                alt="Odoo"
+                className="h-4.5 w-auto object-contain"
+              />
               <span className="text-[10px] font-mono text-[#71717A] bg-[#F4F4F5] px-2 py-0.5 rounded-full font-medium">
                 {language === "en" ? "4 days" : "4 hari"}
               </span>
@@ -191,9 +194,14 @@ export default function NalarFloatingAppsSection() {
 
         {/* Card 2: Meta Ads (Top Center, Wireframe Paper Card) */}
         <div className="hidden sm:block absolute top-6 sm:top-12 left-[44%] lg:left-[42%] z-10 animate-float-b">
-          <div className="w-[170px] sm:w-[190px] bg-white/60 backdrop-blur-sm rounded-xl p-3 border border-dashed border-[#B8B4AA] shadow-sm">
-            <div className="text-[9.5px] font-mono text-[#52525B] flex items-center gap-1 uppercase tracking-wider font-semibold">
-              <span className="text-[8px]">▶</span> META ADS
+          <div className="w-[170px] sm:w-[195px] bg-white/75 backdrop-blur-sm rounded-xl p-3 border border-dashed border-[#B8B4AA] shadow-sm">
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <img
+                src="/brand/apps/meta-cropped.png"
+                alt="Meta"
+                className="h-3.5 w-auto object-contain"
+              />
+              <span className="text-[9.5px] font-mono font-bold text-[#52525B] uppercase tracking-wider">ADS</span>
             </div>
             <div className="text-[11px] font-mono font-medium text-[#27272A] mt-1">CAMP: MTA-2210</div>
             <div className="text-[10px] font-mono text-amber-700 font-semibold mt-0.5">
@@ -221,9 +229,16 @@ export default function NalarFloatingAppsSection() {
 
         {/* Card 4: Google Sheets (Mid Left, Wireframe Paper Card) */}
         <div className="hidden sm:block absolute top-[44%] left-3 sm:left-10 lg:left-16 z-10 animate-float-d">
-          <div className="w-[180px] sm:w-[200px] bg-white/70 backdrop-blur-sm rounded-xl p-3.5 border border-dashed border-[#B8B4AA] shadow-sm">
-            <div className="text-[9.5px] font-mono text-[#52525B] flex items-center gap-1 uppercase tracking-wider font-semibold">
-              <span className="text-[8px]">▶</span> GOOGLE SHEETS
+          <div className="w-[180px] sm:w-[205px] bg-white/75 backdrop-blur-sm rounded-xl p-3.5 border border-dashed border-[#B8B4AA] shadow-sm">
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <img
+                src="/brand/apps/google-sheets-icon.png"
+                alt="Google Sheets"
+                className="h-4 w-auto object-contain"
+              />
+              <span className="text-[9.5px] font-mono font-bold text-[#52525B] uppercase tracking-wider">
+                GOOGLE SHEETS
+              </span>
             </div>
             <div className="text-[11px] font-mono font-medium text-[#27272A] mt-1">SHT: Q3-TGT</div>
             <div className="text-[9.5px] font-mono text-[#71717A] mt-0.5">
@@ -236,10 +251,11 @@ export default function NalarFloatingAppsSection() {
         <div className="hidden sm:block absolute top-[40%] right-3 sm:right-12 lg:right-16 z-10 animate-float-a">
           <div className="w-[175px] sm:w-[200px] bg-white/95 backdrop-blur-md rounded-2xl p-3.5 sm:p-4 shadow-[0_12px_32px_rgba(0,0,0,0.06)] border border-[#E2DED4] transition-transform hover:scale-105 duration-300">
             <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-1.5">
-                <span className="size-2 rounded-full bg-[#03AC0E]" />
-                <span className="text-[11px] font-bold text-[#03AC0E]">tokopedia</span>
-              </div>
+              <img
+                src="/brand/apps/tokopedia-cropped.png"
+                alt="Tokopedia"
+                className="h-4.5 w-auto object-contain"
+              />
               <span className="text-[10px] font-mono font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">-7%</span>
             </div>
             <div className="text-xs font-semibold text-[#18181B] font-mono">CHNL TPD-01</div>

@@ -15,26 +15,26 @@ export default function WhoWeAreSection() {
   ];
 
   return (
-    <section className="py-24 bg-[#040915] border-t border-b border-white/5 relative overflow-hidden">
+    <section className="py-24 bg-[#F8FAFC] dark:bg-[#0B0F19] border-t border-b border-slate-200 dark:border-slate-800 relative overflow-hidden transition-colors duration-300">
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-sky-500/5 dark:bg-cyan-500/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Text Column (Span 5) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-600 dark:text-cyan-400 text-xs font-mono">
               <span>WHO WE ARE</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
               Technology Built for What Comes Next.
             </h2>
 
-            <div className="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+            <div className="space-y-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               <p>
-                <strong className="text-white font-semibold">ARKAPRANA</strong> adalah perusahaan teknologi yang menghadirkan solusi terintegrasi mulai dari infrastruktur IT, jaringan, cloud, cybersecurity, managed services hingga artificial intelligence.
+                <strong className="text-slate-900 dark:text-white font-semibold">ARKAPRANA</strong> adalah perusahaan teknologi yang menghadirkan solusi terintegrasi mulai dari infrastruktur IT, jaringan, cloud, cybersecurity, managed services hingga artificial intelligence.
               </p>
               <p>
                 Berangkat dari fondasi engineering dan infrastructure, ARKAPRANA membangun teknologi yang dapat berkembang mengikuti kebutuhan bisnis. Kami bukan sekadar vendor pengadaan, melainkan mitra rekayasa jangka panjang yang memastikan keandalan, keamanan, dan kecerdasan ekosistem digital Anda.

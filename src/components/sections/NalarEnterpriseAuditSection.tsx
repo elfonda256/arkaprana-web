@@ -126,7 +126,7 @@ export default function NalarEnterpriseAuditSection() {
 
   return (
     <section 
-      className="relative py-24 md:py-36 bg-[#F5F3ED] text-[#141518] overflow-hidden border-t border-b border-[#E5E2D9]"
+      className="relative py-24 md:py-36 bg-[#F5F3ED] text-[#141518] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >

@@ -1902,9 +1902,11 @@ export const COMPANY_PROFILE = {
     "AUTOMATION"
   ],
   contact: {
-    email: "elfano2156@gmail.com",
+    email: "contact@arkaprana.co.id",
     phone: "0816-997-963",
     whatsapp: "0816-997-963",
+    telegram: "@arkaprana_tech",
+    telegramUrl: "https://t.me/arkaprana_tech",
     whatsappUrl: "https://wa.me/62816997963?text=Halo%20ARKAPRANA,%20saya%20ingin%20berdiskusi%20tentang%20proyek%20teknologi",
     address: "Indonesia",
     country: "Indonesia"

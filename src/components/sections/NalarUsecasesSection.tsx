@@ -418,14 +418,14 @@ export default function NalarUsecasesSection() {
     usecases.find((u) => u.id === selectedTabId) || usecases[0];
 
   return (
-    <section id="use-cases" className="relative py-24 md:py-32 bg-[#08090D] text-white overflow-hidden border-b border-white/10">
+    <section id="use-cases" className="relative py-24 md:py-32 bg-[#FFFFFF] dark:bg-[#0B0F19] text-slate-900 dark:text-white overflow-hidden">
       
       {/* Background Ambient Grid */}
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-15 pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(rgba(2, 132, 199, 0.12) 1px, transparent 1px)`,
           backgroundSize: "32px 32px",
         }}
       />
@@ -434,18 +434,18 @@ export default function NalarUsecasesSection() {
         
         {/* Section Header: CENTERED AS REQUESTED (Image 2) */}
         <div className="max-w-3xl mx-auto text-center mb-12 space-y-4 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-            <span className="tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300/80 dark:border-white/10 bg-slate-100/90 dark:bg-white/[0.04] text-[11px] font-mono text-slate-700 dark:text-white/70 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
+            <span className="tracking-widest uppercase font-medium">
               {t("usecases_badge", "02 · DEPLOYMENT · ENTERPRISE USE CASES")}
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.18] font-display">
+          <h2 className="text-3xl sm:text-5xl font-light text-slate-900 dark:text-white tracking-tight leading-[1.18] font-display">
             {t("usecases_title", "Skenario Nyata. Eksekusi Mandiri.")}
           </h2>
 
-          <p className="text-sm sm:text-base text-white/60 font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-white/60 font-light leading-relaxed max-w-2xl mx-auto">
             {t(
               "usecases_desc",
               "Lihat bagaimana arsitektur agen terintegrasi Arkaprana mengolah sinyal telemetri mentah, menjalankan mitigasi otonom, dan melindungi kelangsungan bisnis Anda."
@@ -455,7 +455,7 @@ export default function NalarUsecasesSection() {
 
         {/* Centered Top Pill Tab Switcher (Exact replica of Nalarx Image 2) */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full bg-[#12141F] border border-white/10 backdrop-blur-xl max-w-full overflow-x-auto [scrollbar-width:none]">
+          <div className="inline-flex items-center gap-1.5 p-1.5 rounded-full bg-slate-100/90 dark:bg-[#131B2E] border border-slate-200/90 dark:border-slate-700/60 backdrop-blur-xl max-w-full overflow-x-auto [scrollbar-width:none] shadow-xs">
             {usecases.map((tab) => {
               const isSelected = selectedTabId === tab.id;
               return (
@@ -465,8 +465,8 @@ export default function NalarUsecasesSection() {
                   onClick={() => setSelectedTabId(tab.id)}
                   className={`px-5 py-2.5 rounded-full text-xs font-mono font-medium transition-all whitespace-nowrap cursor-pointer ${
                     isSelected
-                      ? "bg-white text-black font-semibold shadow-lg scale-100"
-                      : "text-white/60 hover:text-white hover:bg-white/[0.05]"
+                      ? "bg-slate-900 text-white dark:bg-white dark:text-black font-semibold shadow-md scale-100"
+                      : "text-slate-600 hover:text-slate-950 dark:text-white/60 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-white/[0.05]"
                   }`}
                 >
                   {tab.tabLabel}
@@ -477,7 +477,7 @@ export default function NalarUsecasesSection() {
         </div>
 
         {/* Master Use Case Card with Cinematic Photograph (Replica of Image 2) */}
-        <div className="relative rounded-[32px] overflow-hidden border border-white/15 bg-[#0B0D14] shadow-[0_30px_90px_rgba(0,0,0,0.8)] transition-all duration-500">
+        <div className="relative rounded-[32px] overflow-hidden border border-slate-700/60 bg-[#131B2E] shadow-[0_30px_90px_rgba(0,0,0,0.6)] transition-all duration-500">
           
           {/* Photographic Background Image with Smooth Crossfade */}
           <div className="absolute inset-0 z-0">

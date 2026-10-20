@@ -160,7 +160,7 @@ export default function LivingOutlineHero() {
             />
 
             {/* Intermediate Waypoint Node ○ */}
-            <circle cx="420" cy="240" r="2.5" fill={isLight ? "#F7F8FA" : "#080A0F"} stroke={isLight ? "#1769E0" : "#38bdf8"} strokeWidth="1" />
+            <circle cx="420" cy="240" r="2.5" fill={isLight ? "#F7F8FA" : "#0B0F19"} stroke={isLight ? "#1769E0" : "#38bdf8"} strokeWidth="1" />
 
             {/* Destination Node ● */}
             <circle cx="590" cy="380" r="2.5" fill={isLight ? "#111827" : "#ffffff"} />

@@ -241,14 +241,14 @@ export default function TechnologyEcosystemSection() {
   const drawerItems = ARCH_DRAWER_ITEMS_MAP[language] || ARCH_DRAWER_ITEMS_MAP.id;
 
   return (
-    <section id="technology" className="relative py-24 md:py-36 bg-[#08090D] text-white overflow-hidden border-b border-white/10">
+    <section id="technology" className="relative py-24 md:py-36 bg-[#F8FAFC] dark:bg-[#0B0F19] text-slate-900 dark:text-white overflow-hidden">
       
       {/* Background Ambient Grid */}
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-15 pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(rgba(2, 132, 199, 0.12) 1px, transparent 1px)`,
           backgroundSize: "32px 32px",
         }}
       />
@@ -257,18 +257,18 @@ export default function TechnologyEcosystemSection() {
         
         {/* Section Header: CENTERED AS REQUESTED */}
         <div className="max-w-3xl mx-auto text-center mb-14 space-y-4 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-            <span className="tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-300/80 dark:border-white/10 bg-white/90 dark:bg-white/[0.04] text-[11px] font-mono text-slate-700 dark:text-white/70 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
+            <span className="tracking-widest uppercase font-medium">
               {t("ecosystem_badge", "03 · ARCHITECTURE · INTEGRATED ECOSYSTEM")}
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.18] font-display">
+          <h2 className="text-3xl sm:text-5xl font-light text-slate-900 dark:text-white tracking-tight leading-[1.18] font-display">
             {t("ecosystem_title", "Teknologi Harus Bekerja Sebagai Satu Sistem.")}
           </h2>
 
-          <p className="text-sm sm:text-base text-white/60 font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-white/60 font-light leading-relaxed max-w-2xl mx-auto">
             {t(
               "ecosystem_desc",
               "Dari ruang server fisik Tier-3 dan jaringan transmisi optik DWDM, hingga cloud privat berdaulat dan otomasi AI otonom — Arkaprana mengintegrasikan seluruh domain rekayasa Anda tanpa fragmentasi."
@@ -286,11 +286,11 @@ export default function TechnologyEcosystemSection() {
 
         {/* Clean, Centered Architectural Domain Drawers (Image 4 Stack Card Removed as Requested) */}
         <div className="max-w-4xl mx-auto space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-white/10 px-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-white/60">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10 px-2">
+            <span className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-white/60">
               {t("ecosystem_drawers_title", "Architectural Domain Drawers")}
             </span>
-            <span className="text-[11px] font-mono text-[#38BDF8] flex items-center gap-1.5">
+            <span className="text-[11px] font-mono text-sky-600 dark:text-[#38BDF8] flex items-center gap-1.5 font-medium">
               <Sparkles className="size-3" />
               <span>{t("ecosystem_drawers_hint", "Klik untuk membuka spesifikasi teknis")}</span>
             </span>

@@ -33,60 +33,83 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main className="flex-1">
-      {/* 01. [DARK] HERO: BUILD. CONNECT. INTELLIGENCE. (Image 4 Stack Card Removed as Requested) */}
+      {/* 01. HERO: BUILD. CONNECT. INTELLIGENCE. */}
       <HeroSection />
 
-      {/* 02. [DARK] NALARX-STYLE INTERACTIVE HARDWARE SHOWCASE & COMMAND CENTER */}
+      <div className="beam-divider" />
+
+      {/* 02. NALARX-STYLE INTERACTIVE HARDWARE SHOWCASE & COMMAND CENTER */}
       <ScrollReveal delayMs={50}>
         <NalarProductShowcaseSection />
       </ScrollReveal>
 
-      {/* 03. [LIGHT] NALARX-STYLE FLOATING APPS CLOUD (IMAGE 3: "Your company runs on dozens of apps...") */}
+      <div className="beam-divider" />
+
+      {/* 03. NALARX-STYLE FLOATING APPS CLOUD */}
       <ScrollReveal delayMs={50}>
         <NalarFloatingAppsSection />
       </ScrollReveal>
 
-      {/* 04. [DARK] NALARX-STYLE ENTERPRISE USE CASES WITH CINEMATIC PHOTOGRAPHY & PIPELINE ARCHITECTURE */}
+      <div className="beam-divider" />
+
+      {/* 04. NALARX-STYLE ENTERPRISE USE CASES WITH CINEMATIC PHOTOGRAPHY */}
       <ScrollReveal delayMs={50}>
         <NalarUsecasesSection />
       </ScrollReveal>
 
-      {/* 05. [DARK] ECOSYSTEM: Flowing Architecture Laser Highway & Accordion Explorer */}
+      <div className="beam-divider" />
+
+      {/* 05. ECOSYSTEM: Flowing Architecture Laser Highway & Accordion Explorer */}
       <ScrollReveal delayMs={50}>
         <TechnologyEcosystemSection />
       </ScrollReveal>
 
-      {/* 06. [DARK] SOLUTIONS AS PRODUCTS: 01 to 07 Enterprise Solutions with Technical Glyphs */}
+      <div className="beam-divider" />
+
+      {/* 06. SOLUTIONS AS PRODUCTS: 01 to 07 Enterprise Solutions with Technical Glyphs */}
       <ScrollReveal delayMs={50}>
         <SolutionsSection />
       </ScrollReveal>
 
-      {/* 07. [DARK] NALARX-STYLE INDUSTRY PHOTOGRAPHIC CAROUSEL (IMAGE 5: 8 Industries, 0 Double Images) */}
+      {/* BEAM SEPARATOR AS REQUESTED BY USER (MAUDY-CORPORATE STYLE LIGHT SWEEP) */}
+      <div className="beam-divider" />
+
+      {/* 07. NALARX-STYLE INDUSTRY PHOTOGRAPHIC CAROUSEL */}
       <ScrollReveal delayMs={50}>
         <NalarIndustryCarouselSection />
       </ScrollReveal>
 
-      {/* 08. [LIGHT] NALARX-STYLE "BUILT FOR THE ENTERPRISE" WARM CREAM AUDIT (IMAGE 2: Auto-Revealing Answers) */}
+      <div className="beam-divider" />
+
+      {/* 08. NALARX-STYLE "BUILT FOR THE ENTERPRISE" AUDIT */}
       <ScrollReveal delayMs={50}>
         <NalarEnterpriseAuditSection />
       </ScrollReveal>
 
-      {/* 09. [DARK] NALARX-STYLE "WHY THIS MATTERS IN 2030" STRIPED BAR CHART & METRIC GRID */}
+      <div className="beam-divider" />
+
+      {/* 09. NALARX-STYLE "WHY THIS MATTERS IN 2030" STRIPED BAR CHART & METRIC GRID */}
       <ScrollReveal delayMs={50}>
         <NalarImpactChartSection />
       </ScrollReveal>
 
-      {/* 10. [DARK] MULTI-VENDOR FRICTION DIAGNOSTIC */}
+      <div className="beam-divider" />
+
+      {/* 10. MULTI-VENDOR FRICTION DIAGNOSTIC */}
       <ScrollReveal delayMs={50}>
         <BusinessProblemSection />
       </ScrollReveal>
 
-      {/* 11. [DARK] FREQUENTLY ASKED QUESTIONS MINIMALIST DARK ACCORDION */}
+      <div className="beam-divider" />
+
+      {/* 11. FREQUENTLY ASKED QUESTIONS MINIMALIST ACCORDION */}
       <ScrollReveal delayMs={50}>
         <NalarFaqSection />
       </ScrollReveal>
 
-      {/* 12. [DARK] NALARX-STYLE ORBITAL INTEGRATION CTA: "Stop running your business by feel. Start running it with intelligence" */}
+      <div className="beam-divider" />
+
+      {/* 12. NALARX-STYLE ORBITAL INTEGRATION CTA */}
       <ScrollReveal delayMs={50}>
         <NalarOrbitalCtaSection />
       </ScrollReveal>

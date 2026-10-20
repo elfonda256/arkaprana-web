@@ -47,8 +47,8 @@ export default function StarBeamButton({
           href={href}
           className={`inline-flex items-center justify-center gap-2.5 rounded-full px-6 sm:px-7 py-3 text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all duration-300 shadow-lg ${
             isDark
-              ? "bg-[#0A0B10] text-white hover:bg-[#12141F] border border-white/10"
-              : "bg-white text-[#08090D] hover:bg-slate-100 hover:shadow-[0_0_24px_rgba(56,189,248,0.25)]"
+              ? "bg-[#131B2E] text-white hover:bg-[#1A253F] border border-slate-700/60"
+              : "bg-white text-[#0B0F19] hover:bg-slate-100 hover:shadow-[0_0_24px_rgba(56,189,248,0.25)]"
           }`}
         >
           <span>{children}</span>

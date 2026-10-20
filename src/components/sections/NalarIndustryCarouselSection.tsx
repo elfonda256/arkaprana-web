@@ -151,28 +151,28 @@ export default function NalarIndustryCarouselSection() {
   };
 
   return (
-    <section className="relative py-24 md:py-36 bg-[#08090D] text-white overflow-hidden border-b border-white/10">
+    <section className="relative py-24 md:py-36 bg-[#F8FAFC] dark:bg-[#0B0F19] text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header: CENTERED AS REQUESTED */}
         <div className="max-w-3xl mx-auto text-center mb-12 space-y-3 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-            <span className="tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-white/10 bg-white/90 dark:bg-white/[0.04] text-[11px] font-mono text-slate-800 dark:text-white/80 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0284C7] dark:bg-[#38BDF8] animate-pulse" />
+            <span className="tracking-widest uppercase font-medium">
               {t("industries_badge", "06 · PROVEN FIELD ADOPTION · INDUSTRIES")}
             </span>
           </div>
 
           <div className="space-y-1">
-            <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.18] font-display">
+            <h2 className="text-3xl sm:text-5xl font-light text-slate-900 dark:text-white tracking-tight leading-[1.18] font-display">
               {t("industries_title_1", "How Arkaprana moves work")}
             </h2>
-            <h2 className="text-3xl sm:text-5xl font-light text-white/45 tracking-tight leading-[1.18] font-display">
+            <h2 className="text-3xl sm:text-5xl font-light text-slate-600 dark:text-white/60 tracking-tight leading-[1.18] font-display">
               {t("industries_title_2", "across every industry.")}
             </h2>
           </div>
 
-          <p className="text-xs sm:text-sm text-white/50 font-mono pt-1">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-white/50 font-mono pt-1">
             {t("industries_desc", "8 Sektor Industri Korporasi · Solusi Teruji Tanpa Duplikasi Sistem")}
           </p>
 
@@ -181,7 +181,7 @@ export default function NalarIndustryCarouselSection() {
             <button
               type="button"
               onClick={scrollLeft}
-              className="size-11 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/15 transition-all cursor-pointer active:scale-95 shadow-md"
+              className="size-11 rounded-full bg-white dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-white/70 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/15 transition-all cursor-pointer active:scale-95 shadow-md"
               aria-label="Scroll left"
             >
               <ArrowLeft className="size-4" />
@@ -189,7 +189,7 @@ export default function NalarIndustryCarouselSection() {
             <button
               type="button"
               onClick={scrollRight}
-              className="size-11 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/15 transition-all cursor-pointer active:scale-95 shadow-md"
+              className="size-11 rounded-full bg-white dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-700 dark:text-white/70 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/15 transition-all cursor-pointer active:scale-95 shadow-md"
               aria-label="Scroll right"
             >
               <ArrowRight className="size-4" />
@@ -205,7 +205,7 @@ export default function NalarIndustryCarouselSection() {
           {industryCards.map((card) => (
             <div
               key={card.id}
-              className="relative shrink-0 w-[290px] sm:w-[340px] h-[490px] rounded-[28px] overflow-hidden border border-white/15 bg-[#12141F] shadow-2xl snap-start group flex flex-col justify-between p-6 sm:p-7 transition-all duration-300 hover:border-white/30"
+              className="relative shrink-0 w-[290px] sm:w-[340px] h-[490px] rounded-[28px] overflow-hidden border border-slate-200 dark:border-white/15 bg-slate-900 shadow-xl dark:shadow-2xl snap-start group flex flex-col justify-between p-6 sm:p-7 transition-all duration-300 hover:border-sky-500/50 dark:hover:border-white/30"
             >
               {/* Full Background Photograph - 100% Unique Image Per Industry */}
               <div className="absolute inset-0 z-0">
@@ -217,7 +217,7 @@ export default function NalarIndustryCarouselSection() {
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700 brightness-[0.95] contrast-[1.05]"
                 />
                 {/* Dark Gradient Overlay for Supreme Legibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#08090D] via-[#08090D]/40 to-black/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/40 to-black/50" />
               </div>
 
               {/* Card Content - Top Title */}

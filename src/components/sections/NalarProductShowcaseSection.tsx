@@ -213,20 +213,20 @@ export default function NalarProductShowcaseSection() {
   };
 
   return (
-    <section id="product-showcase" className="relative scroll-mt-24 px-4 sm:px-6 py-20 md:py-32 overflow-hidden bg-[#08090D]">
+    <section id="product-showcase" className="relative scroll-mt-24 px-4 sm:px-6 py-20 md:py-32 overflow-hidden bg-[#F8FAFC] dark:bg-[#0B0F19] text-slate-900 dark:text-white">
       
       {/* Background Section Header (Standardized Nalarx Eyebrow & Display Typography) */}
       <div className="max-w-4xl mx-auto text-center mb-14 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
-          <span className="tracking-widest uppercase">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300/80 dark:border-white/10 bg-white/90 dark:bg-white/[0.04] text-[11px] font-mono text-slate-700 dark:text-white/70 shadow-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
+          <span className="tracking-widest uppercase font-medium">
             {t("showcase_badge", "01 · PLATFORM · COMMAND CONSOLE")}
           </span>
         </div>
-        <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.18] font-display">
+        <h2 className="text-3xl sm:text-5xl font-light text-slate-900 dark:text-white tracking-tight leading-[1.18] font-display">
           {t("showcase_title", "Satu Sistem Cerdas untuk Mengendalikan Seluruh Infrastruktur.")}
         </h2>
-        <p className="text-sm sm:text-base text-white/60 max-w-2xl mx-auto font-light leading-relaxed">
+        <p className="text-sm sm:text-base text-slate-600 dark:text-white/60 max-w-2xl mx-auto font-light leading-relaxed">
           {t(
             "showcase_desc",
             "Bukan sekadar dashboard terpisah — Arkaprana terhubung langsung ke router core, modular data center, dan lingkungan cloud privat Anda."
@@ -235,7 +235,7 @@ export default function NalarProductShowcaseSection() {
       </div>
 
       {/* Main Master Card Showcase Container */}
-      <div className="relative mx-auto max-w-[1240px] rounded-3xl border border-white/10 bg-[#0E1017]/95 shadow-[0_30px_90px_rgba(0,0,0,0.7)] p-4 sm:p-8 lg:p-10 lg:min-h-[580px] backdrop-blur-2xl">
+      <div className="relative mx-auto max-w-[1240px] rounded-3xl border border-slate-200/90 dark:border-slate-700/60 bg-white/95 dark:bg-[#131B2E]/95 shadow-[0_20px_60px_rgba(0,0,0,0.06)] dark:shadow-[0_30px_90px_rgba(0,0,0,0.5)] p-4 sm:p-8 lg:p-10 lg:min-h-[580px] backdrop-blur-2xl">
         
         {/* Background Liquid Gradient Glow with Grain/Noise */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl -z-10">
@@ -266,8 +266,8 @@ export default function NalarProductShowcaseSection() {
                   onClick={() => handleSelectTab(feat.id)}
                   className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider uppercase transition-all whitespace-nowrap cursor-pointer ${
                     isSelected
-                      ? "bg-white text-black font-semibold shadow-md scale-105"
-                      : "bg-white/[0.06] text-white/60 hover:text-white"
+                      ? "bg-slate-900 text-white dark:bg-white dark:text-black font-semibold shadow-md scale-105"
+                      : "bg-slate-100 text-slate-700 hover:text-slate-950 dark:bg-white/[0.06] dark:text-white/60 dark:hover:text-white"
                   }`}
                 >
                   {feat.tag}
@@ -275,7 +275,7 @@ export default function NalarProductShowcaseSection() {
               );
             })}
           </div>
-          <p className="mt-2 text-xs text-white/60 font-light leading-relaxed">
+          <p className="mt-2 text-xs text-slate-600 dark:text-white/60 font-light leading-relaxed">
             {activeFeature.desc}
           </p>
         </div>
@@ -294,31 +294,31 @@ export default function NalarProductShowcaseSection() {
                   onClick={() => handleSelectTab(feat.id)}
                   className={`relative isolate flex min-h-[160px] flex-col justify-center rounded-2xl p-6 text-left transition-all duration-300 overflow-hidden cursor-pointer ${
                     isSelected
-                      ? "border border-white/25 bg-white/[0.07] shadow-xl translate-x-1"
-                      : "border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] opacity-70 hover:opacity-95"
+                      ? "border border-sky-400/80 dark:border-white/25 bg-sky-50/70 dark:bg-white/[0.07] shadow-md dark:shadow-xl translate-x-1"
+                      : "border border-slate-200/90 dark:border-white/[0.06] bg-slate-50/50 dark:bg-white/[0.02] hover:bg-slate-100/70 dark:hover:bg-white/[0.04] opacity-80 hover:opacity-100"
                   }`}
                 >
                   {isSelected && (
                     <span
                       aria-hidden="true"
-                      className="absolute inset-y-0 left-0 -z-10 rounded-2xl bg-white/[0.05] animate-nx-progress"
+                      className="absolute inset-y-0 left-0 -z-10 rounded-2xl bg-sky-500/10 dark:bg-white/[0.05] animate-nx-progress"
                     />
                   )}
 
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="font-mono text-[10px] tracking-widest uppercase text-[#38BDF8]">
+                    <span className="font-mono text-[10px] tracking-widest uppercase text-sky-600 dark:text-[#38BDF8] font-semibold">
                       {feat.tag}
                     </span>
                     {isSelected && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
                     )}
                   </div>
                   <h3 className={`font-display text-base font-medium leading-snug transition-colors ${
-                    isSelected ? "text-white font-semibold" : "text-white/80"
+                    isSelected ? "text-slate-950 dark:text-white font-semibold" : "text-slate-800 dark:text-white/80"
                   }`}>
                     {feat.title}
                   </h3>
-                  <p className="mt-2 text-xs text-white/55 font-light leading-relaxed">
+                  <p className="mt-2 text-xs text-slate-600 dark:text-white/55 font-light leading-relaxed">
                     {feat.desc}
                   </p>
                 </button>
@@ -340,13 +340,13 @@ export default function NalarProductShowcaseSection() {
                 <span aria-hidden="true" className="absolute top-[140px] -right-[4px] h-[68px] w-[3.5px] rounded-r bg-gradient-to-b from-[#a1a1aa] to-[#52525b]" />
 
                 {/* Inner Screen Case */}
-                <div className="h-full w-full rounded-[41px] bg-[#090A0E] p-[3px] overflow-hidden flex flex-col">
+                <div className="h-full w-full rounded-[41px] bg-[#0B0F19] p-[3px] overflow-hidden flex flex-col">
                   
                   {/* Screen Content Wrapper */}
-                  <div className="relative h-full w-full rounded-[37px] bg-[#10121A] overflow-hidden flex flex-col">
+                  <div className="relative h-full w-full rounded-[37px] bg-[#131B2E] overflow-hidden flex flex-col">
                     
                     {/* Top Status & Dynamic Island */}
-                    <div className="pt-2 px-4 pb-2 flex items-center justify-between border-b border-white/[0.06] bg-[#0C0E14] z-20">
+                    <div className="pt-2 px-4 pb-2 flex items-center justify-between border-b border-white/[0.06] bg-[#0F172A] z-20">
                       <div className="mx-auto flex h-[20px] w-[80px] items-center justify-end rounded-full bg-black pr-2">
                         <span className="h-[6px] w-[6px] rounded-full bg-[#1c2a45] ring-[1px] ring-[#0f1626]" />
                       </div>
@@ -375,7 +375,7 @@ export default function NalarProductShowcaseSection() {
                     </div>
 
                     {/* Chat Header */}
-                    <div className="flex items-center gap-2.5 px-3 py-2.5 bg-[#12141F] border-b border-white/[0.06]">
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 bg-[#162036] border-b border-white/[0.06]">
                       <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#0284C7] text-white shadow-sm">
                         <Bot className="h-4 w-4" />
                       </div>
@@ -497,7 +497,7 @@ export default function NalarProductShowcaseSection() {
                     </div>
 
                     {/* Bottom Input Preview Bar */}
-                    <div className="p-2 border-t border-white/[0.06] bg-[#0E1017] flex items-center gap-2">
+                    <div className="p-2 border-t border-white/[0.06] bg-[#0F172A] flex items-center gap-2">
                       <div className="flex-1 rounded-full bg-white/[0.06] px-3 py-1.5 text-[9.5px] text-white/40 font-mono">
                         {language === "en" ? "Ask infrastructure telemetry query..." : "Tanyakan telemetri infrastruktur..."}
                       </div>
@@ -523,31 +523,31 @@ export default function NalarProductShowcaseSection() {
                   onClick={() => handleSelectTab(feat.id)}
                   className={`relative isolate flex min-h-[160px] flex-col justify-center rounded-2xl p-6 text-left transition-all duration-300 overflow-hidden cursor-pointer ${
                     isSelected
-                      ? "border border-white/25 bg-white/[0.07] shadow-xl translate-x-1"
-                      : "border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] opacity-70 hover:opacity-95"
+                      ? "border border-sky-400/80 dark:border-white/25 bg-sky-50/70 dark:bg-white/[0.07] shadow-md dark:shadow-xl translate-x-1"
+                      : "border border-slate-200/90 dark:border-white/[0.06] bg-slate-50/50 dark:bg-white/[0.02] hover:bg-slate-100/70 dark:hover:bg-white/[0.04] opacity-80 hover:opacity-100"
                   }`}
                 >
                   {isSelected && (
                     <span
                       aria-hidden="true"
-                      className="absolute inset-y-0 left-0 -z-10 rounded-2xl bg-white/[0.05] animate-nx-progress"
+                      className="absolute inset-y-0 left-0 -z-10 rounded-2xl bg-sky-500/10 dark:bg-white/[0.05] animate-nx-progress"
                     />
                   )}
 
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="font-mono text-[10px] tracking-widest uppercase text-[#38BDF8]">
+                    <span className="font-mono text-[10px] tracking-widest uppercase text-sky-600 dark:text-[#38BDF8] font-semibold">
                       {feat.tag}
                     </span>
                     {isSelected && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
                     )}
                   </div>
                   <h3 className={`font-display text-base font-medium leading-snug transition-colors ${
-                    isSelected ? "text-white font-semibold" : "text-white/80"
+                    isSelected ? "text-slate-950 dark:text-white font-semibold" : "text-slate-800 dark:text-white/80"
                   }`}>
                     {feat.title}
                   </h3>
-                  <p className="mt-2 text-xs text-white/55 font-light leading-relaxed">
+                  <p className="mt-2 text-xs text-slate-600 dark:text-white/55 font-light leading-relaxed">
                     {feat.desc}
                   </p>
                 </button>

@@ -49,7 +49,7 @@ export default function AboutClientView() {
   const aboutData = getLocalizedAboutData(language);
 
   return (
-    <main className="flex-1 bg-[#08090D] text-white min-h-screen">
+    <main className="flex-1 bg-[#F8FAFC] dark:bg-[#0B0F19] text-slate-900 dark:text-white min-h-screen">
       {/* 01. HERO WITH SUBTLE MIST, CONCENTRIC ORBITS & DYNAMIC SINE WAVES */}
       <NalarPageHeroAtmosphere
         badgeText={t("abt_page_badge", "05 · ABOUT ARKAPRANA · COMPANY & VISION")}
@@ -76,28 +76,31 @@ export default function AboutClientView() {
         </div>
       </NalarPageHeroAtmosphere>
 
+      {/* Passing Light Hairline Divider */}
+      <div className="beam-divider" />
+
       {/* 02. WHO WE ARE */}
       <ScrollReveal delayMs={60}>
-        <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+        <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-5 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[10.5px] font-mono text-[#38BDF8]">
-                <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/[0.04] text-[10.5px] font-mono text-sky-600 dark:text-[#38BDF8] shadow-xs">
+                <span className="size-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
                 <span>{t("abt_who_badge", "IDENTITY & PURPOSE")}</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white font-display tracking-tight leading-[1.18]">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-slate-900 dark:text-white font-display tracking-tight leading-[1.18]">
                 {t("abt_who_title", "Satu Rekayasa Terpadu untuk Seluruh Lapisan IT.")}
               </h2>
-              <p className="text-xs sm:text-sm text-white/50 font-mono">
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-white/50 font-mono">
                 PT ARKAPRANA TEKNOLOGI NUSANTARA · INDONESIA
               </p>
             </div>
 
-            <div className="lg:col-span-7 space-y-6 text-white/70 text-sm sm:text-base leading-relaxed font-light">
+            <div className="lg:col-span-7 space-y-6 text-slate-700 dark:text-white/70 text-sm sm:text-base leading-relaxed font-light">
               {language === "en" ? (
                 <>
                   <p>
-                    <strong className="text-white font-medium">PT ARKAPRANA TEKNOLOGI NUSANTARA</strong> (ARKAPRANA) was established as an enterprise engineering firm and systems integrator delivering critical compute, carrier-grade data networks, and sovereign artificial intelligence capabilities across Indonesia.
+                    <strong className="text-slate-900 dark:text-white font-semibold">PT ARKAPRANA TEKNOLOGI NUSANTARA</strong> (ARKAPRANA) was established as an enterprise engineering firm and systems integrator delivering critical compute, carrier-grade data networks, and sovereign artificial intelligence capabilities across Indonesia.
                   </p>
                   <p>
                     We believe that intelligent technology adoption such as Artificial Intelligence cannot exist in a vacuum. True intelligence requires physical computing foundations, ultra-low latency optical networks, and impenetrable Zero-Trust cybersecurity architectures.
@@ -109,7 +112,7 @@ export default function AboutClientView() {
               ) : (
                 <>
                   <p>
-                    <strong className="text-white font-medium">PT ARKAPRANA TEKNOLOGI NUSANTARA</strong> (ARKAPRANA) didirikan sebagai perusahaan teknologi dan system integrator rekayasa yang berfokus menghadirkan kapabilitas komputasi, jaringan data, dan kecerdasan buatan kelas enterprise di Indonesia.
+                    <strong className="text-slate-900 dark:text-white font-semibold">PT ARKAPRANA TEKNOLOGI NUSANTARA</strong> (ARKAPRANA) didirikan sebagai perusahaan teknologi dan system integrator rekayasa yang berfokus menghadirkan kapabilitas komputasi, jaringan data, dan kecerdasan buatan kelas enterprise di Indonesia.
                   </p>
                   <p>
                     Kami memandang bahwa adopsi teknologi cerdas seperti Artificial Intelligence tidak dapat berdiri sendiri di ruang hampa. Kecerdasan sejati memerlukan fondasi komputasi fisik, jaringan data berlatensi rendah, serta arsitektur keamanan siber yang tidak dapat ditembus.
@@ -120,14 +123,14 @@ export default function AboutClientView() {
                 </>
               )}
 
-              <div className="p-6 sm:p-7 rounded-2xl bg-[#0D0F18]/90 border border-white/10 space-y-3 backdrop-blur-xl">
-                <span className="text-[10px] font-mono text-[#38BDF8] uppercase tracking-widest font-semibold block">
+              <div className="p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#131B2E]/95 border border-slate-200 dark:border-slate-700/60 space-y-3 shadow-xl backdrop-blur-xl">
+                <span className="text-[10px] font-mono text-sky-600 dark:text-[#38BDF8] uppercase tracking-widest font-semibold block">
                   {language === "en" ? "Strategic Technology Journey" : "Tahapan Transformasi Strategis"}
                 </span>
-                <div className="text-xs sm:text-sm font-semibold text-white font-mono tracking-wider">
+                <div className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white font-mono tracking-wider">
                   INFRASTRUCTURE → NETWORK → CLOUD → SECURITY → DATA → AI
                 </div>
-                <p className="text-xs text-white/50 font-light">
+                <p className="text-xs text-slate-600 dark:text-white/50 font-light">
                   {language === "en"
                     ? "A holistic digital transformation pathway ensuring technology investments yield verifiable resilience and zero multi-vendor friction."
                     : "Alur transformasi digital holistik yang menjamin investasi teknologi berbuah stabilitas dan efisiensi nyata tanpa gesekan antar-vendor."}
@@ -138,18 +141,21 @@ export default function AboutClientView() {
         </section>
       </ScrollReveal>
 
+      {/* Passing Light Hairline Divider */}
+      <div className="beam-divider" />
+
       {/* 03. WHAT WE BELIEVE */}
-      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <ScrollReveal delayMs={40}>
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-3 flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[10.5px] font-mono text-[#38BDF8]">
-              <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/[0.04] text-[10.5px] font-mono text-sky-600 dark:text-[#38BDF8] shadow-xs">
+              <span className="size-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
               <span>{t("abt_beliefs_badge", "ENGINEERING PHILOSOPHY")}</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-light text-white font-display tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-light text-slate-900 dark:text-white font-display tracking-tight">
               {t("abt_beliefs_title", "Prinsip Rekayasa Kami")}
             </h2>
-            <p className="text-xs sm:text-sm text-white/50 font-light max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-white/60 font-light max-w-xl mx-auto">
               {t("abt_beliefs_desc", "Prinsip fundamental yang memandu setiap desain arsitektur, pemilihan vendor, dan komitmen operasional kami.")}
             </p>
           </div>
@@ -158,18 +164,18 @@ export default function AboutClientView() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {aboutData.beliefs.map((b, idx) => (
             <ScrollReveal key={b.title} delayMs={idx * 50}>
-              <div className="relative rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-500 p-8 sm:p-9 space-y-4 shadow-xl backdrop-blur-2xl group hover:-translate-y-1 h-full flex flex-col justify-between">
+              <div className="relative rounded-3xl bg-white dark:bg-[#131B2E]/95 border border-slate-200 dark:border-slate-700/60 hover:border-sky-400/50 dark:hover:border-[#38BDF8]/40 transition-all duration-500 p-8 sm:p-9 space-y-4 shadow-xl backdrop-blur-2xl group hover:-translate-y-1 h-full flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10.5px] font-mono text-[#38BDF8] uppercase tracking-widest px-2.5 py-0.5 rounded-md bg-[#38BDF8]/10 border border-[#38BDF8]/20 font-semibold">
+                    <span className="text-[10.5px] font-mono text-sky-600 dark:text-[#38BDF8] uppercase tracking-widest px-2.5 py-0.5 rounded-md bg-sky-50 dark:bg-[#38BDF8]/10 border border-sky-200 dark:border-[#38BDF8]/20 font-semibold">
                       {language === "en" ? `BELIEF 0${idx + 1}` : `PRINSIP 0${idx + 1}`}
                     </span>
-                    <span className="size-1.5 rounded-full bg-white/20 group-hover:bg-[#38BDF8] transition-colors" />
+                    <span className="size-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover:bg-[#38BDF8] transition-colors" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-light text-white font-display">
+                  <h3 className="text-xl sm:text-2xl font-light text-slate-900 dark:text-white font-display">
                     {b.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-light">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-white/60 leading-relaxed font-light">
                     {b.desc}
                   </p>
                 </div>
@@ -179,26 +185,29 @@ export default function AboutClientView() {
         </div>
       </section>
 
+      {/* Passing Light Hairline Divider */}
+      <div className="beam-divider" />
+
       {/* 04. VISION & MISSION */}
-      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           {/* Vision */}
           <div className="lg:col-span-6">
             <ScrollReveal delayMs={50}>
-              <div className="p-8 sm:p-12 rounded-3xl bg-[#0D0F18]/90 border border-white/10 shadow-2xl backdrop-blur-2xl space-y-6 flex flex-col justify-between hover:border-[#38BDF8]/30 transition-all h-full">
+              <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#131B2E]/95 border border-slate-200 dark:border-slate-700/60 shadow-xl backdrop-blur-2xl space-y-6 flex flex-col justify-between hover:border-sky-400/50 dark:hover:border-[#38BDF8]/30 transition-all h-full">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2.5 text-[#38BDF8]">
+                  <div className="flex items-center gap-2.5 text-sky-600 dark:text-[#38BDF8]">
                     <Compass className="size-6" />
-                    <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-white/80">
+                    <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-slate-800 dark:text-white/80">
                       {language === "en" ? "CORPORATE VISION" : "VISI PERUSAHAAN (VISION)"}
                     </h3>
                   </div>
-                  <p className="text-lg sm:text-2xl font-light text-white/95 leading-relaxed italic font-serif">
+                  <p className="text-lg sm:text-2xl font-light text-slate-900 dark:text-white/95 leading-relaxed italic font-serif">
                     &ldquo;{aboutData.vision}&rdquo;
                   </p>
                 </div>
 
-                <div className="text-[10.5px] font-mono text-[#38BDF8] pt-4 border-t border-white/[0.06]">
+                <div className="text-[10.5px] font-mono text-sky-600 dark:text-[#38BDF8] pt-4 border-t border-slate-100 dark:border-white/[0.06]">
                   PT ARKAPRANA TEKNOLOGI NUSANTARA · {language === "en" ? "SOVEREIGN ARCHITECTURE" : "KEDAULATAN IT INDONESIA"}
                 </div>
               </div>
@@ -208,17 +217,17 @@ export default function AboutClientView() {
           {/* Mission */}
           <div className="lg:col-span-6">
             <ScrollReveal delayMs={100}>
-              <div className="p-8 sm:p-12 rounded-3xl bg-[#0D0F18]/90 border border-white/10 shadow-2xl backdrop-blur-2xl space-y-6 hover:border-[#38BDF8]/30 transition-all h-full">
-                <div className="flex items-center gap-2.5 text-[#38BDF8]">
+              <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#131B2E]/95 border border-slate-200 dark:border-slate-700/60 shadow-xl backdrop-blur-2xl space-y-6 hover:border-sky-400/50 dark:hover:border-[#38BDF8]/30 transition-all h-full">
+                <div className="flex items-center gap-2.5 text-sky-600 dark:text-[#38BDF8]">
                   <Target className="size-6" />
-                  <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-white/80">
+                  <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-slate-800 dark:text-white/80">
                     {language === "en" ? "CORPORATE MISSION" : "MISI PERUSAHAAN (MISSION)"}
                   </h3>
                 </div>
                 <ul className="space-y-4">
                   {aboutData.missions.map((mission, idx) => (
-                    <li key={idx} className="flex items-start text-xs sm:text-sm text-white/70 gap-3.5 font-light">
-                      <span className="size-5 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] border border-[#38BDF8]/20 flex items-center justify-center font-mono text-[10px] shrink-0 mt-0.5 font-semibold">
+                    <li key={idx} className="flex items-start text-xs sm:text-sm text-slate-700 dark:text-white/70 gap-3.5 font-light">
+                      <span className="size-5 rounded-md bg-sky-50 dark:bg-[#38BDF8]/10 text-sky-600 dark:text-[#38BDF8] border border-sky-200 dark:border-[#38BDF8]/20 flex items-center justify-center font-mono text-[10px] shrink-0 mt-0.5 font-semibold">
                         0{idx + 1}
                       </span>
                       <span className="leading-relaxed">{mission}</span>
@@ -231,18 +240,21 @@ export default function AboutClientView() {
         </div>
       </section>
 
+      {/* Passing Light Hairline Divider */}
+      <div className="beam-divider" />
+
       {/* 05. WHAT WE BUILD (7 CAPABILITY PILLARS) */}
-      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <ScrollReveal delayMs={40}>
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-3 flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[10.5px] font-mono text-[#38BDF8]">
-              <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/[0.04] text-[10.5px] font-mono text-sky-600 dark:text-[#38BDF8] shadow-xs">
+              <span className="size-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
               <span>{t("abt_pillars_badge", "CORE TECHNOLOGY PILLARS")}</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-light text-white font-display tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-light text-slate-900 dark:text-white font-display tracking-tight">
               {t("abt_pillars_title", "Fondasi Teknologi yang Kami Bangun")}
             </h2>
-            <p className="text-xs sm:text-sm text-white/50 font-light max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-white/60 font-light max-w-xl mx-auto">
               {language === "en"
                 ? "Unified engineering solution spectrum from physical infrastructure to autonomous AI workflows."
                 : "Spektrum solusi rekayasa terpadu dari infrastruktur fisik hingga otomasi kecerdasan buatan."}
@@ -255,23 +267,23 @@ export default function AboutClientView() {
             const Icon = PILLAR_ICONS[idx % PILLAR_ICONS.length] || Server;
             return (
               <ScrollReveal key={p.name} delayMs={idx * 50}>
-                <div className="relative rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-500 p-7 flex flex-col justify-between group shadow-xl backdrop-blur-2xl hover:-translate-y-1 h-full">
+                <div className="relative rounded-3xl bg-white dark:bg-[#131B2E]/95 border border-slate-200 dark:border-slate-700/60 hover:border-sky-400/50 dark:hover:border-[#38BDF8]/40 transition-all duration-500 p-7 flex flex-col justify-between group shadow-xl backdrop-blur-2xl hover:-translate-y-1 h-full">
                   <div>
-                    <div className="size-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#38BDF8] mb-5 group-hover:scale-110 group-hover:border-[#38BDF8]/50 transition-all shadow-inner">
+                    <div className="size-12 rounded-2xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 flex items-center justify-center text-sky-600 dark:text-[#38BDF8] mb-5 group-hover:scale-110 group-hover:border-[#38BDF8]/50 transition-all shadow-inner">
                       <Icon className="size-6" />
                     </div>
-                    <h3 className="text-lg font-light text-white mb-2 font-display">
+                    <h3 className="text-lg font-light text-slate-900 dark:text-white mb-2 font-display">
                       {p.name}
                     </h3>
-                    <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-light">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-white/60 leading-relaxed font-light">
                       {p.desc}
                     </p>
                   </div>
 
-                  <div className="pt-5 mt-5 border-t border-white/[0.06]">
+                  <div className="pt-5 mt-5 border-t border-slate-100 dark:border-white/[0.06]">
                     <Link
                       href="/solutions"
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-[#38BDF8] hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-sky-600 dark:text-[#38BDF8] hover:text-slate-900 dark:hover:text-white transition-colors"
                     >
                       <span>{language === "en" ? "Explore Specs" : "Pelajari Spesifikasi"}</span>
                       <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
@@ -284,18 +296,21 @@ export default function AboutClientView() {
         </div>
       </section>
 
+      {/* Passing Light Hairline Divider */}
+      <div className="beam-divider" />
+
       {/* 06. HOW WE WORK (8-PHASE METHODOLOGY) */}
-      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <ScrollReveal delayMs={40}>
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-3 flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[10.5px] font-mono text-[#38BDF8]">
-              <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/[0.04] text-[10.5px] font-mono text-sky-600 dark:text-[#38BDF8] shadow-xs">
+              <span className="size-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
               <span>{t("abt_method_badge", "DISCIPLINED METHODOLOGY")}</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-light text-white font-display tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-light text-slate-900 dark:text-white font-display tracking-tight">
               {t("abt_method_title", "Metodologi Rekayasa 8 Tahap")}
             </h2>
-            <p className="text-xs sm:text-sm text-white/50 font-light max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-white/60 font-light max-w-xl mx-auto">
               {language === "en"
                 ? "A systematic engineering lifecycle from precision needs assessment to long-term architectural evolution."
                 : "Siklus rekayasa sistematis dari asesmen kebutuhan presisi hingga evolusi jangka panjang."}
@@ -306,22 +321,22 @@ export default function AboutClientView() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {aboutData.methodology.map((step, idx) => (
             <ScrollReveal key={step.step} delayMs={idx * 40}>
-              <div className="p-6 rounded-2xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-300 space-y-3 shadow-lg backdrop-blur-xl h-full flex flex-col justify-between">
+              <div className="p-6 rounded-2xl bg-white dark:bg-[#131B2E]/95 border border-slate-200 dark:border-slate-700/60 hover:border-sky-400/50 dark:hover:border-[#38BDF8]/40 transition-all duration-300 space-y-3 shadow-lg backdrop-blur-xl h-full flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono text-[#38BDF8] font-semibold">
+                    <span className="text-[10px] font-mono text-sky-600 dark:text-[#38BDF8] font-semibold">
                       STEP {step.step}
                     </span>
-                    <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+                    <span className="size-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
                   </div>
-                  <h4 className="text-base font-semibold text-white font-display">
+                  <h4 className="text-base font-semibold text-slate-900 dark:text-white font-display">
                     {step.name}
                   </h4>
-                  <p className="text-xs text-white/60 leading-relaxed font-light">
+                  <p className="text-xs text-slate-600 dark:text-white/60 leading-relaxed font-light">
                     {step.desc}
                   </p>
                 </div>
-                <div className="pt-3 border-t border-white/[0.06] text-[10px] font-mono text-white/40">
+                <div className="pt-3 border-t border-slate-100 dark:border-white/[0.06] text-[10px] font-mono text-slate-500 dark:text-white/40">
                   {language === "en" ? "Phase Verification Gate" : "Gerbang Verifikasi Tahap"}
                 </div>
               </div>
@@ -330,18 +345,21 @@ export default function AboutClientView() {
         </div>
       </section>
 
+      {/* Passing Light Hairline Divider */}
+      <div className="beam-divider" />
+
       {/* 07. LEADERSHIP COUNCIL */}
-      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10">
+      <section className="py-24 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <ScrollReveal delayMs={40}>
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-3 flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] text-[10.5px] font-mono text-[#38BDF8]">
-              <span className="size-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10 bg-white/90 dark:bg-white/[0.04] text-[10.5px] font-mono text-sky-600 dark:text-[#38BDF8] shadow-xs">
+              <span className="size-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
               <span>{t("abt_lead_badge", "GOVERNANCE & PRACTICE")}</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-light text-white font-display tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-light text-slate-900 dark:text-white font-display tracking-tight">
               {t("abt_lead_title", "Dewan Pimpinan & Rekayasa Sistem")}
             </h2>
-            <p className="text-xs sm:text-sm text-white/50 font-light max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-white/60 font-light max-w-xl mx-auto">
               {language === "en"
                 ? "Directed by systems engineers, network architects, and information security specialists committed to technical integrity."
                 : "Dikelola oleh para insinyur sistem, arsitek jaringan, dan spesialis keamanan informasi yang berkomitmen pada integritas teknis."}
@@ -354,24 +372,24 @@ export default function AboutClientView() {
             const Icon = LEADERSHIP_ICONS[idx % LEADERSHIP_ICONS.length] || Users;
             return (
               <ScrollReveal key={leader.name} delayMs={idx * 50}>
-                <div className="p-7 rounded-3xl bg-[#0D0F18]/90 border border-white/10 hover:border-[#38BDF8]/40 transition-all duration-300 space-y-4 shadow-xl backdrop-blur-xl h-full flex flex-col justify-between">
+                <div className="p-7 rounded-3xl bg-white dark:bg-[#131B2E]/95 border border-slate-200 dark:border-slate-700/60 hover:border-sky-400/50 dark:hover:border-[#38BDF8]/40 transition-all duration-300 space-y-4 shadow-xl backdrop-blur-xl h-full flex flex-col justify-between">
                   <div className="space-y-4">
-                    <div className="size-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#38BDF8] shadow-inner">
+                    <div className="size-12 rounded-2xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 flex items-center justify-center text-sky-600 dark:text-[#38BDF8] shadow-inner">
                       <Icon className="size-6" />
                     </div>
                     <div>
-                      <h4 className="text-base font-semibold text-white font-display leading-tight mb-1">
+                      <h4 className="text-base font-semibold text-slate-900 dark:text-white font-display leading-tight mb-1">
                         {leader.name}
                       </h4>
-                      <div className="text-[11px] font-mono text-[#38BDF8]">
+                      <div className="text-[11px] font-mono text-sky-600 dark:text-[#38BDF8] font-medium">
                         {leader.role}
                       </div>
                     </div>
-                    <p className="text-xs text-white/60 leading-relaxed font-light">
+                    <p className="text-xs text-slate-600 dark:text-white/60 leading-relaxed font-light">
                       {leader.focus}
                     </p>
                   </div>
-                  <div className="pt-3 border-t border-white/[0.06] text-[10px] font-mono text-white/40">
+                  <div className="pt-3 border-t border-slate-100 dark:border-white/[0.06] text-[10px] font-mono text-slate-500 dark:text-white/40">
                     {leader.credentials}
                   </div>
                 </div>
@@ -381,10 +399,13 @@ export default function AboutClientView() {
         </div>
       </section>
 
+      {/* Passing Light Hairline Divider */}
+      <div className="beam-divider" />
+
       {/* 08. CLOSING CONTACT DESK */}
       <ScrollReveal delayMs={80}>
         <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
-          <div className="rounded-3xl border border-white/10 bg-[#0C0E15] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+          <div className="rounded-3xl border border-slate-700/60 bg-[#131B2E] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
             <div className="space-y-4 max-w-2xl mx-auto">
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#38BDF8] block">
                 {language === "en" ? "Official Communication Desk" : "Meja Komunikasi Resmi"}
@@ -430,6 +451,9 @@ export default function AboutClientView() {
           </div>
         </section>
       </ScrollReveal>
+
+      {/* Passing Light Hairline Divider */}
+      <div className="beam-divider" />
 
       {/* MONUMENTAL NALAR ORBITAL CTA SECTION */}
       <ScrollReveal delayMs={80}>

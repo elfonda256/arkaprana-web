@@ -63,8 +63,8 @@ export default function EnterpriseAccordionDrawer({
             key={item.id}
             className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
               isOpen
-                ? "bg-white/[0.05] border-[#38BDF8]/40 shadow-lg"
-                : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/10"
+                ? "bg-sky-50/70 dark:bg-white/[0.05] border-sky-300 dark:border-[#38BDF8]/40 shadow-sm dark:shadow-lg"
+                : "bg-white dark:bg-white/[0.02] border-slate-200/90 dark:border-white/[0.06] hover:bg-slate-50/80 dark:hover:bg-white/[0.04]"
             }`}
           >
             {/* Drawer Header Button */}
@@ -77,35 +77,35 @@ export default function EnterpriseAccordionDrawer({
                 <span
                   className={`font-mono text-xs px-2.5 py-1 rounded-md border font-semibold tracking-wider uppercase transition-colors shrink-0 ${
                     isOpen
-                      ? "bg-[#38BDF8]/15 border-[#38BDF8]/30 text-[#38BDF8]"
-                      : "bg-white/[0.04] border-white/10 text-white/60"
+                      ? "bg-sky-100 dark:bg-[#38BDF8]/15 border-sky-200 dark:border-[#38BDF8]/30 text-sky-700 dark:text-[#38BDF8]"
+                      : "bg-slate-100 dark:bg-white/[0.04] border-slate-200 dark:border-white/10 text-slate-700 dark:text-white/60"
                   }`}
                 >
                   {item.badge}
                 </span>
 
                 <div className="truncate">
-                  <h4 className="text-sm sm:text-base font-semibold text-white tracking-tight flex items-center gap-2">
+                  <h4 className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
                     <span>{item.title}</span>
                     {isOpen && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse shrink-0" />
                     )}
                   </h4>
-                  <p className="text-xs text-white/50 font-mono line-clamp-1 mt-0.5">
+                  <p className="text-xs text-slate-500 dark:text-white/50 font-mono line-clamp-1 mt-0.5">
                     {item.category}
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 shrink-0 ml-2">
-                <span className="hidden sm:inline-block text-[11px] font-mono text-[#38BDF8]/80">
+                <span className="hidden sm:inline-block text-[11px] font-mono text-sky-600 dark:text-[#38BDF8]/80 font-medium">
                   {item.sla}
                 </span>
                 <div
                   className={`size-7 rounded-full flex items-center justify-center border transition-all duration-300 ${
                     isOpen
-                      ? "bg-white/10 border-white/20 text-white rotate-180"
-                      : "bg-white/[0.03] border-white/10 text-white/50"
+                      ? "bg-sky-100 dark:bg-white/10 border-sky-200 dark:border-white/20 text-sky-800 dark:text-white rotate-180"
+                      : "bg-slate-100 dark:bg-white/[0.03] border-slate-200 dark:border-white/10 text-slate-500 dark:text-white/50"
                   }`}
                 >
                   <ChevronDown className="size-4" />
@@ -116,10 +116,10 @@ export default function EnterpriseAccordionDrawer({
             {/* Expandable Accordion Body (CSS Grid Smooth Height) */}
             <div className={`accordion-wrapper ${isOpen ? "is-open" : ""}`}>
               <div className="accordion-inner">
-                <div className="px-4 pb-5 sm:px-6 sm:pb-6 pt-1 border-t border-white/[0.06] space-y-5">
+                <div className="px-4 pb-5 sm:px-6 sm:pb-6 pt-1 border-t border-slate-200/80 dark:border-white/[0.06] space-y-5">
                   
                   {/* Summary Text */}
-                  <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
+                  <p className="text-xs sm:text-sm text-slate-700 dark:text-white/70 leading-relaxed font-light">
                     {item.summary}
                   </p>
 
@@ -129,12 +129,12 @@ export default function EnterpriseAccordionDrawer({
                       {item.specs.map((sp) => (
                         <div
                           key={sp.label}
-                          className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-3 text-center sm:text-left"
+                          className="rounded-xl bg-white dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/[0.06] p-3 text-center sm:text-left shadow-xs"
                         >
-                          <span className="text-[10px] font-mono uppercase text-white/40 block truncate">
+                          <span className="text-[10px] font-mono uppercase text-slate-500 dark:text-white/40 block truncate">
                             {sp.label}
                           </span>
-                          <span className="text-xs font-mono font-semibold text-white mt-0.5 block truncate">
+                          <span className="text-xs font-mono font-semibold text-slate-900 dark:text-white mt-0.5 block truncate">
                             {sp.value}
                           </span>
                         </div>
@@ -146,14 +146,14 @@ export default function EnterpriseAccordionDrawer({
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 text-xs">
                     {item.vendors && item.vendors.length > 0 && (
                       <div>
-                        <span className="text-[10px] font-mono uppercase text-white/40 block mb-1.5">
+                        <span className="text-[10px] font-mono uppercase text-slate-500 dark:text-white/40 block mb-1.5 font-medium">
                           {language === "en" ? "Multi-Vendor Ecosystem" : "Ekosistem Multi-Vendor"}
                         </span>
                         <div className="flex flex-wrap gap-1.5">
                           {item.vendors.map((v) => (
                             <span
                               key={v}
-                              className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 text-white/80"
+                              className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white/80 font-medium"
                             >
                               {v}
                             </span>
@@ -164,14 +164,14 @@ export default function EnterpriseAccordionDrawer({
 
                     {item.compliance && item.compliance.length > 0 && (
                       <div>
-                        <span className="text-[10px] font-mono uppercase text-white/40 block mb-1.5">
+                        <span className="text-[10px] font-mono uppercase text-slate-500 dark:text-white/40 block mb-1.5 font-medium">
                           {language === "en" ? "Security & Compliance" : "Keamanan & Kepatuhan"}
                         </span>
                         <div className="flex flex-wrap gap-1.5">
                           {item.compliance.map((c) => (
                             <span
                               key={c}
-                              className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 flex items-center gap-1"
+                              className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/25 text-emerald-700 dark:text-emerald-400 flex items-center gap-1 font-medium"
                             >
                               <CheckCircle2 className="size-2.5" />
                               <span>{c}</span>

@@ -103,7 +103,7 @@ export default function EnvironmentBuilderSection() {
   if (hasAi) complianceFrameworks.push("Air-Gapped Sovereign AI");
 
   return (
-    <section id="environment-builder" className="py-28 md:py-36 bg-[var(--bg-secondary)] text-[var(--text-primary)] relative overflow-hidden border-t border-b border-[var(--border-subtle)] transition-colors duration-300">
+    <section id="environment-builder" className="py-28 md:py-36 bg-[var(--bg-secondary)] text-[var(--text-primary)] relative overflow-hidden transition-colors duration-300">
       {/* Dynamic Background Atmosphere */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[450px] rounded-full pointer-events-none opacity-30"

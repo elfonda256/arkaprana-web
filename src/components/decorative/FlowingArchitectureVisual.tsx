@@ -86,16 +86,16 @@ export default function FlowingArchitectureVisual({
     <div className="w-full relative py-6 select-none">
       
       {/* Top Topology Status Bar */}
-      <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-white/50 mb-6 pb-2.5 border-b border-white/[0.08]">
+      <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-slate-600 dark:text-white/50 mb-6 pb-2.5 border-b border-slate-200 dark:border-white/[0.08]">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
-          <span className="text-white/80">
+          <span className="w-2 h-2 rounded-full bg-sky-500 dark:bg-[#38BDF8] animate-pulse" />
+          <span className="text-slate-800 dark:text-white/90 font-medium">
             {language === "en" ? "SYNAPSE REAL-TIME ARCHITECTURE BUS" : "BUS ARSITEKTUR REAL-TIME SYNAPSE"}
           </span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="hidden sm:inline text-white/40">PROTOCOL: DWDM / BGP EVPN / TLS 1.3</span>
-          <span className="text-emerald-400 font-semibold">
+          <span className="hidden sm:inline text-slate-500 dark:text-white/40">PROTOCOL: DWDM / BGP EVPN / TLS 1.3</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
             {language === "en" ? "SIGNAL FLOW: ACTIVE" : "ALIRAN SINYAL: AKTIF"}
           </span>
         </div>

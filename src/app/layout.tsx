@@ -36,7 +36,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#08090D",
+  themeColor: "#F8FAFC",
 };
 
 export const metadata: Metadata = {
@@ -66,15 +66,33 @@ export const metadata: Metadata = {
   authors: [{ name: "PT ARKAPRANA TEKNOLOGI NUSANTARA" }],
   creator: "ARKAPRANA",
   publisher: "PT ARKAPRANA TEKNOLOGI NUSANTARA",
-  metadataBase: new URL("https://arkaprana.com"),
+  metadataBase: new URL("https://arkaprana.co.id"),
+  alternates: {
+    canonical: "https://arkaprana.co.id",
+  },
   openGraph: {
     title: "ARKAPRANA | Technology & Intelligent Solutions",
     description:
-      "ARKAPRANA adalah perusahaan teknologi Indonesia yang menghadirkan solusi infrastructure, network, cloud, cybersecurity, managed IT, system integration, automation dan artificial intelligence.",
-    url: "https://arkaprana.com",
+      "Membangun fondasi digital dan menghadirkan kecerdasan: Sovereign Infrastructure, Carrier-Grade Network, Zero-Trust Cybersecurity & Private On-Premise AI.",
+    url: "https://arkaprana.co.id",
     siteName: "ARKAPRANA",
     locale: "id_ID",
     type: "website",
+    images: [
+      {
+        url: "/brand/logo-full.png",
+        width: 1200,
+        height: 630,
+        alt: "ARKAPRANA Technology & Intelligent Solutions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ARKAPRANA | Technology & Intelligent Solutions",
+    description:
+      "Sovereign Infrastructure, Carrier-Grade Network, Zero-Trust Cybersecurity & Private On-Premise AI.",
+    images: ["/brand/logo-full.png"],
   },
 };
 
@@ -88,7 +106,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: "PT ARKAPRANA TEKNOLOGI NUSANTARA",
     alternateName: "ARKAPRANA",
-    url: "https://arkaprana.com",
+    url: "https://arkaprana.co.id",
     description:
       "ARKAPRANA adalah perusahaan teknologi Indonesia yang menghadirkan solusi infrastructure, network, cloud, cybersecurity, managed IT, system integration, automation dan artificial intelligence.",
     slogan: "BUILD. CONNECT. INTELLIGENCE.",
@@ -99,7 +117,7 @@ export default function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "Customer Support & Enterprise Inquiries",
-      email: "elfano2156@gmail.com",
+      email: "contact@arkaprana.co.id",
       telephone: "+62-816-997-963",
     },
   };
@@ -117,10 +135,24 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var saved = localStorage.getItem('arkaprana_theme');
-                  var theme = saved || 'dark';
+                  // Purge legacy dark state from earlier sessions
+                  localStorage.removeItem('arkaprana_theme');
+                  localStorage.removeItem('arkaprana_theme_v2');
+                  var saved = localStorage.getItem('arkaprana_theme_v3');
+                  var theme = saved === 'dark' ? 'dark' : 'light';
                   document.documentElement.setAttribute('data-theme', theme);
-                } catch (e) {}
+                  if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                  }
+                } catch (e) {
+                  document.documentElement.setAttribute('data-theme', 'light');
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.classList.add('light');
+                }
               })();
             `,
           }}

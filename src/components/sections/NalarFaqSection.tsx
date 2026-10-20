@@ -121,29 +121,29 @@ export default function NalarFaqSection() {
   };
 
   return (
-    <section id="faq" className="relative py-24 md:py-36 bg-[#08090D] text-white overflow-hidden border-b border-white/10">
+    <section id="faq" className="relative py-24 md:py-36 bg-[#F8FAFC] dark:bg-[#0B0F19] text-slate-900 dark:text-white overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header: CENTERED AS REQUESTED */}
-        <div className="max-w-3xl mx-auto text-center mb-16 pb-8 border-b border-white/10 space-y-3 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-white/70">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+        <div className="max-w-3xl mx-auto text-center mb-16 pb-8 border-b border-slate-200 dark:border-white/10 space-y-3 flex flex-col items-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-white/[0.04] text-[11px] font-mono text-slate-700 dark:text-white/70 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0284C7] dark:bg-[#38BDF8] animate-pulse" />
             <span className="tracking-widest uppercase">{t("faq_badge", "10 · KNOWLEDGE BASE · FAQS")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight leading-[1.18] font-display">
+          <h2 className="text-3xl sm:text-5xl font-light text-slate-900 dark:text-white tracking-tight leading-[1.18] font-display">
             {t("faq_title", "Pertanyaan yang Sering Diajukan")}
           </h2>
-          <p className="text-xs sm:text-sm text-white/50 max-w-md mx-auto font-light leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-white/50 max-w-md mx-auto font-light leading-relaxed">
             {t("faq_desc", "Segala hal yang perlu Anda ketahui mengenai Arkaprana. Tidak menemukan jawaban Anda?")}{" "}
-            <Link href="/contact" className="text-white hover:text-[#38BDF8] underline transition-colors">
+            <Link href="/contact" className="text-slate-900 dark:text-white hover:text-[#0284C7] dark:hover:text-[#38BDF8] underline font-medium transition-colors">
               {t("faq_reach_out", "Hubungi kami.")}
             </Link>
           </p>
         </div>
 
         {/* Minimalist Border Accordion List (Centered Max-W-4xl) */}
-        <div className="max-w-4xl mx-auto space-y-0 divide-y divide-white/10 border-b border-white/10">
+        <div className="max-w-4xl mx-auto space-y-0 divide-y divide-slate-200 dark:divide-white/10 border-b border-slate-200 dark:border-white/10">
           {faqs.map((faq) => {
             const isOpen = openIds.includes(faq.id);
 
@@ -152,13 +152,13 @@ export default function NalarFaqSection() {
                 <button
                   type="button"
                   onClick={() => toggleFaq(faq.id)}
-                  className="w-full flex items-center justify-between py-6 text-left transition-colors cursor-pointer group-hover:text-[#38BDF8]"
+                  className="w-full flex items-center justify-between py-6 text-left transition-colors cursor-pointer group-hover:text-[#0284C7] dark:group-hover:text-[#38BDF8]"
                 >
                   <div className="flex items-center gap-4 pr-6">
-                    <span className="text-white/40 group-hover:text-[#38BDF8] transition-colors shrink-0">
+                    <span className="text-slate-400 dark:text-white/40 group-hover:text-[#0284C7] dark:group-hover:text-[#38BDF8] transition-colors shrink-0">
                       {isOpen ? <Minus className="size-4" /> : <Plus className="size-4" />}
                     </span>
-                    <span className="text-base sm:text-lg font-light text-white/90 group-hover:text-white font-display tracking-wide">
+                    <span className="text-base sm:text-lg font-light text-slate-800 dark:text-white/90 group-hover:text-slate-950 dark:group-hover:text-white font-display tracking-wide">
                       {faq.question}
                     </span>
                   </div>
@@ -168,7 +168,7 @@ export default function NalarFaqSection() {
                 <div className={`accordion-wrapper ${isOpen ? "is-open" : ""}`}>
                   <div className="accordion-inner">
                     <div className="pl-8 pb-6 pr-4 max-w-3xl">
-                      <p className="text-xs sm:text-sm text-white/60 font-light leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-white/60 font-light leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>

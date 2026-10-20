@@ -159,7 +159,7 @@ export default function ArchitectureBlueprintVisual() {
               cx={node.x}
               cy="80"
               r="4.5"
-              fill={isLight ? "#FFFFFF" : "#080A0F"}
+              fill={isLight ? "#FFFFFF" : "#0B0F19"}
               stroke={isLight ? "#1769E0" : "#00f0ff"}
               strokeWidth="1.2"
             />
